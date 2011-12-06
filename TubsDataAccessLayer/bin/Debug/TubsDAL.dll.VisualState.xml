@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1002]C:\Users\coreyc\Documents\Visual Studio 2010\Projects\TubsDataAccessLayer\TubsDataAccessLayer\bin\Debug\TubsDAL.dll</TopNode>
+  <SelectedNode>[0-1001]Spc.Ofp.Tubs.DAL.Tests.ObserverTest.TestGetObserverList</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1002]C:\Users\coreyc\Documents\Visual Studio 2010\Projects\TubsDataAccessLayer\TubsDataAccessLayer\bin\Debug\TubsDAL.dll" Expanded="true" />
+    <Node UniqueName="[0-1003]Spc" Expanded="true" />
+    <Node UniqueName="[0-1004]Spc.Ofp" Expanded="true" />
+    <Node UniqueName="[0-1005]Spc.Ofp.Tubs" Expanded="true" />
+    <Node UniqueName="[0-1006]Spc.Ofp.Tubs.DAL" Expanded="true" />
+    <Node UniqueName="[0-1007]Spc.Ofp.Tubs.DAL.Tests" Expanded="true" />
+    <Node UniqueName="[0-1000]Spc.Ofp.Tubs.DAL.Tests.ObserverTest" Expanded="true" />
+  </Nodes>
+</VisualState>

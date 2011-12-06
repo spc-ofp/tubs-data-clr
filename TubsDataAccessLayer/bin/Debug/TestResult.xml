@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\coreyc\Documents\Visual Studio 2010\Projects\TubsDataAccessLayer\TubsDataAccessLayer\bin\Debug\TubsDAL.dll" total="8" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2011-12-06" time="16:13:46">
+  <environment nunit-version="2.5.10.11092" clr-version="4.0.30319.239" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Windows\System32" machine-name="SPC112089" user="coreyc" user-domain="NOUMEA" />
+  <culture-info current-culture="en-AU" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Users\coreyc\Documents\Visual Studio 2010\Projects\TubsDataAccessLayer\TubsDataAccessLayer\bin\Debug\TubsDAL.dll" executed="True" result="Success" success="True" time="3.504" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="Spc" executed="True" result="Success" success="True" time="3.501" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Ofp" executed="True" result="Success" success="True" time="3.501" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="Tubs" executed="True" result="Success" success="True" time="3.501" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="DAL" executed="True" result="Success" success="True" time="3.500" asserts="0">
+                    <results>
+                      <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="3.500" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="BaseTest" executed="True" result="Inconclusive" success="False" time="0.004" asserts="0" />
+                          <test-suite type="TestFixture" name="ObserverTest" executed="True" result="Success" success="True" time="2.995" asserts="0">
+                            <results>
+                              <test-case name="Spc.Ofp.Tubs.DAL.Tests.ObserverTest.TestGetObserver" executed="True" result="Success" success="True" time="2.822" asserts="4" />
+                              <test-case name="Spc.Ofp.Tubs.DAL.Tests.ObserverTest.TestGetObserverList" executed="True" result="Success" success="True" time="0.172" asserts="4" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="PortTest" executed="True" result="Success" success="True" time="0.218" asserts="0">
+                            <results>
+                              <test-case name="Spc.Ofp.Tubs.DAL.Tests.PortTest.TestGetPort" executed="True" result="Success" success="True" time="0.047" asserts="3" />
+                              <test-case name="Spc.Ofp.Tubs.DAL.Tests.PortTest.TestGetPortList" executed="True" result="Success" success="True" time="0.172" asserts="2" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="TripTest" executed="True" result="Success" success="True" time="0.125" asserts="0">
+                            <results>
+                              <test-case name="Spc.Ofp.Tubs.DAL.Tests.TripTest.TestGetTrip" executed="True" result="Success" success="True" time="0.062" asserts="6" />
+                              <test-case name="Spc.Ofp.Tubs.DAL.Tests.TripTest.TestGetTripList" executed="True" result="Success" success="True" time="0.062" asserts="74" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="VesselTest" executed="True" result="Success" success="True" time="0.140" asserts="0">
+                            <results>
+                              <test-case name="Spc.Ofp.Tubs.DAL.Tests.VesselTest.TestGetVessel" executed="True" result="Success" success="True" time="0.062" asserts="2" />
+                              <test-case name="Spc.Ofp.Tubs.DAL.Tests.VesselTest.TestGetVesselList" executed="True" result="Success" success="True" time="0.078" asserts="2" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

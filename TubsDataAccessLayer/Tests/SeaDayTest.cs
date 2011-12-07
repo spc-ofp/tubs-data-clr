@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="PortTest.cs" company="Secretariat of the Pacific Community">
+// <copyright file="SeaDayTest.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // 
 // This file is part of TUBS.
@@ -21,6 +21,7 @@
 
 namespace Spc.Ofp.Tubs.DAL.Tests
 {
+    using System;
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
 
@@ -28,23 +29,16 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     /// TODO: Update summary.
     /// </summary>
     [TestFixture]
-    public class PortTest : BaseTest
+    public class SeaDayTest : BaseTest
     {
-        [Test]
-        public void TestGetPortList()
-        {
-            var ports = Session.CreateCriteria(typeof(Port)).List<Port>();
-            Assert.NotNull(ports);
-            Assert.Greater(ports.Count, 0);
-        }
 
         [Test]
-        public void TestGetPort()
+        public void TestGetSeaDay()
         {
-            var port = Session.Get<Port>("JPABU");
-            Assert.NotNull(port);
-            Assert.AreEqual("JPABU", port.PortCode.Trim());
-            Assert.AreEqual("ABURATSU", port.Name.Trim());
+            var seaday = Session.Get<PurseSeineSeaDay>(221);
+            Assert.NotNull(seaday);
+            Assert.NotNull(seaday.Activities);
+            Assert.Greater(seaday.Activities.Count, 5);
         }
     }
 }

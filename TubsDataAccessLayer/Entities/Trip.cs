@@ -31,5 +31,9 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         // Audit trail
         public virtual string EnteredBy { get; set; }
         public virtual DateTime? EnteredDate { get; set; }
+
+        // Trip knows how to create it's own metrics
+        // TODO Implement!  This is here as a reminder on how to implement the API
+        public virtual object CatchAndEffort { get; private set; }
     }
 }

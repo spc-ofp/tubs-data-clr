@@ -20,10 +20,7 @@
 // -----------------------------------------------------------------------
 namespace Spc.Ofp.Tubs.DAL.Entities
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// Observer entity.  Sourced from the [ref].[field_staff] view and therefore

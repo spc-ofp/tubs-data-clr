@@ -31,7 +31,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public class PurseSeineSet
     {
-        public virtual int Id { get; private set; }
+        public virtual int Id { get; protected set; }
         /// <summary>
         /// Reference back to the activity that led to this set
         /// </summary>

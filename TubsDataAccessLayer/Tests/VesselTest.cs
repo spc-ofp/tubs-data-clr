@@ -34,18 +34,26 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class VesselTest : BaseTest
     {
+        private TubsRepository<Vessel> repo;
+
+        [TestFixtureSetUp]
+        public void SetUp()
+        {
+            repo = new TubsRepository<Vessel>(TubsDataService.GetSession());
+        }
+        
         [Test]
         public void TestGetVesselList()
         {
-            var vessels = Session.CreateCriteria(typeof(Vessel)).List<Vessel>();
+            var vessels = repo.All();
             Assert.NotNull(vessels);
-            Assert.Greater(vessels.Count, 0);
+            Assert.Greater(vessels.Count<Vessel>(), 0);
         }
 
         [Test]
         public void TestGetVessel()
         {
-            var vessel = Session.Get<Vessel>(23382);
+            var vessel = repo.FindBy(23382);
             Assert.NotNull(vessel);
             Assert.AreEqual("FONG SEONG 196", vessel.Name.Trim());
         }

@@ -21,26 +21,44 @@
 
 namespace Spc.Ofp.Tubs.DAL
 {
+    using System.Reflection;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
     using NHibernate;
-    using Spc.Ofp.Tubs.DAL.Entities;
-    using System.Reflection;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class TubsDataService
     {
-        public static ISessionFactory CreateSessionFactory(string server, string database)
+        private static ISessionFactory sessionFactory;
+
+        private static ISessionFactory SessionFactory
+        {
+            get
+            {
+                return sessionFactory ?? (sessionFactory = CreateSessionFactory());
+            }
+        }
+
+        public static ISession GetSession()
+        {
+            return SessionFactory.OpenSession();
+        }
+
+        public static void Dispose()
+        {
+            SessionFactory.Close();
+        }
+        
+        private static ISessionFactory CreateSessionFactory()
         {
             IPersistenceConfigurer cfg =
                 MsSqlConfiguration.MsSql2008.ConnectionString(
                     c => c
-                        .Server(server)
-                        .Database(database)
-                        .TrustedConnection()
+                        .FromConnectionStringWithKey("TUBS")
                 );
+            
 
             return Fluently.Configure()
                 .Database(cfg)

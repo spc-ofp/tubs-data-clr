@@ -31,7 +31,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public abstract class Trip
     {
-        public virtual int Id { get; private set; }
+        public virtual int Id { get; protected set; }
         public virtual DateTime? DepartureDate { get; set; }
         public virtual DateTime? UtcDepartureDate { get; set; }
         public virtual DateTime? ReturnDate { get; set; }
@@ -49,6 +49,6 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         // Trip knows how to create it's own metrics
         // TODO Implement!  This is here as a reminder on how to implement the API
-        public virtual object CatchAndEffort { get; private set; }
+        public virtual object CatchAndEffort { get; protected set; }
     }
 }

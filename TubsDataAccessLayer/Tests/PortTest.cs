@@ -21,6 +21,8 @@
 
 namespace Spc.Ofp.Tubs.DAL.Tests
 {
+    using System;
+    using System.Linq;
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
 
@@ -30,18 +32,26 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class PortTest : BaseTest
     {
+        private TubsRepository<Port> repo;
+
+        [TestFixtureSetUp]
+        public void SetUp()
+        {
+            repo = new TubsRepository<Port>(TubsDataService.GetSession());
+        }
+        
         [Test]
         public void TestGetPortList()
         {
-            var ports = Session.CreateCriteria(typeof(Port)).List<Port>();
+            var ports = repo.All();
             Assert.NotNull(ports);
-            Assert.Greater(ports.Count, 0);
+            Assert.Greater(ports.Count<Port>(), 0);
         }
 
         [Test]
         public void TestGetPort()
         {
-            var port = Session.Get<Port>("JPABU");
+            var port = repo.FindBy("JPABU");
             Assert.NotNull(port);
             Assert.AreEqual("JPABU", port.PortCode.Trim());
             Assert.AreEqual("ABURATSU", port.Name.Trim());

@@ -23,6 +23,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Text;
 
@@ -32,9 +33,13 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     public abstract class Trip
     {
         public virtual int Id { get; protected set; }
+        [Display(ResourceType = typeof(FieldNames), Name = "DepartureDate")]
         public virtual DateTime? DepartureDate { get; set; }
+        [Display(ResourceType = typeof(FieldNames), Name = "UtcDepartureDate")]
         public virtual DateTime? UtcDepartureDate { get; set; }
+        [Display(ResourceType = typeof(FieldNames), Name = "ReturnDate")]
         public virtual DateTime? ReturnDate { get; set; }
+        [Display(ResourceType = typeof(FieldNames), Name = "TripNumber")]
         public virtual string TripNumber { get; set; }
 
         public virtual Vessel Vessel { get; set; }
@@ -44,7 +49,9 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual Port ReturnPort { get; set; }
 
         // Audit trail
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
 
         // Trip knows how to create it's own metrics

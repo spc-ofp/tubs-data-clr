@@ -53,6 +53,7 @@
       <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -75,6 +76,11 @@
     <Compile Include="Entities\SetCatch.cs" />
     <Compile Include="Entities\Trip.cs" />
     <Compile Include="Entities\Vessel.cs" />
+    <Compile Include="FieldNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FieldNames.resx</DependentUpon>
+    </Compile>
     <Compile Include="Mappings\ActivityMap.cs" />
     <Compile Include="Mappings\ObserverMap.cs" />
     <Compile Include="Mappings\PortMap.cs" />
@@ -99,7 +105,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="FieldNames.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FieldNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

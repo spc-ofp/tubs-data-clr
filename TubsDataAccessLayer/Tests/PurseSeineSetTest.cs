@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="VesselTest.cs" company="Secretariat of the Pacific Community">
+// <copyright file="PurseSeineSetTest.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // 
 // This file is part of TUBS.
@@ -22,9 +22,6 @@
 namespace Spc.Ofp.Tubs.DAL.Tests
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
 
@@ -32,22 +29,32 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     /// TODO: Update summary.
     /// </summary>
     [TestFixture]
-    public class VesselTest : BaseTest
+    public class PurseSeineSetTest : BaseTest
     {
-        [Test]
-        public void TestGetVesselList()
-        {
-            var vessels = Session.CreateCriteria(typeof(Vessel)).List<Vessel>();
-            Assert.NotNull(vessels);
-            Assert.Greater(vessels.Count, 0);
-        }
 
         [Test]
-        public void TestGetVessel()
+        public void TestGetSet()
         {
-            var vessel = Session.Get<Vessel>(23382);
-            Assert.NotNull(vessel);
-            Assert.AreEqual("FONG SEONG 196", vessel.Name.Trim());
+            var set = Session.Get<PurseSeineSet>(277);
+            Assert.NotNull(set);
+            Assert.True(set.StartOfSetFromLog.HasValue);
+            Assert.True(set.SkiffOff.HasValue);
+            Assert.True(set.WinchOn.HasValue);
+            Assert.True(set.RingsUp.HasValue);
+            Assert.True(set.BeginBrailing.HasValue);
+            Assert.True(set.EndBrailing.HasValue);
+            Assert.NotNull(set.CatchList);
+            Assert.Greater(set.CatchList.Count, 10);
+            foreach (var setcatch in set.CatchList)
+            {
+                Assert.AreEqual(set, setcatch.FishingSet);
+                Assert.NotNull(setcatch);
+                Assert.NotNull(setcatch.SpeciesCode);
+                Assert.NotNull(setcatch.FateCode);
+                Assert.NotNull(setcatch.ConditionCode);
+                Assert.True(setcatch.MetricTonsObserved.HasValue);
+                Assert.True(setcatch.MetricTonsFromLog.HasValue);
+            }
         }
     }
 }

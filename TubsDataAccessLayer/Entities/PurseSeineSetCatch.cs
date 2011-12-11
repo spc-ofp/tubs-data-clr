@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="VesselTest.cs" company="Secretariat of the Pacific Community">
+// <copyright file="PurseSeineSetCatch.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // 
 // This file is part of TUBS.
@@ -19,35 +19,33 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Spc.Ofp.Tubs.DAL.Tests
+namespace Spc.Ofp.Tubs.DAL.Entities
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using NUnit.Framework;
-    using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [TestFixture]
-    public class VesselTest : BaseTest
+    public class PurseSeineSetCatch : SetCatch
     {
-        [Test]
-        public void TestGetVesselList()
-        {
-            var vessels = Session.CreateCriteria(typeof(Vessel)).List<Vessel>();
-            Assert.NotNull(vessels);
-            Assert.Greater(vessels.Count, 0);
-        }
+        public virtual PurseSeineSet FishingSet { get; set; }
+        public virtual bool? ContainsLargeFish { get; set; }
+        public virtual string ConditionCode { get; set; }
+        public virtual decimal? MetricTonsObserved { get; set; }
+        public virtual decimal? MetricTonsFromLog { get; set; }
+        public virtual int? CountObserved { get; set; }
+        public virtual int? CountFromLog { get; set; }
 
-        [Test]
-        public void TestGetVessel()
-        {
-            var vessel = Session.Get<Vessel>(23382);
-            Assert.NotNull(vessel);
-            Assert.AreEqual("FONG SEONG 196", vessel.Name.Trim());
-        }
+        public virtual decimal? sp_c_spcomp { get; set; } // ???
+        public virtual int? sp_w_id { get; set; }
+        public virtual decimal? sp_c_est { get; set; }
+        public virtual int? sp_c_id { get; set; }
+        public virtual int? sp_n_est { get; set; }
+
+        public virtual decimal? SpeciesWeightLow { get; set; }
+        public virtual decimal? SpeciesWeightHigh { get; set; }
     }
 }

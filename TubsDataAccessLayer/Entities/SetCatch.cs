@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="PortTest.cs" company="Secretariat of the Pacific Community">
+// <copyright file="SetCatch.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // 
 // This file is part of TUBS.
@@ -19,32 +19,24 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Spc.Ofp.Tubs.DAL.Tests
+namespace Spc.Ofp.Tubs.DAL.Entities
 {
-    using NUnit.Framework;
-    using Spc.Ofp.Tubs.DAL.Entities;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [TestFixture]
-    public class PortTest : BaseTest
+    public abstract class SetCatch
     {
-        [Test]
-        public void TestGetPortList()
-        {
-            var ports = Session.CreateCriteria(typeof(Port)).List<Port>();
-            Assert.NotNull(ports);
-            Assert.Greater(ports.Count, 0);
-        }
-
-        [Test]
-        public void TestGetPort()
-        {
-            var port = Session.Get<Port>("JPABU");
-            Assert.NotNull(port);
-            Assert.AreEqual("JPABU", port.PortCode.Trim());
-            Assert.AreEqual("ABURATSU", port.Name.Trim());
-        }
+        public virtual int Id { get; private set; }
+        public virtual string SpeciesCode { get; set; }
+        public virtual string FateCode { get; set; }
+        public virtual int? AverageLength { get; set; } // Not in long line, but we'll leave it here
+        public virtual string Comments { get; set; }
+        public virtual string EnteredBy { get; set; }
+        public virtual DateTime? EnteredDate { get; set; }
     }
 }

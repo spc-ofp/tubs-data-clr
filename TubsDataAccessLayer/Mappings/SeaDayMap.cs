@@ -43,6 +43,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Table("[obsv].[s_day]");
             Id(x => x.Id, "s_day_id").GeneratedBy.Identity();
             Map(x => x.DiaryPage, "diarypage");
+            HasMany(x => x.Activities).KeyColumn("s_day_id");
         }
     }
 }

@@ -17,5 +17,17 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     public class PurseSeineSeaDay : SeaDay
     {
         public virtual string DiaryPage { get; set; }
+        public virtual IList<PurseSeineActivity> Activities { get; set; }
+
+        public PurseSeineSeaDay()
+        {
+            Activities = new List<PurseSeineActivity>();
+        }
+
+        public virtual void AddActivity(PurseSeineActivity activity)
+        {
+            activity.Day = this;
+            Activities.Add(activity);
+        }
     }
 }

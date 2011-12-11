@@ -8,6 +8,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
 {
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
     /// TODO: Update summary.
@@ -42,6 +43,16 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             Assert.AreEqual("96-02", trip.TripNumber.Trim());
             Assert.NotNull(trip.SeaDays);
             Assert.Greater(trip.SeaDays.Count, 10);
+            foreach (var seaDay in trip.SeaDays)
+            {
+                Assert.NotNull(seaDay);
+                Assert.NotNull(seaDay.Activities);
+                Assert.Greater(seaDay.Activities.Count, 0);
+                foreach (var activity in seaDay.Activities)
+                {
+                    Assert.NotNull(activity);
+                }
+            }
         }
     }
 }

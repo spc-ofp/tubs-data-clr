@@ -31,7 +31,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public class Vessel
     {
-        public virtual int Id { get; private set; }
+        public virtual int Id { get; protected set; }
         public virtual string TypeCode { get; set; } // TODO Enum?
         public virtual string Name { get; set; }
         public virtual string WcpfcNumber { get; set; }

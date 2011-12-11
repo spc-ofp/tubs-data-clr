@@ -41,6 +41,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DepartureDate, "dep_dtime");
             Map(x => x.UtcDepartureDate, "utc_dep_dtime");
             Map(x => x.ReturnDate, "ret_dtime");
+            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnteredDate, "entered_dtime");
 
             References(x => x.Vessel).Column("vessel_id");
             References(x => x.Observer).Column("staff_code");

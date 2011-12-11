@@ -31,11 +31,18 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class SeaDayTest : BaseTest
     {
+        private TubsRepository<PurseSeineSeaDay> psRepo;
+
+        [TestFixtureSetUp]
+        public void SetUp()
+        {
+            psRepo = new TubsRepository<PurseSeineSeaDay>(TubsDataService.GetSession());
+        }
 
         [Test]
         public void TestGetSeaDay()
         {
-            var seaday = Session.Get<PurseSeineSeaDay>(221);
+            var seaday = psRepo.FindBy(221);
             Assert.NotNull(seaday);
             Assert.NotNull(seaday.Activities);
             Assert.Greater(seaday.Activities.Count, 5);

@@ -30,24 +30,17 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     /// </summary>
     public class BaseTest
     {
-        protected const string SERVER_NAME = @"SPC112089\SQLEXPRESS";
-        protected const string DATABASE_NAME = @"TUBS_MASTER_ENTRY";
-
-        protected ISessionFactory SessionFactory;
-        protected ISession Session;
-
-        [SetUp]
-        public void Init()
+        [TestFixtureSetUp]
+        public void InitEx()
         {
-            SessionFactory = TubsDataService.CreateSessionFactory(SERVER_NAME, DATABASE_NAME);
-            Session = SessionFactory.OpenSession();
+            var session = TubsDataService.GetSession();
+            session.Close();            
         }
 
-        [TearDown]
-        public void Dispose()
+        [TestFixtureTearDown]
+        public void DisposeEx()
         {
-            Session.Close();
-            SessionFactory.Close();
+            TubsDataService.Dispose();
         }
     }
 }

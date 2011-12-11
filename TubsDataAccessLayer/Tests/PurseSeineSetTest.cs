@@ -32,10 +32,18 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     public class PurseSeineSetTest : BaseTest
     {
 
+        private TubsRepository<PurseSeineSet> repo;
+
+        [TestFixtureSetUp]
+        public void SetUp()
+        {
+            repo = new TubsRepository<PurseSeineSet>(TubsDataService.GetSession());
+        }
+        
         [Test]
         public void TestGetSet()
         {
-            var set = Session.Get<PurseSeineSet>(277);
+            var set = repo.FindBy(277);
             Assert.NotNull(set);
             Assert.True(set.StartOfSetFromLog.HasValue);
             Assert.True(set.SkiffOff.HasValue);

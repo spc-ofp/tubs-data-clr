@@ -31,14 +31,22 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class ObserverTest : BaseTest
     {
+        private TubsRepository<Observer> repo;
+
+        [TestFixtureSetUp]
+        public void SetUp()
+        {
+            repo = new TubsRepository<Observer>(TubsDataService.GetSession());
+        }
+        
         
         [Test]
         public void TestGetObserverList()
         {
-
-            var observers = Session.CreateCriteria(typeof(Observer)).List<Observer>();
+            //var observers = Session.CreateCriteria(typeof(Observer)).List<Observer>();
+            var observers = repo.All();
             Assert.NotNull(observers);
-            Assert.Greater(observers.Count, 0);
+            Assert.Greater(observers.Count<Observer>(), 0);
             var observer = observers.First<Observer>();
             Assert.NotNull(observer);
             Assert.False(String.IsNullOrEmpty(observer.StaffCode));
@@ -47,7 +55,8 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetObserver()
         {
-            var observer = Session.Get<Observer>("PBS");
+            //var observer = Session.Get<Observer>("PBS");
+            var observer = repo.FindBy("PBS");
             Assert.NotNull(observer);
             Assert.AreEqual("PBS", observer.StaffCode.Trim());
             Assert.NotNull(observer.Trips);

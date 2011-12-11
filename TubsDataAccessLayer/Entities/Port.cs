@@ -21,21 +21,24 @@
 
 namespace Spc.Ofp.Tubs.DAL.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class Port
     {
+        [Display(ResourceType = typeof(FieldNames), Name = "PortCode")]
         public virtual string PortCode { get; set; }
+        [Display(ResourceType = typeof(FieldNames), Name = "Name")]
         public virtual string Name { get; set; }
+        [Display(ResourceType = typeof(FieldNames), Name = "AlternateName")]
         public virtual string AlternateName { get; set; }
+        [Display(ResourceType = typeof(FieldNames), Name = "CountryCode")]
         public virtual string CountryCode { get; set; }
+        [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
         public virtual string Latitude { get; set; }
+        [Display(ResourceType = typeof(FieldNames), Name = "Longitude")]
         public virtual string Longitude { get; set; }
     }
 }

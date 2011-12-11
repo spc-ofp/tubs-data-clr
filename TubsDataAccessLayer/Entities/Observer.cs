@@ -21,6 +21,7 @@
 namespace Spc.Ofp.Tubs.DAL.Entities
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// Observer entity.  Sourced from the [ref].[field_staff] view and therefore
@@ -28,8 +29,11 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public class Observer
     {
+        [Display(ResourceType = typeof(FieldNames), Name = "StaffCode")]
         public virtual string StaffCode { get; set; }
+        [Display(ResourceType = typeof(FieldNames), Name = "FirstName")]
         public virtual string FirstName { get; set; }
+        [Display(ResourceType = typeof(FieldNames), Name = "LastName")]
         public virtual string LastName { get; set; }
         public virtual IList<Trip> Trips { get; set; }
 

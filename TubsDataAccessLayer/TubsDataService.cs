@@ -32,6 +32,13 @@ namespace Spc.Ofp.Tubs.DAL
     /// </summary>
     public class TubsDataService
     {
+        /// <summary>
+        /// Prevents a default instance of the TubsDataService class from being created.
+        /// </summary>
+        private TubsDataService()
+        { 
+        }
+        
         private static ISessionFactory sessionFactory;
 
         private static ISessionFactory SessionFactory

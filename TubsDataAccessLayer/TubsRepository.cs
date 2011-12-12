@@ -24,6 +24,7 @@ namespace Spc.Ofp.Tubs.DAL
      */
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using NHibernate;
     using NHibernate.Linq;
@@ -91,11 +92,13 @@ namespace Spc.Ofp.Tubs.DAL
             return this.Session.Query<T>();
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "Okay to suppress for LINQ expressions")]
         public T FindBy(System.Linq.Expressions.Expression<Func<T, bool>> expression)
         {
             return this.FilterBy(expression).SingleOrDefault();
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "Okay to suppress for LINQ expressions")]
         public IQueryable<T> FilterBy(System.Linq.Expressions.Expression<Func<T, bool>> expression)
         {
             return this.All().Where(expression).AsQueryable();

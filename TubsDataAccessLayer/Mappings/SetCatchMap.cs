@@ -31,7 +31,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <typeparam name="T">Any class deriving from SetCatch.</typeparam>
     public abstract class BaseSetCatchMap<T> : ClassMap<T> where T : SetCatch
     {
-        public BaseSetCatchMap()
+        protected BaseSetCatchMap()
         {
             Map(x => x.SpeciesCode, "sp_code");
             Map(x => x.FateCode, "fate_code");

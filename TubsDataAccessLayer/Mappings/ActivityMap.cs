@@ -31,7 +31,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <typeparam name="T">Any class deriving from Activity.</typeparam>
     public abstract class BaseActivityMap<T> : ClassMap<T> where T : Activity
     {
-        public BaseActivityMap()
+        protected BaseActivityMap()
         {
             Map(x => x.LocalTime, "act_dtime");
             Map(x => x.UtcTime, "utc_act_dtime");

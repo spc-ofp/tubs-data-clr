@@ -32,6 +32,8 @@ namespace Spc.Ofp.Tubs.DAL.Common
     /// </summary>
     public enum ActivityType
     {
+        [Description("Unknown")]
+        None = 0,
         [Description("Fishing")]
         Fishing = 1,
         [Description("Searching")]
@@ -85,6 +87,8 @@ namespace Spc.Ofp.Tubs.DAL.Common
     /// </summary>
     public enum SchoolAssociation
     {
+        [Description("Unknown")]
+        None = 0,
         [Description("Unassociated")]
         Unassociated = 21,
         [Description("Feeding on baitfish")]
@@ -112,6 +116,8 @@ namespace Spc.Ofp.Tubs.DAL.Common
     /// </summary>
     public enum DetectionMethod
     {
+        [Description("Unknown")]
+        None = 0,
         [Description("Seen from vessel")]
         SeenFromVessel = 30,
         [Description("Seen from helicopter")]

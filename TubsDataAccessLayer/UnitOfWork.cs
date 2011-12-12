@@ -56,27 +56,6 @@ namespace Spc.Ofp.Tubs.DAL
             GC.SuppressFinalize(this);
         }
 
-        public void Dispose(bool disposing)
-        {
-            // Check to see if Dispose has already been called
-            if (!this.disposed)
-            {
-                // If disposing is true, dispose all managed and unmanaged resources
-                if (disposing)
-                {
-                    lock (this.Session)
-                    {
-                        if (this.Session.IsOpen)
-                        { 
-                            this.Session.Close(); 
-                        }
-                    }
-                }
-
-                this.disposed = true;
-            }
-        }
-
         public void Commit()
         {
             if (!this.transaction.IsActive)
@@ -92,6 +71,27 @@ namespace Spc.Ofp.Tubs.DAL
             if (this.transaction.IsActive)
             {
                 this.transaction.Rollback();
+            }
+        }
+
+        private void Dispose(bool disposing)
+        {
+            // Check to see if Dispose has already been called
+            if (!this.disposed)
+            {
+                // If disposing is true, dispose all managed and unmanaged resources
+                if (disposing)
+                {
+                    lock (this.Session)
+                    {
+                        if (this.Session.IsOpen)
+                        {
+                            this.Session.Close();
+                        }
+                    }
+                }
+
+                this.disposed = true;
             }
         }
     }

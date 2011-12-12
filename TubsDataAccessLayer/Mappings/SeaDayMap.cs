@@ -31,7 +31,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <typeparam name="T">Any class deriving from SeaDay.</typeparam>
     public abstract class BaseSeaDayMap<T> : ClassMap<T> where T : SeaDay
     {
-        public BaseSeaDayMap() 
+        protected BaseSeaDayMap() 
         {
             Map(x => x.FormId, "form_id");
             Map(x => x.StartOfDay, "start_dtime");

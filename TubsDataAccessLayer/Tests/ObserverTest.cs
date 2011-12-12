@@ -1,25 +1,26 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="ObserverTest.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
-// 
-// This file is part of TUBS.
-// 
-//  TUBS is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// TUBS is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-// 
-// You should have received a copy of the GNU Affero General Public License
-// along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
 // </copyright>
 // -----------------------------------------------------------------------
 namespace Spc.Ofp.Tubs.DAL.Tests
 {
+    /*
+     * This file is part of TUBS.
+     *
+     * TUBS is free software: you can redistribute it and/or modify
+     * it under the terms of the GNU Affero General Public License as published by
+     * the Free Software Foundation, either version 3 of the License, or
+     * (at your option) any later version.
+     *  
+     * TUBS is distributed in the hope that it will be useful,
+     * but WITHOUT ANY WARRANTY; without even the implied warranty of
+     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     * GNU Affero General Public License for more details.
+     *  
+     * You should have received a copy of the GNU Affero General Public License
+     * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
+     */
     using System;
     using System.Linq;
     using NUnit.Framework;
@@ -36,15 +37,13 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [TestFixtureSetUp]
         public void SetUp()
         {
-            repo = new TubsRepository<Observer>(TubsDataService.GetSession());
+            this.repo = new TubsRepository<Observer>(TubsDataService.GetSession());
         }
-        
-        
+                
         [Test]
         public void TestGetObserverList()
         {
-            //var observers = Session.CreateCriteria(typeof(Observer)).List<Observer>();
-            var observers = repo.All();
+            var observers = this.repo.All();
             Assert.NotNull(observers);
             Assert.Greater(observers.Count<Observer>(), 0);
             var observer = observers.First<Observer>();
@@ -55,8 +54,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetObserver()
         {
-            //var observer = Session.Get<Observer>("PBS");
-            var observer = repo.FindBy("PBS");
+            var observer = this.repo.FindBy("PBS");
             Assert.NotNull(observer);
             Assert.AreEqual("PBS", observer.StaffCode.Trim());
             Assert.NotNull(observer.Trips);

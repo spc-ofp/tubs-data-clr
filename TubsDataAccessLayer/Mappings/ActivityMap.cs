@@ -1,37 +1,34 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="ActivityMap.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
-// 
-// This file is part of TUBS.
-// 
-//  TUBS is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// TUBS is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-// 
-// You should have received a copy of the GNU Affero General Public License
-// along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
 // </copyright>
 // -----------------------------------------------------------------------
-
 namespace Spc.Ofp.Tubs.DAL.Mappings
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    /*
+     * This file is part of TUBS.
+     *
+     * TUBS is free software: you can redistribute it and/or modify
+     * it under the terms of the GNU Affero General Public License as published by
+     * the Free Software Foundation, either version 3 of the License, or
+     * (at your option) any later version.
+     *  
+     * TUBS is distributed in the hope that it will be useful,
+     * but WITHOUT ANY WARRANTY; without even the implied warranty of
+     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     * GNU Affero General Public License for more details.
+     *  
+     * You should have received a copy of the GNU Affero General Public License
+     * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
+     */
     using FluentNHibernate.Mapping;
-    using Spc.Ofp.Tubs.DAL.Entities;
     using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapper for classes deriving from Activity.
     /// </summary>
+    /// <typeparam name="T">Any class deriving from Activity.</typeparam>
     public abstract class BaseActivityMap<T> : ClassMap<T> where T : Activity
     {
         public BaseActivityMap()
@@ -56,6 +53,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class PurseSeineActivityMap : BaseActivityMap<PurseSeineActivity>
     {
         public PurseSeineActivityMap()

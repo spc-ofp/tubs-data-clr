@@ -1,26 +1,26 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="SeaDayMap.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
-// 
-// This file is part of TUBS.
-// 
-//  TUBS is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// TUBS is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-// 
-// You should have received a copy of the GNU Affero General Public License
-// along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
 // </copyright>
 // -----------------------------------------------------------------------
-
 namespace Spc.Ofp.Tubs.DAL.Mappings
 {
+    /*
+     * This file is part of TUBS.
+     *
+     * TUBS is free software: you can redistribute it and/or modify
+     * it under the terms of the GNU Affero General Public License as published by
+     * the Free Software Foundation, either version 3 of the License, or
+     * (at your option) any later version.
+     *  
+     * TUBS is distributed in the hope that it will be useful,
+     * but WITHOUT ANY WARRANTY; without even the implied warranty of
+     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     * GNU Affero General Public License for more details.
+     *  
+     * You should have received a copy of the GNU Affero General Public License
+     * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
+     */
     using System;
     using FluentNHibernate.Mapping;
     using Spc.Ofp.Tubs.DAL.Entities;
@@ -28,6 +28,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Mapper for purse seine and pole and line sea days.
     /// </summary>
+    /// <typeparam name="T">Any class deriving from SeaDay.</typeparam>
     public abstract class BaseSeaDayMap<T> : ClassMap<T> where T : SeaDay
     {
         public BaseSeaDayMap() 
@@ -44,10 +45,12 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
             References(x => x.Trip).Column("obstrip_id");
-        }
-       
+        }      
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class PurseSeineSeaDayMap : BaseSeaDayMap<PurseSeineSeaDay>
     {
         public PurseSeineSeaDayMap()

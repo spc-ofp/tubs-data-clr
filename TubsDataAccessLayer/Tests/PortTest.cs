@@ -1,26 +1,26 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="PortTest.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
-// 
-// This file is part of TUBS.
-// 
-//  TUBS is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// TUBS is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-// 
-// You should have received a copy of the GNU Affero General Public License
-// along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
 // </copyright>
 // -----------------------------------------------------------------------
-
 namespace Spc.Ofp.Tubs.DAL.Tests
 {
+    /*
+     * This file is part of TUBS.
+     *
+     * TUBS is free software: you can redistribute it and/or modify
+     * it under the terms of the GNU Affero General Public License as published by
+     * the Free Software Foundation, either version 3 of the License, or
+     * (at your option) any later version.
+     *  
+     * TUBS is distributed in the hope that it will be useful,
+     * but WITHOUT ANY WARRANTY; without even the implied warranty of
+     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     * GNU Affero General Public License for more details.
+     *  
+     * You should have received a copy of the GNU Affero General Public License
+     * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
+     */
     using System;
     using System.Linq;
     using NUnit.Framework;
@@ -37,13 +37,13 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [TestFixtureSetUp]
         public void SetUp()
         {
-            repo = new TubsRepository<Port>(TubsDataService.GetSession());
+            this.repo = new TubsRepository<Port>(TubsDataService.GetSession());
         }
         
         [Test]
         public void TestGetPortList()
         {
-            var ports = repo.All();
+            var ports = this.repo.All();
             Assert.NotNull(ports);
             Assert.Greater(ports.Count<Port>(), 0);
         }
@@ -51,7 +51,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetPort()
         {
-            var port = repo.FindBy("JPABU");
+            var port = this.repo.FindBy("JPABU");
             Assert.NotNull(port);
             Assert.AreEqual("JPABU", port.PortCode.Trim());
             Assert.AreEqual("ABURATSU", port.Name.Trim());

@@ -29,7 +29,9 @@ namespace Spc.Ofp.Tubs.DAL
     using NHibernate.Linq;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// TubsRepository wraps up NHibernate so that a repo per object type is not required.
+    /// NOTE:  NHibernate considers any Session that has thrown an Exception to be in an undefined
+    /// state.  Therefore, unlike JDBC, there's no point in handling exceptions here.
     /// </summary>
     /// <typeparam name="T">Any entity that can be mapped to a Fluent NHibernate entity.</typeparam>
     public class TubsRepository<T>
@@ -48,90 +50,40 @@ namespace Spc.Ofp.Tubs.DAL
 
         public bool Add(T entity)
         {
-            bool success = false;
-            try
-            {
-                this.Session.Save(entity);
-                success = true;
-            }
-            catch (Exception)
-            {
-                // TODO Log
-            }
-
-            return success;
+            this.Session.Save(entity);
+            return true;
         }
 
         public bool Add(IEnumerable<T> items)
         {
-            bool success = false;
-            try
+            foreach (T item in items)
             {
-                foreach (T item in items)
-                {
-                    this.Session.Save(item);
-                }
-
-                success = true;
-            }
-            catch (Exception)
-            {
-                // TODO Log
+                this.Session.Save(item);
             }
 
-            return success;
+            return true;
         }
 
         public bool Update(T entity)
         {
-            bool success = false;
-            try
-            {
-                this.Session.Update(entity);
-                success = true;
-            }
-            catch (Exception)
-            {
-                // TODO Log
-            }
-
-            return success;
+            this.Session.Update(entity);
+            return true;
         }
 
         public bool Delete(T entity)
         {
-            bool success = false;
-            try
-            {
-                this.Session.Delete(entity);
-                success = true;
-            }
-            catch (Exception)
-            {
-                // TODO Log
-            }
-
-            return success;
+            this.Session.Delete(entity);
+            return true;
         }
 
         public bool Delete(IEnumerable<T> entities)
         {
-            bool success = false;
-            try
+            foreach (T item in entities)
             {
-                foreach (T item in entities)
-                {
-                    this.Session.Delete(item);
-                }
-
-                success = true;
-            }
-            catch (Exception)
-            {
-                // TODO Log
+                this.Session.Delete(item);
             }
 
-            return success;
+            return true;
         }
 
         public IQueryable<T> All()

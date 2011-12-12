@@ -30,15 +30,8 @@ namespace Spc.Ofp.Tubs.DAL
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class TubsDataService
+    public static class TubsDataService
     {
-        /// <summary>
-        /// Prevents a default instance of the TubsDataService class from being created.
-        /// </summary>
-        private TubsDataService()
-        {
-        }
-
         private static ISessionFactory sessionFactory;
 
         private static ISessionFactory SessionFactory
@@ -73,4 +66,3 @@ namespace Spc.Ofp.Tubs.DAL
         }
     }
 }
-

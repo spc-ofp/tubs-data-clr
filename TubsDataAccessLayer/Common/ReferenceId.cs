@@ -134,4 +134,3 @@ namespace Spc.Ofp.Tubs.DAL.Common
         Anchored = 36,
     }
 }
-

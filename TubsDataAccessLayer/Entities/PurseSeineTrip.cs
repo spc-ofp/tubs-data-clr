@@ -34,7 +34,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.SeaDays = new List<PurseSeineSeaDay>();
         }
         
-        public virtual IList<PurseSeineSeaDay> SeaDays { get; set; }
+        public virtual IList<PurseSeineSeaDay> SeaDays { get; private set; }
         
         public virtual void AddSeaDay(PurseSeineSeaDay seaday)
         {

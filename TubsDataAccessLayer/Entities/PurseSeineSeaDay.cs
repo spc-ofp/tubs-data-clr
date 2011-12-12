@@ -38,7 +38,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         
         public virtual string DiaryPage { get; set; }
 
-        public virtual IList<PurseSeineActivity> Activities { get; set; }   
+        public virtual IList<PurseSeineActivity> Activities { get; private set; }   
 
         public virtual void AddActivity(PurseSeineActivity activity)
         {

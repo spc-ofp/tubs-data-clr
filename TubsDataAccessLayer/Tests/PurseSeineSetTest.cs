@@ -34,7 +34,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         private TubsRepository<PurseSeineSet> repo;
 
         [TestFixtureSetUp]
-        public void SetUp()
+        public void Setup()
         {
             this.repo = new TubsRepository<PurseSeineSet>(TubsDataService.GetSession());
         }

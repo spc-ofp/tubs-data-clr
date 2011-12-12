@@ -26,17 +26,17 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BaseTest
+    public abstract class BaseTest
     {
         [TestFixtureSetUp]
-        public void InitEx()
+        public static void Init()
         {
             var session = TubsDataService.GetSession();
             session.Close();            
         }
 
         [TestFixtureTearDown]
-        public void DisposeEx()
+        public static void Dispose()
         {
             TubsDataService.Dispose();
         }

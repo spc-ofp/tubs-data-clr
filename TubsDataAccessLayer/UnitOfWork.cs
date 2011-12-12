@@ -89,6 +89,8 @@ namespace Spc.Ofp.Tubs.DAL
                             this.Session.Close();
                         }
                     }
+
+                    this.sessionFactory.Close();
                 }
 
                 this.disposed = true;
@@ -96,4 +98,3 @@ namespace Spc.Ofp.Tubs.DAL
         }
     }
 }
-

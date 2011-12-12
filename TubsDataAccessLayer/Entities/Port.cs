@@ -22,7 +22,9 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
+    using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
@@ -31,15 +33,31 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     {
         [Display(ResourceType = typeof(FieldNames), Name = "PortCode")]
         public virtual string PortCode { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "Name")]
         public virtual string Name { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "AlternateName")]
         public virtual string AlternateName { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "CountryCode")]
         public virtual string CountryCode { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
         public virtual string Latitude { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "Longitude")]
         public virtual string Longitude { get; set; }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (!String.IsNullOrEmpty(this.Name))
+            {
+                sb.Append(this.Name);
+            }
+            sb.AppendFormat(" ({0})", this.PortCode);
+            return sb.ToString().Trim();
+        }
     }
 }

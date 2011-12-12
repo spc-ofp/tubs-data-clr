@@ -21,8 +21,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Text;
 
     /// <summary>
     /// Observer entity.  Sourced from the [ref].[field_staff] view and therefore
@@ -50,6 +52,17 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             trip.Observer = this;
             this.Trips.Add(trip);
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(String.Join(" ", this.FirstName, this.LastName));
+            if (!String.IsNullOrEmpty(this.StaffCode))
+            {
+                sb.AppendFormat(" ({0})", this.StaffCode);
+            }
+            return sb.ToString().Trim();
         }
     }
 }

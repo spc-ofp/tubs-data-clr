@@ -215,7 +215,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual DateTime? EnteredDate { get; set; }
 
-        public virtual IList<PurseSeineSetCatch> CatchList { get; set; }
+        public virtual IList<PurseSeineSetCatch> CatchList { get; private set; }
 
         public virtual void AddSetCatch(PurseSeineSetCatch setcatch)
         {

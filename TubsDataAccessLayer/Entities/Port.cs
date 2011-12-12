@@ -56,6 +56,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             {
                 sb.Append(this.Name);
             }
+
             sb.AppendFormat(" ({0})", this.PortCode);
             return sb.ToString().Trim();
         }

@@ -46,7 +46,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "LastName")]
         public virtual string LastName { get; set; }
 
-        public virtual IList<Trip> Trips { get; set; }
+        public virtual IList<Trip> Trips { get; private set; }
 
         public virtual void AddTrip(Trip trip)
         {
@@ -62,6 +62,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             {
                 sb.AppendFormat(" ({0})", this.StaffCode);
             }
+
             return sb.ToString().Trim();
         }
     }

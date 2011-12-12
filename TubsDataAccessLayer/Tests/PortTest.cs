@@ -35,7 +35,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         private TubsRepository<Port> repo;
 
         [TestFixtureSetUp]
-        public void SetUp()
+        public void Setup()
         {
             this.repo = new TubsRepository<Port>(TubsDataService.GetSession());
         }

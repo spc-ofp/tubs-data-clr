@@ -36,9 +36,9 @@ namespace Spc.Ofp.Tubs.DAL
         /// Prevents a default instance of the TubsDataService class from being created.
         /// </summary>
         private TubsDataService()
-        { 
+        {
         }
-        
+
         private static ISessionFactory sessionFactory;
 
         private static ISessionFactory SessionFactory
@@ -58,14 +58,14 @@ namespace Spc.Ofp.Tubs.DAL
         {
             SessionFactory.Close();
         }
-        
+
         private static ISessionFactory CreateSessionFactory()
         {
             IPersistenceConfigurer cfg =
                 MsSqlConfiguration.MsSql2008.ConnectionString(
                     c => c
                         .FromConnectionStringWithKey("TUBS"));
-            
+
             return Fluently.Configure()
                 .Database(cfg)
                 .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
@@ -73,3 +73,4 @@ namespace Spc.Ofp.Tubs.DAL
         }
     }
 }
+

@@ -141,7 +141,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         // http://stackoverflow.com/questions/7404991/fluentnhibernate-how-to-map-database-char-to-c-sharp-bool
         // Another option is a custom user type:
         // http://darrell.mozingo.net/2009/02/10/generic-nhibernate-user-type-base-class/
-        
+
         /// <summary>
         /// Does this set contain Skipjack?
         /// </summary>

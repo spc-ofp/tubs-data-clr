@@ -3,7 +3,6 @@
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
-
 namespace Spc.Ofp.Tubs.DAL.Entities
 {
     /*

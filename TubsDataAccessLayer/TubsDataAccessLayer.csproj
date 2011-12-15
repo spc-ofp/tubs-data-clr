@@ -67,6 +67,9 @@
   <ItemGroup>
     <Compile Include="Common\ReferenceId.cs" />
     <Compile Include="Entities\Activity.cs" />
+    <Compile Include="Entities\Brail.cs" />
+    <Compile Include="Entities\LengthSample.cs" />
+    <Compile Include="Entities\LengthSamplingHeader.cs" />
     <Compile Include="Entities\LongLineTrip.cs" />
     <Compile Include="Entities\Observer.cs" />
     <Compile Include="Entities\Port.cs" />
@@ -85,6 +88,9 @@
       <DependentUpon>FieldNames.resx</DependentUpon>
     </Compile>
     <Compile Include="Mappings\ActivityMap.cs" />
+    <Compile Include="Mappings\BrailMap.cs" />
+    <Compile Include="Mappings\LengthSampleMap.cs" />
+    <Compile Include="Mappings\LengthSamplingHeaderMap.cs" />
     <Compile Include="Mappings\ObserverMap.cs" />
     <Compile Include="Mappings\PortMap.cs" />
     <Compile Include="Mappings\PurseSeineSetMap.cs" />
@@ -94,6 +100,7 @@
     <Compile Include="Mappings\VesselMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\BaseTest.cs" />
+    <Compile Include="Tests\LengthSamplingHeaderTest.cs" />
     <Compile Include="Tests\ObserverTest.cs" />
     <Compile Include="Tests\PortTest.cs" />
     <Compile Include="Tests\PurseSeineSetTest.cs" />
@@ -103,6 +110,7 @@
     <Compile Include="TubsDataService.cs" />
     <Compile Include="TubsRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

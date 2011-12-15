@@ -1,9 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="PurseSeineTrip.cs" company="Secretariat of the Pacific Community">
+// <copyright file="Utilities.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
-namespace Spc.Ofp.Tubs.DAL.Entities
+
+namespace Spc.Ofp.Tubs.DAL
 {
     /*
      * This file is part of TUBS.
@@ -22,24 +23,47 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
-    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class PurseSeineTrip : Trip
+    public static class Utilities
     {
-        public PurseSeineTrip()
+        private static Regex multiSpaceRegex = new Regex(@"\s+");
+        
+        public static string NullSafeToLower(this string value)
         {
-            this.SeaDays = new List<PurseSeineSeaDay>();
+            if (String.IsNullOrEmpty(value))
+            {   
+                return value;
+            }
+
+            return value.ToLower();
         }
-        
-        public virtual IList<PurseSeineSeaDay> SeaDays { get; protected internal set; }
-        
-        public virtual void AddSeaDay(PurseSeineSeaDay seaday)
+
+        public static string NullSafeTrim(this string instring)
         {
-            seaday.Trip = this;
-            this.SeaDays.Add(seaday);
+            if (String.IsNullOrEmpty(instring))
+            {
+                return instring;
+            }
+
+            return instring.Trim();
+        }
+
+        public static string NormalizeSpaces(string instring)
+        {
+            // Don't bother with null or empty strings
+            if (String.IsNullOrEmpty(instring))
+            {
+                return instring;
+            }
+
+            string retval = multiSpaceRegex.IsMatch(instring) ?
+                multiSpaceRegex.Replace(instring, " ") : instring;
+
+            return retval;
         }
     }
 }

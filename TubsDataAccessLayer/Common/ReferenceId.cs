@@ -133,4 +133,86 @@ namespace Spc.Ofp.Tubs.DAL.Common
         [Description("Anchored FAD/payao (recorded)")]
         Anchored = 36,
     }
+
+    public enum SamplingProtocol
+    {
+        [Description("Unknown")]
+        None = 0,
+        [Description("Random (normal) sample")]
+        Normal = 88,
+        [Description("Other")]
+        Other = 89,
+        [Description("Small fish sample only")]
+        SmallFish = 90,
+    }
+
+    public enum LengthCode
+    {
+        [Description("Anal fin length")]
+        AN,
+        [Description("Bill to fork in tail")]
+        BL,
+        [Description("Curved Carapace Length")]
+        CC,
+        [Description("Cleithrum to anterior base caudal keel")]
+        CK,
+        [Description("carapace length (turtles)")]
+        CL,
+        [Description("Carapace width")]
+        CW,
+        [Description("Cleithrum to caudal fork")]
+        CX,
+        [Description("Posterior eye orbital to caudal fork")]
+        EO,
+        [Description("Posterior eye orbital to vent")]
+        EV,
+        [Description("1st dorsal to fork in tail")]
+        FF,
+        [Description("Weight of all fins (sharks)")]
+        FN,
+        [Description("1st dorsal to 2nd dorsal")]
+        FS,
+        [Description("Fillets weight")]
+        FW,
+        [Description("Gilled, gutted, headed, flaps removed")]
+        GF,
+        [Description("Gilled and gutted weight")]
+        GG,
+        [Description("Gutted and headed weight")]
+        GH,
+        [Description("Girth")]
+        GI,
+        [Description("Gutted only (gills left in)")]
+        GO,
+        [Description("Gilled, gutted and tailed")]
+        GT,
+        [Description("Gutted, headed and tailed")]
+        GX,
+        [Description("lower jaw to fork in tail")]
+        LF,
+        [Description("not measured")]
+        NM,
+        [Description("Observer's Estimate")]
+        OW,
+        [Description("pectoral fin to fork in tail")]
+        PF,
+        [Description("Pectoral fin to 2nd dorsal")]
+        PS,
+        [Description("Straight Carapace Length")]
+        SC,
+        [Description("Tip of snout to end of caudal peduncle")]
+        SL,
+        [Description("Body Thickness (Width)")]
+        TH,
+        [Description("tip of snout to end of tail")]
+        TL,
+        [Description("total width (tip of wings - rays)")]
+        TW,
+        [Description("upper jaw to fork in tail")]
+        UF,
+        [Description("Upper jaw to 2nd dorsal fin")]
+        US,
+        [Description("Whole weight")]
+        WW
+    }
 }

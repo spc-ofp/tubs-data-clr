@@ -1,8 +1,9 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="PurseSeineTrip.cs" company="Secretariat of the Pacific Community">
+// <copyright file="LengthSample.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
+
 namespace Spc.Ofp.Tubs.DAL.Entities
 {
     /*
@@ -22,24 +23,27 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
-    using System.Collections.Generic;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class PurseSeineTrip : Trip
+    public class LengthSample
     {
-        public PurseSeineTrip()
-        {
-            this.SeaDays = new List<PurseSeineSeaDay>();
-        }
-        
-        public virtual IList<PurseSeineSeaDay> SeaDays { get; protected internal set; }
-        
-        public virtual void AddSeaDay(PurseSeineSeaDay seaday)
-        {
-            seaday.Trip = this;
-            this.SeaDays.Add(seaday);
-        }
+        public virtual int Id { get; protected set; }
+
+        public virtual LengthSamplingHeader Header { get; set; }
+
+        public virtual int? SequenceNumber { get; set; }
+
+        public virtual string SpeciesCode { get; set; }
+
+        public virtual LengthCode? LengthCode { get; set; }
+
+        public virtual int? Length { get; set; }
+
+        public virtual string EnteredBy { get; set; }
+
+        public virtual DateTime? EnteredDate { get; set; }
     }
 }

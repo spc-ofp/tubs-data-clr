@@ -1,9 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="PurseSeineTrip.cs" company="Secretariat of the Pacific Community">
+// <copyright file="LengthSampleMap.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
-namespace Spc.Ofp.Tubs.DAL.Entities
+
+namespace Spc.Ofp.Tubs.DAL.Mappings
 {
     /*
      * This file is part of TUBS.
@@ -21,25 +22,26 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using System;
-    using System.Collections.Generic;
+    using FluentNHibernate.Mapping;
+    using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class PurseSeineTrip : Trip
+    public class LengthSampleMap : ClassMap<LengthSample>
     {
-        public PurseSeineTrip()
+        public LengthSampleMap()
         {
-            this.SeaDays = new List<PurseSeineSeaDay>();
-        }
-        
-        public virtual IList<PurseSeineSeaDay> SeaDays { get; protected internal set; }
-        
-        public virtual void AddSeaDay(PurseSeineSeaDay seaday)
-        {
-            seaday.Trip = this;
-            this.SeaDays.Add(seaday);
+            Table("[obsv].[s_lfmeas]");
+            Id(x => x.Id, "s_lfmeas_id").GeneratedBy.Identity();
+            Map(x => x.SequenceNumber, "seq_number");
+            Map(x => x.SpeciesCode, "sp_code");
+            Map(x => x.LengthCode, "len_code");
+            Map(x => x.Length, "len");
+            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnteredDate, "entered_dtime");
+            HasOne(x => x.Header).ForeignKey("s_lf_id");
         }
     }
 }

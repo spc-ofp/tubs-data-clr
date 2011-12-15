@@ -57,7 +57,8 @@ namespace Spc.Ofp.Tubs.DAL
             IPersistenceConfigurer cfg =
                 MsSqlConfiguration.MsSql2008.ConnectionString(
                     c => c
-                        .FromConnectionStringWithKey("TUBS"));
+                        .FromConnectionStringWithKey("TUBS"))
+                .ShowSql(); // Remove from production build
 
             return Fluently.Configure()
                 .Database(cfg)

@@ -75,7 +75,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Comments, "comments");
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
-            HasOne(x => x.Activity).ForeignKey("s_daylog_id");
+            References(x => x.Activity).Column("s_daylog_id");
+            //HasOne(x => x.Activity).ForeignKey("s_daylog_id");
             HasMany(x => x.CatchList).KeyColumn("s_set_id").Cascade.All();
         }
     }

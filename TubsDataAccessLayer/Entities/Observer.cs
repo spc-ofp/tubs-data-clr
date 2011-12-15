@@ -46,7 +46,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "LastName")]
         public virtual string LastName { get; set; }
 
-        public virtual IList<Trip> Trips { get; private set; }
+        public virtual IList<Trip> Trips { get; protected internal set; }
 
         public virtual void AddTrip(Trip trip)
         {
@@ -57,7 +57,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(String.Join(" ", this.FirstName, this.LastName));
+            sb.Append(String.Join(" ", this.FirstName.NullSafeTrim(), this.LastName.NullSafeTrim()));
             if (!String.IsNullOrEmpty(this.StaffCode))
             {
                 sb.AppendFormat(" ({0})", this.StaffCode);

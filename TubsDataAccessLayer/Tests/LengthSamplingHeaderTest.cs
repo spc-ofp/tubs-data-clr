@@ -60,6 +60,13 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             Assert.AreEqual("0730", header.BrailEndTime.Trim());
             Assert.NotNull(header.Samples);
             Assert.Greater(header.Samples.Count, 90);
+            // Although I picked this example because I know about how many samples it has, it's still good
+            // to confirm that the relationship really is correct.
+            foreach (var sample in header.Samples)
+            {
+                Assert.NotNull(sample.Header);
+                Assert.AreEqual(header.Id, sample.Header.Id);
+            }
         }
     }
 }

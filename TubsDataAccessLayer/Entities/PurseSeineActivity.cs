@@ -25,6 +25,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
     /// TODO: Update summary.
@@ -37,11 +38,11 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         
         public virtual string Payao { get; set; }
 
-        public virtual int WindDirection { get; set; }
+        public virtual int? WindDirection { get; set; }
 
-        public virtual int WindSpeed { get; set; }
+        public virtual int? WindSpeed { get; set; }
 
-        public virtual string SeaCode { get; set; }
+        public virtual SeaCode? SeaCode { get; set; }
 
         // This should only happen when the activity code is ActivityType.Fishing
         public virtual PurseSeineSet FishingSet { get; set; }

@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="LengthSampleMap.cs" company="Secretariat of the Pacific Community">
+// <copyright file="MarineDeviceMap.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
@@ -23,25 +23,25 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using FluentNHibernate.Mapping;
-    using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LengthSampleMap : ClassMap<LengthSample>
+    public class MarineDeviceMap : ClassMap<MarineDevice>
     {
-        public LengthSampleMap()
+        public MarineDeviceMap()
         {
-            Table("[obsv].[s_lfmeas]");
-            Id(x => x.Id, "s_lfmeas_id").GeneratedBy.Identity();
-            Map(x => x.SequenceNumber, "seq_number");
-            Map(x => x.SpeciesCode, "sp_code");
-            Map(x => x.LengthCode, "len_code");
-            Map(x => x.Length, "len");
+            Table("[obsv].[ref_marine_devices]");
+            Id(x => x.Id, "device_id");
+            Map(x => x.Description, "device_desc").Not.Nullable();
+            Map(x => x.Category, "device_cat");
+            Map(x => x.GearList, "gearlist").Length(3);
+            Map(x => x.LongLineOrder, "order_l");
+            Map(x => x.PurseSeineOrder, "order_s");
+            Map(x => x.PoleAndLineOrder, "order_p");
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
-            References(x => x.Header).Column("s_lf_id");
         }
     }
 }

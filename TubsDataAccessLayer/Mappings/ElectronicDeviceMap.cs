@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="LengthSampleMap.cs" company="Secretariat of the Pacific Community">
+// <copyright file="ElectronicDeviceMap.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
@@ -29,19 +29,21 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LengthSampleMap : ClassMap<LengthSample>
+    public class ElectronicDeviceMap : ClassMap<ElectronicDevice>
     {
-        public LengthSampleMap()
+        public ElectronicDeviceMap()
         {
-            Table("[obsv].[s_lfmeas]");
-            Id(x => x.Id, "s_lfmeas_id").GeneratedBy.Identity();
-            Map(x => x.SequenceNumber, "seq_number");
-            Map(x => x.SpeciesCode, "sp_code");
-            Map(x => x.LengthCode, "len_code");
-            Map(x => x.Length, "len");
+            Table("[obsv].[vess_electronics_detail]");
+            Id(x => x.Id, "elect_detail_id");
+            Map(x => x.IsInstalled, "isinstalled").CustomType(typeof(YesNoType));
+            Map(x => x.Usage, "usage_code");
+            Map(x => x.Make, "make_desc").Length(30);
+            Map(x => x.Model, "model_desc").Length(30);
+            Map(x => x.Comments, "comments");
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
-            References(x => x.Header).Column("s_lf_id");
+            References(x => x.DeviceType).Column("device_id");
+            References(x => x.Trip).Column("obstrip_id");
         }
     }
 }

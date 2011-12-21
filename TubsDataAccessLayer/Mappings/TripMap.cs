@@ -46,6 +46,14 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             References(x => x.DeparturePort).Column("dep_port");
             References(x => x.ReturnPort).Column("ret_port");
 
+            References(x => x.CommunicationServices).Column("obstrip_id");
+            References(x => x.TripMonitor).Column("obstrip_id");
+
+            HasMany(x => x.Sightings).KeyColumn("obstrip_id");
+            HasMany(x => x.Transfers).KeyColumn("obstrip_id");
+            HasMany(x => x.PollutionEvents).KeyColumn("obstrip_id");
+            HasMany(x => x.Electronics).KeyColumn("obstrip_id");
+            
             DiscriminateSubClassesOnColumn<string>("gear_code");
         }
     }
@@ -59,6 +67,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         {
             DiscriminatorValue("S");
             HasMany(x => x.SeaDays).KeyColumn("obstrip_id");
+            HasMany(x => x.Crew).KeyColumn("obstrip_id");
         }
     }
 

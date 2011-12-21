@@ -12,6 +12,8 @@
     <AssemblyName>TubsDAL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\tubs-data-clr\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,19 +70,32 @@
     <Compile Include="Common\ReferenceId.cs" />
     <Compile Include="Entities\Activity.cs" />
     <Compile Include="Entities\Brail.cs" />
+    <Compile Include="Entities\CommunicationServices.cs" />
+    <Compile Include="Entities\Crew.cs" />
+    <Compile Include="Entities\ElectronicDevice.cs" />
+    <Compile Include="Entities\Gear.cs" />
     <Compile Include="Entities\LengthSample.cs" />
     <Compile Include="Entities\LengthSamplingHeader.cs" />
     <Compile Include="Entities\LongLineTrip.cs" />
+    <Compile Include="Entities\MarineDevice.cs" />
     <Compile Include="Entities\Observer.cs" />
+    <Compile Include="Entities\PollutionDetail.cs" />
+    <Compile Include="Entities\PollutionEvent.cs" />
     <Compile Include="Entities\Port.cs" />
     <Compile Include="Entities\PurseSeineActivity.cs" />
+    <Compile Include="Entities\PurseSeineCrew.cs" />
     <Compile Include="Entities\PurseSeineSet.cs" />
     <Compile Include="Entities\PurseSeineSetCatch.cs" />
     <Compile Include="Entities\PurseSeineTrip.cs" />
     <Compile Include="Entities\PurseSeineSeaDay.cs" />
+    <Compile Include="Entities\SafetyInspection.cs" />
     <Compile Include="Entities\SeaDay.cs" />
     <Compile Include="Entities\SetCatch.cs" />
+    <Compile Include="Entities\Sighting.cs" />
+    <Compile Include="Entities\Transfer.cs" />
     <Compile Include="Entities\Trip.cs" />
+    <Compile Include="Entities\TripMonitor.cs" />
+    <Compile Include="Entities\TripMonitorDetail.cs" />
     <Compile Include="Entities\Vessel.cs" />
     <Compile Include="FieldNames.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -89,28 +104,46 @@
     </Compile>
     <Compile Include="Mappings\ActivityMap.cs" />
     <Compile Include="Mappings\BrailMap.cs" />
+    <Compile Include="Mappings\CommunicationServicesMap.cs" />
+    <Compile Include="Mappings\CrewMap.cs" />
+    <Compile Include="Mappings\ElectronicDeviceMap.cs" />
     <Compile Include="Mappings\LengthSampleMap.cs" />
     <Compile Include="Mappings\LengthSamplingHeaderMap.cs" />
+    <Compile Include="Mappings\MarineDeviceMap.cs" />
     <Compile Include="Mappings\ObserverMap.cs" />
+    <Compile Include="Mappings\PollutionDetailMap.cs" />
+    <Compile Include="Mappings\PollutionEventMap.cs" />
     <Compile Include="Mappings\PortMap.cs" />
     <Compile Include="Mappings\PurseSeineSetMap.cs" />
     <Compile Include="Mappings\SeaDayMap.cs" />
     <Compile Include="Mappings\SetCatchMap.cs" />
+    <Compile Include="Mappings\SightingMap.cs" />
+    <Compile Include="Mappings\TransferMap.cs" />
     <Compile Include="Mappings\TripMap.cs" />
+    <Compile Include="Mappings\TripMonitorDetailMap.cs" />
+    <Compile Include="Mappings\TripMonitorMap.cs" />
     <Compile Include="Mappings\VesselMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\BaseTest.cs" />
+    <Compile Include="Tests\BrailTest.cs" />
+    <Compile Include="Tests\ElectronicDeviceTest.cs" />
     <Compile Include="Tests\LengthSamplingHeaderTest.cs" />
+    <Compile Include="Tests\MarineDeviceTest.cs" />
     <Compile Include="Tests\ObserverTest.cs" />
+    <Compile Include="Tests\PollutionEventTest.cs" />
     <Compile Include="Tests\PortTest.cs" />
     <Compile Include="Tests\PurseSeineSetTest.cs" />
     <Compile Include="Tests\SeaDayTest.cs" />
+    <Compile Include="Tests\SightingTest.cs" />
+    <Compile Include="Tests\TransferTest.cs" />
+    <Compile Include="Tests\TripMonitorTest.cs" />
     <Compile Include="Tests\TripTest.cs" />
     <Compile Include="Tests\VesselTest.cs" />
     <Compile Include="TubsDataService.cs" />
     <Compile Include="TubsRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="Utilities.cs" />
+    <Compile Include="YesNoType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -129,6 +162,7 @@
   <!-- Import StyleCop targets.  Use of ProgramFiles should default to 32 bit version on x64
        because msbuild is 32 bit -->
   <Import Project="$(ProgramFiles)\MSBuild\StyleCop\v4.6\StyleCop.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

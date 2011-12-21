@@ -49,7 +49,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     }
 
     /// <summary>
-    /// 
+    /// Mapping for purse seine seaday.
     /// </summary>
     public class PurseSeineSeaDayMap : BaseSeaDayMap<PurseSeineSeaDay>
     {

@@ -1,10 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="LengthSampleMap.cs" company="Secretariat of the Pacific Community">
+// <copyright file="Transfer.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Spc.Ofp.Tubs.DAL.Mappings
+namespace Spc.Ofp.Tubs.DAL.Entities
 {
     /*
      * This file is part of TUBS.
@@ -22,26 +22,42 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using FluentNHibernate.Mapping;
+    using System;
     using Spc.Ofp.Tubs.DAL.Common;
-    using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LengthSampleMap : ClassMap<LengthSample>
+    public class Transfer
     {
-        public LengthSampleMap()
-        {
-            Table("[obsv].[s_lfmeas]");
-            Id(x => x.Id, "s_lfmeas_id").GeneratedBy.Identity();
-            Map(x => x.SequenceNumber, "seq_number");
-            Map(x => x.SpeciesCode, "sp_code");
-            Map(x => x.LengthCode, "len_code");
-            Map(x => x.Length, "len");
-            Map(x => x.EnteredBy, "entered_by");
-            Map(x => x.EnteredDate, "entered_dtime");
-            References(x => x.Header).Column("s_lf_id");
-        }
+        public virtual int Id { get; protected set; }
+
+        public virtual Trip Trip { get; set; }
+
+        public virtual DateTime? TransferTime { get; set; }
+
+        public virtual string Latitude { get; set; }
+
+        public virtual string Longitude { get; set; }
+
+        public virtual VesselType? VesselType { get; set; }
+
+        public virtual decimal? TonsOfSkipjack { get; set; }
+
+        public virtual decimal? TonsOfYellowfin { get; set; }
+
+        public virtual decimal? TonsOfBigeye { get; set; }
+
+        public virtual decimal? TonsOfMixed { get; set; }
+
+        public virtual ActionType? ActionType { get; set; }
+
+        public virtual string PhotoNumber { get; set; }
+
+        public virtual string Comments { get; set; }
+
+        public virtual string EnteredBy { get; set; }
+
+        public virtual DateTime? EnteredDate { get; set; }
     }
 }

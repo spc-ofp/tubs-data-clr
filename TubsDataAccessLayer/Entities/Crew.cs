@@ -1,10 +1,9 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="LengthSampleMap.cs" company="Secretariat of the Pacific Community">
+// <copyright file="Crew.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
-
-namespace Spc.Ofp.Tubs.DAL.Mappings
+namespace Spc.Ofp.Tubs.DAL.Entities
 {
     /*
      * This file is part of TUBS.
@@ -22,26 +21,35 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using FluentNHibernate.Mapping;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     using Spc.Ofp.Tubs.DAL.Common;
-    using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LengthSampleMap : ClassMap<LengthSample>
+    public abstract class Crew
     {
-        public LengthSampleMap()
-        {
-            Table("[obsv].[s_lfmeas]");
-            Id(x => x.Id, "s_lfmeas_id").GeneratedBy.Identity();
-            Map(x => x.SequenceNumber, "seq_number");
-            Map(x => x.SpeciesCode, "sp_code");
-            Map(x => x.LengthCode, "len_code");
-            Map(x => x.Length, "len");
-            Map(x => x.EnteredBy, "entered_by");
-            Map(x => x.EnteredDate, "entered_dtime");
-            References(x => x.Header).Column("s_lf_id");
-        }
+        public virtual int Id { get; private set; }
+
+        public virtual Trip Trip { get; set; }
+
+        public virtual JobType? Job { get; set; }
+
+        public virtual string Name { get; set; }
+
+        public virtual string CountryCode { get; set; }
+
+        public virtual int? YearsExperience { get; set; }
+
+        public virtual int? MonthsExperience { get; set; }
+
+        public virtual string Comments { get; set; }
+
+        public virtual string EnteredBy { get; set; }
+
+        public virtual DateTime? EnteredDate { get; set; }
     }
 }

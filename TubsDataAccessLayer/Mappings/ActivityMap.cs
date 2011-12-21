@@ -54,7 +54,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     }
 
     /// <summary>
-    /// 
+    /// Fluent NHibernate mapper for purse seine activities.  
     /// </summary>
     public class PurseSeineActivityMap : BaseActivityMap<PurseSeineActivity>
     {
@@ -65,10 +65,10 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.ActivityType, "s_activ_id").CustomType(typeof(ActivityType));
             Map(x => x.WindDirection, "wind_dir");
             Map(x => x.WindSpeed, "wind_kts");
-            Map(x => x.SeaCode, "sea_code");            
+            Map(x => x.SeaCode, "sea_code");          
             Map(x => x.Payao, "payao");            
-            HasOne(x => x.Day).ForeignKey("s_day_id");
-            HasOne(x => x.FishingSet).ForeignKey("s_set_id");
+            References(x => x.Day).Column("s_day_id");
+            References(x => x.FishingSet).Column("s_daylog_id");
         }
     }
 }

@@ -1,10 +1,9 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="LengthSampleMap.cs" company="Secretariat of the Pacific Community">
+// <copyright file="TransferTest.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
-
-namespace Spc.Ofp.Tubs.DAL.Mappings
+namespace Spc.Ofp.Tubs.DAL.Tests
 {
     /*
      * This file is part of TUBS.
@@ -22,26 +21,39 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using FluentNHibernate.Mapping;
-    using Spc.Ofp.Tubs.DAL.Common;
+    using System;
+    using System.Linq;
+    using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LengthSampleMap : ClassMap<LengthSample>
+    [TestFixture]
+    public class TransferTest : BaseTest
     {
-        public LengthSampleMap()
+        private TubsRepository<Transfer> repo;
+
+        [TestFixtureSetUp]
+        public void Setup()
         {
-            Table("[obsv].[s_lfmeas]");
-            Id(x => x.Id, "s_lfmeas_id").GeneratedBy.Identity();
-            Map(x => x.SequenceNumber, "seq_number");
-            Map(x => x.SpeciesCode, "sp_code");
-            Map(x => x.LengthCode, "len_code");
-            Map(x => x.Length, "len");
-            Map(x => x.EnteredBy, "entered_by");
-            Map(x => x.EnteredDate, "entered_dtime");
-            References(x => x.Header).Column("s_lf_id");
+            this.repo = new TubsRepository<Transfer>(TubsDataService.GetSession());
+        }
+
+        [Test]
+        public void TestGetTransfers()
+        {
+            var transfers = repo.All();
+            Assert.NotNull(transfers);
+            foreach (var transfer in transfers)
+            {
+                System.Console.WriteLine("Checking transfer...");
+                Assert.NotNull(transfer);
+                Assert.NotNull(transfer.Trip);
+                Assert.True(transfer.TransferTime.HasValue);
+                Assert.IsNotNullOrEmpty(transfer.Latitude);
+                Assert.IsNotNullOrEmpty(transfer.Longitude);
+            }
         }
     }
 }

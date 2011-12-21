@@ -23,9 +23,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
     /// TODO: Update summary.
@@ -44,7 +42,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual string MeasuringInstrument { get; set; }
 
-        public virtual string LengthCode { get; set; }
+        public virtual LengthCode? LengthCode { get; set; }
 
         public virtual int? FullBrailCount { get; set; }
 

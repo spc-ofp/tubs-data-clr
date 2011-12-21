@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="LengthSampleMap.cs" company="Secretariat of the Pacific Community">
+// <copyright file="TransferMap.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
@@ -29,19 +29,25 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LengthSampleMap : ClassMap<LengthSample>
+    public class TransferMap : ClassMap<Transfer>
     {
-        public LengthSampleMap()
+        public TransferMap()
         {
-            Table("[obsv].[s_lfmeas]");
-            Id(x => x.Id, "s_lfmeas_id").GeneratedBy.Identity();
-            Map(x => x.SequenceNumber, "seq_number");
-            Map(x => x.SpeciesCode, "sp_code");
-            Map(x => x.LengthCode, "len_code");
-            Map(x => x.Length, "len");
+            Table("[obsv].[gen1fishtransfer]");
+            Id(x => x.Id, "fish_tran_id").GeneratedBy.Identity();
+            Map(x => x.TransferTime, "fish_tran_dtime");
+            Map(x => x.Latitude, "lat");
+            Map(x => x.Longitude, "lon");
+            Map(x => x.VesselType, "vatyp_id").CustomType(typeof(VesselType));
+            Map(x => x.TonsOfSkipjack, "skj_c");
+            Map(x => x.TonsOfYellowfin, "yft_c");
+            Map(x => x.TonsOfBigeye, "bet_c");
+            Map(x => x.TonsOfMixed, "mix_c");
+            Map(x => x.ActionType, "action_code");
+            Map(x => x.Comments, "comments");
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
-            References(x => x.Header).Column("s_lf_id");
+            References(x => x.Trip).Column("obstrip_id");
         }
     }
 }

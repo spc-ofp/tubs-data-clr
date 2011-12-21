@@ -47,6 +47,11 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             Assert.IsInstanceOf<PurseSeineSeaDay>(seaday);
             Assert.NotNull(((PurseSeineSeaDay)seaday).Activities);
             Assert.Greater(((PurseSeineSeaDay)seaday).Activities.Count, 5);
+            foreach (var activity in ((PurseSeineSeaDay)seaday).Activities)
+            {
+                Assert.NotNull(activity.Day);
+                Assert.AreEqual(seaday, activity.Day);
+            }
         }
     }
 }

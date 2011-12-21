@@ -23,12 +23,21 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      */
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Generic trip representation.
     /// </summary>
     public abstract class Trip
     {
+        protected Trip()
+        {
+            this.Sightings = new List<Sighting>();
+            this.Transfers = new List<Transfer>();
+            this.PollutionEvents = new List<PollutionEvent>();
+            this.Electronics = new List<ElectronicDevice>();
+        }
+        
         public virtual int Id { get; protected set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "DepartureDate")]
@@ -60,5 +69,41 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         // Trip knows how to create it's own metrics
         // TODO Implement!  This is here as a reminder on how to implement the API
         public virtual object CatchAndEffort { get; protected set; }
+
+        public virtual IList<Sighting> Sightings { get; protected internal set; }
+
+        public virtual IList<Transfer> Transfers { get; protected internal set; }
+
+        public virtual IList<PollutionEvent> PollutionEvents { get; protected internal set; }
+
+        public virtual TripMonitor TripMonitor { get; set; } // Only one GEN-3 per trip.  TODO Do we need to add backref to 'set' method?
+
+        public virtual CommunicationServices CommunicationServices { get; set; }
+
+        public virtual IList<ElectronicDevice> Electronics { get; protected internal set; }
+
+        public virtual void AddSighting(Sighting sighting)
+        {
+            sighting.Trip = this;
+            this.Sightings.Add(sighting);
+        }
+
+        public virtual void AddTransfer(Transfer transfer)
+        {
+            transfer.Trip = this;
+            this.Transfers.Add(transfer);
+        }
+
+        public virtual void AddPollutionEvent(PollutionEvent pevent)
+        {
+            pevent.Trip = this;
+            this.PollutionEvents.Add(pevent);
+        }
+
+        public virtual void AddElectronicDevice(ElectronicDevice device)
+        {
+            device.Trip = this;
+            this.Electronics.Add(device);
+        }
     }
 }

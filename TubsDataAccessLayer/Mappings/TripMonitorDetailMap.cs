@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="LengthSampleMap.cs" company="Secretariat of the Pacific Community">
+// <copyright file="TripMonitorDetailMap.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
@@ -29,19 +29,17 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LengthSampleMap : ClassMap<LengthSample>
+    public class TripMonitorDetailMap : ClassMap<TripMonitorDetail>
     {
-        public LengthSampleMap()
+        public TripMonitorDetailMap()
         {
-            Table("[obsv].[s_lfmeas]");
-            Id(x => x.Id, "s_lfmeas_id").GeneratedBy.Identity();
-            Map(x => x.SequenceNumber, "seq_number");
-            Map(x => x.SpeciesCode, "sp_code");
-            Map(x => x.LengthCode, "len_code");
-            Map(x => x.Length, "len");
+            Table("[obsv].[gen3tripmondetails]");
+            Id(x => x.Id, "gen3details_id").GeneratedBy.Identity();
+            Map(x => x.DetailDate, "gen3_date");
+            Map(x => x.Comments, "comments");
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
-            References(x => x.Header).Column("s_lf_id");
+            References(x => x.Header).Column("gen3_id");
         }
     }
 }

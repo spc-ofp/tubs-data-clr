@@ -1,10 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="LengthSampleMap.cs" company="Secretariat of the Pacific Community">
+// <copyright file="PollutionEventTest.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Spc.Ofp.Tubs.DAL.Mappings
+namespace Spc.Ofp.Tubs.DAL.Tests
 {
     /*
      * This file is part of TUBS.
@@ -22,26 +22,42 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using FluentNHibernate.Mapping;
+    using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LengthSampleMap : ClassMap<LengthSample>
+    [TestFixture]
+    public class PollutionEventTest : BaseTest
     {
-        public LengthSampleMap()
+        private TubsRepository<PollutionEvent> repo;
+
+        [TestFixtureSetUp]
+        public void Setup()
         {
-            Table("[obsv].[s_lfmeas]");
-            Id(x => x.Id, "s_lfmeas_id").GeneratedBy.Identity();
-            Map(x => x.SequenceNumber, "seq_number");
-            Map(x => x.SpeciesCode, "sp_code");
-            Map(x => x.LengthCode, "len_code");
-            Map(x => x.Length, "len");
-            Map(x => x.EnteredBy, "entered_by");
-            Map(x => x.EnteredDate, "entered_dtime");
-            References(x => x.Header).Column("s_lf_id");
+            this.repo = new TubsRepository<PollutionEvent>(TubsDataService.GetSession());
+        }
+
+        [Test]
+        public void TestGetPollutionEvent()
+        {
+            // Event is a reserved word
+            var pevent = repo.FindBy(1);
+            Assert.NotNull(pevent);
+            Assert.NotNull(pevent.Trip);
+            Assert.AreEqual(70, pevent.Trip.Id);
+            Assert.NotNull(pevent.Details);
+            Assert.GreaterOrEqual(4, pevent.Details.Count);
+            foreach (var detail in pevent.Details)
+            {
+                Assert.NotNull(detail);
+                Assert.NotNull(detail.Header);
+                Assert.AreEqual(pevent, detail.Header);
+                Assert.IsNotNullOrEmpty(detail.Quantity);
+                Assert.IsNotNullOrEmpty(detail.Description);
+            }
         }
     }
 }

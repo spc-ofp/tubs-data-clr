@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="SetCatchMap.cs" company="Secretariat of the Pacific Community">
+// <copyright file="CrewMap.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
@@ -21,21 +21,24 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using System;
     using FluentNHibernate.Mapping;
+    using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    /// <typeparam name="T">Any class deriving from SetCatch.</typeparam>
-    public abstract class BaseSetCatchMap<T> : ClassMap<T> where T : SetCatch
+    /// <typeparam name="T">Any class deriving from Crew.</typeparam>
+    public abstract class BaseCrewMap<T> : ClassMap<T> where T : Crew
     {
-        protected BaseSetCatchMap()
+        protected BaseCrewMap()
         {
-            Map(x => x.SpeciesCode, "sp_code");
-            Map(x => x.FateCode, "fate_code");
-            Map(x => x.AverageLength, "avg_len");
+            References(x => x.Trip).Column("obstrip_id");
+            Map(x => x.Job, "vsjob_id").CustomType(typeof(JobType));
+            Map(x => x.Name, "name");
+            Map(x => x.CountryCode, "country_code");
+            Map(x => x.YearsExperience, "exp_yr");
+            Map(x => x.MonthsExperience, "exp_mo");
             Map(x => x.Comments, "comments");
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
@@ -43,29 +46,15 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     }
 
     /// <summary>
-    /// Mapping for purse seine setcatch.
+    /// No idea why this is really necessary, but for now I'm (mostly) living with the
+    /// structure that was provided.
     /// </summary>
-    public class PurseSeineSetCatchMap : BaseSetCatchMap<PurseSeineSetCatch>
+    public class PurseSeineCrewMap : BaseCrewMap<PurseSeineCrew>
     {
-        public PurseSeineSetCatchMap()
+        public PurseSeineCrewMap()
         {
-            Table("[obsv].[s_setcatch]");
-            Id(x => x.Id, "s_setcatch_id").GeneratedBy.Identity();
-            Map(x => x.ContainsLargeFish, "large_fish");
-            Map(x => x.ConditionCode, "cond_code");
-            Map(x => x.MetricTonsObserved, "obs_mt");
-            Map(x => x.MetricTonsFromLog, "ves_mt");
-            Map(x => x.CountObserved, "obs_n");
-            Map(x => x.CountFromLog, "ves_n");
-            Map(x => x.SpeciesWeightLow, "sp_w_low");
-            Map(x => x.SpeciesWeightHigh, "sp_w_high");
-            //// Not sure what these are
-            Map(x => x.sp_c_spcomp);
-            Map(x => x.sp_w_id);
-            Map(x => x.sp_c_est);
-            Map(x => x.sp_c_id);
-            Map(x => x.sp_n_est);
-            References(x => x.FishingSet).Column("s_set_id");
+            Table("[obsv].[s_crew]");
+            Id(x => x.Id, "s_crew_id").GeneratedBy.Identity();
         }
     }
 }

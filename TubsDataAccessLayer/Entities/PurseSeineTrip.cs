@@ -29,17 +29,26 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public class PurseSeineTrip : Trip
     {
-        public PurseSeineTrip()
+        public PurseSeineTrip() : base()
         {
             this.SeaDays = new List<PurseSeineSeaDay>();
+            this.Crew = new List<PurseSeineCrew>();
         }
         
         public virtual IList<PurseSeineSeaDay> SeaDays { get; protected internal set; }
+
+        public virtual IList<PurseSeineCrew> Crew { get; protected internal set; }
         
         public virtual void AddSeaDay(PurseSeineSeaDay seaday)
         {
             seaday.Trip = this;
             this.SeaDays.Add(seaday);
+        }
+
+        public virtual void AddCrew(PurseSeineCrew crew)
+        {
+            crew.Trip = this;
+            this.Crew.Add(crew);
         }
     }
 }

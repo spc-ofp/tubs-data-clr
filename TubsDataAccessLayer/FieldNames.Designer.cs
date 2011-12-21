@@ -70,6 +70,24 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brail Number.
+        /// </summary>
+        public static string BrailNumber {
+            get {
+                return ResourceManager.GetString("BrailNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comments.
+        /// </summary>
+        public static string Comments {
+            get {
+                return ResourceManager.GetString("Comments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Country Code.
         /// </summary>
         public static string CountryCode {
@@ -133,6 +151,24 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fish Per Brail.
+        /// </summary>
+        public static string FishPerBrail {
+            get {
+                return ResourceManager.GetString("FishPerBrail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of full (1) brails.
+        /// </summary>
+        public static string FullBrailCount {
+            get {
+                return ResourceManager.GetString("FullBrailCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gross Tonnage.
         /// </summary>
         public static string GrossTonnage {
@@ -178,6 +214,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Length Code.
+        /// </summary>
+        public static string LengthCode {
+            get {
+                return ResourceManager.GetString("LengthCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Longitude.
         /// </summary>
         public static string Longitude {
@@ -187,11 +232,65 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Measuring Instrument.
+        /// </summary>
+        public static string MeasuringInstrument {
+            get {
+                return ResourceManager.GetString("MeasuringInstrument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of 1/8 (8) brails.
+        /// </summary>
+        public static string OneEighthBrailCount {
+            get {
+                return ResourceManager.GetString("OneEighthBrailCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of 1/2 (5) brails.
+        /// </summary>
+        public static string OneHalfBrailCount {
+            get {
+                return ResourceManager.GetString("OneHalfBrailCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of 1/4 (7) brails.
+        /// </summary>
+        public static string OneQuarterBrailCount {
+            get {
+                return ResourceManager.GetString("OneQuarterBrailCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of 1/3 (6) brails.
+        /// </summary>
+        public static string OneThirdBrailCount {
+            get {
+                return ResourceManager.GetString("OneThirdBrailCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Number.
+        /// </summary>
+        public static string PageNumber {
+            get {
+                return ResourceManager.GetString("PageNumber", resourceCulture);
             }
         }
         
@@ -241,6 +340,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of 7/8 (2) brails.
+        /// </summary>
+        public static string SevenEighthsBrailCount {
+            get {
+                return ResourceManager.GetString("SevenEighthsBrailCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Staff Code.
         /// </summary>
         public static string StaffCode {
@@ -250,11 +358,47 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sum of all brails.
+        /// </summary>
+        public static string SumOfAllBrails {
+            get {
+                return ResourceManager.GetString("SumOfAllBrails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of 3/4 (3) brails.
+        /// </summary>
+        public static string ThreeQuartersBrailCount {
+            get {
+                return ResourceManager.GetString("ThreeQuartersBrailCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total brails.
+        /// </summary>
+        public static string TotalBrailCount {
+            get {
+                return ResourceManager.GetString("TotalBrailCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trip Number.
         /// </summary>
         public static string TripNumber {
             get {
                 return ResourceManager.GetString("TripNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of 2/3 (4) brails.
+        /// </summary>
+        public static string TwoThirdsBrailCount {
+            get {
+                return ResourceManager.GetString("TwoThirdsBrailCount", resourceCulture);
             }
         }
         

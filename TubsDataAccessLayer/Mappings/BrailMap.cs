@@ -42,7 +42,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.MeasuringInstrument, "measure").Length(20);
             Map(x => x.LengthCode, "len_code").Length(2);
             Map(x => x.FullBrailCount, "brail_full_n");
-            Map(x => x.SevenEightsBrailCount, "brail_78_n");
+            Map(x => x.SevenEighthsBrailCount, "brail_78_n");
             Map(x => x.ThreeQuartersBrailCount, "brail_34_n");
             Map(x => x.TwoThirdsBrailCount, "brail_23_n");
             Map(x => x.OneHalfBrailCount, "brail_12_n");

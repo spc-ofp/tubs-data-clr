@@ -32,8 +32,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public PurseSeineSet()
         {
             this.CatchList = new List<PurseSeineSetCatch>();
-        }      
-        
+        }
+
         public virtual int Id { get; protected set; }
 
         /// <summary>

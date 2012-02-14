@@ -36,7 +36,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             this.Trips = new List<Trip>();
         }
-        
+
         [Display(ResourceType = typeof(FieldNames), Name = "StaffCode")]
         public virtual string StaffCode { get; set; }
 

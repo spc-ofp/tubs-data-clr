@@ -35,10 +35,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             this.Activities = new List<PurseSeineActivity>();
         }
-        
+
         public virtual string DiaryPage { get; set; }
 
-        public virtual IList<PurseSeineActivity> Activities { get; protected internal set; }   
+        public virtual IList<PurseSeineActivity> Activities { get; protected internal set; }
 
         public virtual void AddActivity(PurseSeineActivity activity)
         {

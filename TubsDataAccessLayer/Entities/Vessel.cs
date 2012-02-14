@@ -24,6 +24,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      */
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
     /// TODO: Update summary.
@@ -33,7 +34,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual int Id { get; protected set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "VesselTypeCode")]
-        public virtual string TypeCode { get; set; } // TODO Enum?
+        public virtual VesselTypeCode TypeCode { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Name")]
         public virtual string Name { get; set; }

@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ObserverMap.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2011 Secretariat of the Pacific Community
+// <copyright file="SafetyInspectionMap.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -28,15 +28,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ObserverMap : ClassMap<Observer>
+    public class SafetyInspectionMap
     {
-        public ObserverMap()
-        {
-            Table("ref.field_staff");
-            Id(x => x.StaffCode, "staff_code").GeneratedBy.Assigned();
-            Map(x => x.FirstName, "first_name");
-            Map(x => x.LastName, "family_name");
-            HasMany(x => x.Trips).KeyColumn("staff_code").Inverse().Cascade.All();
-        }
     }
 }

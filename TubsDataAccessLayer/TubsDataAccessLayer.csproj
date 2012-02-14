@@ -36,9 +36,6 @@
     </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
-    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.3.0.717\lib\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -67,7 +64,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\ReferenceId.cs" />
+    <Compile Include="Common\ActionType.cs" />
+    <Compile Include="Common\ActivityType.cs" />
+    <Compile Include="Common\DetectionMethod.cs" />
+    <Compile Include="Common\JobType.cs" />
+    <Compile Include="Common\LengthCode.cs" />
+    <Compile Include="Common\ObserverProgram.cs" />
+    <Compile Include="Common\PollutionMaterial.cs" />
+    <Compile Include="Common\PollutionType.cs" />
+    <Compile Include="Common\SamplingProtocol.cs" />
+    <Compile Include="Common\SchoolAssociation.cs" />
+    <Compile Include="Common\SeaCode.cs" />
+    <Compile Include="Common\UsageCode.cs" />
+    <Compile Include="Common\VesselType.cs" />
+    <Compile Include="Common\VesselTypeCode.cs" />
+    <Compile Include="Common\WorkbookVersion.cs" />
     <Compile Include="Entities\Activity.cs" />
     <Compile Include="Entities\Brail.cs" />
     <Compile Include="Entities\CommunicationServices.cs" />
@@ -115,6 +126,7 @@
     <Compile Include="Mappings\PollutionEventMap.cs" />
     <Compile Include="Mappings\PortMap.cs" />
     <Compile Include="Mappings\PurseSeineSetMap.cs" />
+    <Compile Include="Mappings\SafetyInspectionMap.cs" />
     <Compile Include="Mappings\SeaDayMap.cs" />
     <Compile Include="Mappings\SetCatchMap.cs" />
     <Compile Include="Mappings\SightingMap.cs" />
@@ -126,6 +138,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\BaseTest.cs" />
     <Compile Include="Tests\BrailTest.cs" />
+    <Compile Include="Tests\CommunicationServicesTest.cs" />
+    <Compile Include="Tests\DataServiceTest.cs" />
     <Compile Include="Tests\ElectronicDeviceTest.cs" />
     <Compile Include="Tests\LengthSamplingHeaderTest.cs" />
     <Compile Include="Tests\MarineDeviceTest.cs" />
@@ -150,6 +164,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FieldNames.fr-fr.resx" />
     <EmbeddedResource Include="FieldNames.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FieldNames.Designer.cs</LastGenOutput>
@@ -161,7 +176,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Import StyleCop targets.  Use of ProgramFiles should default to 32 bit version on x64
        because msbuild is 32 bit -->
-  <Import Project="$(ProgramFiles)\MSBuild\StyleCop\v4.6\StyleCop.Targets" />
+  <Import Project="$(ProgramFiles)\MSBuild\StyleCop\v4.7\StyleCop.Targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

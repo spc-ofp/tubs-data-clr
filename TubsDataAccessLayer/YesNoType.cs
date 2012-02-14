@@ -23,10 +23,10 @@ namespace Spc.Ofp.Tubs.DAL
     * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
     */
     using System;
-    using NHibernate.UserTypes;
-    using NHibernate.SqlTypes;
-    using NHibernate;
     using System.Data;
+    using NHibernate;
+    using NHibernate.SqlTypes;
+    using NHibernate.UserTypes;
 
     /// <summary>
     /// I'm done messing with Query Substitutions that don't appear to work.
@@ -53,7 +53,10 @@ namespace Spc.Ofp.Tubs.DAL
         {
             var obj = NHibernateUtil.String.NullSafeGet(rs, names[0]);
 
-            if (obj == null) return null;
+            if (obj == null)
+            {
+                return null;
+            }             
 
             var yesNo = (string)obj;
 

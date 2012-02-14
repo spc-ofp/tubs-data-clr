@@ -17,7 +17,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public PollutionDetailMap()
         {
-            Table("[obsv].[gen6polldetails]");
+            Table("obsv.gen6polldetails");
             Id(x => x.Id, "pollutiondetails_id").GeneratedBy.Identity();
             Map(x => x.PollutionType, "pollutiontype_id").CustomType(typeof(PollutionType));
             Map(x => x.Material, "material_id").CustomType(typeof(PollutionMaterial));

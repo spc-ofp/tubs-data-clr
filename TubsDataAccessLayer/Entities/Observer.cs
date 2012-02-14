@@ -60,7 +60,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             sb.Append(String.Join(" ", this.FirstName.NullSafeTrim(), this.LastName.NullSafeTrim()));
             if (!String.IsNullOrEmpty(this.StaffCode))
             {
-                sb.AppendFormat(" ({0})", this.StaffCode);
+                sb.AppendFormat(" ({0})", this.StaffCode.Trim());
             }
 
             return sb.ToString().Trim();

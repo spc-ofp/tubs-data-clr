@@ -32,7 +32,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public CommunicationServicesMap()
         {
-            Table("[obsv].[vess_electronics]");
+            Table("obsv.vess_electronics");
             Id(x => x.Id, "vess_elect_id").GeneratedBy.Identity();
             Map(x => x.HasSatellitePhone, "satphone_yn").CustomType(typeof(YesNoType));
             Map(x => x.SatellitePhoneNumber, "satphone_number");
@@ -40,7 +40,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.MobilePhoneNumber, "mobphone_number");
             Map(x => x.HasFax, "fax_yn").CustomType(typeof(YesNoType));
             Map(x => x.FaxNumber, "fax_number");
-            Map(x => x.HasEmail, "email_yn");
+            Map(x => x.HasEmail, "email_yn").CustomType(typeof(YesNoType));
             Map(x => x.EmailAddress, "email_address");
             Map(x => x.HasWeatherFax, "weatherfax_yn").CustomType(typeof(YesNoType));
             Map(x => x.HasSatelliteMonitor, "satmonitor_yn").CustomType(typeof(YesNoType));

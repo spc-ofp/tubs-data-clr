@@ -23,9 +23,6 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
@@ -34,7 +31,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     {
         public virtual int Id { get; protected set; }
 
-        // TODO Add reference to Trip -- need to fix PK first
+        public virtual Trip Trip { get; set; }
 
         public virtual bool? LifejacketProvided { get; set; }
 
@@ -64,14 +61,18 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     public class EpirbResult
     {
         public virtual string BeaconType { get; set; }
+
         public virtual int? Count { get; set; }
+
         public virtual string Expiration { get; set; }
     }
 
     public class RaftResult
     {
         public virtual int? Capacity { get; set; }
+
         public virtual DateTime? Expiration { get; set;  }
+        
         public virtual char? LastOrDue { get; set; }
     }
 }

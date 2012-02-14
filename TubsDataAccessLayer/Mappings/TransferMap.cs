@@ -33,7 +33,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public TransferMap()
         {
-            Table("[obsv].[gen1fishtransfer]");
+            Table("obsv.gen1fishtransfer");
             Id(x => x.Id, "fish_tran_id").GeneratedBy.Identity();
             Map(x => x.TransferTime, "fish_tran_dtime");
             Map(x => x.Latitude, "lat");

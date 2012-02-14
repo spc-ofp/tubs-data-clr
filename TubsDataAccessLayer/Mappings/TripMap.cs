@@ -23,6 +23,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using FluentNHibernate.Mapping;
+    using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
@@ -32,7 +33,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public TripMap()
         {
-            Table("[obsv].[trip]");
+            Table("obsv.trip");
             Id(x => x.Id, "obstrip_id").GeneratedBy.Identity();
             Map(x => x.TripNumber, "tripno");
             Map(x => x.DepartureDate, "dep_dtime");
@@ -40,14 +41,17 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.ReturnDate, "ret_dtime");
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
+            Map(x => x.ProgramCode, "obsprg_code");
+            Map(x => x.Version, "versn_id").CustomType(typeof(WorkbookVersion));
 
             References(x => x.Vessel).Column("vessel_id");
             References(x => x.Observer).Column("staff_code");
             References(x => x.DeparturePort).Column("dep_port");
             References(x => x.ReturnPort).Column("ret_port");
 
-            References(x => x.CommunicationServices).Column("obstrip_id");
-            References(x => x.TripMonitor).Column("obstrip_id");
+            HasOne(x => x.CommunicationServices).PropertyRef(r => r.Trip).Cascade.All();
+            HasOne(x => x.TripMonitor).PropertyRef(r => r.Trip).Cascade.All();
+            //HasOne(x => x.Inspection).PropertyRef(r => r.Trip).Cascade.All();
 
             HasMany(x => x.Sightings).KeyColumn("obstrip_id");
             HasMany(x => x.Transfers).KeyColumn("obstrip_id");

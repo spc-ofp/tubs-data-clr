@@ -42,7 +42,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
 
         public void TestGetTripMonitorList()
         {
-            var gen3s = repo.All();
+            var gen3s = this.repo.All();
             Assert.NotNull(gen3s);
             Assert.GreaterOrEqual(10, gen3s.Count<TripMonitor>());
             foreach (var gen3 in gen3s)
@@ -56,7 +56,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetTripMonitor()
         {
-            var gen3 = repo.FindBy(62);
+            var gen3 = this.repo.FindBy(62);
             Assert.NotNull(gen3);
             Assert.NotNull(gen3.Trip);
             Assert.AreEqual(70, gen3.Trip.Id);

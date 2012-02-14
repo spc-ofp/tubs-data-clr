@@ -45,15 +45,15 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual int? CountFromLog { get; set; }
 
-        public virtual decimal? sp_c_spcomp { get; set; } // ???
+        public virtual decimal? CalculatedSpeciesCatch { get; set; } // ???
 
-        public virtual int? sp_w_id { get; set; }
+        public virtual int? AverageWeightMethodId { get; set; }
 
-        public virtual decimal? sp_c_est { get; set; }
+        public virtual decimal? EstimatedSpeciesCatch { get; set; }
 
-        public virtual int? sp_c_id { get; set; }
+        public virtual int? CatchWeightMethodId { get; set; }
 
-        public virtual int? sp_n_est { get; set; }
+        public virtual int? EstimatedSpeciesCount { get; set; }
 
         public virtual decimal? SpeciesWeightLow { get; set; }
 

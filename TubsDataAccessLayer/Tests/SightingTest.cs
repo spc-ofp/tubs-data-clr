@@ -44,7 +44,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetSightings()
         {
-            var sightings = repo.All();
+            var sightings = this.repo.All();
             Assert.NotNull(sightings);
             Assert.GreaterOrEqual(29, sightings.Count<Sighting>());
             foreach (var sighting in sightings)

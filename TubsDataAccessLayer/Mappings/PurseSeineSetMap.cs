@@ -32,7 +32,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public PurseSeineSetMap()
         {
-            Table("[obsv].[s_set]");
+            Table("obsv.s_set");
             Id(x => x.Id, "s_set_id").GeneratedBy.Identity();
             Map(x => x.SetNumber, "set_number");
             Map(x => x.StartOfSetFromLog, "vessellog_dtime");

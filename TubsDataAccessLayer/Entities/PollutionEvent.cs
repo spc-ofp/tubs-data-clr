@@ -35,7 +35,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     {
         public PollutionEvent()
         {
-            Details = new List<PollutionDetail>();
+            this.Details = new List<PollutionDetail>();
         }
         
         public virtual int Id { get; protected set; }

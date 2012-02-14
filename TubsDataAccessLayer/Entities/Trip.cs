@@ -22,8 +22,11 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
-    using System.ComponentModel.DataAnnotations;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Text;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
     /// Generic trip representation.
@@ -60,11 +63,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual Port ReturnPort { get; set; }
 
+        public virtual WorkbookVersion? Version { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "ProgramCode")]
+        public virtual ObserverProgram ProgramCode { get; set; }
 
         // Trip knows how to create it's own metrics
         // TODO Implement!  This is here as a reminder on how to implement the API
@@ -81,6 +89,15 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual CommunicationServices CommunicationServices { get; set; }
 
         public virtual IList<ElectronicDevice> Electronics { get; protected internal set; }
+
+        //public virtual SafetyInspection Inspection { get; set; }
+
+        public override string ToString()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            return builder.ToString();
+        }
 
         public virtual void AddSighting(Sighting sighting)
         {

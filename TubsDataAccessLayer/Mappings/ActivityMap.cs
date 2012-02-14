@@ -60,7 +60,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public PurseSeineActivityMap()
         {
-            Table("[obsv].[s_daylog]");
+            Table("obsv.s_daylog");
             Id(x => x.Id, "s_daylog_id").GeneratedBy.Identity();
             Map(x => x.ActivityType, "s_activ_id").CustomType(typeof(ActivityType));
             Map(x => x.WindDirection, "wind_dir");

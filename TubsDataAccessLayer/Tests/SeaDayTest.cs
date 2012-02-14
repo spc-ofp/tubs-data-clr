@@ -22,6 +22,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
+    using System.Linq;
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
 
@@ -51,6 +52,18 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             {
                 Assert.NotNull(activity.Day);
                 Assert.AreEqual(seaday, activity.Day);
+            }
+        }
+
+        [Test]
+        public void TestGetSeaDaysForTrip()
+        {
+            var seadays = this.repo.FilterBy(sd => sd.Trip.Id == 70);
+            Assert.NotNull(seadays);
+            Assert.GreaterOrEqual(seadays.Count<SeaDay>(), 19);
+            foreach (var seaday in seadays)
+            {
+                Assert.IsInstanceOf<PurseSeineSeaDay>(seaday);
             }
         }
     }

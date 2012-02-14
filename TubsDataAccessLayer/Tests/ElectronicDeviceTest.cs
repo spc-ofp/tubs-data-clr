@@ -30,7 +30,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     /// TODO: Update summary.
     /// </summary>
     [TestFixture]
-    public class ElectronicDeviceTest
+    public class ElectronicDeviceTest : BaseTest
     {
         private TubsRepository<ElectronicDevice> repo;
 
@@ -43,7 +43,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetElectronics()
         {
-            var electronics = repo.FilterBy(x => x.Trip.Id == 70);
+            var electronics = this.repo.FilterBy(x => x.Trip.Id == 70);
             Assert.NotNull(electronics);
             Assert.Greater(electronics.Count<ElectronicDevice>(), 5);
             foreach (var device in electronics)

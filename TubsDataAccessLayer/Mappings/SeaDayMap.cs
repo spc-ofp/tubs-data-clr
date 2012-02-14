@@ -41,7 +41,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.FadsNoSchool, "fad_nofish_n");
             Map(x => x.FadsWithSchool, "fad_fish_n");
             Map(x => x.FreeSchools, "sch_fish_n");
-            Map(x => x.Gen3Events, "gen3today_ans");
+            Map(x => x.Gen3Events, "gen3today_ans").CustomType<YesNoType>();
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
             References(x => x.Trip).Column("obstrip_id");
@@ -55,7 +55,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public PurseSeineSeaDayMap()
         {
-            Table("[obsv].[s_day]");
+            Table("obsv.s_day");
             Id(x => x.Id, "s_day_id").GeneratedBy.Identity();
             Map(x => x.DiaryPage, "diarypage");
             HasMany(x => x.Activities).KeyColumn("s_day_id");

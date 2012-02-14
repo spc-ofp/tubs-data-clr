@@ -43,7 +43,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetBrail()
         {
-            var brail = repo.FindBy(265);
+            var brail = this.repo.FindBy(265);
             Assert.NotNull(brail);
             Assert.AreEqual(234, brail.Header.Id);
             Assert.IsNotNullOrEmpty(brail.Comments);

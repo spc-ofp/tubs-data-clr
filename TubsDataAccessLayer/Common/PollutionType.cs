@@ -1,10 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ObserverMap.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2011 Secretariat of the Pacific Community
+// <copyright file="PollutionType.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Spc.Ofp.Tubs.DAL.Mappings
+namespace Spc.Ofp.Tubs.DAL.Common
 {
     /*
      * This file is part of TUBS.
@@ -22,21 +22,30 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using FluentNHibernate.Mapping;
-    using Spc.Ofp.Tubs.DAL.Entities;
+    using System;
+    using System.ComponentModel;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// These values represent the reference_id values for source 'POTYP'
     /// </summary>
-    public class ObserverMap : ClassMap<Observer>
+    public enum PollutionType
     {
-        public ObserverMap()
-        {
-            Table("ref.field_staff");
-            Id(x => x.StaffCode, "staff_code").GeneratedBy.Assigned();
-            Map(x => x.FirstName, "first_name");
-            Map(x => x.LastName, "family_name");
-            HasMany(x => x.Trips).KeyColumn("staff_code").Inverse().Cascade.All();
-        }
+        /// <summary>
+        /// Unknown or no value provided
+        /// </summary>
+        [Description("Unknown")]
+        None = 0,
+
+        /// <summary>
+        /// Waste dumped overboard
+        /// </summary>
+        [Description("Waste dumped overboard")]
+        DumpedOverboard = 71,
+
+        /// <summary>
+        /// Oil spillages and leakages
+        /// </summary>
+        [Description("Oil spillages and leakages")]
+        SpillageOrLeakage = 72
     }
 }

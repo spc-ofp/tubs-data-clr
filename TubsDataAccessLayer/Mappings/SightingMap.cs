@@ -17,7 +17,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public SightingMap()
         {
-            Table("[obsv].[gen1sightings]");
+            Table("obsv.gen1sightings");
             Id(x => x.Id, "sighting_id").GeneratedBy.Identity();
             Map(x => x.FormId, "form_id");
             Map(x => x.EventTime, "sighting_dtime");

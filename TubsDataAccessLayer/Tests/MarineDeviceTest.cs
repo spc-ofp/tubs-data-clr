@@ -42,7 +42,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetMarineDevices()
         {
-            var devices = repo.All();
+            var devices = this.repo.All();
             Assert.NotNull(devices);
             Assert.Greater(devices.Count<MarineDevice>(), 100);
             foreach (var device in devices)

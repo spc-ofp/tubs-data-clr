@@ -33,7 +33,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public TripMonitorMap()
         {
-            Table("[obsv].[gen3tripmon]");
+            Table("obsv.gen3tripmon");
             Id(x => x.Id, "gen3_id").GeneratedBy.Identity();
             Map(x => x.Question1, "q1_ans").CustomType(typeof(YesNoType));
             Map(x => x.Question2, "q2_ans").CustomType(typeof(YesNoType));

@@ -49,7 +49,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public PurseSeineSetCatchMap()
         {
-            Table("[obsv].[s_setcatch]");
+            Table("obsv.s_setcatch");
             Id(x => x.Id, "s_setcatch_id").GeneratedBy.Identity();
             Map(x => x.ContainsLargeFish, "large_fish");
             Map(x => x.ConditionCode, "cond_code");
@@ -59,12 +59,12 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.CountFromLog, "ves_n");
             Map(x => x.SpeciesWeightLow, "sp_w_low");
             Map(x => x.SpeciesWeightHigh, "sp_w_high");
-            //// Not sure what these are
-            Map(x => x.sp_c_spcomp);
-            Map(x => x.sp_w_id);
-            Map(x => x.sp_c_est);
-            Map(x => x.sp_c_id);
-            Map(x => x.sp_n_est);
+            //// Definitions for these come from FoxPro schema
+            Map(x => x.CalculatedSpeciesCatch, "sp_c_spcomp");
+            Map(x => x.AverageWeightMethodId, "sp_w_id");
+            Map(x => x.EstimatedSpeciesCatch, "sp_c_est");
+            Map(x => x.CatchWeightMethodId, "sp_c_id");
+            Map(x => x.EstimatedSpeciesCount, "sp_n_est");
             References(x => x.FishingSet).Column("s_set_id");
         }
     }

@@ -33,7 +33,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public LengthSamplingHeaderMap()
         {
-            Table("[obsv].[s_lf]");
+            Table("obsv.s_lf");
             Id(x => x.Id, "s_lf_id").GeneratedBy.Identity();
             Map(x => x.FormId, "form_id");
             Map(x => x.SamplingProtocol, "sampletype_id").CustomType(typeof(SamplingProtocol));

@@ -1,10 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ObserverMap.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2011 Secretariat of the Pacific Community
+// <copyright file="SeaCode.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Spc.Ofp.Tubs.DAL.Mappings
+namespace Spc.Ofp.Tubs.DAL.Common
 {
     /*
      * This file is part of TUBS.
@@ -22,21 +22,42 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using FluentNHibernate.Mapping;
-    using Spc.Ofp.Tubs.DAL.Entities;
+    using System;
+    using System.ComponentModel;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// These values represent codes from [obsv].[ref_sea]
     /// </summary>
-    public class ObserverMap : ClassMap<Observer>
+    public enum SeaCode
     {
-        public ObserverMap()
-        {
-            Table("ref.field_staff");
-            Id(x => x.StaffCode, "staff_code").GeneratedBy.Assigned();
-            Map(x => x.FirstName, "first_name");
-            Map(x => x.LastName, "family_name");
-            HasMany(x => x.Trips).KeyColumn("staff_code").Inverse().Cascade.All();
-        }
+        /// <summary>
+        /// Calm
+        /// </summary>
+        [Description("Calm")]
+        C,
+
+        /// <summary>
+        /// Slight
+        /// </summary>
+        [Description("Slight")]
+        S,
+
+        /// <summary>
+        /// Moderate
+        /// </summary>
+        [Description("Moderate")]
+        M,
+
+        /// <summary>
+        /// Rough
+        /// </summary>
+        [Description("Rough")]
+        R,
+
+        /// <summary>
+        /// Very Rough
+        /// </summary>
+        [Description("Very Rough")]
+        V
     }
 }

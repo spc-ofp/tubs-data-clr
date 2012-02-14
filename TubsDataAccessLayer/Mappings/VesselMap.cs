@@ -31,7 +31,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public VesselMap()
         {
-            Table("[ref].[vessels]");
+            ReadOnly();
+            Table("ref.vessels");
             Id(x => x.Id, "vessel_id").GeneratedBy.Identity();
             Map(x => x.TypeCode, "vty_code");
             Map(x => x.Name, "vessel_name");

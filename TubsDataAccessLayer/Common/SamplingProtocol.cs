@@ -1,10 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ObserverMap.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2011 Secretariat of the Pacific Community
+// <copyright file="SamplingProtocol.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Spc.Ofp.Tubs.DAL.Mappings
+namespace Spc.Ofp.Tubs.DAL.Common
 {
     /*
      * This file is part of TUBS.
@@ -22,21 +22,36 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using FluentNHibernate.Mapping;
-    using Spc.Ofp.Tubs.DAL.Entities;
+    using System;
+    using System.ComponentModel;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// These values represent the reference_id values for source 'PROTO'
     /// </summary>
-    public class ObserverMap : ClassMap<Observer>
+    public enum SamplingProtocol
     {
-        public ObserverMap()
-        {
-            Table("ref.field_staff");
-            Id(x => x.StaffCode, "staff_code").GeneratedBy.Assigned();
-            Map(x => x.FirstName, "first_name");
-            Map(x => x.LastName, "family_name");
-            HasMany(x => x.Trips).KeyColumn("staff_code").Inverse().Cascade.All();
-        }
+        /// <summary>
+        /// Unknown or no value provided
+        /// </summary>
+        [Description("Unknown")]
+        None = 0,
+
+        /// <summary>
+        /// Random (normal) sample
+        /// </summary>
+        [Description("Random (normal) sample")]
+        Normal = 88,
+
+        /// <summary>
+        /// Other
+        /// </summary>
+        [Description("Other")]
+        Other = 89,
+
+        /// <summary>
+        /// Small fish sample only
+        /// </summary>
+        [Description("Small fish sample only")]
+        SmallFish = 90,
     }
 }

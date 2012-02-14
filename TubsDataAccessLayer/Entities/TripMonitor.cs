@@ -34,7 +34,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     {
         public TripMonitor()
         {
-            Details = new List<TripMonitorDetail>();
+            this.Details = new List<TripMonitorDetail>();
         }
 
         public virtual int Id { get; protected set; }

@@ -313,6 +313,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Observer Program Code.
+        /// </summary>
+        public static string ProgramCode {
+            get {
+                return ResourceManager.GetString("ProgramCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registered Country Code.
         /// </summary>
         public static string RegisteredCountryCode {

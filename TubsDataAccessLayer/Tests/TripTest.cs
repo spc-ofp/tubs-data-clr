@@ -25,6 +25,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     using System.Linq;
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
     /// TODO: Update summary.
@@ -51,7 +52,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                 Assert.NotNull(t);
                 Assert.NotNull(t.Observer);
                 Assert.NotNull(t.Vessel);
-                Assert.AreEqual("PS", t.Vessel.TypeCode.Trim());
+                Assert.AreEqual(VesselTypeCode.PS, t.Vessel.TypeCode);
                 Assert.NotNull(t.DeparturePort);
                 Assert.NotNull(t.ReturnPort);
                 Assert.False(String.IsNullOrEmpty(t.EnteredBy));
@@ -60,17 +61,34 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         }
 
         [Test]
+        public void TestGetTripEx()
+        {
+            var trip = this.repo.FindBy(70) as PurseSeineTrip;
+            Assert.IsNotNull(trip);
+            Assert.True(trip.Version.HasValue);
+            Assert.AreEqual(WorkbookVersion.v2007, trip.Version.Value);
+            Assert.NotNull(trip.Observer);
+            Assert.NotNull(trip.CommunicationServices);
+            Assert.AreEqual(2, trip.CommunicationServices.Id);
+            var qry = from d in trip.SeaDays
+                      from a in d.Activities
+                      where a.ActivityType.HasValue && a.ActivityType.Value == Common.ActivityType.Fishing
+                      select 1;
+            Assert.GreaterOrEqual(qry.Sum(), 2);
+            System.Console.WriteLine("Set Count: " + qry.Sum());
+        }
+
+        [Test]
         public void TestGetTrip()
         {
-            var trip = this.repo.FindBy(68);           
+            var trip = this.repo.FindBy(68) as PurseSeineTrip;         
             Assert.NotNull(trip);
-            Assert.IsInstanceOf<PurseSeineTrip>(trip);
             Assert.NotNull(trip.Observer);
             Assert.AreEqual("PBS", trip.Observer.StaffCode.Trim());
             Assert.AreEqual("96-02", trip.TripNumber.Trim());
-            Assert.NotNull(((PurseSeineTrip)trip).SeaDays);
-            Assert.Greater(((PurseSeineTrip)trip).SeaDays.Count, 10);
-            foreach (var seaDay in ((PurseSeineTrip)trip).SeaDays)
+            Assert.NotNull(trip.SeaDays);
+            Assert.Greater(trip.SeaDays.Count, 10);
+            foreach (var seaDay in trip.SeaDays)
             {
                 Assert.NotNull(seaDay);
                 Assert.NotNull(seaDay.Activities);

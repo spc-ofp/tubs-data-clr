@@ -1,10 +1,9 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ObserverMap.cs" company="Secretariat of the Pacific Community">
+// <copyright file="CommunicationServicesTest.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
-
-namespace Spc.Ofp.Tubs.DAL.Mappings
+namespace Spc.Ofp.Tubs.DAL.Tests
 {
     /*
      * This file is part of TUBS.
@@ -22,21 +21,32 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using FluentNHibernate.Mapping;
+    using System;
+    using System.Linq;
+    using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ObserverMap : ClassMap<Observer>
+    [TestFixture]
+    public class CommunicationServicesTest : BaseTest
     {
-        public ObserverMap()
+        private TubsRepository<CommunicationServices> repo;
+
+        [TestFixtureSetUp]
+        public void Setup()
         {
-            Table("ref.field_staff");
-            Id(x => x.StaffCode, "staff_code").GeneratedBy.Assigned();
-            Map(x => x.FirstName, "first_name");
-            Map(x => x.LastName, "family_name");
-            HasMany(x => x.Trips).KeyColumn("staff_code").Inverse().Cascade.All();
+            this.repo = new TubsRepository<CommunicationServices>(TubsDataService.GetSession());
+        }
+
+        [Test]
+        public void TestGetCommServices()
+        {
+            var commservice = this.repo.FindBy(2);
+            Assert.NotNull(commservice);
+            Assert.NotNull(commservice.Trip);
+            Assert.AreEqual(70, commservice.Trip.Id);
         }
     }
 }

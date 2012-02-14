@@ -41,6 +41,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         
         public virtual void AddSeaDay(PurseSeineSeaDay seaday)
         {
+            System.Console.WriteLine("Calling AddSeaDay");
             seaday.Trip = this;
             this.SeaDays.Add(seaday);
         }

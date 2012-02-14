@@ -44,7 +44,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         public void TestGetPollutionEvent()
         {
             // Event is a reserved word
-            var pevent = repo.FindBy(1);
+            var pevent = this.repo.FindBy(1);
             Assert.NotNull(pevent);
             Assert.NotNull(pevent.Trip);
             Assert.AreEqual(70, pevent.Trip.Id);

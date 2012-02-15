@@ -108,6 +108,7 @@
     <Compile Include="Entities\TripMonitor.cs" />
     <Compile Include="Entities\TripMonitorDetail.cs" />
     <Compile Include="Entities\Vessel.cs" />
+    <Compile Include="Events\ConstraintEventListener.cs" />
     <Compile Include="FieldNames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -135,6 +136,7 @@
     <Compile Include="Mappings\TripMonitorDetailMap.cs" />
     <Compile Include="Mappings\TripMonitorMap.cs" />
     <Compile Include="Mappings\VesselMap.cs" />
+    <Compile Include="PagedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\BaseTest.cs" />
     <Compile Include="Tests\BrailTest.cs" />
@@ -144,6 +146,7 @@
     <Compile Include="Tests\LengthSamplingHeaderTest.cs" />
     <Compile Include="Tests\MarineDeviceTest.cs" />
     <Compile Include="Tests\ObserverTest.cs" />
+    <Compile Include="Tests\PagedResultsTest.cs" />
     <Compile Include="Tests\PollutionEventTest.cs" />
     <Compile Include="Tests\PortTest.cs" />
     <Compile Include="Tests\PurseSeineSetTest.cs" />
@@ -173,6 +176,7 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="CodeAnalysisDictionary.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Import StyleCop targets.  Use of ProgramFiles should default to 32 bit version on x64
        because msbuild is 32 bit -->

@@ -37,11 +37,16 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Id(x => x.Id, "obstrip_id").GeneratedBy.Identity();
             Map(x => x.TripNumber, "tripno");
             Map(x => x.DepartureDate, "dep_dtime");
+            Map(x => x.DepartureDateOnly, "dep_date");
+            Map(x => x.DepartureTimeOnly, "dep_time");
             Map(x => x.UtcDepartureDate, "utc_dep_dtime");
             Map(x => x.ReturnDate, "ret_dtime");
+            Map(x => x.ReturnDateOnly, "ret_date");
+            Map(x => x.ReturnTimeOnly, "ret_time");
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
             Map(x => x.ProgramCode, "obsprg_code");
+            Map(x => x.CountryCode, "country_code");
             Map(x => x.Version, "versn_id").CustomType(typeof(WorkbookVersion));
 
             References(x => x.Vessel).Column("vessel_id");

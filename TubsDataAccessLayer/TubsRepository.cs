@@ -103,5 +103,18 @@ namespace Spc.Ofp.Tubs.DAL
         {
             return this.All().Where(expression).AsQueryable();
         }
+
+        public PagedList<T> GetPagedList(int skip, int take)
+        {
+            var query = All();
+            var count = query.Count();
+            var currentPage = query.Skip(skip).Take(take).ToList();
+            return new PagedList<T>()
+            {
+                Entities = currentPage,
+                HasNext = (skip + take < count),
+                HasPrevious = (skip > 0)
+            };
+        }
     }
 }

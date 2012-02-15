@@ -24,7 +24,6 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
     using System.Text;
     using Spc.Ofp.Tubs.DAL.Common;
 
@@ -46,11 +45,19 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "DepartureDate")]
         public virtual DateTime? DepartureDate { get; set; }
 
+        public virtual DateTime? DepartureDateOnly { get; set; }
+
+        public virtual string DepartureTimeOnly { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "UtcDepartureDate")]
         public virtual DateTime? UtcDepartureDate { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "ReturnDate")]
         public virtual DateTime? ReturnDate { get; set; }
+
+        public virtual DateTime? ReturnDateOnly { get; set; }
+
+        public virtual string ReturnTimeOnly { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "TripNumber")]
         public virtual string TripNumber { get; set; }
@@ -73,6 +80,9 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "ProgramCode")]
         public virtual ObserverProgram ProgramCode { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "CountryCode")]
+        public virtual string CountryCode { get; set; }
 
         // Trip knows how to create it's own metrics
         // TODO Implement!  This is here as a reminder on how to implement the API
@@ -122,5 +132,14 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             device.Trip = this;
             this.Electronics.Add(device);
         }
+
+        public virtual void NormalizeDates()
+        {
+            if (this.DepartureDate.HasValue && !this.DepartureDateOnly.HasValue)
+            {
+
+            }
+        }
+
     }
 }

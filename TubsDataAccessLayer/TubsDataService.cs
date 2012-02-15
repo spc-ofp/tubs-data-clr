@@ -29,6 +29,8 @@ namespace Spc.Ofp.Tubs.DAL
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
     using NHibernate;
+    using NHibernate.Event;
+    using Spc.Ofp.Tubs.DAL.Events;
 
     /// <summary>
     /// TODO: Update summary.
@@ -45,6 +47,11 @@ namespace Spc.Ofp.Tubs.DAL
             {
                 return sessionFactory ?? (sessionFactory = CreateSessionFactory());
             }
+        }
+
+        public static UnitOfWork StartTransaction()
+        {
+            return new UnitOfWork(sessionFactory);
         }
 
         public static ISession GetSession()
@@ -97,6 +104,14 @@ namespace Spc.Ofp.Tubs.DAL
             return Fluently.Configure()
                 .Database(cfg)
                 .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                /*
+                .ExposeConfiguration(config => { 
+                    config.EventListeners.PreInsertEventListeners = 
+                        new IPreInsertEventListener[] { new ConstraintEventListener() };
+                    config.EventListeners.PreUpdateEventListeners =
+                        new IPreUpdateEventListener[] { new ConstraintEventListener() };
+                })
+                */
                 .BuildSessionFactory();
         }
     }

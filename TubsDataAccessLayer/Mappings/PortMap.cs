@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// Fishing Port.  This mapping only works for largish ports
     /// that have been assigned a UN LOCODE.
     /// </summary>
-    public class PortMap : ClassMap<Port>
+    public sealed class PortMap : ClassMap<Port>
     {
         public PortMap()
         {

@@ -27,9 +27,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for the TripMonitorDetail entity.
     /// </summary>
-    public class TripMonitorDetailMap : ClassMap<TripMonitorDetail>
+    public sealed class TripMonitorDetailMap : ClassMap<TripMonitorDetail>
     {
         public TripMonitorDetailMap()
         {

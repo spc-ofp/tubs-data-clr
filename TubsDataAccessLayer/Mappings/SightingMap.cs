@@ -11,9 +11,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for the Sighting entity.
     /// </summary>
-    public class SightingMap : ClassMap<Sighting>
+    public sealed class SightingMap : ClassMap<Sighting>
     {
         public SightingMap()
         {

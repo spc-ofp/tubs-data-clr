@@ -23,13 +23,12 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using FluentNHibernate.Mapping;
-    using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for the LengthSample entity.
     /// </summary>
-    public class LengthSampleMap : ClassMap<LengthSample>
+    public sealed class LengthSampleMap : ClassMap<LengthSample>
     {
         public LengthSampleMap()
         {

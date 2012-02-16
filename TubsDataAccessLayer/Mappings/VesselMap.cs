@@ -25,9 +25,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for the Vessel entity.
     /// </summary>
-    public class VesselMap : ClassMap<Vessel>
+    public sealed class VesselMap : ClassMap<Vessel>
     {
         public VesselMap()
         {

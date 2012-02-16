@@ -26,9 +26,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for the PurseSeineSet entity.
     /// </summary>
-    public class PurseSeineSetMap : ClassMap<PurseSeineSet>
+    public sealed class PurseSeineSetMap : ClassMap<PurseSeineSet>
     {
         public PurseSeineSetMap()
         {

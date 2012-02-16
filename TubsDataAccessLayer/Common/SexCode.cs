@@ -1,10 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="MarineDeviceMap.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2011 Secretariat of the Pacific Community
+// <copyright file="SexCode.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Spc.Ofp.Tubs.DAL.Mappings
+namespace Spc.Ofp.Tubs.DAL.Common
 {
     /*
      * This file is part of TUBS.
@@ -22,26 +22,36 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using FluentNHibernate.Mapping;
-    using Spc.Ofp.Tubs.DAL.Entities;
+    using System;
+    using System.ComponentModel;
 
     /// <summary>
-    /// Fluent NHibernate mapping for the MarineDevice entity.
+    /// These values represent codes from [obsv].[ref_sex]
     /// </summary>
-    public sealed class MarineDeviceMap : ClassMap<MarineDevice>
+    public enum SexCode
     {
-        public MarineDeviceMap()
-        {
-            Table("obsv.ref_marine_devices");
-            Id(x => x.Id, "device_id");
-            Map(x => x.Description, "device_desc").Not.Nullable();
-            Map(x => x.Category, "device_cat");
-            Map(x => x.GearList, "gearlist").Length(3);
-            Map(x => x.LongLineOrder, "order_l");
-            Map(x => x.PurseSeineOrder, "order_s");
-            Map(x => x.PoleAndLineOrder, "order_p");
-            Map(x => x.EnteredBy, "entered_by");
-            Map(x => x.EnteredDate, "entered_dtime");
-        }
+        /// <summary>
+        /// Female
+        /// </summary>
+        [Description("Female")]
+        F,
+
+        /// <summary>
+        /// Indeterminate (checked but unsure)
+        /// </summary>
+        [Description("Indeterminate")]
+        I,
+
+        /// <summary>
+        /// Male
+        /// </summary>
+        [Description("Male")]
+        M,
+
+        /// <summary>
+        /// Unknown (not checked)
+        /// </summary>
+        [Description("Unknown")]
+        U,
     }
 }

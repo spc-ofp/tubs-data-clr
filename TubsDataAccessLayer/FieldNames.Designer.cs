@@ -97,6 +97,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cruise Speed.
+        /// </summary>
+        public static string CruiseSpeed {
+            get {
+                return ResourceManager.GetString("CruiseSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Departure Date.
         /// </summary>
         public static string DepartureDate {
@@ -174,6 +183,60 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string GrossTonnage {
             get {
                 return ResourceManager.GetString("GrossTonnage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helicopter Color.
+        /// </summary>
+        public static string HelicopterColor {
+            get {
+                return ResourceManager.GetString("HelicopterColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helicopter Make.
+        /// </summary>
+        public static string HelicopterMake {
+            get {
+                return ResourceManager.GetString("HelicopterMake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helicopter Model.
+        /// </summary>
+        public static string HelicopterModel {
+            get {
+                return ResourceManager.GetString("HelicopterModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helicopter Range.
+        /// </summary>
+        public static string HelicopterRange {
+            get {
+                return ResourceManager.GetString("HelicopterRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helicopter Registration Number.
+        /// </summary>
+        public static string HelicopterRegistration {
+            get {
+                return ResourceManager.GetString("HelicopterRegistration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count of other vessels serviced by this helicopter.
+        /// </summary>
+        public static string HelicopterServiceOtherCount {
+            get {
+                return ResourceManager.GetString("HelicopterServiceOtherCount", resourceCulture);
             }
         }
         
@@ -358,6 +421,24 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skiff Make.
+        /// </summary>
+        public static string SkiffMake {
+            get {
+                return ResourceManager.GetString("SkiffMake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skiff Power.
+        /// </summary>
+        public static string SkiffPower {
+            get {
+                return ResourceManager.GetString("SkiffPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Staff Code.
         /// </summary>
         public static string StaffCode {
@@ -435,6 +516,24 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string WcpfcNumber {
             get {
                 return ResourceManager.GetString("WcpfcNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Well Location.
+        /// </summary>
+        public static string WellLocation {
+            get {
+                return ResourceManager.GetString("WellLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Well Number.
+        /// </summary>
+        public static string WellNumber {
+            get {
+                return ResourceManager.GetString("WellNumber", resourceCulture);
             }
         }
         

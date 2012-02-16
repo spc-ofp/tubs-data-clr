@@ -24,8 +24,8 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     using System;
     using System.Linq;
     using NUnit.Framework;
-    using Spc.Ofp.Tubs.DAL.Entities;
     using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -52,7 +52,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                 Assert.NotNull(t);
                 Assert.NotNull(t.Observer);
                 Assert.NotNull(t.Vessel);
-                Assert.AreEqual(VesselTypeCode.PS, t.Vessel.TypeCode);
+                //Assert.AreEqual(VesselTypeCode.PS, t.Vessel.TypeCode);
                 Assert.NotNull(t.DeparturePort);
                 Assert.NotNull(t.ReturnPort);
                 Assert.False(String.IsNullOrEmpty(t.EnteredBy));
@@ -69,6 +69,15 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             Assert.AreEqual(WorkbookVersion.v2007, trip.Version.Value);
             Assert.NotNull(trip.Observer);
             Assert.NotNull(trip.CommunicationServices);
+            Assert.NotNull(trip.Gear);
+            Assert.AreEqual("FUKUOKA", trip.Gear.PowerblockMake);
+            Assert.NotNull(trip.VesselAttributes);
+            Assert.AreEqual(3, trip.VesselAttributes.SpeedboatCount);
+            Assert.NotNull(trip.WellContent);
+            Assert.True(trip.WellContent.Count > 4);
+            Assert.NotNull(trip.Interactions);
+            Assert.True(1 == trip.Interactions.Count);
+            Assert.NotNull(trip.Interactions[0]);
             Assert.AreEqual(2, trip.CommunicationServices.Id);
             var qry = from d in trip.SeaDays
                       from a in d.Activities
@@ -81,7 +90,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetTrip()
         {
-            var trip = this.repo.FindBy(68) as PurseSeineTrip;         
+            var trip = this.repo.FindBy(68) as PurseSeineTrip;      
             Assert.NotNull(trip);
             Assert.NotNull(trip.Observer);
             Assert.AreEqual("PBS", trip.Observer.StaffCode.Trim());

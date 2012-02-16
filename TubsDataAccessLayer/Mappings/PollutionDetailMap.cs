@@ -11,9 +11,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for the PollutionDetail entity.
     /// </summary>
-    public class PollutionDetailMap : ClassMap<PollutionDetail>
+    public sealed class PollutionDetailMap : ClassMap<PollutionDetail>
     {
         public PollutionDetailMap()
         {

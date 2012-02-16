@@ -34,10 +34,11 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     {
         protected Trip()
         {
-            this.Sightings = new List<Sighting>();
-            this.Transfers = new List<Transfer>();
+            this.Sightings = new List<Sighting>(32);
+            this.Transfers = new List<Transfer>(16);
             this.PollutionEvents = new List<PollutionEvent>();
-            this.Electronics = new List<ElectronicDevice>();
+            this.Electronics = new List<ElectronicDevice>(8);
+            this.Interactions = new List<SpecialSpeciesInteraction>();
         }
         
         public virtual int Id { get; protected set; }
@@ -100,7 +101,9 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual IList<ElectronicDevice> Electronics { get; protected internal set; }
 
-        //public virtual SafetyInspection Inspection { get; set; }
+        public virtual IList<SpecialSpeciesInteraction> Interactions { get; protected internal set; }
+
+        public virtual SafetyInspection Inspection { get; set; }
 
         public override string ToString()
         {
@@ -131,6 +134,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             device.Trip = this;
             this.Electronics.Add(device);
+        }
+
+        public virtual void AddInteraction(SpecialSpeciesInteraction interaction)
+        {
+            interaction.Trip = this;
+            this.Interactions.Add(interaction);
         }
 
         public virtual void NormalizeDates()

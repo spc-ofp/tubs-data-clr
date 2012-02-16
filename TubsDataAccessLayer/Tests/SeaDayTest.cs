@@ -43,12 +43,11 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetSeaDay()
         {
-            var seaday = this.repo.FindBy(221);
+            var seaday = this.repo.FindBy(221) as PurseSeineSeaDay;
             Assert.NotNull(seaday);
-            Assert.IsInstanceOf<PurseSeineSeaDay>(seaday);
-            Assert.NotNull(((PurseSeineSeaDay)seaday).Activities);
-            Assert.Greater(((PurseSeineSeaDay)seaday).Activities.Count, 5);
-            foreach (var activity in ((PurseSeineSeaDay)seaday).Activities)
+            Assert.NotNull(seaday.Activities);
+            Assert.Greater(seaday.Activities.Count, 5);
+            foreach (var activity in seaday.Activities)
             {
                 Assert.NotNull(activity.Day);
                 Assert.AreEqual(seaday, activity.Day);

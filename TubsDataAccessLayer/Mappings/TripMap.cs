@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Mapping for common trip data.
     /// </summary>
-    public class TripMap : ClassMap<Trip>
+    public class TripMap : ClassMap<Entities.Trip>
     {
         public TripMap()
         {
@@ -56,12 +56,13 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
 
             HasOne(x => x.CommunicationServices).PropertyRef(r => r.Trip).Cascade.All();
             HasOne(x => x.TripMonitor).PropertyRef(r => r.Trip).Cascade.All();
-            //HasOne(x => x.Inspection).PropertyRef(r => r.Trip).Cascade.All();
+            HasOne(x => x.Inspection).PropertyRef(r => r.Trip).Cascade.All();
 
             HasMany(x => x.Sightings).KeyColumn("obstrip_id");
             HasMany(x => x.Transfers).KeyColumn("obstrip_id");
             HasMany(x => x.PollutionEvents).KeyColumn("obstrip_id");
             HasMany(x => x.Electronics).KeyColumn("obstrip_id");
+            HasMany(x => x.Interactions).KeyColumn("obstrip_id");
             
             DiscriminateSubClassesOnColumn<string>("gear_code");
         }
@@ -70,20 +71,23 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Mapping for purse seine specific data.
     /// </summary>
-    public class PurseSeineTripMap : SubclassMap<PurseSeineTrip>
+    public sealed class PurseSeineTripMap : SubclassMap<PurseSeineTrip>
     {
         public PurseSeineTripMap()
         {
             DiscriminatorValue("S");
             HasMany(x => x.SeaDays).KeyColumn("obstrip_id");
             HasMany(x => x.Crew).KeyColumn("obstrip_id");
+            HasMany(x => x.WellContent).KeyColumn("obstrip_id");
+            HasOne(x => x.Gear).PropertyRef(r => r.Trip).Cascade.All();
+            HasOne(x => x.VesselAttributes).PropertyRef(r => r.Trip).Cascade.All();
         }
     }
 
     /// <summary>
     /// Mapping for long line specific data.
     /// </summary>
-    public class LongLineTripMap : SubclassMap<LongLineTrip>
+    public sealed class LongLineTripMap : SubclassMap<LongLineTrip>
     {
         public LongLineTripMap()
         {

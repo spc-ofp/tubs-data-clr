@@ -1,8 +1,9 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="CrewMap.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2011 Secretariat of the Pacific Community
+// <copyright file="InteractionDetailMap.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
+
 namespace Spc.Ofp.Tubs.DAL.Mappings
 {
     /*
@@ -26,35 +27,22 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// Fluent NHibernate mapping for the Crew entity.
+    /// Fluent NHibernate mapping for the InteractionDetail entity.
     /// </summary>
-    /// <typeparam name="T">Any class deriving from Crew.</typeparam>
-    public abstract class BaseCrewMap<T> : ClassMap<T> where T : Crew
+    public sealed class InteractionDetailMap :ClassMap<InteractionDetail>
     {
-        protected BaseCrewMap()
+        public InteractionDetailMap()
         {
-            References(x => x.Trip).Column("obstrip_id");
-            Map(x => x.Job, "vsjob_id").CustomType(typeof(JobType));
-            Map(x => x.Name, "name");
-            Map(x => x.CountryCode, "country_code");
-            Map(x => x.YearsExperience, "exp_yr");
-            Map(x => x.MonthsExperience, "exp_mo");
-            Map(x => x.Comments, "comments");
+            Table("obsv.gen2specialinteraction");
+            Id(x => x.Id, "sspinteraction_id").GeneratedBy.Identity();
+            Map(x => x.StartOrEnd, "start_end").Not.Nullable().Length(5);
+            Map(x => x.Number, "number");
+            Map(x => x.ConditionCode, "cond_code");
+            Map(x => x.Description, "description").Length(50);
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
-        }
-    }
 
-    /// <summary>
-    /// No idea why this is really necessary, but for now I'm (mostly) living with the
-    /// structure that was provided.
-    /// </summary>
-    public sealed class PurseSeineCrewMap : BaseCrewMap<PurseSeineCrew>
-    {
-        public PurseSeineCrewMap()
-        {
-            Table("obsv.s_crew");
-            Id(x => x.Id, "s_crew_id").GeneratedBy.Identity();
+            References(x => x.Header).Column("ssp_id");
         }
     }
 }

@@ -27,9 +27,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for the Transfer entity.
     /// </summary>
-    public class TransferMap : ClassMap<Transfer>
+    public sealed class TransferMap : ClassMap<Transfer>
     {
         public TransferMap()
         {

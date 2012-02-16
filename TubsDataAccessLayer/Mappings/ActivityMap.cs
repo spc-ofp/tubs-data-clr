@@ -49,14 +49,14 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
 
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
-            Map(x => x.Comments, "comments");            
+            Map(x => x.Comments, "comments"); 
         }
     }
 
     /// <summary>
     /// Fluent NHibernate mapper for purse seine activities.  
     /// </summary>
-    public class PurseSeineActivityMap : BaseActivityMap<PurseSeineActivity>
+    public sealed class PurseSeineActivityMap : BaseActivityMap<PurseSeineActivity>
     {
         public PurseSeineActivityMap()
         {

@@ -27,9 +27,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for the LengthSamplingHeader entity.
     /// </summary>
-    public class LengthSamplingHeaderMap : ClassMap<LengthSamplingHeader>
+    public sealed class LengthSamplingHeaderMap : ClassMap<LengthSamplingHeader>
     {
         public LengthSamplingHeaderMap()
         {

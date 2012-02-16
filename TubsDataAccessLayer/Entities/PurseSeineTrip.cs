@@ -32,17 +32,23 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public PurseSeineTrip()
             : base()
         {
-            this.SeaDays = new List<PurseSeineSeaDay>();
-            this.Crew = new List<PurseSeineCrew>();
+            this.SeaDays = new List<PurseSeineSeaDay>(30);
+            this.Crew = new List<PurseSeineCrew>(16);
+            this.WellContent = new List<PurseSeineWellContent>(16);
         }
+
+        public virtual PurseSeineGear Gear { get; set; }
+
+        public virtual PurseSeineVesselAttributes VesselAttributes { get; set; }
 
         public virtual IList<PurseSeineSeaDay> SeaDays { get; protected internal set; }
 
         public virtual IList<PurseSeineCrew> Crew { get; protected internal set; }
 
+        public virtual IList<PurseSeineWellContent> WellContent { get; protected internal set; }
+
         public virtual void AddSeaDay(PurseSeineSeaDay seaday)
         {
-            System.Console.WriteLine("Calling AddSeaDay");
             seaday.Trip = this;
             this.SeaDays.Add(seaday);
         }
@@ -51,6 +57,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             crew.Trip = this;
             this.Crew.Add(crew);
+        }
+
+        public virtual void AddWellContent(PurseSeineWellContent wellcontent)
+        {
+            wellcontent.Trip = this;
+            this.WellContent.Add(wellcontent);
         }
     }
 }

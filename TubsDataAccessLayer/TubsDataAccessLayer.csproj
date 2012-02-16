@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Common\ActionType.cs" />
     <Compile Include="Common\ActivityType.cs" />
+    <Compile Include="Common\ConditionCode.cs" />
     <Compile Include="Common\DetectionMethod.cs" />
     <Compile Include="Common\JobType.cs" />
     <Compile Include="Common\LengthCode.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Common\SamplingProtocol.cs" />
     <Compile Include="Common\SchoolAssociation.cs" />
     <Compile Include="Common\SeaCode.cs" />
+    <Compile Include="Common\SexCode.cs" />
     <Compile Include="Common\UsageCode.cs" />
     <Compile Include="Common\VesselType.cs" />
     <Compile Include="Common\VesselTypeCode.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Entities\Crew.cs" />
     <Compile Include="Entities\ElectronicDevice.cs" />
     <Compile Include="Entities\Gear.cs" />
+    <Compile Include="Entities\InteractionDetail.cs" />
     <Compile Include="Entities\LengthSample.cs" />
     <Compile Include="Entities\LengthSamplingHeader.cs" />
     <Compile Include="Entities\LongLineTrip.cs" />
@@ -95,14 +98,18 @@
     <Compile Include="Entities\Port.cs" />
     <Compile Include="Entities\PurseSeineActivity.cs" />
     <Compile Include="Entities\PurseSeineCrew.cs" />
+    <Compile Include="Entities\PurseSeineGear.cs" />
     <Compile Include="Entities\PurseSeineSet.cs" />
     <Compile Include="Entities\PurseSeineSetCatch.cs" />
     <Compile Include="Entities\PurseSeineTrip.cs" />
     <Compile Include="Entities\PurseSeineSeaDay.cs" />
+    <Compile Include="Entities\PurseSeineVesselAttributes.cs" />
+    <Compile Include="Entities\PurseSeineWellContent.cs" />
     <Compile Include="Entities\SafetyInspection.cs" />
     <Compile Include="Entities\SeaDay.cs" />
     <Compile Include="Entities\SetCatch.cs" />
     <Compile Include="Entities\Sighting.cs" />
+    <Compile Include="Entities\SpecialSpeciesInteraction.cs" />
     <Compile Include="Entities\Transfer.cs" />
     <Compile Include="Entities\Trip.cs" />
     <Compile Include="Entities\TripMonitor.cs" />
@@ -119,6 +126,7 @@
     <Compile Include="Mappings\CommunicationServicesMap.cs" />
     <Compile Include="Mappings\CrewMap.cs" />
     <Compile Include="Mappings\ElectronicDeviceMap.cs" />
+    <Compile Include="Mappings\InteractionDetailMap.cs" />
     <Compile Include="Mappings\LengthSampleMap.cs" />
     <Compile Include="Mappings\LengthSamplingHeaderMap.cs" />
     <Compile Include="Mappings\MarineDeviceMap.cs" />
@@ -126,11 +134,15 @@
     <Compile Include="Mappings\PollutionDetailMap.cs" />
     <Compile Include="Mappings\PollutionEventMap.cs" />
     <Compile Include="Mappings\PortMap.cs" />
+    <Compile Include="Mappings\PurseSeineGearMap.cs" />
     <Compile Include="Mappings\PurseSeineSetMap.cs" />
+    <Compile Include="Mappings\PurseSeineVesselAttributesMap.cs" />
+    <Compile Include="Mappings\PurseSeineWellContentMap.cs" />
     <Compile Include="Mappings\SafetyInspectionMap.cs" />
     <Compile Include="Mappings\SeaDayMap.cs" />
     <Compile Include="Mappings\SetCatchMap.cs" />
     <Compile Include="Mappings\SightingMap.cs" />
+    <Compile Include="Mappings\SpecialSpeciesInteractionMap.cs" />
     <Compile Include="Mappings\TransferMap.cs" />
     <Compile Include="Mappings\TripMap.cs" />
     <Compile Include="Mappings\TripMonitorDetailMap.cs" />

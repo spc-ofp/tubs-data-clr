@@ -26,7 +26,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for the SetCatch entity.
     /// </summary>
     /// <typeparam name="T">Any class deriving from SetCatch.</typeparam>
     public abstract class BaseSetCatchMap<T> : ClassMap<T> where T : SetCatch
@@ -45,7 +45,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Mapping for purse seine setcatch.
     /// </summary>
-    public class PurseSeineSetCatchMap : BaseSetCatchMap<PurseSeineSetCatch>
+    public sealed class PurseSeineSetCatchMap : BaseSetCatchMap<PurseSeineSetCatch>
     {
         public PurseSeineSetCatchMap()
         {

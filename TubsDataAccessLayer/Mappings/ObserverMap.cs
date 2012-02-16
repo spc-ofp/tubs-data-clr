@@ -26,12 +26,13 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for the Observer entity.
     /// </summary>
-    public class ObserverMap : ClassMap<Observer>
+    public sealed class ObserverMap : ClassMap<Observer>
     {
         public ObserverMap()
         {
+            ReadOnly();
             Table("ref.field_staff");
             Id(x => x.StaffCode, "staff_code").GeneratedBy.Assigned();
             Map(x => x.FirstName, "first_name");

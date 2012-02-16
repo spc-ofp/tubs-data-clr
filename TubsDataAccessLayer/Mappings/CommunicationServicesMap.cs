@@ -26,9 +26,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for the CommunicationServices entity.
     /// </summary>
-    public class CommunicationServicesMap : ClassMap<CommunicationServices>
+    public sealed class CommunicationServicesMap : ClassMap<CommunicationServices>
     {
         public CommunicationServicesMap()
         {

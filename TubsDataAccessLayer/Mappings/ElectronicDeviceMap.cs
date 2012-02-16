@@ -27,9 +27,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for the ElectronicDevice entity.
     /// </summary>
-    public class ElectronicDeviceMap : ClassMap<ElectronicDevice>
+    public sealed class ElectronicDeviceMap : ClassMap<ElectronicDevice>
     {
         public ElectronicDeviceMap()
         {

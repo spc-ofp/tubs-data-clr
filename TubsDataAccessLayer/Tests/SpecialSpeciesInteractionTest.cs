@@ -1,10 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="InteractionDetail.cs" company="Secretariat of the Pacific Community">
+// <copyright file="SpecialSpeciesInteractionTest.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Spc.Ofp.Tubs.DAL.Entities
+namespace Spc.Ofp.Tubs.DAL.Tests
 {
     /*
      * This file is part of TUBS.
@@ -23,32 +23,34 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
-    using System.ComponentModel.DataAnnotations;
-    using Spc.Ofp.Tubs.DAL.Common;
+    using System.Linq;
+    using NUnit.Framework;
+    using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class InteractionDetail
+    [TestFixture]
+    public class SpecialSpeciesInteractionTest : BaseTest
     {
-        public virtual int Id { get; protected set; }
-        
-        public virtual SpecialSpeciesInteraction Header { get; set; }
+        private TubsRepository<SpecialSpeciesInteraction> repo;
 
-        public virtual string StartOrEnd { get; set; }
+        [TestFixtureSetUp]
+        public void Setup()
+        {
+            this.repo = new TubsRepository<SpecialSpeciesInteraction>(TubsDataService.GetSession());
+        }
 
-        public virtual int? Number { get; set; }
-
-        [Display(ResourceType = typeof(FieldNames), Name = "ConditionCode")]
-        public virtual ConditionCode? ConditionCode { get; set; }
-
-        [Display(ResourceType = typeof(FieldNames), Name = "Description")]
-        public virtual string Description { get; set; }
-
-        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
-        public virtual string EnteredBy { get; set; }
-
-        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
-        public virtual DateTime? EnteredDate { get; set; }
+        [Test]
+        public void GetInteraction()
+        {
+            var interaction = repo.FindBy(7);
+            Assert.NotNull(interaction);
+            Assert.AreEqual("1235", interaction.LandedTimeOnly);
+            Assert.True(interaction.LandedDateOnly.HasValue);
+            Assert.AreEqual(TimeSpan.Zero, interaction.LandedDateOnly.Value.TimeOfDay);
+            Assert.AreEqual(8, interaction.SightingCount);
+            Assert.AreEqual(70.0, interaction.SightingDistance);
+        }
     }
 }

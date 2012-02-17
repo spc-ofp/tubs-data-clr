@@ -27,6 +27,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System.Linq;
     using System.Text;
     using Spc.Ofp.Tubs.DAL.Common;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// PollutionEvent represents the top and bottom of Form GEN-6.
@@ -46,14 +47,21 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual DateTime? IncidentDate { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
         public virtual string Latitude { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Longitude")]
         public virtual string Longitude { get; set; }
 
+        public virtual string EezId { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "WindDirection")]
         public virtual int? WindDirection { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "WindSpeed")]
         public virtual int? WindSpeed { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "SeaCode")]
         public virtual SeaCode? SeaCode { get; set; }
 
         public virtual decimal? CurrentSpeed { get; set; }
@@ -62,10 +70,15 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual ActivityType? ActivityType { get; set; }
 
+        public virtual string VesselName { get; set; }
+
+        public virtual string Ircs { get; set; }
+
         public virtual int? Bearing { get; set; }
 
         public virtual int? Distance { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
         public virtual string Comments { get; set; }
 
         public virtual bool? MarpolStickers { get; set; }
@@ -78,8 +91,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual string PhotoFrames { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
 
         public virtual IList<PollutionDetail> Details { get; protected internal set; }

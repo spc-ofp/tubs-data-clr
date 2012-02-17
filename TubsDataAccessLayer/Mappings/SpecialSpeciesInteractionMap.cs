@@ -63,8 +63,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.InteractionOther, "intact_other");
             Map(x => x.InteractionDescription, "int_describe");
 
-            Map(x => x.SgActId, "sgact_id");
-            Map(x => x.SgActOther, "sgact_other");
+            Map(x => x.InteractionActivity, "sgact_id").CustomType<InteractionActivity>();
+            Map(x => x.InteractionIfOther, "sgact_other");
             Map(x => x.SightingCount, "sight_n");
             Map(x => x.SightingAdultCount, "sight_adult_n");
             Map(x => x.SightingJuvenileCount, "sight_juv_n");

@@ -39,12 +39,15 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.IncidentDate, "inc_dtime");
             Map(x => x.Latitude, "lat");
             Map(x => x.Longitude, "lon");
+            Map(x => x.EezId, "eez_code");
             Map(x => x.WindDirection, "wind_dir");
             Map(x => x.WindSpeed, "wind_kts");
             Map(x => x.SeaCode, "sea_code");
             Map(x => x.CurrentSpeed, "current_speed");
             Map(x => x.CurrentDirection, "current_dir");
             Map(x => x.ActivityType, "activ_id").CustomType(typeof(ActivityType));
+            Map(x => x.VesselName, "vessel_name").Length(50);
+            Map(x => x.Ircs, "ircs").Length(16);
             Map(x => x.Bearing, "bearing_dir");
             Map(x => x.Distance, "distance");
             Map(x => x.Comments, "comments");

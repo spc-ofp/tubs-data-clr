@@ -68,6 +68,8 @@
     <Compile Include="Common\ActivityType.cs" />
     <Compile Include="Common\ConditionCode.cs" />
     <Compile Include="Common\DetectionMethod.cs" />
+    <Compile Include="Common\InteractionActivity.cs" />
+    <Compile Include="Common\InteractionType.cs" />
     <Compile Include="Common\JobType.cs" />
     <Compile Include="Common\LengthCode.cs" />
     <Compile Include="Common\ObserverProgram.cs" />
@@ -164,6 +166,7 @@
     <Compile Include="Tests\PurseSeineSetTest.cs" />
     <Compile Include="Tests\SeaDayTest.cs" />
     <Compile Include="Tests\SightingTest.cs" />
+    <Compile Include="Tests\SpecialSpeciesInteractionTest.cs" />
     <Compile Include="Tests\TransferTest.cs" />
     <Compile Include="Tests\TripMonitorTest.cs" />
     <Compile Include="Tests\TripTest.cs" />

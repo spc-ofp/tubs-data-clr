@@ -70,11 +70,38 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Capacity of Brail 1.
+        /// </summary>
+        public static string Brail1Size {
+            get {
+                return ResourceManager.GetString("Brail1Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Capacity of Brail 2.
+        /// </summary>
+        public static string Brail2Size {
+            get {
+                return ResourceManager.GetString("Brail2Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Brail Number.
         /// </summary>
         public static string BrailNumber {
             get {
                 return ResourceManager.GetString("BrailNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brailing Type Description.
+        /// </summary>
+        public static string BrailType {
+            get {
+                return ResourceManager.GetString("BrailType", resourceCulture);
             }
         }
         
@@ -129,6 +156,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string DepartureDate {
             get {
                 return ResourceManager.GetString("DepartureDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Depth.
+        /// </summary>
+        public static string Depth {
+            get {
+                return ResourceManager.GetString("Depth", resourceCulture);
             }
         }
         
@@ -358,6 +394,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Make.
+        /// </summary>
+        public static string Make {
+            get {
+                return ResourceManager.GetString("Make", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Measuring Instrument.
         /// </summary>
         public static string MeasuringInstrument {
@@ -367,11 +412,38 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mesh Size.
+        /// </summary>
+        public static string MeshSize {
+            get {
+                return ResourceManager.GetString("MeshSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model.
+        /// </summary>
+        public static string Model {
+            get {
+                return ResourceManager.GetString("Model", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Net Strips.
+        /// </summary>
+        public static string NetStrips {
+            get {
+                return ResourceManager.GetString("NetStrips", resourceCulture);
             }
         }
         
@@ -435,6 +507,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string PortName {
             get {
                 return ResourceManager.GetString("PortName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Power.
+        /// </summary>
+        public static string Power {
+            get {
+                return ResourceManager.GetString("Power", resourceCulture);
             }
         }
         
@@ -579,6 +660,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string SpeciesDescription {
             get {
                 return ResourceManager.GetString("SpeciesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed.
+        /// </summary>
+        public static string Speed {
+            get {
+                return ResourceManager.GetString("Speed", resourceCulture);
             }
         }
         

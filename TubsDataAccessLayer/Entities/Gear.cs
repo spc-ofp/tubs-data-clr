@@ -28,5 +28,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public abstract class Gear
     {
+        public virtual int Id { get; private set; }
+
+        public virtual Trip Trip { get; set; }
+
+        public virtual string EnteredBy { get; set; }
+
+        public virtual DateTime? EnteredDate { get; set; }
     }
 }

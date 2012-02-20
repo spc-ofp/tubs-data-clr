@@ -1,6 +1,6 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="PurseSeineGearMap.cs" company="">
-// TODO: Update copyright text.
+﻿/// -----------------------------------------------------------------------
+// <copyright file="GearMap.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -27,9 +27,19 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// Fluent NHibernate mapping for the PurseSeineGear entity.
+    /// Base mapping for all gear types.
     /// </summary>
-    public sealed class PurseSeineGearMap : ClassMap<PurseSeineGear>
+    public abstract class BaseGearMap<T> : ClassMap<T> where T : Gear
+    {
+        protected BaseGearMap()
+        {
+            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnteredDate, "entered_dtime");
+            References(x => x.Trip).Column("obstrip_id");
+        }
+    }
+
+    public sealed class PurseSeineGearMap : BaseGearMap<PurseSeineGear>
     {
         public PurseSeineGearMap()
         {
@@ -62,11 +72,6 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Brail1Size, "brail_size1");
             Map(x => x.Brail2Size, "brail_size2");
             Map(x => x.BrailType, "brail_type");
-
-            Map(x => x.EnteredBy, "entered_by");
-            Map(x => x.EnteredDate, "entered_dtime");
-
-            References(x => x.Trip).Column("obstrip_id");
         }
     }
 }

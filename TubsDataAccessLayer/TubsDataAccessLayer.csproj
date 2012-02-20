@@ -128,6 +128,7 @@
     <Compile Include="Mappings\CommunicationServicesMap.cs" />
     <Compile Include="Mappings\CrewMap.cs" />
     <Compile Include="Mappings\ElectronicDeviceMap.cs" />
+    <Compile Include="Mappings\GearMap.cs" />
     <Compile Include="Mappings\InteractionDetailMap.cs" />
     <Compile Include="Mappings\LengthSampleMap.cs" />
     <Compile Include="Mappings\LengthSamplingHeaderMap.cs" />
@@ -136,7 +137,6 @@
     <Compile Include="Mappings\PollutionDetailMap.cs" />
     <Compile Include="Mappings\PollutionEventMap.cs" />
     <Compile Include="Mappings\PortMap.cs" />
-    <Compile Include="Mappings\PurseSeineGearMap.cs" />
     <Compile Include="Mappings\PurseSeineSetMap.cs" />
     <Compile Include="Mappings\PurseSeineVesselAttributesMap.cs" />
     <Compile Include="Mappings\PurseSeineWellContentMap.cs" />

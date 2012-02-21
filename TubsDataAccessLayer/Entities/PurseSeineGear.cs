@@ -72,6 +72,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual decimal? Brail2Size { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "BrailType")]
+        [DataType(DataType.MultilineText)]
         public virtual string BrailType { get; set; }
     }
 }

@@ -94,4 +94,12 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             DiscriminatorValue("L");
         }
     }
+
+    public sealed class PoleAndLineTripMap : SubclassMap<PoleAndLineTrip>
+    {
+        public PoleAndLineTripMap()
+        {
+            DiscriminatorValue("P");
+        }
+    }
 }

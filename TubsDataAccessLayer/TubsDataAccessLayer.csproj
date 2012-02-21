@@ -98,6 +98,7 @@
     <Compile Include="Entities\LongLineTrip.cs" />
     <Compile Include="Entities\MarineDevice.cs" />
     <Compile Include="Entities\Observer.cs" />
+    <Compile Include="Entities\PoleAndLineTrip.cs" />
     <Compile Include="Entities\PollutionDetail.cs" />
     <Compile Include="Entities\PollutionEvent.cs" />
     <Compile Include="Entities\Port.cs" />

@@ -68,10 +68,12 @@
     <Compile Include="Common\ActivityType.cs" />
     <Compile Include="Common\ConditionCode.cs" />
     <Compile Include="Common\DetectionMethod.cs" />
+    <Compile Include="Common\EnumExtensions.cs" />
     <Compile Include="Common\InteractionActivity.cs" />
     <Compile Include="Common\InteractionType.cs" />
     <Compile Include="Common\JobType.cs" />
     <Compile Include="Common\LengthCode.cs" />
+    <Compile Include="Common\MetricConversions.cs" />
     <Compile Include="Common\ObserverProgram.cs" />
     <Compile Include="Common\PollutionMaterial.cs" />
     <Compile Include="Common\PollutionType.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Common\SchoolAssociation.cs" />
     <Compile Include="Common\SeaCode.cs" />
     <Compile Include="Common\SexCode.cs" />
+    <Compile Include="Common\UnitOfMeasure.cs" />
     <Compile Include="Common\UsageCode.cs" />
     <Compile Include="Common\VesselType.cs" />
     <Compile Include="Common\VesselTypeCode.cs" />
@@ -157,8 +160,10 @@
     <Compile Include="Tests\CommunicationServicesTest.cs" />
     <Compile Include="Tests\DataServiceTest.cs" />
     <Compile Include="Tests\ElectronicDeviceTest.cs" />
+    <Compile Include="Tests\EnumExtensionsTest.cs" />
     <Compile Include="Tests\LengthSamplingHeaderTest.cs" />
     <Compile Include="Tests\MarineDeviceTest.cs" />
+    <Compile Include="Tests\MetricConversionTest.cs" />
     <Compile Include="Tests\ObserverTest.cs" />
     <Compile Include="Tests\PagedResultsTest.cs" />
     <Compile Include="Tests\PollutionEventTest.cs" />

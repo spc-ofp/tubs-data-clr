@@ -132,6 +132,12 @@
   <data name="BrailType" xml:space="preserve">
     <value>Brailing Type Description</value>
   </data>
+  <data name="Captain" xml:space="preserve">
+    <value>Captain</value>
+  </data>
+  <data name="ClosedDate" xml:space="preserve">
+    <value>Closed Date</value>
+  </data>
   <data name="Comments" xml:space="preserve">
     <value>Comments</value>
   </data>
@@ -173,6 +179,9 @@
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>First Name</value>
+  </data>
+  <data name="FishingMaster" xml:space="preserve">
+    <value>Fishing Master</value>
   </data>
   <data name="FishPerBrail" xml:space="preserve">
     <value>Fish Per Brail</value>
@@ -225,6 +234,9 @@
   <data name="LengthCode" xml:space="preserve">
     <value>Length Code</value>
   </data>
+  <data name="Licenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
   <data name="Longitude" xml:space="preserve">
     <value>Longitude</value>
   </data>
@@ -272,6 +284,9 @@
   </data>
   <data name="ProgramCode" xml:space="preserve">
     <value>Observer Program Code</value>
+  </data>
+  <data name="ProjectCode" xml:space="preserve">
+    <value>Project Code</value>
   </data>
   <data name="RegisteredCountryCode" xml:space="preserve">
     <value>Registered Country Code</value>
@@ -350,6 +365,15 @@
   </data>
   <data name="UtcDepartureDate" xml:space="preserve">
     <value>Departure Date (UTC)</value>
+  </data>
+  <data name="VerifiedBy" xml:space="preserve">
+    <value>Verified By</value>
+  </data>
+  <data name="VerifiedDate" xml:space="preserve">
+    <value>Verified Date</value>
+  </data>
+  <data name="VesselOwner" xml:space="preserve">
+    <value>Vessel Owner</value>
   </data>
   <data name="VesselTypeCode" xml:space="preserve">
     <value>Vessel Type Code</value>

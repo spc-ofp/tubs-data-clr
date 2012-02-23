@@ -121,6 +121,7 @@
     <Compile Include="Entities\TripMonitor.cs" />
     <Compile Include="Entities\TripMonitorDetail.cs" />
     <Compile Include="Entities\Vessel.cs" />
+    <Compile Include="Entities\VesselNotes.cs" />
     <Compile Include="Events\ConstraintEventListener.cs" />
     <Compile Include="FieldNames.Designer.cs">
       <AutoGen>True</AutoGen>

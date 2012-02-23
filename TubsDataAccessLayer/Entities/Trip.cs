@@ -43,47 +43,142 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         
         public virtual int Id { get; protected set; }
 
+        [Required]
         [Display(ResourceType = typeof(FieldNames), Name = "DepartureDate")]
+        [DataType(DataType.DateTime)]
         public virtual DateTime? DepartureDate { get; set; }
 
+        [DataType(DataType.Date)]
         public virtual DateTime? DepartureDateOnly { get; set; }
 
         public virtual string DepartureTimeOnly { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "UtcDepartureDate")]
+        [DataType(DataType.DateTime)]
         public virtual DateTime? UtcDepartureDate { get; set; }
 
+        [Required]
         [Display(ResourceType = typeof(FieldNames), Name = "ReturnDate")]
+        [DataType(DataType.DateTime)]
         public virtual DateTime? ReturnDate { get; set; }
 
+        [DataType(DataType.Date)]
         public virtual DateTime? ReturnDateOnly { get; set; }
 
         public virtual string ReturnTimeOnly { get; set; }
 
+        // TODO?  Use a Regex?
         [Display(ResourceType = typeof(FieldNames), Name = "TripNumber")]
         public virtual string TripNumber { get; set; }
 
+        [Required]
         public virtual Vessel Vessel { get; set; }
 
+        public virtual VesselNotes VesselNotes { get; set; }
+
+        [Required]
         public virtual Observer Observer { get; set; }
 
+        [Required]
         public virtual Port DeparturePort { get; set; }
 
+        [Required]
         public virtual Port ReturnPort { get; set; }
 
+        [EnumDataType(typeof(WorkbookVersion))]
         public virtual WorkbookVersion? Version { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
+        [DataType(DataType.DateTime)]
         public virtual DateTime? EnteredDate { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "ClosedDate")]
+        [DataType(DataType.DateTime)]
+        public virtual DateTime? ClosedDate { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "VerifiedBy")]
+        public virtual string VerifiedBy { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "VerifiedDate")]
+        [DataType(DataType.DateTime)]
+        public virtual DateTime? VerifiedDate { get; set; }
+
+        [Required]
         [Display(ResourceType = typeof(FieldNames), Name = "ProgramCode")]
+        [EnumDataType(typeof(ObserverProgram))]
         public virtual ObserverProgram ProgramCode { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "CountryCode")]
+        [StringLength(2)]
         public virtual string CountryCode { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value of RegistrationId.
+        /// RegistrationId links a trip in TUBS with the packet of physical documents
+        /// it came from.
+        /// </summary>
+        public virtual int? RegistrationId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value of CkTripNumber.
+        /// CkTripNumber is the alternate trip number for trips from ???
+        /// </summary>
+        [StringLength(11)]
+        public virtual string CkTripNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value of FmTripNumber.
+        /// FmTripNumber is the alternate trip number for trips from ???
+        /// </summary>
+        [StringLength(5)]
+        public virtual string FmTripNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value of FfaTripNumber.
+        /// FfaTripNumber is the alternate trip number for trips from FFA.
+        /// TODO?  Use a Regex?
+        /// </summary>
+        [StringLength(10)]
+        public virtual string FfaTripNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value of SbTripNumber.
+        /// SbTripNumber is the alternate trip number for trips from Solomon Islands fisheries.
+        /// </summary>
+        [StringLength(6)]
+        public virtual string SbTripNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value of HwTripNumber.
+        /// HwTripNumber is the alternate trip number for trips from ???
+        /// </summary>
+        [StringLength(6)]
+        public virtual string HwTripNumber { get; set; }
+
+        public virtual bool? IsSharkTarget { get; set; }
+
+        public virtual bool? IsFullTrip { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
+        public virtual string Comments { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "ProjectCode")]
+        [StringLength(20)]
+        public virtual string ProjectCode { get; set; }
+
+        public virtual bool? IsCadetTrip { get; set; }
+
+        public virtual bool? IsSpillSampled { get; set; }
+
+        // TODO SpillObserver still uses int
+        //public virtual Observer SpillObserver { get; set; }
+
+        [StringLength(10)]
+        public virtual string SpillTripNumber { get; set; }
 
         // Trip knows how to create it's own metrics
         // TODO Implement!  This is here as a reminder on how to implement the API

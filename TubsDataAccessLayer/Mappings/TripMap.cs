@@ -48,6 +48,38 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.ProgramCode, "obsprg_code");
             Map(x => x.CountryCode, "country_code");
             Map(x => x.Version, "versn_id").CustomType(typeof(WorkbookVersion));
+            // Updated properties
+            Map(x => x.RegistrationId, "regist_id");
+            Map(x => x.ClosedDate, "closed_date");
+            Map(x => x.VerifiedBy, "verified_by");
+            Map(x => x.VerifiedDate, "verified_dtime");
+            Map(x => x.IsFullTrip, "fulltrip");
+            Map(x => x.IsSharkTarget, "sharktarget");            
+            Map(x => x.CkTripNumber, "tripno_ck");
+            Map(x => x.FmTripNumber, "tripno_fm");
+            Map(x => x.FfaTripNumber, "tripno_ffa");
+            Map(x => x.SbTripNumber, "tripno_sb");
+            Map(x => x.HwTripNumber, "tripno_hw");
+            Map(x => x.Comments, "comments");
+            Map(x => x.ProjectCode, "project_code");
+            Map(x => x.IsCadetTrip, "cadet");
+
+            // FIXME Spill Observer is b0rked in backing database
+            Map(x => x.IsSpillSampled, "spill");
+            Map(x => x.SpillTripNumber, "spill_tripno");
+
+            // Fill in VesselNotes as subordinate object
+            Component(x => x.VesselNotes, m =>
+            {
+                m.Map(x => x.Owner, "vesowner");
+                m.Map(x => x.Captain, "vescaptain");                
+                m.Map(x => x.CaptainCountryCode, "vescaptain_country_code");
+                m.Map(x => x.FishingMaster, "vesmaster");
+                m.Map(x => x.MasterCountryCode, "vesmaster_country_code");
+                m.Map(x => x.Licenses, "licences");
+                m.Map(x => x.Comments, "form1_comments");
+            });
+
 
             References(x => x.Vessel).Column("vessel_id");
             References(x => x.Observer).Column("staff_code");

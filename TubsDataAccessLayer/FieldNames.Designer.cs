@@ -106,6 +106,24 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Captain.
+        /// </summary>
+        public static string Captain {
+            get {
+                return ResourceManager.GetString("Captain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Closed Date.
+        /// </summary>
+        public static string ClosedDate {
+            get {
+                return ResourceManager.GetString("ClosedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comments.
         /// </summary>
         public static string Comments {
@@ -228,6 +246,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string FirstName {
             get {
                 return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fishing Master.
+        /// </summary>
+        public static string FishingMaster {
+            get {
+                return ResourceManager.GetString("FishingMaster", resourceCulture);
             }
         }
         
@@ -385,6 +412,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Licenses.
+        /// </summary>
+        public static string Licenses {
+            get {
+                return ResourceManager.GetString("Licenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Longitude.
         /// </summary>
         public static string Longitude {
@@ -525,6 +561,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string ProgramCode {
             get {
                 return ResourceManager.GetString("ProgramCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Code.
+        /// </summary>
+        public static string ProjectCode {
+            get {
+                return ResourceManager.GetString("ProjectCode", resourceCulture);
             }
         }
         
@@ -759,6 +804,33 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string UtcDepartureDate {
             get {
                 return ResourceManager.GetString("UtcDepartureDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verified By.
+        /// </summary>
+        public static string VerifiedBy {
+            get {
+                return ResourceManager.GetString("VerifiedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verified Date.
+        /// </summary>
+        public static string VerifiedDate {
+            get {
+                return ResourceManager.GetString("VerifiedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vessel Owner.
+        /// </summary>
+        public static string VesselOwner {
+            get {
+                return ResourceManager.GetString("VesselOwner", resourceCulture);
             }
         }
         

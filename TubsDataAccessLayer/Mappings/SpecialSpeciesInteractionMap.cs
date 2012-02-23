@@ -59,7 +59,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.TagPlacedNumber, "tag_place_no").Length(7);
             Map(x => x.TagPlacedType, "tag_place_type").Length(5);
             Map(x => x.TagPlacedOrganization, "tag_place_org").Length(10);
-            Map(x => x.InteractionId, "intact_id");
+            Map(x => x.InteractionId, "intact_id").CustomType<InteractionActivity>();
             Map(x => x.InteractionOther, "intact_other");
             Map(x => x.InteractionDescription, "int_describe");
 
@@ -70,7 +70,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.SightingJuvenileCount, "sight_juv_n");
             Map(x => x.SightingLength, "sight_len");
             Map(x => x.SightingDistance, "sight_dist").Precision(7).Scale(3);
-            Map(x => x.SightingDistanceUnit, "sight_dist_unit").Length(2);
+            Map(x => x.SightingDistanceUnit, "sight_dist_unit").CustomType<UnitOfMeasure>();
             Map(x => x.SightingDistanceInNm, "sight_dist_nm").Precision(10).Scale(4);
             Map(x => x.SightingBehavior, "sight_behav");
             Map(x => x.EnteredBy, "entered_by");

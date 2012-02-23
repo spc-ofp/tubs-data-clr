@@ -56,17 +56,17 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.PurseWinchSpeed, "pw_speed");
 
             Map(x => x.NetDepth, "net_depth");
-            Map(x => x.NetDepthUnit, "net_depth_unit1_id");
+            Map(x => x.NetDepthUnit, "net_depth_unit1_id").CustomType<UnitOfMeasure>();
             Map(x => x.NetDepthInMeters, "net_depth_m");
 
             Map(x => x.NetLength, "net_length");
-            Map(x => x.NetLengthUnits, "net_length_unit1_id");
+            Map(x => x.NetLengthUnits, "net_length_unit1_id").CustomType<UnitOfMeasure>();
             Map(x => x.NetLengthInMeters, "net_length_m");
 
             Map(x => x.NetStrips, "net_strips");
             Map(x => x.NetHangRatio, "net_hang_ratio");
             Map(x => x.MeshSize, "mesh_main");
-            Map(x => x.MeshSizeUnits, "mesh_main_unit2_id");
+            Map(x => x.MeshSizeUnits, "mesh_main_unit2_id").CustomType<UnitOfMeasure>();
             Map(x => x.MeshSizeInCm, "mesh_main_cm");
 
             Map(x => x.Brail1Size, "brail_size1");

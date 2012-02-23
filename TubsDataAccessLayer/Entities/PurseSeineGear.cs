@@ -8,6 +8,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
     /// Purse Seine gear.  This is constant for a trip, but some vessel gear can change
@@ -42,14 +43,14 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "Depth")]
         public virtual int? NetDepth { get; set; }
 
-        public virtual string NetDepthUnit { get; set; }
+        public virtual UnitOfMeasure? NetDepthUnit { get; set; }
 
         public virtual int? NetDepthInMeters { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Length")]
         public virtual int? NetLength { get; set; }
 
-        public virtual string NetLengthUnits { get; set; }
+        public virtual UnitOfMeasure? NetLengthUnits { get; set; }
 
         public virtual int? NetLengthInMeters { get; set; }
 
@@ -61,7 +62,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "MeshSize")]
         public virtual int? MeshSize { get; set; }
 
-        public virtual string MeshSizeUnits { get; set; }
+        public virtual UnitOfMeasure? MeshSizeUnits { get; set; }
 
         public virtual int? MeshSizeInCm { get; set; }
 

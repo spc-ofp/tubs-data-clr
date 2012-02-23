@@ -109,7 +109,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "TagOrg")]
         public virtual string TagPlacedOrganization { get; set; }
 
-        public virtual string InteractionId { get; set; } // TODO Needs to be InteractionActivity?
+        public virtual InteractionActivity? InteractionId { get; set; }
 
         public virtual string InteractionOther { get; set; }
 
@@ -135,7 +135,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "SightingDistance")]
         public virtual decimal? SightingDistance { get; set; }
 
-        public virtual string SightingDistanceUnit { get; set; }
+        public virtual UnitOfMeasure? SightingDistanceUnit { get; set; }
 
         public virtual decimal SightingDistanceInNm { get; set; }
 

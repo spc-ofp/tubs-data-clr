@@ -52,25 +52,25 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Component(x => x.Raft1, m =>
             {
                 m.Map(x => x.Capacity, "raft1_capac");
-                m.Map(x => x.Expiration, "raft1_expiry");
+                m.Map(x => x.InspectionDate, "raft1_expiry");
                 m.Map(x => x.LastOrDue, "raft1_LD1"); // TODO Needs to be 'raft1_LD', 'raft2_LD'...
             });
             Component(x => x.Raft2, m =>
             {
                 m.Map(x => x.Capacity, "raft2_capac");
-                m.Map(x => x.Expiration, "raft2_expiry");
+                m.Map(x => x.InspectionDate, "raft2_expiry");
                 m.Map(x => x.LastOrDue, "raft1_LD2"); // TODO Needs to be 'raft1_LD', 'raft2_LD'...
             });
             Component(x => x.Raft3, m =>
             {
                 m.Map(x => x.Capacity, "raft3_capac");
-                m.Map(x => x.Expiration, "raft3_expiry");
+                m.Map(x => x.InspectionDate, "raft3_expiry");
                 m.Map(x => x.LastOrDue, "raft1_LD3"); // TODO Needs to be 'raft1_LD', 'raft2_LD'...
             });
             Component(x => x.Raft4, m =>
             {
                 m.Map(x => x.Capacity, "raft4_capac");
-                m.Map(x => x.Expiration, "raft4_expiry");
+                m.Map(x => x.InspectionDate, "raft4_expiry");
                 m.Map(x => x.LastOrDue, "raft1_LD4"); // TODO Needs to be 'raft1_LD', 'raft2_LD'...
             });
             Map(x => x.EnteredBy, "entered_by");

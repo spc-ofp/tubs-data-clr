@@ -23,9 +23,13 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
+    using System.Linq;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Vessel safety information.  Includes lifejacket questions,
+    /// EPIRB inspection, and liferaft inspection.
     /// </summary>
     public class SafetyInspection
     {
@@ -33,16 +37,22 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual Trip Trip { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "LifejacketProvided")]
         public virtual bool? LifejacketProvided { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "LifejacketSizeOk")]
         public virtual bool? LifejacketSizeOk { get; set; }
 
+        // TODO Change to enum of Easy/Moderate/Hard
+        [Display(ResourceType = typeof(FieldNames), Name = "LifejacketAvailability")]
         public virtual string LifejacketAvailability { get; set; }
 
         public virtual int? BuoyCount { get; set; }
 
+        // This should always be a 406 beacon
         public virtual EpirbResult Epirb1 { get; set; }
 
+        // This is for non-406 beacons
         public virtual EpirbResult Epirb2 { get; set; }
 
         public virtual RaftResult Raft1 { get; set; }
@@ -52,6 +62,17 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual RaftResult Raft3 { get; set; }
 
         public virtual RaftResult Raft4 { get; set; }
+
+        public virtual IEnumerable<RaftResult> LifeRafts
+        {
+            get
+            {
+                return
+                    from raft in new RaftResult[] { Raft1, Raft2, Raft3, Raft4 }
+                    where null != raft && raft.Include
+                    select raft;
+            }
+        }
 
         public virtual string EnteredBy { get; set; }
 
@@ -69,10 +90,22 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
     public class RaftResult
     {
+        [Display(ResourceType = typeof(FieldNames), Name = "Capacity")]
         public virtual int? Capacity { get; set; }
 
-        public virtual DateTime? Expiration { get; set;  }
+        [Display(ResourceType = typeof(FieldNames), Name = "InspectionDate")]
+        [DataType(DataType.Date)]
+        public virtual DateTime? InspectionDate { get; set;  }
         
+        // TODO Constrain this to "L" or "D"
         public virtual char? LastOrDue { get; set; }
+
+        public virtual bool Include
+        {
+            get
+            {
+                return this.Capacity.HasValue || this.InspectionDate.HasValue || this.LastOrDue.HasValue;
+            }
+        }
     }
 }

@@ -81,6 +81,7 @@
     <Compile Include="Common\SchoolAssociation.cs" />
     <Compile Include="Common\SeaCode.cs" />
     <Compile Include="Common\SexCode.cs" />
+    <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Common\UnitOfMeasure.cs" />
     <Compile Include="Common\UsageCode.cs" />
     <Compile Include="Common\VesselType.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Entities\PurseSeineSeaDay.cs" />
     <Compile Include="Entities\PurseSeineVesselAttributes.cs" />
     <Compile Include="Entities\PurseSeineWellContent.cs" />
+    <Compile Include="Entities\PurseSeineWellReconciliation.cs" />
     <Compile Include="Entities\SafetyInspection.cs" />
     <Compile Include="Entities\SeaDay.cs" />
     <Compile Include="Entities\SetCatch.cs" />
@@ -145,6 +147,7 @@
     <Compile Include="Mappings\PurseSeineSetMap.cs" />
     <Compile Include="Mappings\PurseSeineVesselAttributesMap.cs" />
     <Compile Include="Mappings\PurseSeineWellContentMap.cs" />
+    <Compile Include="Mappings\PurseSeineWellReconciliationMap.cs" />
     <Compile Include="Mappings\SafetyInspectionMap.cs" />
     <Compile Include="Mappings\SeaDayMap.cs" />
     <Compile Include="Mappings\SetCatchMap.cs" />
@@ -178,6 +181,7 @@
     <Compile Include="Tests\TripMonitorTest.cs" />
     <Compile Include="Tests\TripTest.cs" />
     <Compile Include="Tests\VesselTest.cs" />
+    <Compile Include="Tests\WellReconciliationTest.cs" />
     <Compile Include="TubsDataService.cs" />
     <Compile Include="TubsRepository.cs" />
     <Compile Include="UnitOfWork.cs" />

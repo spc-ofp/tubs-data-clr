@@ -35,6 +35,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.SeaDays = new List<PurseSeineSeaDay>(30);
             this.Crew = new List<PurseSeineCrew>(16);
             this.WellContent = new List<PurseSeineWellContent>(16);
+            this.WellReconciliations = new List<PurseSeineWellReconciliation>(24);
         }
 
         public virtual PurseSeineGear Gear { get; set; }
@@ -46,6 +47,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual IList<PurseSeineCrew> Crew { get; protected internal set; }
 
         public virtual IList<PurseSeineWellContent> WellContent { get; protected internal set; }
+
+        public virtual IList<PurseSeineWellReconciliation> WellReconciliations { get; protected internal set; }
 
         public virtual void AddSeaDay(PurseSeineSeaDay seaday)
         {
@@ -63,6 +66,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             wellcontent.Trip = this;
             this.WellContent.Add(wellcontent);
+        }
+
+        public virtual void AddWellReconciliation(PurseSeineWellReconciliation reconciliation)
+        {
+            reconciliation.Trip = this;
+            this.WellReconciliations.Add(reconciliation);
         }
     }
 }

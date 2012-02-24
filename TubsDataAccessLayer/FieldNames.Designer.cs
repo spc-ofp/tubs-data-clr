@@ -106,11 +106,29 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Capacity.
+        /// </summary>
+        public static string Capacity {
+            get {
+                return ResourceManager.GetString("Capacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Captain.
         /// </summary>
         public static string Captain {
             get {
                 return ResourceManager.GetString("Captain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Captain&apos;s Nationality.
+        /// </summary>
+        public static string CaptainCountryCode {
+            get {
+                return ResourceManager.GetString("CaptainCountryCode", resourceCulture);
             }
         }
         
@@ -340,6 +358,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Inspection Date.
+        /// </summary>
+        public static string InspectionDate {
+            get {
+                return ResourceManager.GetString("InspectionDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IRCS.
         /// </summary>
         public static string Ircs {
@@ -421,6 +448,33 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Availability.
+        /// </summary>
+        public static string LifejacketAvailability {
+            get {
+                return ResourceManager.GetString("LifejacketAvailability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provided For Observer.
+        /// </summary>
+        public static string LifejacketProvided {
+            get {
+                return ResourceManager.GetString("LifejacketProvided", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suitable Size.
+        /// </summary>
+        public static string LifejacketSizeOk {
+            get {
+                return ResourceManager.GetString("LifejacketSizeOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Longitude.
         /// </summary>
         public static string Longitude {
@@ -435,6 +489,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string Make {
             get {
                 return ResourceManager.GetString("Make", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fishing Master&apos;s Nationality.
+        /// </summary>
+        public static string MasterCountryCode {
+            get {
+                return ResourceManager.GetString("MasterCountryCode", resourceCulture);
             }
         }
         
@@ -849,6 +912,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string WcpfcNumber {
             get {
                 return ResourceManager.GetString("WcpfcNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Well Capacity.
+        /// </summary>
+        public static string WellCapacity {
+            get {
+                return ResourceManager.GetString("WellCapacity", resourceCulture);
             }
         }
         

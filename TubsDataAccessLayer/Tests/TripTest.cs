@@ -67,6 +67,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             Assert.IsNotNull(trip);
             Assert.True(trip.Version.HasValue);
             Assert.AreEqual(WorkbookVersion.v2007, trip.Version.Value);
+            Assert.AreEqual("N/A", trip.AlternateTripNumber);
             Assert.NotNull(trip.Observer);
             Assert.NotNull(trip.CommunicationServices);
             Assert.NotNull(trip.Gear);
@@ -107,6 +108,14 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                     Assert.NotNull(activity);
                 }
             }
+        }
+
+        [Test]
+        public void SanityCheck()
+        {
+            var trip = this.repo.FindBy(69) as PurseSeineTrip;
+            Assert.NotNull(trip);
+            Assert.NotNull(trip.Observer);
         }
     }
 }

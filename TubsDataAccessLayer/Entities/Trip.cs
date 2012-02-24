@@ -180,6 +180,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [StringLength(10)]
         public virtual string SpillTripNumber { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "WellCapacity")]
+        [Range(0, 10000)]
+        public virtual decimal? WellCapacity { get; set; }
+
         // Trip knows how to create it's own metrics
         // TODO Implement!  This is here as a reminder on how to implement the API
         public virtual object CatchAndEffort { get; protected set; }
@@ -203,7 +207,24 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-
+            var tripType = this.GetType();
+            if (typeof(PurseSeineTrip) == tripType)
+            {
+                builder.Append("Purse Seine ");
+            }
+            else if (typeof(LongLineTrip) == tripType)
+            {
+                builder.Append("Long Line ");
+            }
+            else if (typeof(PoleAndLineTrip) == tripType)
+            {
+                builder.Append("Pole and Line ");
+            }
+            else
+            {
+                builder.Append("Unknown type ");
+            }
+            builder.Append("trip ").Append(SpcTripNumber);
             return builder.ToString();
         }
 
@@ -235,6 +256,29 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             interaction.Trip = this;
             this.Interactions.Add(interaction);
+        }
+
+        public virtual string AlternateTripNumber
+        {
+            get
+            {
+                return CkTripNumber ?? FmTripNumber ?? FfaTripNumber ?? SbTripNumber ?? HwTripNumber ?? "N/A";
+            }
+        }
+
+        public virtual string SpcTripNumber
+        {
+            get
+            {
+                StringBuilder builder = new StringBuilder();
+                // Shouldn't be necessary, but it never hurts to guard against an NPE
+                if (null != this.Observer)
+                {
+                    builder.Append(this.Observer.StaffCode).Append(" / ");
+                }
+                builder.Append(this.TripNumber);
+                return builder.ToString();
+            }
         }
 
         public virtual void NormalizeDates()

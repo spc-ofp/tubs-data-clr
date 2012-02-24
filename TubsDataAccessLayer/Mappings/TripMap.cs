@@ -63,6 +63,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Comments, "comments");
             Map(x => x.ProjectCode, "project_code");
             Map(x => x.IsCadetTrip, "cadet");
+            Map(x => x.WellCapacity, "well_capacity").Precision(8).Scale(3);
 
             // FIXME Spill Observer is b0rked in backing database
             Map(x => x.IsSpillSampled, "spill");
@@ -111,8 +112,11 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             HasMany(x => x.SeaDays).KeyColumn("obstrip_id");
             HasMany(x => x.Crew).KeyColumn("obstrip_id");
             HasMany(x => x.WellContent).KeyColumn("obstrip_id");
+            HasMany(x => x.WellReconciliations).KeyColumn("obstrip_id");
+
             HasOne(x => x.Gear).PropertyRef(r => r.Trip).Cascade.All();
             HasOne(x => x.VesselAttributes).PropertyRef(r => r.Trip).Cascade.All();
+
         }
     }
 

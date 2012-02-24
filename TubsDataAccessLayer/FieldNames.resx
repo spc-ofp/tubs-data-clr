@@ -396,4 +396,28 @@
   <data name="YearBuilt" xml:space="preserve">
     <value>Year Built</value>
   </data>
+  <data name="Capacity" xml:space="preserve">
+    <value>Capacity</value>
+  </data>
+  <data name="CaptainCountryCode" xml:space="preserve">
+    <value>Captain's Nationality</value>
+  </data>
+  <data name="InspectionDate" xml:space="preserve">
+    <value>Inspection Date</value>
+  </data>
+  <data name="LifejacketAvailability" xml:space="preserve">
+    <value>Availability</value>
+  </data>
+  <data name="LifejacketProvided" xml:space="preserve">
+    <value>Provided For Observer</value>
+  </data>
+  <data name="LifejacketSizeOk" xml:space="preserve">
+    <value>Suitable Size</value>
+  </data>
+  <data name="MasterCountryCode" xml:space="preserve">
+    <value>Fishing Master's Nationality</value>
+  </data>
+  <data name="WellCapacity" xml:space="preserve">
+    <value>Well Capacity</value>
+  </data>
 </root>

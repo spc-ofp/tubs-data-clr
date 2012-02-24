@@ -43,6 +43,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual string Captain { get; set; }
 
         [StringLength(2)]
+        [Display(ResourceType = typeof(FieldNames), Name = "CaptainCountryCode")]
         public virtual string CaptainCountryCode { get; set; }
 
         [StringLength(50)]
@@ -50,6 +51,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual string FishingMaster { get; set; }
 
         [StringLength(2)]
+        [Display(ResourceType = typeof(FieldNames), Name = "MasterCountryCode")]
         public virtual string MasterCountryCode { get; set; }
 
         [StringLength(50)]

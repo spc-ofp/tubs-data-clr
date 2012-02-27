@@ -33,7 +33,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public InteractionDetailMap()
         {
-            Table("obsv.gen2specialinteraction");
+            Schema("obsv");
+            Table("gen2specialinteraction");
             Id(x => x.Id, "sspinteraction_id").GeneratedBy.Identity();
             Map(x => x.StartOrEnd, "start_end").Not.Nullable().Length(5);
             Map(x => x.Number, "number");

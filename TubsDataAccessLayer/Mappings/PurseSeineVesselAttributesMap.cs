@@ -32,7 +32,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public PurseSeineVesselAttributesMap()
         {
-            Table("obsv.s_vess_attrib");
+            Schema("obsv");
+            Table("s_vess_attrib");
             Id(x => x.Id, "s_vess_attrib_id").GeneratedBy.Identity();
             Map(x => x.SpeedboatCount, "speedboats_n");
             Map(x => x.TowboatCount, "tow_n");

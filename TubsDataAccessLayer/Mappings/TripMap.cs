@@ -32,8 +32,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     public class TripMap : ClassMap<Entities.Trip>
     {
         public TripMap()
-        {
-            Table("obsv.trip");
+        {           
+            Schema("obsv");
+            Table("trip");
             Id(x => x.Id, "obstrip_id").GeneratedBy.Identity();
             Map(x => x.TripNumber, "tripno");
             Map(x => x.DepartureDate, "dep_dtime");

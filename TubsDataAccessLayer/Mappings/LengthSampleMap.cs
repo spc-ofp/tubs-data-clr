@@ -32,7 +32,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public LengthSampleMap()
         {
-            Table("obsv.s_lfmeas");
+            Schema("obsv");
+            Table("s_lfmeas");
             Id(x => x.Id, "s_lfmeas_id").GeneratedBy.Identity();
             Map(x => x.SequenceNumber, "seq_number");
             Map(x => x.SpeciesCode, "sp_code");

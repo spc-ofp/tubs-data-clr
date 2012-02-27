@@ -32,7 +32,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public SafetyInspectionMap()
         {
-            Table("obsv.vess_safety");
+            Schema("obsv");
+            Table("vess_safety");
             Id(x => x.Id, "vess_safety_id").GeneratedBy.Identity();
             Map(x => x.LifejacketProvided, "lj_provided_ans").CustomType(typeof(YesNoType));
             Map(x => x.LifejacketSizeOk, "lj_sizeok_ans").CustomType(typeof(YesNoType));

@@ -32,7 +32,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public CommunicationServicesMap()
         {
-            Table("obsv.vess_electronics");
+            Schema("obsv");
+            Table("vess_electronics");
             Id(x => x.Id, "vess_elect_id").GeneratedBy.Identity();
             Map(x => x.HasSatellitePhone, "satphone_yn").CustomType(typeof(YesNoType));
             Map(x => x.SatellitePhoneNumber, "satphone_number");

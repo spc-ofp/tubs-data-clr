@@ -33,7 +33,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public PurseSeineWellContentMap()
         {
-            Table("obsv.s_wellcontent");
+            Schema("obsv");
+            Table("s_wellcontent");
             Id(x => x.Id, "wc_id").GeneratedBy.Identity();
             Map(x => x.FuelOrWater, "fuel_water");
             Map(x => x.WellNumber, "well_number");

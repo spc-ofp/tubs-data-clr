@@ -34,7 +34,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         public PortMap()
         {
             ReadOnly();
-            Table("ref.ports");
+            Schema("ref");
+            Table("ports");
             Id(x => x.PortCode, "location_code").GeneratedBy.Assigned();
             Map(x => x.Name, "port_name");
             Map(x => x.AlternateName, "alsocalled");

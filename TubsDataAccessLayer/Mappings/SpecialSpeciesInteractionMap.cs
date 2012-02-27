@@ -33,7 +33,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public SpecialSpeciesInteractionMap()
         {
-            Table("obsv.gen2special");
+            Schema("obsv");
+            Table("gen2special");
             Id(x => x.Id, "ssp_id");
             Map(x => x.SgType, "sgtype").Length(1);
             Map(x => x.SgTime, "sgtime").Length(1);

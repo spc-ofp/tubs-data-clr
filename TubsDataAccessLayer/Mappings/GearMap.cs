@@ -43,7 +43,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public PurseSeineGearMap()
         {
-            Table("obsv.s_gear");
+            Schema("obsv");
+            Table("s_gear");
             Id(x => x.Id, "s_gear_id").GeneratedBy.Identity();
             Map(x => x.PowerblockMake, "pb_make");
             Map(x => x.PowerblockModel, "pb_model");

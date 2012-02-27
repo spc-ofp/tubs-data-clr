@@ -32,7 +32,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public BrailMap()
         {
-            Table("obsv.s_lfbrails");
+            Schema("obsv");
+            Table("s_lfbrails");
             Id(x => x.Id, "s_lfbrail_id").GeneratedBy.Identity();
             Map(x => x.BrailNumber, "whichbrail");
             Map(x => x.PageNumber, "pagenumber");

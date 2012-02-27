@@ -32,7 +32,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public MarineDeviceMap()
         {
-            Table("obsv.ref_marine_devices");
+            Schema("obsv");
+            Table("ref_marine_devices");
             Id(x => x.Id, "device_id");
             Map(x => x.Description, "device_desc").Not.Nullable();
             Map(x => x.Category, "device_cat");

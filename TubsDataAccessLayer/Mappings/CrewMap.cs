@@ -53,7 +53,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public PurseSeineCrewMap()
         {
-            Table("obsv.s_crew");
+            Schema("obsv");
+            Table("s_crew");
             Id(x => x.Id, "s_crew_id").GeneratedBy.Identity();
         }
     }

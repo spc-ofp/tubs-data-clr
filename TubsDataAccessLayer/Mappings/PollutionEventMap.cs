@@ -33,7 +33,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public PollutionEventMap()
         {
-            Table("obsv.gen6poll");
+            Schema("obsv");
+            Table("gen6poll");
             Id(x => x.Id, "pollution_id").GeneratedBy.Identity();
             Map(x => x.FormId, "form_id");
             Map(x => x.IncidentDate, "inc_dtime");

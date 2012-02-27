@@ -49,7 +49,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public PurseSeineSetCatchMap()
         {
-            Table("obsv.s_setcatch");
+            Schema("obsv");
+            Table("s_setcatch");
             Id(x => x.Id, "s_setcatch_id").GeneratedBy.Identity();
             Map(x => x.ContainsLargeFish, "large_fish");
             Map(x => x.ConditionCode, "cond_code");

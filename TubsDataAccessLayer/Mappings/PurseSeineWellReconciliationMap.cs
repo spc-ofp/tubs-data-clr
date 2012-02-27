@@ -33,7 +33,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public PurseSeineWellReconciliationMap()
         {
-            Table("obsv.s_log_well_recon");
+            Schema("obsv");
+            Table("s_log_well_recon");
             Id(x => x.Id, "lw_id").GeneratedBy.Identity();
             Map(x => x.FormId, "form_id");
             Map(x => x.ObserverDate, "obs_dtime");

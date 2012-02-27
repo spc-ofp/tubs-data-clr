@@ -33,7 +33,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     {
         public ElectronicDeviceMap()
         {
-            Table("obsv.vess_electronics_detail");
+            Schema("obsv");
+            Table("vess_electronics_detail");
             Id(x => x.Id, "elect_detail_id");
             Map(x => x.IsInstalled, "isinstalled").CustomType(typeof(YesNoType));
             Map(x => x.Usage, "usage_code");

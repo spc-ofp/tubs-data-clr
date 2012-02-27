@@ -46,7 +46,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         {
             var sightings = this.repo.All();
             Assert.NotNull(sightings);
-            Assert.GreaterOrEqual(29, sightings.Count<Sighting>());
+            Assert.GreaterOrEqual(sightings.Count<Sighting>(), 29);
             foreach (var sighting in sightings)
             {
                 Assert.NotNull(sighting);

@@ -33,7 +33,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         public ObserverMap()
         {
             ReadOnly();
-            Table("ref.field_staff");
+            Schema("ref");
+            Table("field_staff");
             Id(x => x.StaffCode, "staff_code").GeneratedBy.Assigned();
             Map(x => x.FirstName, "first_name");
             Map(x => x.LastName, "family_name");

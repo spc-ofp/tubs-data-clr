@@ -70,6 +70,33 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of Other Auxilary Boats.
+        /// </summary>
+        public static string AuxiliaryBoatCount {
+            get {
+                return ResourceManager.GetString("AuxiliaryBoatCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beacon.
+        /// </summary>
+        public static string Beacon {
+            get {
+                return ResourceManager.GetString("Beacon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bearing.
+        /// </summary>
+        public static string Bearing {
+            get {
+                return ResourceManager.GetString("Bearing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Capacity of Brail 1.
         /// </summary>
         public static string Brail1Size {
@@ -214,6 +241,24 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detection Method.
+        /// </summary>
+        public static string DetectionMethod {
+            get {
+                return ResourceManager.GetString("DetectionMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance.
+        /// </summary>
+        public static string Distance {
+            get {
+                return ResourceManager.GetString("Distance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EEZ Identifier.
         /// </summary>
         public static string EezId {
@@ -300,6 +345,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string GrossTonnage {
             get {
                 return ResourceManager.GetString("GrossTonnage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do Other Tender Boats Work With Catcher?.
+        /// </summary>
+        public static string HasTenderBoats {
+            get {
+                return ResourceManager.GetString("HasTenderBoats", resourceCulture);
             }
         }
         
@@ -475,6 +529,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ship&apos;s Time.
+        /// </summary>
+        public static string LocalTime {
+            get {
+                return ResourceManager.GetString("LocalTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Longitude.
         /// </summary>
         public static string Longitude {
@@ -592,6 +655,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Photo Number.
+        /// </summary>
+        public static string PhotoNumber {
+            get {
+                return ResourceManager.GetString("PhotoNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Port Code.
         /// </summary>
         public static string PortCode {
@@ -660,6 +732,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string ReturnDate {
             get {
                 return ResourceManager.GetString("ReturnDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to School Association.
+        /// </summary>
+        public static string SchoolAssociation {
+            get {
+                return ResourceManager.GetString("SchoolAssociation", resourceCulture);
             }
         }
         
@@ -781,6 +862,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of Speed Boats.
+        /// </summary>
+        public static string SpeedboatCount {
+            get {
+                return ResourceManager.GetString("SpeedboatCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Staff Code.
         /// </summary>
         public static string StaffCode {
@@ -835,6 +925,42 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tons of Bigeye.
+        /// </summary>
+        public static string TonsOfBigeye {
+            get {
+                return ResourceManager.GetString("TonsOfBigeye", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tons of Mixed Fish.
+        /// </summary>
+        public static string TonsOfMixed {
+            get {
+                return ResourceManager.GetString("TonsOfMixed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tons of Skipjack.
+        /// </summary>
+        public static string TonsOfSkipjack {
+            get {
+                return ResourceManager.GetString("TonsOfSkipjack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tons of Yellowfin.
+        /// </summary>
+        public static string TonsOfYellowfin {
+            get {
+                return ResourceManager.GetString("TonsOfYellowfin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total brails.
         /// </summary>
         public static string TotalBrailCount {
@@ -867,6 +993,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string UtcDepartureDate {
             get {
                 return ResourceManager.GetString("UtcDepartureDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UTC Time.
+        /// </summary>
+        public static string UtcTime {
+            get {
+                return ResourceManager.GetString("UtcTime", resourceCulture);
             }
         }
         

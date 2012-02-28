@@ -81,6 +81,7 @@
     <Compile Include="Common\SchoolAssociation.cs" />
     <Compile Include="Common\SeaCode.cs" />
     <Compile Include="Common\SexCode.cs" />
+    <Compile Include="Common\SightedVesselType.cs" />
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Common\UnitOfMeasure.cs" />
     <Compile Include="Common\UsageCode.cs" />

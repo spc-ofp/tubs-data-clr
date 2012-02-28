@@ -23,6 +23,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using FluentNHibernate.Mapping;
+    using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
@@ -46,7 +47,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.HelicopterMake, "heli_make").Length(15);
             Map(x => x.HelicopterModel, "heli_model").Length(15);
             Map(x => x.HelicopterRegistrationNumber, "heli_reg_no").Length(15);
-            Map(x => x.HelicopterRangeUnit, "heli_range_unit4_id");
+            Map(x => x.HelicopterRangeUnit, "heli_range_unit4_id").CustomType<UnitOfMeasure>();
             Map(x => x.HelicopterColor, "heli_colour").Length(30);
             Map(x => x.HelicopterServiceOtherCount, "heli_services_n");
             Map(x => x.EnteredBy, "entered_by");

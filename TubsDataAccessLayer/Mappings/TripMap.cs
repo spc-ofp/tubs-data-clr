@@ -44,7 +44,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.ReturnDate, "ret_dtime");
             Map(x => x.ReturnDateOnly, "ret_date");
             Map(x => x.ReturnTimeOnly, "ret_time");
-            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnteredBy, "entered_by"); // TODO Add .Insert() ?
             Map(x => x.EnteredDate, "entered_dtime");
             Map(x => x.ProgramCode, "obsprg_code");
             Map(x => x.CountryCode, "country_code");
@@ -82,6 +82,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
                 m.Map(x => x.Comments, "form1_comments");
             });
 
+            // TODO Devise a test for this
+            OptimisticLock.Version();
+            Version(x => x.RowVersion).Column("tstamp").Not.Nullable().CustomSqlType("timestamp").Generated.Always();
 
             References(x => x.Vessel).Column("vessel_id");
             References(x => x.Observer).Column("staff_code");

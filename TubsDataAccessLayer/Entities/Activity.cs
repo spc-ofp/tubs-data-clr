@@ -22,9 +22,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
@@ -35,29 +33,42 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     public abstract class Activity
     {
         public virtual int Id { get; private set; }
-        
+
+        [Display(ResourceType = typeof(FieldNames), Name = "LocalTime")]
         public virtual DateTime? LocalTime { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "UtcTime")]
         public virtual DateTime? UtcTime { get; set; } // Derived from UTC offset of local time
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
         public virtual string Latitude { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Longitude")]
         public virtual string Longitude { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EezId")]
         public virtual string EezCode { get; set; }
 
         public virtual ActivityType? ActivityType { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "SchoolAssociation")]
+        [EnumDataType(typeof(SchoolAssociation))]
         public virtual SchoolAssociation? SchoolAssociation { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "DetectionMethod")]
+        [EnumDataType(typeof(DetectionMethod))]
         public virtual DetectionMethod? DetectionMethod { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Beacon")]
         public virtual string Beacon { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
         public virtual string Comments { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
     }
 }

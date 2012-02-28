@@ -23,6 +23,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
+    using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
@@ -36,28 +37,38 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual DateTime? TransferTime { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
         public virtual string Latitude { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Longitude")]
         public virtual string Longitude { get; set; }
 
         public virtual VesselType? VesselType { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "TonsOfSkipjack")]
         public virtual decimal? TonsOfSkipjack { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "TonsOfYellowfin")]
         public virtual decimal? TonsOfYellowfin { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "TonsOfBigeye")]
         public virtual decimal? TonsOfBigeye { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "TonsOfMixed")]
         public virtual decimal? TonsOfMixed { get; set; }
 
         public virtual ActionType? ActionType { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "PhotoNumber")]
         public virtual string PhotoNumber { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
         public virtual string Comments { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
     }
 }

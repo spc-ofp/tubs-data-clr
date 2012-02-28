@@ -420,4 +420,49 @@
   <data name="WellCapacity" xml:space="preserve">
     <value>Well Capacity</value>
   </data>
+  <data name="AuxiliaryBoatCount" xml:space="preserve">
+    <value>Number of Other Auxilary Boats</value>
+  </data>
+  <data name="HasTenderBoats" xml:space="preserve">
+    <value>Do Other Tender Boats Work With Catcher?</value>
+  </data>
+  <data name="SpeedboatCount" xml:space="preserve">
+    <value>Number of Speed Boats</value>
+  </data>
+  <data name="Bearing" xml:space="preserve">
+    <value>Bearing</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="PhotoNumber" xml:space="preserve">
+    <value>Photo Number</value>
+  </data>
+  <data name="TonsOfBigeye" xml:space="preserve">
+    <value>Tons of Bigeye</value>
+  </data>
+  <data name="TonsOfMixed" xml:space="preserve">
+    <value>Tons of Mixed Fish</value>
+  </data>
+  <data name="TonsOfSkipjack" xml:space="preserve">
+    <value>Tons of Skipjack</value>
+  </data>
+  <data name="TonsOfYellowfin" xml:space="preserve">
+    <value>Tons of Yellowfin</value>
+  </data>
+  <data name="Beacon" xml:space="preserve">
+    <value>Beacon</value>
+  </data>
+  <data name="DetectionMethod" xml:space="preserve">
+    <value>Detection Method</value>
+  </data>
+  <data name="LocalTime" xml:space="preserve">
+    <value>Ship's Time</value>
+  </data>
+  <data name="SchoolAssociation" xml:space="preserve">
+    <value>School Association</value>
+  </data>
+  <data name="UtcTime" xml:space="preserve">
+    <value>UTC Time</value>
+  </data>
 </root>

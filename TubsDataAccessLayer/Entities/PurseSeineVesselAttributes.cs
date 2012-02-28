@@ -24,6 +24,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      */
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
     /// Entity that collects vessel information specific to Purse Seiners.
@@ -34,14 +35,20 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual Trip Trip { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "SpeedboatCount")]
+        [Range(0d, 100d)]
         public virtual int? SpeedboatCount { get; set; }
 
+        [Range(0d, 100d)]
         public virtual int? TowboatCount { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "AuxiliaryBoatCount")]
+        [Range(0d, 100d)]
         public virtual int? AuxiliaryBoatCount { get; set; }
 
         public virtual int? LightCount { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "HasTenderBoats")]
         public virtual bool? HasTenderBoats { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "SkiffMake")]
@@ -65,7 +72,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "HelicopterRange")]
         public virtual int? HelicopterRange { get; set; }
 
-        public virtual int? HelicopterRangeUnit { get; set; } // Enum
+        public virtual UnitOfMeasure? HelicopterRangeUnit { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "HelicopterColor")]
         public virtual string HelicopterColor { get; set; }

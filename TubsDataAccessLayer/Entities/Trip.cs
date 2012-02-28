@@ -184,6 +184,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Range(0, 10000)]
         public virtual decimal? WellCapacity { get; set; }
 
+        public virtual byte[] RowVersion { get; protected internal set; }
+
         // Trip knows how to create it's own metrics
         // TODO Implement!  This is here as a reminder on how to implement the API
         public virtual object CatchAndEffort { get; protected set; }

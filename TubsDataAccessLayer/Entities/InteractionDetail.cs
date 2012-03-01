@@ -31,7 +31,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public class InteractionDetail
     {
-        public virtual int Id { get; protected set; }
+        public virtual int Id { get; set; }
         
         public virtual SpecialSpeciesInteraction Header { get; set; }
 

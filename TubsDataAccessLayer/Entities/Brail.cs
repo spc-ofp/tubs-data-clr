@@ -35,7 +35,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// Gets or sets unique entity identifier
         /// </summary>
         [Key]
-        public virtual int Id { get; protected set; }
+        public virtual int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the brail used.  Typical purse seine vessels have

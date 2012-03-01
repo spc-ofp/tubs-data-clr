@@ -34,7 +34,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.CatchList = new List<PurseSeineSetCatch>();
         }
 
-        public virtual int Id { get; protected set; }
+        public virtual int Id { get; set; }
 
         /// <summary>
         /// Gets or sets reference back to the activity that led to this set

@@ -97,6 +97,7 @@
     <Compile Include="Entities\InteractionDetail.cs" />
     <Compile Include="Entities\LengthSample.cs" />
     <Compile Include="Entities\LengthSamplingHeader.cs" />
+    <Compile Include="Entities\LongLineSet.cs" />
     <Compile Include="Entities\LongLineTrip.cs" />
     <Compile Include="Entities\MarineDevice.cs" />
     <Compile Include="Entities\Observer.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Tests\TransferTest.cs" />
     <Compile Include="Tests\TripMonitorTest.cs" />
     <Compile Include="Tests\TripTest.cs" />
+    <Compile Include="Tests\VesselAttributeTest.cs" />
     <Compile Include="Tests\VesselTest.cs" />
     <Compile Include="Tests\WellReconciliationTest.cs" />
     <Compile Include="TubsDataService.cs" />

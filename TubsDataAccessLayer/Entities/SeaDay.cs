@@ -28,7 +28,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public abstract class SeaDay
     {
-        public virtual int Id { get; private set; }
+        public virtual int Id { get; set; }
 
         public virtual Trip Trip { get; set; }
 

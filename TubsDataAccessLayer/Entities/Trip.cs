@@ -41,7 +41,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.Interactions = new List<SpecialSpeciesInteraction>();
         }
         
-        public virtual int Id { get; protected set; }
+        public virtual int Id { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(FieldNames), Name = "DepartureDate")]

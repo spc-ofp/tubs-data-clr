@@ -28,7 +28,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public class MarineDevice
     {
-        public virtual int Id { get; protected set; }
+        public virtual int Id { get; set; }
 
         public virtual string Description { get; set; }
 

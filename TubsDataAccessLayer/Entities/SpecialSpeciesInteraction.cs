@@ -38,7 +38,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.Details = new List<InteractionDetail>();
         }
 
-        public virtual int Id { get; protected set; }
+        public virtual int Id { get; set; }
 
         public virtual Trip Trip { get; set; }
 

@@ -32,7 +32,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public abstract class Activity
     {
-        public virtual int Id { get; private set; }
+        public virtual int Id { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "LocalTime")]
         public virtual DateTime? LocalTime { get; set; }

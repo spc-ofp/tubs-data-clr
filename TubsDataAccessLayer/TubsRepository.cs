@@ -35,7 +35,7 @@ namespace Spc.Ofp.Tubs.DAL
     /// state.  Therefore, unlike JDBC, there's no point in handling exceptions here.
     /// </summary>
     /// <typeparam name="T">Any entity that can be mapped to a Fluent NHibernate entity.</typeparam>
-    public class TubsRepository<T>
+    public class TubsRepository<T> where T : class
     {
         private readonly ISession Session;
 
@@ -51,7 +51,7 @@ namespace Spc.Ofp.Tubs.DAL
 
         public bool Add(T entity)
         {
-            this.Session.Save(entity);
+            this.Session.SaveOrUpdate(entity);
             return true;
         }
 
@@ -59,16 +59,48 @@ namespace Spc.Ofp.Tubs.DAL
         {
             foreach (T item in items)
             {
-                this.Session.Save(item);
+                this.Session.SaveOrUpdate(item);
             }
 
             return true;
         }
 
-        public bool Update(T entity)
+        /// <summary>
+        /// Updates an entity.
+        /// It can handle merging a disconnected object, but that _doesn't_
+        /// happen by default because merges can be dangerous.
+        /// </summary>
+        /// <param name="entity">Entity to be updated</param>
+        /// <param name="autoMerge">true to merge automatically, false to not merge</param>
+        /// <returns>true if update succeeded, false otherwise</returns>
+        public bool Update(T entity, bool autoMerge = false)
         {
-            this.Session.Update(entity);
+            // This can happen if we're loading the entity from
+            // another session/transaction.
+            // It can also happen *ahem* if we're hydrating the object
+            // from a form submission.
+            bool requiresMerge = RequiresMerge(entity);
+
+            if (requiresMerge && !autoMerge)
+            {
+                return false;
+            }
+
+            if (requiresMerge)
+            {
+                this.Session.Merge<T>(entity);
+            }
+            else
+            {
+                this.Session.SaveOrUpdate(entity);
+            }
+            
             return true;
+        }
+
+        public bool RequiresMerge(T entity)
+        {
+            return !this.Session.Contains(entity);
         }
 
         public bool Delete(T entity)

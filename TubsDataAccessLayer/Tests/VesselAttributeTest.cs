@@ -1,9 +1,9 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ElectronicDevice.cs" company="Secretariat of the Pacific Community">
+// <copyright file="VesselAttributeTest.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
-namespace Spc.Ofp.Tubs.DAL.Entities
+namespace Spc.Ofp.Tubs.DAL.Tests
 {
     /*
      * This file is part of TUBS.
@@ -22,31 +22,40 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
+    using System.Linq;
+    using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Entities;
+    using NHibernate;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ElectronicDevice
+    [TestFixture]
+    public class VesselAttributeTest
     {
-        public virtual int Id { get; set; }
+        private ISession session;
 
-        public virtual Trip Trip { get; set; }
+        [TestFixtureSetUp]
+        public void Setup()
+        {
+            this.session = TubsDataService.GetSession();
+        }
 
-        public virtual MarineDevice DeviceType { get; set; }
+        [Test]
+        public void ModifyVesselAttributes()
+        {
+            var transaction = this.session.BeginTransaction();
+            var trip = new TubsRepository<Trip>(this.session).FindBy(103) as PurseSeineTrip;
+            Assert.NotNull(trip);
+            var attributes = trip.VesselAttributes;
+            Assert.NotNull(attributes);
+            attributes.HelicopterMake = "Hughes";
+            attributes.HelicopterModel = "MD 500 Defender";
+            var repo = new TubsRepository<PurseSeineVesselAttributes>(this.session);
+            repo.Update(attributes);
+            transaction.Commit();
 
-        public virtual bool? IsInstalled { get; set; }
-
-        public virtual UsageCode? Usage { get; set; }
-
-        public virtual string Make { get; set; }
-
-        public virtual string Model { get; set; }
-
-        public virtual string Comments { get; set; }
-
-        public virtual string EnteredBy { get; set; }
-
-        public virtual DateTime? EnteredDate { get; set; }
+        }
     }
 }

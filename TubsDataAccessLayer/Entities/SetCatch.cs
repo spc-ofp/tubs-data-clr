@@ -28,7 +28,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public abstract class SetCatch
     {
-        public virtual int Id { get; private set; }
+        public virtual int Id { get; set; }
 
         public virtual string SpeciesCode { get; set; }
 

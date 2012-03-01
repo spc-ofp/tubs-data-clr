@@ -32,6 +32,7 @@ namespace Spc.Ofp.Tubs.DAL
     /// I'm done messing with Query Substitutions that don't appear to work.
     /// http://lostechies.com/rayhouston/2008/03/23/mapping-strings-to-booleans-using-nhibernate-s-iusertype/
     /// </summary>
+    [Serializable]
     public class YesNoType : IUserType
     {
         public bool IsMutable

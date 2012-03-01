@@ -31,7 +31,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public class PurseSeineVesselAttributes
     {
-        public virtual int Id { get; protected set; }
+        public virtual int Id { get; set; }
 
         public virtual Trip Trip { get; set; }
 

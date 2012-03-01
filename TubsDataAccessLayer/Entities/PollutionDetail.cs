@@ -15,7 +15,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public class PollutionDetail
     {
-        public virtual int Id { get; protected set; }
+        public virtual int Id { get; set; }
 
         public virtual PollutionEvent Header { get; set; }
 

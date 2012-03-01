@@ -36,7 +36,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.Brails = new List<Brail>();
         }
 
-        public virtual int Id { get; protected set; }
+        public virtual int Id { get; set; }
 
         public virtual int? FormId { get; set; }
 

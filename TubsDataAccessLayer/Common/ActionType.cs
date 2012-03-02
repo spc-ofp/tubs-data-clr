@@ -61,6 +61,12 @@ namespace Spc.Ofp.Tubs.DAL.Common
         FI,
 
         /// <summary>
+        /// Fish Onboard
+        /// </summary>
+        [Description("Fish Onboard")]
+        FO,
+
+        /// <summary>
         /// From set
         /// </summary>
         [Description("From set")]

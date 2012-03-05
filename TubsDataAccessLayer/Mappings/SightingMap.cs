@@ -22,9 +22,13 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Id(x => x.Id, "sighting_id").GeneratedBy.Identity();
             Map(x => x.FormId, "form_id");
             Map(x => x.EventTime, "sighting_dtime");
-            Map(x => x.Latitude, "lat");
-            Map(x => x.Longitude, "lon");
+            Map(x => x.Latitude, "lat").Length(9);
+            Map(x => x.Longitude, "lon").Length(10);
+            Map(x => x.EezCode, "eez_code").Length(2);
             Map(x => x.VesselType, "vatyp_id").CustomType(typeof(SightedVesselType));
+            Map(x => x.VesselName, "vessel_name").Length(50);
+            Map(x => x.VesselFlag, "reg_country_code").Length(2);
+            Map(x => x.Ircs, "ircs").Length(16);
             Map(x => x.Bearing, "bearing_dir");
             Map(x => x.Distance, "distance");
             Map(x => x.DistanceUnit, "dist_unit");
@@ -33,6 +37,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Comments, "comments");
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
+
+            References(x => x.Vessel).Column("vessel_id");
             References(x => x.Trip).Column("obstrip_id");
         }
     }

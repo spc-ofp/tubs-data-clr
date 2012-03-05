@@ -465,4 +465,16 @@
   <data name="UtcTime" xml:space="preserve">
     <value>UTC Time</value>
   </data>
+  <data name="ActionType" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="VesselFlag" xml:space="preserve">
+    <value>Vessel Registration Country (Flag)</value>
+  </data>
+  <data name="VesselName" xml:space="preserve">
+    <value>Vessel Name</value>
+  </data>
+  <data name="VesselType" xml:space="preserve">
+    <value>Vessel Type</value>
+  </data>
 </root>

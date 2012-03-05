@@ -61,6 +61,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        public static string ActionType {
+            get {
+                return ResourceManager.GetString("ActionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alternate Name.
         /// </summary>
         public static string AlternateName {
@@ -1024,11 +1033,38 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vessel Registration Country (Flag).
+        /// </summary>
+        public static string VesselFlag {
+            get {
+                return ResourceManager.GetString("VesselFlag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vessel Name.
+        /// </summary>
+        public static string VesselName {
+            get {
+                return ResourceManager.GetString("VesselName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vessel Owner.
         /// </summary>
         public static string VesselOwner {
             get {
                 return ResourceManager.GetString("VesselOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vessel Type.
+        /// </summary>
+        public static string VesselType {
+            get {
+                return ResourceManager.GetString("VesselType", resourceCulture);
             }
         }
         

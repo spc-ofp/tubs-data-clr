@@ -45,6 +45,21 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "Longitude")]
         public virtual string Longitude { get; set; }
 
+        public virtual string EezCode { get; set; }
+
+        public virtual Vessel Vessel { get; set; }
+
+        public virtual string VesselName { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "Ircs")]
+        public virtual string Ircs { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "VesselFlag")]
+        public virtual string VesselFlag { get; set; }
+
+        //Vessel Type
+        [Display(ResourceType = typeof(FieldNames), Name = "VesselType")]
+        [EnumDataType(typeof(SightedVesselType))]
         public virtual SightedVesselType? VesselType { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Bearing")]
@@ -54,8 +69,11 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "Distance")]
         public virtual decimal? Distance { get; set; }
 
+        // FIXME This needs to be a link to one of the unit1/unit4 values :(
         public virtual string DistanceUnit { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "ActionType")]
+        [EnumDataType(typeof(ActionType))]
         public virtual ActionType? ActionType { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "PhotoNumber")]

@@ -51,6 +51,8 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             {
                 Assert.NotNull(sighting);
                 Assert.NotNull(sighting.Trip);
+                // Either a vessel or a vessel name should be in the record
+                Assert.True(null != sighting.Vessel || !String.IsNullOrEmpty(sighting.VesselName));
                 Assert.True(sighting.EventTime.HasValue);
                 Assert.IsNotNullOrEmpty(sighting.Latitude);
                 Assert.IsNotNullOrEmpty(sighting.Longitude);

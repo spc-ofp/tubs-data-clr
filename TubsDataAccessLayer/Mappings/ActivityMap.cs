@@ -35,9 +35,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         {
             Map(x => x.LocalTime, "act_dtime");
             Map(x => x.UtcTime, "utc_act_dtime");
-            Map(x => x.Latitude, "lat");
-            Map(x => x.Longitude, "lon");
-            Map(x => x.EezCode, "eez_code");
+            Map(x => x.Latitude, "lat").Length(9);
+            Map(x => x.Longitude, "lon").Length(10);
+            Map(x => x.EezCode, "eez_code").Length(2);
 
             // For future reference, the answer to how to map
             // integer enums came from StackOverflow:

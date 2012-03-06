@@ -53,9 +53,15 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual DateTime? LandedDate { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
+        [RegularExpression(@"^[0-8]\d{3}\.?\d{3}[NnSs]$",
+            ErrorMessageResourceType = typeof(ErrorMessages),
+            ErrorMessageResourceName = "LatitudeError")]
         public virtual string Latitude { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Longitude")]
+        [RegularExpression(@"^[0-1]\d{4}\.?\d{3}[EeWw]$",
+            ErrorMessageResourceType = typeof(ErrorMessages),
+            ErrorMessageResourceName = "LongitudeError")]
         public virtual string Longitude { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "EezId")]

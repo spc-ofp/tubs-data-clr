@@ -48,11 +48,18 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual DateTime? IncidentDate { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
+        [RegularExpression(@"^[0-8]\d{3}\.?\d{3}[NnSs]$",
+            ErrorMessageResourceType = typeof(ErrorMessages),
+            ErrorMessageResourceName = "LatitudeError")]
         public virtual string Latitude { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Longitude")]
+        [RegularExpression(@"^[0-1]\d{4}\.?\d{3}[EeWw]$",
+            ErrorMessageResourceType = typeof(ErrorMessages),
+            ErrorMessageResourceName = "LongitudeError")]
         public virtual string Longitude { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EezId")]
         public virtual string EezId { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "WindDirection")]
@@ -70,12 +77,17 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual ActivityType? ActivityType { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "VesselName")]
         public virtual string VesselName { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Ircs")]
         public virtual string Ircs { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Bearing")]
+        [Range(0d, 360d)]
         public virtual int? Bearing { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Distance")]
         public virtual int? Distance { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Comments")]

@@ -35,14 +35,37 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual Trip Trip { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "LocalTime")]
         public virtual DateTime? TransferTime { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
+        [RegularExpression(@"^[0-8]\d{3}\.?\d{3}[NnSs]$",
+            ErrorMessageResourceType = typeof(ErrorMessages),
+            ErrorMessageResourceName = "LatitudeError")]
         public virtual string Latitude { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Longitude")]
+        [RegularExpression(@"^[0-1]\d{4}\.?\d{3}[EeWw]$",
+            ErrorMessageResourceType = typeof(ErrorMessages),
+            ErrorMessageResourceName = "LongitudeError")]
         public virtual string Longitude { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EezId")]
+        public virtual string EezCode { get; set; }
+
+        public virtual Vessel Vessel { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "VesselName")]
+        public virtual string VesselName { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "Ircs")]
+        public virtual string Ircs { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "VesselFlag")]
+        public virtual string VesselFlag { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "VesselType")]
+        [EnumDataType(typeof(VesselType))]
         public virtual VesselType? VesselType { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "TonsOfSkipjack")]
@@ -57,12 +80,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "TonsOfMixed")]
         public virtual decimal? TonsOfMixed { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "HostActionCode")]
+        [EnumDataType(typeof(ActionType))]
         public virtual ActionType? ActionType { get; set; }
 
-        [Display(ResourceType = typeof(FieldNames), Name = "PhotoNumber")]
-        public virtual string PhotoNumber { get; set; }
-
         [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
+        [DataType(DataType.MultilineText)]
         public virtual string Comments { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]

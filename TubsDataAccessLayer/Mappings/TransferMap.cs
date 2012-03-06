@@ -37,9 +37,13 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Table("gen1fishtransfer");
             Id(x => x.Id, "fish_tran_id").GeneratedBy.Identity();
             Map(x => x.TransferTime, "fish_tran_dtime");
-            Map(x => x.Latitude, "lat");
-            Map(x => x.Longitude, "lon");
+            Map(x => x.Latitude, "lat").Length(9);
+            Map(x => x.Longitude, "lon").Length(10);
+            Map(x => x.EezCode, "eez_code").Length(2);
             Map(x => x.VesselType, "vatyp_id").CustomType(typeof(VesselType));
+            Map(x => x.VesselName, "vessel_name").Length(50);
+            Map(x => x.VesselFlag, "reg_country_code").Length(2);
+            Map(x => x.Ircs, "ircs").Length(16);
             Map(x => x.TonsOfSkipjack, "skj_c");
             Map(x => x.TonsOfYellowfin, "yft_c");
             Map(x => x.TonsOfBigeye, "bet_c");
@@ -48,6 +52,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Comments, "comments");
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
+
+            References(x => x.Vessel).Column("vessel_id");
             References(x => x.Trip).Column("obstrip_id");
         }
     }

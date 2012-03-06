@@ -23,9 +23,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      */
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Spc.Ofp.Tubs.DAL.Common;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TripMonitor represents the data entered on form GEN-3.
@@ -81,8 +79,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual bool? Question20 { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
 
         public virtual IList<TripMonitorDetail> Details { get; protected internal set; }

@@ -477,4 +477,7 @@
   <data name="VesselType" xml:space="preserve">
     <value>Vessel Type</value>
   </data>
+  <data name="HostActionCode" xml:space="preserve">
+    <value>Host Vessel Action Code</value>
+  </data>
 </root>

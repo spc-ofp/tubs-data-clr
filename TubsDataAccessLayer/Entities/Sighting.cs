@@ -37,18 +37,27 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual int? FormId { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "LocalTime")]
         public virtual DateTime? EventTime { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
+        [RegularExpression(@"^[0-8]\d{3}\.?\d{3}[NnSs]$", 
+            ErrorMessageResourceType = typeof(ErrorMessages), 
+            ErrorMessageResourceName= "LatitudeError")]
         public virtual string Latitude { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Longitude")]
+        [RegularExpression(@"^[0-1]\d{4}\.?\d{3}[EeWw]$",
+            ErrorMessageResourceType = typeof(ErrorMessages), 
+            ErrorMessageResourceName= "LongitudeError")]
         public virtual string Longitude { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EezId")]
         public virtual string EezCode { get; set; }
 
         public virtual Vessel Vessel { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "VesselName")]
         public virtual string VesselName { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Ircs")]
@@ -80,6 +89,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual string PhotoNumber { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
+        [DataType(DataType.MultilineText)]
         public virtual string Comments { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]

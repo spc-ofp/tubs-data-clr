@@ -421,6 +421,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Host Vessel Action Code.
+        /// </summary>
+        public static string HostActionCode {
+            get {
+                return ResourceManager.GetString("HostActionCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inspection Date.
         /// </summary>
         public static string InspectionDate {

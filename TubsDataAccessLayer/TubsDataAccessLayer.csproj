@@ -126,6 +126,11 @@
     <Compile Include="Entities\TripMonitorDetail.cs" />
     <Compile Include="Entities\Vessel.cs" />
     <Compile Include="Entities\VesselNotes.cs" />
+    <Compile Include="ErrorMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Events\ConstraintEventListener.cs" />
     <Compile Include="FieldNames.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -196,6 +201,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ErrorMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="FieldNames.fr-fr.resx" />
     <EmbeddedResource Include="FieldNames.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

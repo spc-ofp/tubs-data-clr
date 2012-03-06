@@ -22,12 +22,16 @@ namespace Spc.Ofp.Tubs.DAL.Common
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
+    using System;
 
     /// <summary>
     /// Extension methods for working with System.String
     /// </summary>
     public static class StringExtensions
     {
+        private const int NumberOfDecimalPlaces = 3;
+        private const int HemisphereLength = 1;
+        
         public static string NullSafeTrim(this string value)
         {
             if (null == value)
@@ -35,6 +39,29 @@ namespace Spc.Ofp.Tubs.DAL.Common
                 return null;
             }
             return value.Trim();
+        }
+
+        private static string AddDecimalSeparator(string value, int fromLeft)
+        {
+            if (null == value)
+            {
+                return null;
+            }
+            if (value.Contains(".") && value.Length == fromLeft + NumberOfDecimalPlaces + HemisphereLength)
+            {
+                return String.Format("{0}.{1}", value.Substring(0, fromLeft), value.Substring(fromLeft + 1));
+            }
+            return value;
+        }
+
+        public static string ReformatLatitude(this string value)
+        {
+            return AddDecimalSeparator(value, 4);
+        }
+
+        public static string ReformatLongitude(this string value)
+        {
+            return AddDecimalSeparator(value, 5);
         }
     }
 }

@@ -22,9 +22,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TripMonitorDetail represents the answers for any GEN-3 questions
@@ -39,10 +37,14 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual DateTime? DetailDate { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
+        [DataType(DataType.MultilineText)]
         public virtual string Comments { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
     }
 }

@@ -192,7 +192,6 @@
     <Compile Include="Tests\WellReconciliationTest.cs" />
     <Compile Include="TubsDataService.cs" />
     <Compile Include="TubsRepository.cs" />
-    <Compile Include="UnitOfWork.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="YesNoType.cs" />
   </ItemGroup>
@@ -202,7 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ErrorMessages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="FieldNames.fr-fr.resx" />

@@ -58,8 +58,13 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Question20, "q20_ans").CustomType(typeof(YesNoType));
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
+
             References(x => x.Trip).Column("obstrip_id");
-            HasMany(x => x.Details).KeyColumn("gen3_id").Cascade.All();
+            // From experimentation, it appears that if we want to automatically save child records on update,
+            // we need to set inverse and use the AddXXX(...) methods on the parent.
+            // If we _don't_ set .Inverse(), then child records aren't automatically updated and will need to
+            // be manually updated via the appropriate Repository.
+            HasMany(x => x.Details).KeyColumn("gen3_id").Inverse().Cascade.All();
         }
     }
 }

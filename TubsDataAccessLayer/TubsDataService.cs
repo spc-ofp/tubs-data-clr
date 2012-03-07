@@ -23,14 +23,11 @@ namespace Spc.Ofp.Tubs.DAL
     * You should have received a copy of the GNU Affero General Public License
     * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
     */
-    using System;
     using System.Collections;
     using System.Reflection;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
     using NHibernate;
-    using NHibernate.Event;
-    using Spc.Ofp.Tubs.DAL.Events;
 
     /// <summary>
     /// TODO: Update summary.
@@ -47,11 +44,6 @@ namespace Spc.Ofp.Tubs.DAL
             {
                 return sessionFactory ?? (sessionFactory = CreateSessionFactory());
             }
-        }
-
-        public static UnitOfWork StartTransaction()
-        {
-            return new UnitOfWork(sessionFactory);
         }
 
         public static ISession GetSession()

@@ -22,7 +22,7 @@ namespace Spc.Ofp.Tubs.DAL {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ErrorMessages {
+    public class ErrorMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Spc.Ofp.Tubs.DAL {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Spc.Ofp.Tubs.DAL.ErrorMessages", typeof(ErrorMessages).Assembly);
@@ -51,7 +51,7 @@ namespace Spc.Ofp.Tubs.DAL {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Spc.Ofp.Tubs.DAL {
         /// <summary>
         ///   Looks up a localized string similar to Latitude must be of form: abc123.
         /// </summary>
-        internal static string LatitudeError {
+        public static string LatitudeError {
             get {
                 return ResourceManager.GetString("LatitudeError", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Spc.Ofp.Tubs.DAL {
         /// <summary>
         ///   Looks up a localized string similar to Longitude must be of form: abc123.
         /// </summary>
-        internal static string LongitudeError {
+        public static string LongitudeError {
             get {
                 return ResourceManager.GetString("LongitudeError", resourceCulture);
             }

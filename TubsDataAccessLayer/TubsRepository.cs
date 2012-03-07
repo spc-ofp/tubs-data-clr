@@ -103,20 +103,38 @@ namespace Spc.Ofp.Tubs.DAL
             return !this.Session.Contains(entity);
         }
 
+        public bool DeleteById(object id)
+        {
+            var item = this.FindBy(id);
+            return this.Delete(item);
+        }
+
         public bool Delete(T entity)
         {
+            if (null == entity)
+            {
+                return false;
+            }
             this.Session.Delete(entity);
             return true;
         }
 
         public bool Delete(IEnumerable<T> entities)
         {
+            bool success = true;
+            
             foreach (T item in entities)
             {
+                if (null == item)
+                {
+                    success = false;
+                    break;
+                }
+
                 this.Session.Delete(item);
             }
 
-            return true;
+            return success;
         }
 
         public IQueryable<T> All()

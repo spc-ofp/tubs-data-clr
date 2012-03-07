@@ -283,6 +283,19 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             }
         }
 
+        /// <summary>
+        /// Rather than mess around with date math, just ask the Trip object if a given date
+        /// is between the departure and return dates.
+        /// </summary>
+        /// <param name="candidate">Date to be checked.</param>
+        /// <returns>true if candidate Date falls between departure and return dates, false otherwise.</returns>
+        public virtual bool IsDuringTrip(DateTime candidate)
+        {
+            long minValue = DepartureDate.HasValue ? DepartureDate.Value.Ticks : DepartureDateOnly.Value.Ticks;
+            long maxValue = ReturnDate.HasValue ? ReturnDate.Value.Ticks : ReturnDateOnly.Value.Ticks;
+            return candidate.Ticks >= minValue && candidate.Ticks <= maxValue;
+        }
+
         public virtual void NormalizeDates()
         {
             if (this.DepartureDate.HasValue && !this.DepartureDateOnly.HasValue)

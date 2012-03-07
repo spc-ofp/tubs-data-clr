@@ -26,6 +26,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using System;
 
     /// <summary>
     /// TODO: Update summary.
@@ -71,6 +72,67 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                 Assert.IsTrue(detail.DetailDate.HasValue);
 
             }
+        }
+
+        [Test]
+        public void AddTripMonitor()
+        {
+            const string userName = "Abraham Lincoln";
+            DateTime enteredDate = DateTime.Now;
+
+            int headerId = default(int);
+
+            using (var session = TubsDataService.GetSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    // Find the first trip for which Dave J. Burgess is the observer
+                    var trip = new TubsRepository<Trip>(session).FilterBy(t => t.Observer.StaffCode == "DJB").FirstOrDefault();
+                    Assert.NotNull(trip);
+
+                    // Create new, empty, GEN-3
+                    var header = new TripMonitor();
+                    header.Question1 = false;
+                    header.EnteredBy = userName;
+                    header.EnteredDate = enteredDate;
+                    header.Trip = trip;
+
+                    // Add a child record
+                    var detail = new TripMonitorDetail();
+                    detail.DetailDate = trip.DepartureDate.HasValue ? trip.DepartureDate.Value : trip.DepartureDateOnly.Value;
+                    detail.Comments = "Xyzzy";
+                    detail.EnteredBy = userName;
+                    detail.EnteredDate = enteredDate;
+
+                    header.AddDetail(detail);
+
+                    Assert.True(new TubsRepository<TripMonitor>(session).Add(header));
+                    headerId = header.Id;
+                    Assert.False(default(int) == header.Id);
+                    transaction.Commit();
+                }
+            }
+
+            // Delete the entity afterwards
+            using (var session = TubsDataService.GetSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var repo = new TubsRepository<TripMonitor>(session);
+                    var header = repo.FindBy(headerId);
+                    Assert.NotNull(header);
+                    Assert.NotNull(header.Trip);
+                    Assert.NotNull(header.Details);
+                    Assert.True(header.Question1.HasValue);
+                    Assert.False(header.Question1.Value);
+                    var child = header.Details[0];
+                    Assert.NotNull(child);
+                    Assert.AreEqual(userName, child.EnteredBy);
+                    Assert.True(repo.Delete(header));
+                    transaction.Commit();
+                }
+            }
+
         }
     }
 }

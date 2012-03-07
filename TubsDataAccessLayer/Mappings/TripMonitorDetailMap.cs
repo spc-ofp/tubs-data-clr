@@ -40,6 +40,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Comments, "comments");
             Map(x => x.EnteredBy, "entered_by");
             Map(x => x.EnteredDate, "entered_dtime");
+
             References(x => x.Header).Column("gen3_id");
         }
     }

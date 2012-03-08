@@ -100,6 +100,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             HasMany(x => x.PollutionEvents).KeyColumn("obstrip_id");
             HasMany(x => x.Electronics).KeyColumn("obstrip_id");
             HasMany(x => x.Interactions).KeyColumn("obstrip_id");
+            HasMany(x => x.PageCounts).KeyColumn("obstrip_id");
             
             DiscriminateSubClassesOnColumn<string>("gear_code");
         }

@@ -340,6 +340,24 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Form Count.
+        /// </summary>
+        public static string FormCount {
+            get {
+                return ResourceManager.GetString("FormCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Form Name.
+        /// </summary>
+        public static string FormName {
+            get {
+                return ResourceManager.GetString("FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of full (1) brails.
         /// </summary>
         public static string FullBrailCount {

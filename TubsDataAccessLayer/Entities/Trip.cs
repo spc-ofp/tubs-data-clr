@@ -39,6 +39,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.PollutionEvents = new List<PollutionEvent>();
             this.Electronics = new List<ElectronicDevice>(8);
             this.Interactions = new List<SpecialSpeciesInteraction>();
+            this.PageCounts = new List<PageCount>(12);
         }
         
         public virtual int Id { get; set; }
@@ -206,6 +207,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual SafetyInspection Inspection { get; set; }
 
+        public virtual IList<PageCount> PageCounts { get; protected internal set; }
+
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
@@ -260,6 +263,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.Interactions.Add(interaction);
         }
 
+        public virtual void AddPageCount(PageCount pageCount)
+        {
+            pageCount.Trip = this;
+            this.PageCounts.Add(pageCount);
+        }
+
         public virtual string AlternateTripNumber
         {
             get
@@ -294,6 +303,15 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             long minValue = DepartureDate.HasValue ? DepartureDate.Value.Ticks : DepartureDateOnly.Value.Ticks;
             long maxValue = ReturnDate.HasValue ? ReturnDate.Value.Ticks : ReturnDateOnly.Value.Ticks;
             return candidate.Ticks >= minValue && candidate.Ticks <= maxValue;
+        }
+
+        public virtual bool IsReadOnly
+        {
+            get
+            {
+                // FIXME -- Find some way to distinguish read only trips
+                return false;
+            }
         }
 
         public virtual void NormalizeDates()

@@ -69,6 +69,7 @@
     <Compile Include="Common\ConditionCode.cs" />
     <Compile Include="Common\DetectionMethod.cs" />
     <Compile Include="Common\EnumExtensions.cs" />
+    <Compile Include="Common\FormNames.cs" />
     <Compile Include="Common\InteractionActivity.cs" />
     <Compile Include="Common\InteractionType.cs" />
     <Compile Include="Common\JobType.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Entities\LongLineTrip.cs" />
     <Compile Include="Entities\MarineDevice.cs" />
     <Compile Include="Entities\Observer.cs" />
+    <Compile Include="Entities\PageCount.cs" />
     <Compile Include="Entities\PoleAndLineTrip.cs" />
     <Compile Include="Entities\PollutionDetail.cs" />
     <Compile Include="Entities\PollutionEvent.cs" />
@@ -148,6 +150,7 @@
     <Compile Include="Mappings\LengthSamplingHeaderMap.cs" />
     <Compile Include="Mappings\MarineDeviceMap.cs" />
     <Compile Include="Mappings\ObserverMap.cs" />
+    <Compile Include="Mappings\PageCountMap.cs" />
     <Compile Include="Mappings\PollutionDetailMap.cs" />
     <Compile Include="Mappings\PollutionEventMap.cs" />
     <Compile Include="Mappings\PortMap.cs" />

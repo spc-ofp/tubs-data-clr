@@ -50,6 +50,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual string LandedTimeOnly { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "LocalTime")]
         public virtual DateTime? LandedDate { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
@@ -68,12 +69,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual string EezId { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "SpeciesCode")]
+        [StringLength(3)]
         public virtual string SpeciesCode { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "SpeciesDescription")]
+        [DataType(DataType.MultilineText)]
         public virtual string SpeciesDescription { get; set; }
 
+        // Landed
         [Display(ResourceType = typeof(FieldNames), Name = "ConditionCode")]
+        [EnumDataType(typeof(ConditionCode))]
         public virtual ConditionCode? LandedConditionCode { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "ConditionDescription")]
@@ -98,30 +103,33 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual string DiscardedConditionDescription { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "TagNumber")]
-        public virtual string TagReturnNumber { get; set; }
+        public virtual string RetrievedTagNumber { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "TagType")]
-        public virtual string TagReturnType { get; set; }
+        public virtual string RetrievedTagType { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "TagOrg")]
-        public virtual string TagReturnOrganization { get; set; }
+        public virtual string RetrievedTagOrganization { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "TagNumber")]
-        public virtual string TagPlacedNumber { get; set; }
+        public virtual string PlacedTagNumber { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "TagType")]
-        public virtual string TagPlacedType { get; set; }
+        public virtual string PlacedTagType { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "TagOrg")]
-        public virtual string TagPlacedOrganization { get; set; }
+        public virtual string PlacedTagOrganization { get; set; }
 
+        // Interacted with vessel/gear
         public virtual InteractionActivity? InteractionId { get; set; }
 
         public virtual string InteractionOther { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public virtual string InteractionDescription { get; set; }
 
+        // Sighted Only
         public virtual InteractionActivity? InteractionActivity { get; set; }
 
         public virtual string InteractionIfOther { get; set; }
@@ -153,6 +161,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
 
+        // This goes with Interaction with Vessel/Gear only
         public virtual IList<InteractionDetail> Details { get; protected internal set; }
 
         public virtual void AddDetail(InteractionDetail detail)

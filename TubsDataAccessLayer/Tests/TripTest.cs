@@ -86,6 +86,8 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                       select 1;
             Assert.GreaterOrEqual(qry.Sum(), 2);
             System.Console.WriteLine("Set Count: " + qry.Sum());
+            Assert.IsNotNull(trip.Pushpins);
+            Assert.True(trip.Pushpins.Count > 100);
         }
 
         [Test]

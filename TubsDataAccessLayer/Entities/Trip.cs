@@ -40,6 +40,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.Electronics = new List<ElectronicDevice>(8);
             this.Interactions = new List<SpecialSpeciesInteraction>();
             this.PageCounts = new List<PageCount>(12);
+            this.Pushpins = new List<Pushpin>(180);
         }
         
         public virtual int Id { get; set; }
@@ -209,6 +210,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual IList<PageCount> PageCounts { get; protected internal set; }
 
+        public virtual IList<Pushpin> Pushpins { get; protected internal set; }
+
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
@@ -267,6 +270,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             pageCount.Trip = this;
             this.PageCounts.Add(pageCount);
+        }
+
+        public virtual void AddPushpin(Pushpin pushpin)
+        {
+            pushpin.Trip = this;
+            this.Pushpins.Add(pushpin);
         }
 
         public virtual string AlternateTripNumber

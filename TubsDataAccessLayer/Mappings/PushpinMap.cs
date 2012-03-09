@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="PageCountMap.cs" company="Secretariat of the Pacific Community">
+// <copyright file="PushpinMap.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
@@ -27,22 +27,24 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// Fluent NHibernate mapper for trip page counts.
+    /// Fluent NHibernate mapper for trip positions.
     /// </summary>
-    public class PageCountMap : ClassMap<PageCount>
+    public class PushpinMap : ClassMap<Pushpin>
     {
-        public PageCountMap()
+        public PushpinMap()
         {
+            ReadOnly(); // It's sourced from a view
             Schema("obsv");
-            Table("page_counts");
-            Id(x => x.Id, "id").GeneratedBy.Identity();
-            Map(x => x.FormName, "form_name");
-            Map(x => x.FormCount, "form_count");
-            Map(x => x.EnteredBy, "entered_by");
-            Map(x => x.EnteredDate, "entered_dtime");
-
-            OptimisticLock.Version();
-            Version(x => x.RowVersion).Column("tstamp").Not.Nullable().CustomSqlType("timestamp").Generated.Always();
+            /*
+             * Purse seine only right now, but only because there's no pole and line or longline data.
+             */
+            Table("vw_positions_s");
+            CompositeId().KeyProperty(x => x.FormName, "form_name").KeyProperty(x => x.EventKey, "event_key");
+            Map(x => x.Latitude, "lat");
+            Map(x => x.Longitude, "lon");
+            Map(x => x.Timestamp, "tstamp");
+            Map(x => x.Description, "event_description");
+            //Map(x => x.EventKey, "event_key");
 
             References(x => x.Trip).Column("obstrip_id");
         }

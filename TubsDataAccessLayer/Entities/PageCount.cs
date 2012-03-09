@@ -36,9 +36,11 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual Trip Trip { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "FormName")]
+        [EnumDataType(typeof(FormNames))]
         public virtual FormNames FormName { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "FormCount")]
+        [Range(0, Int32.MaxValue)]
         public virtual int FormCount { get; set; }
 
         public virtual byte[] RowVersion { get; protected set; }

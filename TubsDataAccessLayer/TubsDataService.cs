@@ -24,6 +24,7 @@ namespace Spc.Ofp.Tubs.DAL
     * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
     */
     using System.Collections;
+    using System.Collections.Generic;
     using System.Reflection;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;

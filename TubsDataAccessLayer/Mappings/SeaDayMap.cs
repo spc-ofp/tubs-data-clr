@@ -35,7 +35,11 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         {
             Map(x => x.FormId, "form_id");
             Map(x => x.StartOfDay, "start_dtime");
+            Map(x => x.StartDateOnly, "start_date");
+            Map(x => x.StartTimeOnly, "start_time").Length(4);
             Map(x => x.UtcStartOfDay, "utc_start_dtime");
+            Map(x => x.UtcDateOnly, "utc_start_date");
+            Map(x => x.UtcTimeOnly, "utc_start_time").Length(4);
             Map(x => x.FloatingObjectsNoSchool, "log_nofish_n");
             Map(x => x.FloatingObjectsWithSchool, "log_fish_n");
             Map(x => x.FadsNoSchool, "fad_nofish_n");

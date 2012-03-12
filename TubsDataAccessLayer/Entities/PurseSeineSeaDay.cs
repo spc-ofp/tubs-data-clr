@@ -21,13 +21,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Purse Seine sea days.  Different from the generic SeaDay in that it collects
+    /// a "diary page" field.
     /// </summary>
     public class PurseSeineSeaDay : SeaDay
     {
@@ -36,6 +35,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.Activities = new List<PurseSeineActivity>();
         }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "DiaryPage")]
         public virtual string DiaryPage { get; set; }
 
         public virtual IList<PurseSeineActivity> Activities { get; protected internal set; }

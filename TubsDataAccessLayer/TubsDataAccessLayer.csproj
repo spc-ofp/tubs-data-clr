@@ -135,6 +135,7 @@
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
     <Compile Include="Events\ConstraintEventListener.cs" />
+    <Compile Include="Events\ValidationListener.cs" />
     <Compile Include="FieldNames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

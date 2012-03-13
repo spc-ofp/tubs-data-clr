@@ -486,4 +486,22 @@
   <data name="FormName" xml:space="preserve">
     <value>Form Name</value>
   </data>
+  <data name="FadsNoSchool" xml:space="preserve">
+    <value>FADs (No School)</value>
+  </data>
+  <data name="FadsWithSchool" xml:space="preserve">
+    <value>FADs (With School)</value>
+  </data>
+  <data name="FloatingObjectsNoSchool" xml:space="preserve">
+    <value>Floating Objects (No School)</value>
+  </data>
+  <data name="FloatingObjectsWithSchool" xml:space="preserve">
+    <value>Floating Objects (With School)</value>
+  </data>
+  <data name="FreeSchools" xml:space="preserve">
+    <value>Free Schools</value>
+  </data>
+  <data name="Gen3Events" xml:space="preserve">
+    <value>GEN-3 Event Observed?</value>
+  </data>
 </root>

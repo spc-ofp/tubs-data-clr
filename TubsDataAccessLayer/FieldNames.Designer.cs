@@ -313,6 +313,24 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FADs (No School).
+        /// </summary>
+        public static string FadsNoSchool {
+            get {
+                return ResourceManager.GetString("FadsNoSchool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FADs (With School).
+        /// </summary>
+        public static string FadsWithSchool {
+            get {
+                return ResourceManager.GetString("FadsWithSchool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
         public static string FirstName {
@@ -340,6 +358,24 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Floating Objects (No School).
+        /// </summary>
+        public static string FloatingObjectsNoSchool {
+            get {
+                return ResourceManager.GetString("FloatingObjectsNoSchool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Floating Objects (With School).
+        /// </summary>
+        public static string FloatingObjectsWithSchool {
+            get {
+                return ResourceManager.GetString("FloatingObjectsWithSchool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Form Count.
         /// </summary>
         public static string FormCount {
@@ -358,11 +394,29 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Free Schools.
+        /// </summary>
+        public static string FreeSchools {
+            get {
+                return ResourceManager.GetString("FreeSchools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of full (1) brails.
         /// </summary>
         public static string FullBrailCount {
             get {
                 return ResourceManager.GetString("FullBrailCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GEN-3 Event Observed?.
+        /// </summary>
+        public static string Gen3Events {
+            get {
+                return ResourceManager.GetString("Gen3Events", resourceCulture);
             }
         }
         

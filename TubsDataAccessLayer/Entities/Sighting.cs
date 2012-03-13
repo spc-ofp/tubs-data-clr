@@ -76,6 +76,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual int? Bearing { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Distance")]
+        [Range(0.0d, Double.MaxValue)]
         public virtual decimal? Distance { get; set; }
 
         // FIXME This needs to be a link to one of the unit1/unit4 values :(

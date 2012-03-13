@@ -44,7 +44,6 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Longitude, "lon");
             Map(x => x.Timestamp, "tstamp");
             Map(x => x.Description, "event_description");
-            //Map(x => x.EventKey, "event_key");
 
             References(x => x.Trip).Column("obstrip_id");
         }

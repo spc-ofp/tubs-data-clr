@@ -119,5 +119,13 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             Assert.NotNull(trip);
             Assert.NotNull(trip.Observer);
         }
+
+        [Test]
+        public void GetMyTrips()
+        {
+            var trips = this.repo.FilterBy(t => t.EnteredBy.ToUpper().Contains("COREY"));
+            Assert.NotNull(trips);
+            Assert.True(trips.Count() > 5);
+        }
     }
 }

@@ -55,5 +55,21 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             Assert.True(pagedPorts.HasPrevious);
             Assert.True(pagedPorts.HasNext);
         }
+
+        [Test]
+        public void GetPagedLinqResults()
+        {
+            const int PAGE_SIZE = 5;
+            var pagedPorts = repo.GetPagedList(p => p.CountryCode == "JP", 0, PAGE_SIZE);
+            Assert.NotNull(pagedPorts);
+            Assert.AreEqual(PAGE_SIZE, pagedPorts.Entities.Count);
+            Assert.False(pagedPorts.HasPrevious);
+            Assert.True(pagedPorts.HasNext);
+
+            pagedPorts = repo.GetPagedList(PAGE_SIZE, PAGE_SIZE);
+            Assert.NotNull(pagedPorts);
+            Assert.True(pagedPorts.HasPrevious);
+            Assert.True(pagedPorts.HasNext);
+        }
     }
 }

@@ -67,6 +67,7 @@
     <Compile Include="Common\ActionType.cs" />
     <Compile Include="Common\ActivityType.cs" />
     <Compile Include="Common\ConditionCode.cs" />
+    <Compile Include="Common\DateExtensions.cs" />
     <Compile Include="Common\DetectionMethod.cs" />
     <Compile Include="Common\EnumExtensions.cs" />
     <Compile Include="Common\FormNames.cs" />

@@ -28,6 +28,7 @@ namespace Spc.Ofp.Tubs.DAL
     using System.Linq;
     using NHibernate;
     using NHibernate.Linq;
+    using System.Linq.Expressions;
 
     /// <summary>
     /// TubsRepository wraps up NHibernate so that a repo per object type is not required.
@@ -143,20 +144,35 @@ namespace Spc.Ofp.Tubs.DAL
         }
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "Okay to suppress for LINQ expressions")]
-        public T FindBy(System.Linq.Expressions.Expression<Func<T, bool>> expression)
+        public T FindBy(Expression<Func<T, bool>> expression)
         {
             return this.FilterBy(expression).SingleOrDefault();
         }
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "Okay to suppress for LINQ expressions")]
-        public IQueryable<T> FilterBy(System.Linq.Expressions.Expression<Func<T, bool>> expression)
+        public IQueryable<T> FilterBy(Expression<Func<T, bool>> expression)
         {
             return this.All().Where(expression).AsQueryable();
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "Okay to suppress for LINQ expressions")]
+        public PagedList<T> GetPagedList(Expression<Func<T, bool>> expression, int skip, int take)
+        {
+            var query = this.All().Where(expression).AsQueryable();
+            var count = query.Count();
+            var currentPage = query.Skip(skip).Take(take).ToList();
+            return new PagedList<T>()
+            {
+                Entities = currentPage,
+                HasNext = (skip + take < count),
+                HasPrevious = (skip > 0)
+            };
+        }
+
         public PagedList<T> GetPagedList(int skip, int take)
         {
-            var query = All();
+            // In a perfect world, I'd rewrite this so that it uses the LINQ version...
+            var query = this.All();
             var count = query.Count();
             var currentPage = query.Skip(skip).Take(take).ToList();
             return new PagedList<T>()

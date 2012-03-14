@@ -176,7 +176,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual bool? IsSpillSampled { get; set; }
 
-        // TODO SpillObserver still uses int
+        // FIXME SpillObserver still uses int
         //public virtual Observer SpillObserver { get; set; }
 
         [StringLength(10)]
@@ -318,16 +318,33 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             get
             {
-                // FIXME -- Find some way to distinguish read only trips
-                return false;
+                return this.ClosedDate.HasValue;
             }
         }
 
+        // Unit test before deploying to TubsWeb
         public virtual void NormalizeDates()
         {
             if (this.DepartureDate.HasValue && !this.DepartureDateOnly.HasValue)
             {
+                this.DepartureDateOnly = this.DepartureDate.Value.Subtract(this.DepartureDate.Value.TimeOfDay);
+                this.DepartureTimeOnly = this.DepartureDate.Value.ToString("HHmm");
+            }
 
+            if (this.DepartureDateOnly.HasValue && !this.DepartureDate.HasValue)
+            {
+                this.DepartureDate = this.DepartureDateOnly.Merge(this.DepartureTimeOnly);
+            }
+
+            if (this.ReturnDate.HasValue && !this.ReturnDateOnly.HasValue)
+            {
+                this.ReturnDateOnly = this.ReturnDate.Value.Subtract(this.ReturnDate.Value.TimeOfDay);
+                this.ReturnTimeOnly = this.ReturnDate.Value.ToString("HHmm");
+            }
+
+            if (this.ReturnDateOnly.HasValue && !this.ReturnDate.HasValue)
+            {
+                this.ReturnDate = this.ReturnDateOnly.Merge(this.ReturnTimeOnly);
             }
         }
 

@@ -71,19 +71,20 @@ namespace Spc.Ofp.Tubs.DAL
         /// Otherwise, the contained object is an object[] and value extraction is the callers responsibility.</returns>
         public static IList Execute(string sql, params object[] list)
         {
-            IList results = new ArrayList();
             using (ISession session = GetSession())
             {
-                var query = session.CreateSQLQuery(sql);
-                for (int i = 0; i < list.Length; i++)
-                {
-                    query.SetParameter(i, list[i]);
-                }
-
-                results = query.List();
+                return Execute(session, sql, list);
             }
+        }
 
-            return results;
+        public static IList Execute(ISession session, string sql, params object[] list)
+        {
+            var query = session.CreateSQLQuery(sql);
+            for (int i = 0; i < list.Length; i++)
+            {
+                query.SetParameter(i, list[i]);
+            }
+            return query.List();
         }
 
         private static ISessionFactory CreateSessionFactory()
@@ -97,14 +98,6 @@ namespace Spc.Ofp.Tubs.DAL
             return Fluently.Configure()
                 .Database(cfg)
                 .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                /*
-                .ExposeConfiguration(config => { 
-                    config.EventListeners.PreInsertEventListeners = 
-                        new IPreInsertEventListener[] { new ConstraintEventListener() };
-                    config.EventListeners.PreUpdateEventListeners =
-                        new IPreUpdateEventListener[] { new ConstraintEventListener() };
-                })
-                */
                 .BuildSessionFactory();
         }
     }

@@ -40,8 +40,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
              */
             Table("vw_positions_s");
             CompositeId().KeyProperty(x => x.FormName, "form_name").KeyProperty(x => x.EventKey, "event_key");
-            Map(x => x.Latitude, "lat");
-            Map(x => x.Longitude, "lon");
+            Map(x => x.Latitude, "lat").Precision(8).Scale(4);
+            Map(x => x.Longitude, "lon").Precision(8).Scale(4);
             Map(x => x.Timestamp, "tstamp");
             Map(x => x.Description, "event_description");
 

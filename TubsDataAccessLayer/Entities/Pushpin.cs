@@ -33,9 +33,9 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual Trip Trip { get; set; }
         
-        public virtual string Latitude { get; set; }
+        public virtual decimal? Latitude { get; set; }
 
-        public virtual string Longitude { get; set; }
+        public virtual decimal? Longitude { get; set; }
 
         public virtual DateTime? Timestamp { get; set; }
 

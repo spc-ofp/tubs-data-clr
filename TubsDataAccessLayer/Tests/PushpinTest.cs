@@ -33,29 +33,26 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     /// TODO: Update summary.
     /// </summary>
     [TestFixture]
-    public class PushpinTest
+    public class PushpinTest : BaseTest
     {
+        private TubsRepository<Pushpin> repo;
+
+        [TestFixtureSetUp]
+        public void Setup()
+        {
+            this.repo = new TubsRepository<Pushpin>(TubsDataService.GetSession());
+        }
+        
         [Test]
         public void GetPushpins()
         {
-            /*
-            using (ISession session = TubsDataService.GetSession())
+            var pushpins = repo.All();
+            Assert.NotNull(pushpins);
+            foreach (var pushpin in pushpins)
             {
-                var query = session.CreateSQLQuery(Pushpin.FindByTrip);
-                query.SetParameter(0, 70);
-                query.SetResultTransformer(Transformers.AliasToBean<Pushpin>());
-
-                IList<Pushpin> pins = query.List<Pushpin>();
-                Assert.NotNull(pins);
-                Assert.True(pins.Count > 200);
-                foreach (var pin in pins)
-                {
-                    Assert.NotNull(pin);
-                    Assert.True(pin.Timestamp.HasValue);
-                    Assert.False(String.IsNullOrEmpty(pin.Description));
-                }
+                Assert.NotNull(pushpin);
+                Assert.False(pushpin.EventKey == default(int));
             }
-            */
         }
     }
 }

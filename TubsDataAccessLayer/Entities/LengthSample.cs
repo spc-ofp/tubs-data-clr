@@ -24,6 +24,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      */
     using System;
     using Spc.Ofp.Tubs.DAL.Common;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -34,16 +35,36 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual LengthSamplingHeader Header { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "SequenceNumber")]
         public virtual int? SequenceNumber { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "SpeciesCode")]
         public virtual string SpeciesCode { get; set; }
 
+        [EnumDataType(typeof(LengthCode))]
+        [Display(ResourceType = typeof(FieldNames), Name = "LengthCode")]
         public virtual LengthCode? LengthCode { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Length")]
         public virtual int? Length { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedBy")]
+        public virtual string UpdatedBy { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedDate")]
+        public virtual DateTime? UpdatedDate { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "DctNotes")]
+        [DataType(DataType.MultilineText)]
+        public virtual string DctNotes { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
+        public virtual int? DctScore { get; set; }
     }
 }

@@ -74,8 +74,13 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.TotalCatch, "total_catch");
             Map(x => x.RecoveredTagCount, "b_nbtags");
             Map(x => x.Comments, "comments");
-            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");
+            Map(x => x.UpdatedBy, "updated_by").Length(20);
+            Map(x => x.UpdatedDate, "updated_dtime");
+            Map(x => x.DctNotes, "dct_notes");
+            Map(x => x.DctScore, "dct_score");
+
             References(x => x.Activity).Column("s_daylog_id");
             HasMany(x => x.CatchList).KeyColumn("s_set_id").Cascade.All();
         }

@@ -41,8 +41,13 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.WellLocation, "ps");
             Map(x => x.WellCapacity, "well_capacity").Precision(6).Scale(2);
             Map(x => x.Comments, "comments");
-            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");
+            Map(x => x.UpdatedBy, "updated_by").Length(20);
+            Map(x => x.UpdatedDate, "updated_dtime");
+            Map(x => x.DctNotes, "dct_notes");
+            Map(x => x.DctScore, "dct_score");
+
             References(x => x.Trip).Column("obstrip_id");
         }
     }

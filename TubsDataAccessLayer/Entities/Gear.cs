@@ -22,7 +22,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
-    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -33,9 +33,24 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual Trip Trip { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedBy")]
+        public virtual string UpdatedBy { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedDate")]
+        public virtual DateTime? UpdatedDate { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "DctNotes")]
+        [DataType(DataType.MultilineText)]
+        public virtual string DctNotes { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
+        public virtual int? DctScore { get; set; }
 
     }
 }

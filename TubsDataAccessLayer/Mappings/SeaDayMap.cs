@@ -46,8 +46,13 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.FadsWithSchool, "fad_fish_n");
             Map(x => x.FreeSchools, "sch_fish_n");
             Map(x => x.Gen3Events, "gen3today_ans").CustomType<YesNoType>();
-            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");
+            Map(x => x.UpdatedBy, "updated_by").Length(20);
+            Map(x => x.UpdatedDate, "updated_dtime");
+            Map(x => x.DctNotes, "dct_notes");
+            Map(x => x.DctScore, "dct_score");
+
             References(x => x.Trip).Column("obstrip_id");
         }      
     }

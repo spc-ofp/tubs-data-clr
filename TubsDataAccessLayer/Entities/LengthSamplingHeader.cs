@@ -24,6 +24,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.Collections.Generic;
     using Spc.Ofp.Tubs.DAL.Common;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -40,19 +41,39 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual int? FormId { get; set; }
 
-        public virtual SamplingProtocol? SamplingProtocol { get; set; } // Protocol type, switch to enum
+        [EnumDataType(typeof(SamplingProtocol))]
+        public virtual SamplingProtocol? SamplingProtocol { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
+        [DataType(DataType.MultilineText)]
         public virtual string SamplingProtocolComments { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "BrailStartTime")]
         public virtual string BrailStartTime { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "BrailEndTime")]
         public virtual string BrailEndTime { get; set; }
 
         public virtual PurseSeineSet Set { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedBy")]
+        public virtual string UpdatedBy { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedDate")]
+        public virtual DateTime? UpdatedDate { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "DctNotes")]
+        [DataType(DataType.MultilineText)]
+        public virtual string DctNotes { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
+        public virtual int? DctScore { get; set; }
 
         public virtual IList<LengthSample> Samples { get; protected internal set; }
 

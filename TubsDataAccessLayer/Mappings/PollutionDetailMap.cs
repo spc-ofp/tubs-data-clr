@@ -24,8 +24,13 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Material, "material_id").CustomType(typeof(PollutionMaterial));
             Map(x => x.Description, "poll_desc");
             Map(x => x.Quantity, "poll_qty");
-            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");
+            Map(x => x.UpdatedBy, "updated_by").Length(20);
+            Map(x => x.UpdatedDate, "updated_dtime");
+            Map(x => x.DctNotes, "dct_notes");
+            Map(x => x.DctScore, "dct_score");
+
             References(x => x.Header).Column("pollution_id");
         }
     }

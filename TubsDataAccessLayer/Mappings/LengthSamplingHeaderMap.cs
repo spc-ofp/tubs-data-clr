@@ -41,8 +41,13 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.SamplingProtocolComments, "other_desc");
             Map(x => x.BrailStartTime, "sbrail_time");
             Map(x => x.BrailEndTime, "ebrail_time");
-            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");
+            Map(x => x.UpdatedBy, "updated_by").Length(20);
+            Map(x => x.UpdatedDate, "updated_dtime");
+            Map(x => x.DctNotes, "dct_notes");
+            Map(x => x.DctScore, "dct_score");
+
             References(x => x.Set).Column("s_set_id");
             HasMany(x => x.Samples).KeyColumn("s_lf_id").Cascade.All();
             HasMany(x => x.Brails).KeyColumn("s_lf_id").Cascade.All();

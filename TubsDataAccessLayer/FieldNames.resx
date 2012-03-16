@@ -504,4 +504,34 @@
   <data name="Gen3Events" xml:space="preserve">
     <value>GEN-3 Event Observed?</value>
   </data>
+  <data name="BrailEndTime" xml:space="preserve">
+    <value>Brailing End Time</value>
+  </data>
+  <data name="BrailStartTime" xml:space="preserve">
+    <value>Brailing Start Time</value>
+  </data>
+  <data name="DctNotes" xml:space="preserve">
+    <value>DCT Notes</value>
+  </data>
+  <data name="DctScore" xml:space="preserve">
+    <value>DCT Confidence Score</value>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>Material</value>
+  </data>
+  <data name="PollutionType" xml:space="preserve">
+    <value>Type of Pollution</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="SequenceNumber" xml:space="preserve">
+    <value>Sequence Number</value>
+  </data>
+  <data name="UpdatedBy" xml:space="preserve">
+    <value>Last Updated By</value>
+  </data>
+  <data name="UpdatedDate" xml:space="preserve">
+    <value>Last Updated Date</value>
+  </data>
 </root>

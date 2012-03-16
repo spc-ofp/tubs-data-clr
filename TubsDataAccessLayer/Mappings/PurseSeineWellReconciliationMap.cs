@@ -92,12 +92,15 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.StarboardWell23, "sw23").Precision(8).Scale(3);
             Map(x => x.PortWell24, "pw24").Precision(8).Scale(3);
             Map(x => x.StarboardWell24, "sw24").Precision(8).Scale(3);
-            // TODO Add Port/Starboard wells 1 through 23
             Map(x => x.ObserversTotal, "obs_total").Precision(8).Scale(3);
             Map(x => x.CumulativeTotal, "cum_total").Precision(8).Scale(3);
             Map(x => x.Comments, "comments");
-            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");
+            Map(x => x.UpdatedBy, "updated_by").Length(20);
+            Map(x => x.UpdatedDate, "updated_dtime");
+            Map(x => x.DctNotes, "dct_notes");
+            Map(x => x.DctScore, "dct_score");
 
             References(x => x.Trip).Column("obstrip_id");
         }

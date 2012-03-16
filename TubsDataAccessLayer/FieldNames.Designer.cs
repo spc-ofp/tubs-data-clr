@@ -124,11 +124,29 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brailing End Time.
+        /// </summary>
+        public static string BrailEndTime {
+            get {
+                return ResourceManager.GetString("BrailEndTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Brail Number.
         /// </summary>
         public static string BrailNumber {
             get {
                 return ResourceManager.GetString("BrailNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brailing Start Time.
+        /// </summary>
+        public static string BrailStartTime {
+            get {
+                return ResourceManager.GetString("BrailStartTime", resourceCulture);
             }
         }
         
@@ -219,6 +237,24 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string CruiseSpeed {
             get {
                 return ResourceManager.GetString("CruiseSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DCT Notes.
+        /// </summary>
+        public static string DctNotes {
+            get {
+                return ResourceManager.GetString("DctNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DCT Confidence Score.
+        /// </summary>
+        public static string DctScore {
+            get {
+                return ResourceManager.GetString("DctScore", resourceCulture);
             }
         }
         
@@ -655,6 +691,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Material.
+        /// </summary>
+        public static string Material {
+            get {
+                return ResourceManager.GetString("Material", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Measuring Instrument.
         /// </summary>
         public static string MeasuringInstrument {
@@ -754,6 +799,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type of Pollution.
+        /// </summary>
+        public static string PollutionType {
+            get {
+                return ResourceManager.GetString("PollutionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Port Code.
         /// </summary>
         public static string PortCode {
@@ -799,6 +853,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quantity.
+        /// </summary>
+        public static string Quantity {
+            get {
+                return ResourceManager.GetString("Quantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registered Country Code.
         /// </summary>
         public static string RegisteredCountryCode {
@@ -840,6 +903,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string SeaCode {
             get {
                 return ResourceManager.GetString("SeaCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequence Number.
+        /// </summary>
+        public static string SequenceNumber {
+            get {
+                return ResourceManager.GetString("SequenceNumber", resourceCulture);
             }
         }
         
@@ -1074,6 +1146,24 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string TwoThirdsBrailCount {
             get {
                 return ResourceManager.GetString("TwoThirdsBrailCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Updated By.
+        /// </summary>
+        public static string UpdatedBy {
+            get {
+                return ResourceManager.GetString("UpdatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Updated Date.
+        /// </summary>
+        public static string UpdatedDate {
+            get {
+                return ResourceManager.GetString("UpdatedDate", resourceCulture);
             }
         }
         

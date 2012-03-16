@@ -39,8 +39,13 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.SpeciesCode, "sp_code");
             Map(x => x.LengthCode, "len_code");
             Map(x => x.Length, "len");
-            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");
+            Map(x => x.UpdatedBy, "updated_by").Length(20);
+            Map(x => x.UpdatedDate, "updated_dtime");
+            Map(x => x.DctNotes, "dct_notes");
+            Map(x => x.DctScore, "dct_score");
+
             References(x => x.Header).Column("s_lf_id");
         }
     }

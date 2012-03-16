@@ -21,7 +21,9 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
+    using System;
     using Spc.Ofp.Tubs.DAL.Common;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -34,10 +36,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         
         public virtual string Payao { get; set; }
 
+        [Range(0, 360)]
+        [Display(ResourceType = typeof(FieldNames), Name = "WindDirection")]
         public virtual int? WindDirection { get; set; }
 
+        [Range(0, Int32.MaxValue)]
+        [Display(ResourceType = typeof(FieldNames), Name = "WindSpeed")]
         public virtual int? WindSpeed { get; set; }
 
+        [EnumDataType(typeof(SeaCode))]
+        [Display(ResourceType = typeof(FieldNames), Name = "SeaCode")]
         public virtual SeaCode? SeaCode { get; set; }
 
         // This should only happen when the activity code is ActivityType.Fishing

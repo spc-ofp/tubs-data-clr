@@ -44,8 +44,12 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.ReturnDate, "ret_dtime");
             Map(x => x.ReturnDateOnly, "ret_date");
             Map(x => x.ReturnTimeOnly, "ret_time");
-            Map(x => x.EnteredBy, "entered_by"); // TODO Add .Insert() ?
+            Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");
+            Map(x => x.UpdatedBy, "updated_by").Length(20);
+            Map(x => x.UpdatedDate, "updated_dtime");
+            Map(x => x.DctNotes, "dct_notes");
+            Map(x => x.DctScore, "dct_score");
             Map(x => x.ProgramCode, "obsprg_code");
             Map(x => x.CountryCode, "country_code");
             Map(x => x.Version, "versn_id").CustomType(typeof(WorkbookVersion));

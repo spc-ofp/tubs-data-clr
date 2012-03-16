@@ -22,6 +22,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -42,8 +43,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual int PoleAndLineOrder { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
     }
 }

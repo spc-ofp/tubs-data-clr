@@ -91,6 +91,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual int? Distance { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
+        [DataType(DataType.MultilineText)]
         public virtual string Comments { get; set; }
 
         public virtual bool? MarpolStickers { get; set; }
@@ -108,6 +109,19 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedBy")]
+        public virtual string UpdatedBy { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedDate")]
+        public virtual DateTime? UpdatedDate { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "DctNotes")]
+        [DataType(DataType.MultilineText)]
+        public virtual string DctNotes { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
+        public virtual int? DctScore { get; set; }
 
         public virtual IList<PollutionDetail> Details { get; protected internal set; }
 

@@ -23,6 +23,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      */
     using System;
     using Spc.Ofp.Tubs.DAL.Common;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -37,16 +38,36 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual bool? IsInstalled { get; set; }
 
+        [EnumDataType(typeof(UsageCode))]
         public virtual UsageCode? Usage { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Make")]
         public virtual string Make { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Model")]
         public virtual string Model { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
+        [DataType(DataType.MultilineText)]
         public virtual string Comments { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedBy")]
+        public virtual string UpdatedBy { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedDate")]
+        public virtual DateTime? UpdatedDate { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "DctNotes")]
+        [DataType(DataType.MultilineText)]
+        public virtual string DctNotes { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
+        public virtual int? DctScore { get; set; }
     }
 }

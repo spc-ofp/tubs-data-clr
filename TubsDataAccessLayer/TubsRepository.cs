@@ -36,8 +36,9 @@ namespace Spc.Ofp.Tubs.DAL
     /// state.  Therefore, unlike JDBC, there's no point in handling exceptions here.
     /// </summary>
     /// <typeparam name="T">Any entity that can be mapped to a Fluent NHibernate entity.</typeparam>
-    public class TubsRepository<T> where T : class
+    public class TubsRepository<T> : IDisposable where T : class
     {
+        private bool _disposed; // For IDisposable
         private readonly ISession Session;
 
         public TubsRepository(ISession session)
@@ -181,6 +182,38 @@ namespace Spc.Ofp.Tubs.DAL
                 HasNext = (skip + take < count),
                 HasPrevious = (skip > 0)
             };
+        }
+
+        ~TubsRepository()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            // Check to see if Dispose has already been called
+            if (!this._disposed)
+            {
+                // If disposing is true, dispose all managed and unmanaged resources
+                if (disposing)
+                {
+                    lock (this.Session)
+                    {
+                        if (this.Session.IsOpen)
+                        {
+                            this.Session.Close();
+                        }
+                    }
+                }
+
+                this._disposed = true;
+            }
         }
     }
 }

@@ -63,7 +63,9 @@ namespace Spc.Ofp.Tubs.DAL
 
             if (yesNo != "Y" && yesNo != "N")
             {
-                throw new Exception(String.Format("Expected data to be 'Y' or 'N' but was '{0}'.", yesNo));
+                // Be more accepting of unknown values.  If it's not Y or N, treat it like it's null
+                //throw new Exception(String.Format("Expected data to be 'Y' or 'N' but was '{0}'.", yesNo));
+                return null;
             }
 
             return yesNo == "Y";

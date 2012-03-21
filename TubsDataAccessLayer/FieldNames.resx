@@ -534,4 +534,13 @@
   <data name="UpdatedDate" xml:space="preserve">
     <value>Last Updated Date</value>
   </data>
+  <data name="SourceId" xml:space="preserve">
+    <value>Source Identifier</value>
+  </data>
+  <data name="SourceName" xml:space="preserve">
+    <value>Source Name</value>
+  </data>
+  <data name="StatusCode" xml:space="preserve">
+    <value>Import Status</value>
+  </data>
 </root>

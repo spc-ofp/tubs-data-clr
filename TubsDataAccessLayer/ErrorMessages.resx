@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LatitudeError" xml:space="preserve">
-    <value>Latitude must be of form: abc123</value>
+    <value>Latitude must be of form: ddmm.mmmS or ddmm.mmmN</value>
   </data>
   <data name="LongitudeError" xml:space="preserve">
-    <value>Longitude must be of form: abc123</value>
+    <value>Longitude must be of form: dddmm.mmmE or dddmm.mmmW</value>
   </data>
 </root>

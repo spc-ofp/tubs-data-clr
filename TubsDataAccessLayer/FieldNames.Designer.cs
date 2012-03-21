@@ -997,6 +997,24 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Source Identifier.
+        /// </summary>
+        public static string SourceId {
+            get {
+                return ResourceManager.GetString("SourceId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source Name.
+        /// </summary>
+        public static string SourceName {
+            get {
+                return ResourceManager.GetString("SourceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Species Code.
         /// </summary>
         public static string SpeciesCode {
@@ -1038,6 +1056,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string StaffCode {
             get {
                 return ResourceManager.GetString("StaffCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Status.
+        /// </summary>
+        public static string StatusCode {
+            get {
+                return ResourceManager.GetString("StatusCode", resourceCulture);
             }
         }
         

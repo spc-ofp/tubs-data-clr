@@ -61,7 +61,7 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Latitude must be of form: abc123.
+        ///   Looks up a localized string similar to Latitude must be of form: ddmm.mmmS or ddmm.mmmN.
         /// </summary>
         public static string LatitudeError {
             get {
@@ -70,7 +70,7 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Longitude must be of form: abc123.
+        ///   Looks up a localized string similar to Longitude must be of form: dddmm.mmmE or dddmm.mmmW.
         /// </summary>
         public static string LongitudeError {
             get {

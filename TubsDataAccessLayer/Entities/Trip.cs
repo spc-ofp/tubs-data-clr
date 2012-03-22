@@ -69,7 +69,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual string ReturnTimeOnly { get; set; }
 
-        // TODO?  Use a Regex?
+        // TODO  Use a Regex for validation
         [Display(ResourceType = typeof(FieldNames), Name = "TripNumber")]
         public virtual string TripNumber { get; set; }
 

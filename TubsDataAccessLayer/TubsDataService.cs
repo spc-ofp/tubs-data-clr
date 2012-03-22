@@ -47,6 +47,11 @@ namespace Spc.Ofp.Tubs.DAL
             }
         }
 
+        public static IStatelessSession GetStatelessSession()
+        {
+            return SessionFactory.OpenStatelessSession();
+        }
+
         public static ISession GetSession()
         {
             return SessionFactory.OpenSession();

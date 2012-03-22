@@ -54,7 +54,81 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "BrailEndTime")]
         public virtual string BrailEndTime { get; set; }
 
+        /// <summary>
+        /// Gets or sets the brail used.  Typical purse seine vessels have
+        /// two brails, so if present this should be either '1' or '2'
+        /// </summary>
+        [Display(ResourceType = typeof(FieldNames), Name = "BrailNumber")]
+        [RangeAttribute(1, 2)]
+        public virtual int? BrailNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the page number within the set of pages
+        /// recording brailing for the associated set.
+        /// </summary>
+        [Display(ResourceType = typeof(FieldNames), Name = "PageNumber")]
+        [Range(1, Int32.MaxValue)]
+        public virtual int? PageNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the total number of pages recording
+        /// brailing for the associated set.
+        /// </summary>
+        [Display(ResourceType = typeof(FieldNames), Name = "PageCount")]
+        [Range(0, Int32.MaxValue)]
+        public virtual int? PageCount { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "FishPerBrail")]
+        [Range(0, Int32.MaxValue)]
+        public virtual int? FishPerBrail { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "MeasuringInstrument")]
+        public virtual string MeasuringInstrument { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "FullBrailCount")]
+        [RangeAttribute(0, Int32.MaxValue)]
+        public virtual int? FullBrailCount { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "SevenEighthsBrailCount")]
+        [RangeAttribute(0, Int32.MaxValue)]
+        public virtual int? SevenEighthsBrailCount { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "ThreeQuartersBrailCount")]
+        [RangeAttribute(0, Int32.MaxValue)]
+        public virtual int? ThreeQuartersBrailCount { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "TwoThirdsBrailCount")]
+        [RangeAttribute(0, Int32.MaxValue)]
+        public virtual int? TwoThirdsBrailCount { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "OneHalfBrailCount")]
+        [RangeAttribute(0, Int32.MaxValue)]
+        public virtual int? OneHalfBrailCount { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "OneThirdBrailCount")]
+        [RangeAttribute(0, Int32.MaxValue)]
+        public virtual int? OneThirdBrailCount { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "OneQuarterBrailCount")]
+        [RangeAttribute(0, Int32.MaxValue)]
+        public virtual int? OneQuarterBrailCount { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "OneEighthBrailCount")]
+        [RangeAttribute(0, Int32.MaxValue)]
+        public virtual int? OneEighthBrailCount { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "TotalBrailCount")]
+        [RangeAttribute(0, Int32.MaxValue)]
+        public virtual int? TotalBrailCount { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "SumOfAllBrails")]
+        public virtual decimal? SumOfAllBrails { get; set; }
+
         public virtual PurseSeineSet Set { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
+        public virtual string Comments { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }

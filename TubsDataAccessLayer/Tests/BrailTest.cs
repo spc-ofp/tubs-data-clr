@@ -41,14 +41,24 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         }
         
         [Test]
-        public void TestGetBrail()
+        public void GetBrail()
         {
             var brail = this.repo.FindBy(265);
             Assert.NotNull(brail);
             Assert.AreEqual(234, brail.Header.Id);
-            Assert.IsNotNullOrEmpty(brail.Comments);
-            Assert.IsTrue(brail.LengthCode.HasValue);
-            Assert.AreEqual(LengthCode.UF, brail.LengthCode.Value);
+            Assert.AreEqual(5, brail.Brail1FullnessCode);
+            Assert.AreEqual(3, brail.SamplesFromBrail1);
+        }
+
+        [Test]
+        public void GetBrails()
+        {
+            var brails = this.repo.All();
+            Assert.NotNull(brails);
+            foreach (var brail in brails)
+            {
+                Assert.NotNull(brail);
+            }
         }
     }
 }

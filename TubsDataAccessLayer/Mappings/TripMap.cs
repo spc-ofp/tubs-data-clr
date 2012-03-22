@@ -104,6 +104,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             HasMany(x => x.PollutionEvents).KeyColumn("obstrip_id");
             HasMany(x => x.Electronics).KeyColumn("obstrip_id");
             HasMany(x => x.Interactions).KeyColumn("obstrip_id");
+            HasMany(x => x.MultiLandingInteractions).KeyColumn("obstrip_id");
             HasMany(x => x.PageCounts).KeyColumn("obstrip_id");
             HasMany(x => x.Pushpins).KeyColumn("obstrip_id").LazyLoad();
             

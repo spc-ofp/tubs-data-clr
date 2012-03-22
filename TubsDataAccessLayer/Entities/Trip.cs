@@ -39,6 +39,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.PollutionEvents = new List<PollutionEvent>();
             this.Electronics = new List<ElectronicDevice>(8);
             this.Interactions = new List<SpecialSpeciesInteraction>();
+            this.MultiLandingInteractions = new List<MultiLandingInteraction>();
             this.PageCounts = new List<PageCount>(12);
             this.Pushpins = new List<Pushpin>(180);
         }
@@ -219,6 +220,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual IList<SpecialSpeciesInteraction> Interactions { get; protected internal set; }
 
+        public virtual IList<MultiLandingInteraction> MultiLandingInteractions { get; protected internal set; }
+
         public virtual SafetyInspection Inspection { get; set; }
 
         public virtual IList<PageCount> PageCounts { get; protected internal set; }
@@ -277,6 +280,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             interaction.Trip = this;
             this.Interactions.Add(interaction);
+        }
+
+        public virtual void AddMultiLandingInteraction(MultiLandingInteraction interaction)
+        {
+            interaction.Trip = this;
+            this.MultiLandingInteractions.Add(interaction);
         }
 
         public virtual void AddPageCount(PageCount pageCount)

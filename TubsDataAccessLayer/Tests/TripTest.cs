@@ -76,6 +76,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             Assert.AreEqual(3, trip.VesselAttributes.SpeedboatCount);
             Assert.NotNull(trip.WellContent);
             Assert.True(trip.WellContent.Count > 4);
+            Assert.NotNull(trip.MultiLandingInteractions);
             Assert.NotNull(trip.Interactions);
             Assert.True(1 == trip.Interactions.Count);
             Assert.NotNull(trip.Interactions[0]);

@@ -103,6 +103,8 @@
     <Compile Include="Entities\LongLineSet.cs" />
     <Compile Include="Entities\LongLineTrip.cs" />
     <Compile Include="Entities\MarineDevice.cs" />
+    <Compile Include="Entities\MultiInteractionDetail.cs" />
+    <Compile Include="Entities\MultiLandingInteraction.cs" />
     <Compile Include="Entities\Observer.cs" />
     <Compile Include="Entities\PageCount.cs" />
     <Compile Include="Entities\PoleAndLineTrip.cs" />
@@ -154,6 +156,8 @@
     <Compile Include="Mappings\LengthSampleMap.cs" />
     <Compile Include="Mappings\LengthSamplingHeaderMap.cs" />
     <Compile Include="Mappings\MarineDeviceMap.cs" />
+    <Compile Include="Mappings\MultiInteractionDetailMap.cs" />
+    <Compile Include="Mappings\MultiLandingInteractionMap.cs" />
     <Compile Include="Mappings\ObserverMap.cs" />
     <Compile Include="Mappings\PageCountMap.cs" />
     <Compile Include="Mappings\PollutionDetailMap.cs" />

@@ -24,11 +24,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public abstract class Crew
+    public abstract class Crew : IAuditable, IDctFlaggable
     {
         public virtual int Id { get; set; }
 

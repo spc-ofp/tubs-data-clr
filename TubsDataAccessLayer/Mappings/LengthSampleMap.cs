@@ -37,7 +37,6 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Id(x => x.Id, "s_lfmeas_id").GeneratedBy.Identity();
             Map(x => x.SequenceNumber, "seq_number");
             Map(x => x.SpeciesCode, "sp_code");
-            Map(x => x.LengthCode, "len_code");
             Map(x => x.Length, "len");
             Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");

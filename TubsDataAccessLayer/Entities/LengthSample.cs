@@ -41,10 +41,6 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "SpeciesCode")]
         public virtual string SpeciesCode { get; set; }
 
-        [EnumDataType(typeof(LengthCode))]
-        [Display(ResourceType = typeof(FieldNames), Name = "LengthCode")]
-        public virtual LengthCode? LengthCode { get; set; }
-
         [Display(ResourceType = typeof(FieldNames), Name = "Length")]
         public virtual int? Length { get; set; }
 

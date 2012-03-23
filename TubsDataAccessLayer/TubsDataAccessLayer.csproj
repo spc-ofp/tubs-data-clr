@@ -138,6 +138,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Events\AuditEventListener.cs" />
     <Compile Include="Events\ConstraintEventListener.cs" />
     <Compile Include="Events\ValidationListener.cs" />
     <Compile Include="FieldNames.Designer.cs">
@@ -145,6 +146,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FieldNames.resx</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\IAuditable.cs" />
+    <Compile Include="Infrastructure\IDctFlaggable.cs" />
     <Compile Include="Mappings\ActivityMap.cs" />
     <Compile Include="Mappings\BrailMap.cs" />
     <Compile Include="Mappings\CommunicationServicesMap.cs" />

@@ -35,7 +35,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual Trip Trip { get; set; }
 
-        public virtual int? FuelOrWater { get; set; } // Huh?
+        public virtual WellContentType? FuelOrWater { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "WellNumber")]
         public virtual int? WellNumber { get; set; }

@@ -89,6 +89,7 @@
     <Compile Include="Common\UsageCode.cs" />
     <Compile Include="Common\VesselType.cs" />
     <Compile Include="Common\VesselTypeCode.cs" />
+    <Compile Include="Common\WellContentType.cs" />
     <Compile Include="Common\WorkbookVersion.cs" />
     <Compile Include="Entities\Activity.cs" />
     <Compile Include="Entities\Brail.cs" />

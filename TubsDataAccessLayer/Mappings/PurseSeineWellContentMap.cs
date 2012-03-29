@@ -36,7 +36,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Schema("obsv");
             Table("s_wellcontent");
             Id(x => x.Id, "wc_id").GeneratedBy.Identity();
-            Map(x => x.FuelOrWater, "fuel_water");
+            Map(x => x.FuelOrWater, "fuel_water").CustomType<WellContentType>();
             Map(x => x.WellNumber, "well_number");
             Map(x => x.WellLocation, "ps");
             Map(x => x.WellCapacity, "well_capacity").Precision(6).Scale(2);

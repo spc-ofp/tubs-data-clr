@@ -51,6 +51,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [DataType(DataType.MultilineText)]
         public virtual string Comments { get; set; }
 
+        public virtual int? HowMany { get; set; }
+
+        public virtual bool? SealsIntact { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 

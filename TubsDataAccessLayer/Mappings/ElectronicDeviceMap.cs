@@ -40,6 +40,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Usage, "usage_code");
             Map(x => x.Make, "make_desc").Length(30);
             Map(x => x.Model, "model_desc").Length(30);
+            Map(x => x.HowMany, "how_many");
+            Map(x => x.SealsIntact, "seals_intact");
             Map(x => x.Comments, "comments");
             Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");

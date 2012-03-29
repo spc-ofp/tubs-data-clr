@@ -50,7 +50,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "MasterCountryCode")]
         public virtual string MasterCountryCode { get; set; }
 
-        [StringLength(50)]
+        [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(FieldNames), Name = "Licenses")]
         public virtual string Licenses { get; set; }
 

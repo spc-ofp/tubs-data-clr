@@ -14,7 +14,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// PollutionDetail represents an entry in either the
     /// "Waste Dumped Overboard" or "Oil Spillages and Leakages" subsections.
     /// </summary>
-    public class PollutionDetail
+    public abstract class PollutionDetail
     {
         public virtual int Id { get; set; }
 
@@ -22,11 +22,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [EnumDataType(typeof(PollutionType))]
         [Display(ResourceType = typeof(FieldNames), Name = "PollutionType")]
-        public virtual PollutionType? PollutionType { get; set; }
-
-        [EnumDataType(typeof(PollutionMaterial))]
-        [Display(ResourceType = typeof(FieldNames), Name = "Material")]
-        public virtual PollutionMaterial? Material { get; set; }
+        public virtual PollutionType? PollutionType { get; set; }        
 
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(FieldNames), Name = "Description")]

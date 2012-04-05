@@ -1051,6 +1051,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Spill Source.
+        /// </summary>
+        public static string SpillSource {
+            get {
+                return ResourceManager.GetString("SpillSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Staff Code.
         /// </summary>
         public static string StaffCode {

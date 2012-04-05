@@ -75,6 +75,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual int? CurrentDirection { get; set; }
 
+        public virtual SightedVesselType? VesselType { get; set; }
+
         public virtual ActivityType? ActivityType { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "VesselName")]

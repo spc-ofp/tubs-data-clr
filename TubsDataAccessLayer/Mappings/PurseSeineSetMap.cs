@@ -38,11 +38,17 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.SetNumber, "set_number");
             Map(x => x.StartOfSetFromLog, "vessellog_dtime");
             Map(x => x.SkiffOff, "skiffoff_dtime");
+            Map(x => x.SkiffOffTimeOnly, "skiffoff_time");
             Map(x => x.WinchOn, "winchon_dtime");
+            Map(x => x.WinchOnTimeOnly, "winchon_time");
             Map(x => x.RingsUp, "ringup_dtime");
+            Map(x => x.RingsUpTimeOnly, "ringup_time");
             Map(x => x.BeginBrailing, "sbrail_dtime");
+            Map(x => x.BeginBrailingTimeOnly, "sbrail_time");
             Map(x => x.EndBrailing, "ebrail_dtime");
+            Map(x => x.EndBrailingTimeOnly, "ebrail_time");
             Map(x => x.EndOfSet, "stop_dtime");
+            Map(x => x.EndOfSetTimeOnly, "stop_time");
             Map(x => x.WeightOnboardObserved, "ld_onboard");
             Map(x => x.WeightOnboardFromLog, "ld_ves_onboard");
             Map(x => x.RetainedTonnageObserved, "ld_tonnage");
@@ -83,6 +89,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
 
             References(x => x.Activity).Column("s_daylog_id");
             HasMany(x => x.CatchList).KeyColumn("s_set_id").Cascade.All();
+            HasMany(x => x.SamplingHeaders).KeyColumn("s_set_id").Cascade.All();
         }
     }
 }

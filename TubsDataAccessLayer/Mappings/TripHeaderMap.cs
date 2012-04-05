@@ -1,9 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="MarineDevice.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2011 Secretariat of the Pacific Community
+// <copyright file="TripHeaderMap.cs" company="">
+// TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
-namespace Spc.Ofp.Tubs.DAL.Entities
+
+namespace Spc.Ofp.Tubs.DAL.Mappings
 {
     /*
      * This file is part of TUBS.
@@ -21,32 +22,30 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using System;
-    using System.ComponentModel.DataAnnotations;
+    using FluentNHibernate.Mapping;
+    using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class MarineDevice
+    public class TripHeaderMap : ClassMap<TripHeader>
     {
-        public virtual int Id { get; set; }
-
-        public virtual string Description { get; set; }
-
-        public virtual string Category { get; set; }
-
-        public virtual string GearList { get; set; }
-
-        public virtual int? LongLineOrder { get; set; }
-
-        public virtual int? PurseSeineOrder { get; set; }
-
-        public virtual int? PoleAndLineOrder { get; set; }
-
-        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
-        public virtual string EnteredBy { get; set; }
-
-        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
-        public virtual DateTime? EnteredDate { get; set; }
+        public TripHeaderMap()
+        {
+            ReadOnly();
+            Schema("obsv");
+            Table("trip");
+            Id(x => x.Id, "obstrip_id").GeneratedBy.Identity();
+            Map(x => x.TripNumber, "tripno");
+            Map(x => x.StaffCode, "staff_code");
+            Map(x => x.ProgramCode, "obsprg_code");
+            Map(x => x.CkTripNumber, "tripno_ck");
+            Map(x => x.FmTripNumber, "tripno_fm");
+            Map(x => x.FfaTripNumber, "tripno_ffa");
+            Map(x => x.SbTripNumber, "tripno_sb");
+            Map(x => x.HwTripNumber, "tripno_hw");
+            
+        }
     }
 }

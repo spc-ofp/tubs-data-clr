@@ -124,8 +124,6 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "SumOfAllBrails")]
         public virtual decimal? SumOfAllBrails { get; set; }
 
-        public virtual PurseSeineSet Set { get; set; }
-
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
         public virtual string Comments { get; set; }
@@ -148,6 +146,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
+
+        public virtual PurseSeineSet Set { get; set; }
 
         public virtual IList<LengthSample> Samples { get; protected internal set; }
 

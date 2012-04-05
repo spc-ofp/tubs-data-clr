@@ -70,6 +70,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.EstimatedSpeciesCatch, "sp_c_est");
             Map(x => x.CatchWeightMethodId, "sp_c_id");
             Map(x => x.EstimatedSpeciesCount, "sp_n_est");
+            Map(x => x.SpeciesWeightEstimate, "sp_w_est");
 
             References(x => x.FishingSet).Column("s_set_id");
         }

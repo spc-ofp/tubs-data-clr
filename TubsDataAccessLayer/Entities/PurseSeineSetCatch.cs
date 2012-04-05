@@ -54,5 +54,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual decimal? SpeciesWeightLow { get; set; }
 
         public virtual decimal? SpeciesWeightHigh { get; set; }
+
+        public virtual decimal? SpeciesWeightEstimate { get; set; }
     }
 }

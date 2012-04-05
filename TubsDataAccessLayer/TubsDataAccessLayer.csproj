@@ -84,6 +84,7 @@
     <Compile Include="Common\SeaCode.cs" />
     <Compile Include="Common\SexCode.cs" />
     <Compile Include="Common\SightedVesselType.cs" />
+    <Compile Include="Common\SpillSource.cs" />
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Common\UnitOfMeasure.cs" />
     <Compile Include="Common\UsageCode.cs" />
@@ -128,12 +129,15 @@
     <Compile Include="Entities\SetCatch.cs" />
     <Compile Include="Entities\Sighting.cs" />
     <Compile Include="Entities\SpecialSpeciesInteraction.cs" />
+    <Compile Include="Entities\SpillDetail.cs" />
     <Compile Include="Entities\Transfer.cs" />
     <Compile Include="Entities\Trip.cs" />
+    <Compile Include="Entities\TripHeader.cs" />
     <Compile Include="Entities\TripMonitor.cs" />
     <Compile Include="Entities\TripMonitorDetail.cs" />
     <Compile Include="Entities\Vessel.cs" />
     <Compile Include="Entities\VesselNotes.cs" />
+    <Compile Include="Entities\WasteDetail.cs" />
     <Compile Include="ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -178,6 +182,7 @@
     <Compile Include="Mappings\SightingMap.cs" />
     <Compile Include="Mappings\SpecialSpeciesInteractionMap.cs" />
     <Compile Include="Mappings\TransferMap.cs" />
+    <Compile Include="Mappings\TripHeaderMap.cs" />
     <Compile Include="Mappings\TripMap.cs" />
     <Compile Include="Mappings\TripMonitorDetailMap.cs" />
     <Compile Include="Mappings\TripMonitorMap.cs" />
@@ -204,6 +209,7 @@
     <Compile Include="Tests\SightingTest.cs" />
     <Compile Include="Tests\SpecialSpeciesInteractionTest.cs" />
     <Compile Include="Tests\TransferTest.cs" />
+    <Compile Include="Tests\TripHeaderTest.cs" />
     <Compile Include="Tests\TripMonitorTest.cs" />
     <Compile Include="Tests\TripTest.cs" />
     <Compile Include="Tests\VesselAttributeTest.cs" />

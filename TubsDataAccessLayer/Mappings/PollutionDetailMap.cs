@@ -13,7 +13,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Fluent NHibernate mapping for the PollutionDetail entity.
     /// </summary>
-    public sealed class PollutionDetailMap : ClassMap<PollutionDetail>
+    public class PollutionDetailMap : ClassMap<PollutionDetail>
     {
         public PollutionDetailMap()
         {
@@ -21,7 +21,6 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Table("gen6polldetails");
             Id(x => x.Id, "pollutiondetails_id").GeneratedBy.Identity();
             Map(x => x.PollutionType, "pollutiontype_id").CustomType(typeof(PollutionType));
-            Map(x => x.Material, "material_id").CustomType(typeof(PollutionMaterial));
             Map(x => x.Description, "poll_desc");
             Map(x => x.Quantity, "poll_qty");
             Map(x => x.EnteredBy, "entered_by").Length(20);
@@ -32,6 +31,32 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctScore, "dct_score");
 
             References(x => x.Header).Column("pollution_id");
+            DiscriminateSubClassesOnColumn("pollutiontype_id");
+        }
+    }
+
+    /// <summary>
+    /// Mapping for GEN-6 spill details.
+    /// </summary>
+    public sealed class SpillDetailMap : SubclassMap<SpillDetail>
+    {
+        public SpillDetailMap()
+        {
+            DiscriminatorValue((int)PollutionType.SpillageOrLeakage);
+            Map(x => x.Source, "material_id").CustomType<SpillSource>();
+            // FIXME The form has a textbox for recording other that's not present in the database
+        }
+    }
+
+    /// <summary>
+    /// Mapping for GEN-6 waste details.
+    /// </summary>
+    public sealed class WasteDetailMap : SubclassMap<WasteDetail>
+    {
+        public WasteDetailMap()
+        {
+            DiscriminatorValue((int)PollutionType.DumpedOverboard);
+            Map(x => x.Material, "material_id").CustomType<PollutionMaterial>();
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public PurseSeineSet()
         {
             this.CatchList = new List<PurseSeineSetCatch>();
+            this.SamplingHeaders = new List<LengthSamplingHeader>();
         }
 
         public virtual int Id { get; set; }
@@ -59,31 +60,43 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// </summary>
         public virtual DateTime? SkiffOff { get; set; }
 
+        public virtual string SkiffOffTimeOnly { get; set; }
+
         /// <summary>
         /// Gets or sets time at which pursing begins as recorded by the observer
         /// </summary>
         public virtual DateTime? WinchOn { get; set; }
+
+        public virtual string WinchOnTimeOnly { get; set; }
 
         /// <summary>
         /// Gets or sets time at which pursing ends as recorded by the observer
         /// </summary>
         public virtual DateTime? RingsUp { get; set; }
 
+        public virtual string RingsUpTimeOnly { get; set; }
+
         /// <summary>
         /// Gets or sets time that brailing begins as recorded by the observer
         /// </summary>
         public virtual DateTime? BeginBrailing { get; set; }
+
+        public virtual string BeginBrailingTimeOnly { get; set; }
 
         /// <summary>
         /// Gets or sets time that brailing ends as recorded by the observer
         /// </summary>
         public virtual DateTime? EndBrailing { get; set; }
 
+        public virtual string EndBrailingTimeOnly { get; set; }
+
         /// <summary>
         /// Gets or sets time at which the set is complete (skiff on board)
         /// as recorded by the observer
         /// </summary>
         public virtual DateTime? EndOfSet { get; set; }
+
+        public virtual string EndOfSetTimeOnly { get; set; }
 
         /// <summary>
         /// Gets or sets onboard total weight before this set (observer)
@@ -233,7 +246,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
 
-        public virtual LengthSamplingHeader SamplingHeader { get; set; }
+        public virtual IList<LengthSamplingHeader> SamplingHeaders { get; protected internal set; }
 
         public virtual IList<PurseSeineSetCatch> CatchList { get; protected internal set; }
 
@@ -241,6 +254,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             setcatch.FishingSet = this;
             this.CatchList.Add(setcatch);
+        }
+
+        public virtual void AddSampleHeader(LengthSamplingHeader header)
+        {
+            header.Set = this;
+            this.SamplingHeaders.Add(header);
         }
     }
 }

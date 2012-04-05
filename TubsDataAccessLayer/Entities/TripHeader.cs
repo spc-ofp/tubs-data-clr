@@ -1,8 +1,9 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="MarineDevice.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2011 Secretariat of the Pacific Community
+// <copyright file="TripHeader.cs" company="">
+// TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
+
 namespace Spc.Ofp.Tubs.DAL.Entities
 {
     /*
@@ -22,31 +23,39 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
-    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// TripHeader is a lightweight object for working with
+    /// a complete list of trips without pulling in the full
+    /// object graph.
     /// </summary>
-    public class MarineDevice
+    public class TripHeader
     {
+        // Primary key
         public virtual int Id { get; set; }
 
-        public virtual string Description { get; set; }
+        public virtual string ProgramCode { get; set; }
 
-        public virtual string Category { get; set; }
+        public virtual string StaffCode { get; set; }
 
-        public virtual string GearList { get; set; }
+        public virtual string TripNumber { get; set; }
 
-        public virtual int? LongLineOrder { get; set; }
+        public virtual string FfaTripNumber { get; set; }
 
-        public virtual int? PurseSeineOrder { get; set; }
+        public virtual string CkTripNumber { get; set; }
 
-        public virtual int? PoleAndLineOrder { get; set; }
+        public virtual string FmTripNumber { get; set; }
 
-        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
-        public virtual string EnteredBy { get; set; }
+        public virtual string SbTripNumber { get; set; }
 
-        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
-        public virtual DateTime? EnteredDate { get; set; }
+        public virtual string HwTripNumber { get; set; }
+
+        public virtual string SpcTripNumber
+        {
+            get
+            {
+                return String.Format("{0} / {1}", this.StaffCode.Trim(), this.TripNumber.Trim());
+            }
+        }
     }
 }

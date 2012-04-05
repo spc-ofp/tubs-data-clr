@@ -1,8 +1,9 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="MarineDevice.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2011 Secretariat of the Pacific Community
+// <copyright file="WasteDetail.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
+
 namespace Spc.Ofp.Tubs.DAL.Entities
 {
     /*
@@ -21,32 +22,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using System;
     using System.ComponentModel.DataAnnotations;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// WasteDetail is for recording GEN6 pollution details for waste dumped overboard.
     /// </summary>
-    public class MarineDevice
+    public class WasteDetail : PollutionDetail
     {
-        public virtual int Id { get; set; }
-
-        public virtual string Description { get; set; }
-
-        public virtual string Category { get; set; }
-
-        public virtual string GearList { get; set; }
-
-        public virtual int? LongLineOrder { get; set; }
-
-        public virtual int? PurseSeineOrder { get; set; }
-
-        public virtual int? PoleAndLineOrder { get; set; }
-
-        [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
-        public virtual string EnteredBy { get; set; }
-
-        [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
-        public virtual DateTime? EnteredDate { get; set; }
+        [EnumDataType(typeof(PollutionMaterial))]
+        [Display(ResourceType = typeof(FieldNames), Name = "Material")]
+        public virtual PollutionMaterial? Material { get; set; }
     }
 }

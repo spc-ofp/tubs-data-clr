@@ -49,6 +49,8 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             Assert.NotNull(pevent.Trip);
             Assert.AreEqual(70, pevent.Trip.Id);
             Assert.NotNull(pevent.Details);
+            Assert.True(pevent.VesselType.HasValue);
+            Assert.AreEqual(SightedVesselType.SinglePurseSeine, pevent.VesselType.Value);
             Assert.GreaterOrEqual(4, pevent.Details.Count);
             foreach (var detail in pevent.Details)
             {

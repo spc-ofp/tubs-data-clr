@@ -74,6 +74,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "Gen3Events")]
         public virtual bool? Gen3Events { get; set; }
 
+        public virtual byte[] RowVersion { get; protected internal set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 

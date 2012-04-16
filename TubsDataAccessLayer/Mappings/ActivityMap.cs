@@ -38,14 +38,14 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Latitude, "lat").Length(9);
             Map(x => x.Longitude, "lon").Length(10);
             Map(x => x.EezCode, "eez_code").Length(2);
-
-            // For future reference, the answer to how to map
-            // integer enums came from StackOverflow:
-            // http://stackoverflow.com/questions/439003/how-do-you-map-an-enum-as-an-int-value-with-fluent-nhibernate
             Map(x => x.DetectionMethod, "deton_id").CustomType(typeof(DetectionMethod));
             Map(x => x.SchoolAssociation, "schas_id").CustomType(typeof(SchoolAssociation));
 
             Map(x => x.Beacon, "beacon");
+
+            // TODO Devise a test for this
+            //OptimisticLock.Version();
+            //Version(x => x.RowVersion).Column("tstamp").Not.Nullable().CustomSqlType("timestamp").Generated.Always();
 
             Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");
@@ -66,14 +66,22 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         {
             Schema("obsv");
             Table("s_daylog");
-            Id(x => x.Id, "s_daylog_id").GeneratedBy.Identity();
+            Id(x => x.Id, "s_daylog_id")
+                .GeneratedBy.Identity()
+                .Not.Nullable();
+                //.Default(0)
+                //.UnsavedValue(0)
+                //.Index("[s_daylog$primarykey]");
             Map(x => x.ActivityType, "s_activ_id").CustomType(typeof(ActivityType));
             Map(x => x.WindDirection, "wind_dir");
             Map(x => x.WindSpeed, "wind_kts");
             Map(x => x.SeaCode, "sea_code");          
-            Map(x => x.Payao, "payao");            
-            References(x => x.Day).Column("s_day_id");
-            References(x => x.FishingSet).Column("s_daylog_id");
+            Map(x => x.Payao, "payao");
+            References(x => x.Day)
+                .Column("s_day_id")
+                .Not.LazyLoad();
+
+            HasOne(x => x.FishingSet).PropertyRef(r => r.Activity).Cascade.All();
         }
     }
 }

@@ -38,7 +38,6 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Id(x => x.StaffCode, "staff_code").GeneratedBy.Assigned();
             Map(x => x.FirstName, "first_name");
             Map(x => x.LastName, "family_name");
-            HasMany(x => x.Trips).KeyColumn("staff_code").Inverse().Cascade.All();
         }
     }
 }

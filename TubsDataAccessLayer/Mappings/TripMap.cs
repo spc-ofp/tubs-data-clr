@@ -35,7 +35,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         {           
             Schema("obsv");
             Table("trip");
-            Id(x => x.Id, "obstrip_id").GeneratedBy.Identity();
+            Id(x => x.Id, "obstrip_id").GeneratedBy.Identity().Not.Nullable();
             Map(x => x.TripNumber, "tripno");
             Map(x => x.DepartureDate, "dep_dtime");
             Map(x => x.DepartureDateOnly, "dep_date");
@@ -120,10 +120,10 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         public PurseSeineTripMap()
         {
             DiscriminatorValue("S");
-            HasMany(x => x.SeaDays).KeyColumn("obstrip_id");
-            HasMany(x => x.Crew).KeyColumn("obstrip_id");
-            HasMany(x => x.WellContent).KeyColumn("obstrip_id");
-            HasMany(x => x.WellReconciliations).KeyColumn("obstrip_id");
+            HasMany(x => x.SeaDays).KeyColumn("obstrip_id").Cascade.None();
+            HasMany(x => x.Crew).KeyColumn("obstrip_id").Cascade.None();
+            HasMany(x => x.WellContent).KeyColumn("obstrip_id").Cascade.None();
+            HasMany(x => x.WellReconciliations).KeyColumn("obstrip_id").Cascade.None();
 
             HasOne(x => x.Gear).PropertyRef(r => r.Trip).Cascade.All();
             HasOne(x => x.VesselAttributes).PropertyRef(r => r.Trip).Cascade.All();

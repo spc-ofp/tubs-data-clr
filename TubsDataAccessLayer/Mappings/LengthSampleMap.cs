@@ -45,7 +45,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");
 
-            References(x => x.Header).Column("s_lf_id");
+            References(x => x.Header).Column("s_lf_id").Not.LazyLoad();
         }
     }
 }

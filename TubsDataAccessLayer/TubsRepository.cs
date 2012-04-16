@@ -48,7 +48,14 @@ namespace Spc.Ofp.Tubs.DAL
 
         public T FindBy(object id)
         {
-            return this.Session.Get<T>(id);
+            try
+            {
+                return this.Session.Get<T>(id);
+            }
+            catch (ObjectNotFoundException)
+            {
+                return null;
+            }
         }
 
         public bool Add(T entity)

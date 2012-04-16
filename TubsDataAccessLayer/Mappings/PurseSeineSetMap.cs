@@ -38,47 +38,54 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.SetNumber, "set_number");
             Map(x => x.StartOfSetFromLog, "vessellog_dtime");
             Map(x => x.SkiffOff, "skiffoff_dtime");
-            Map(x => x.SkiffOffTimeOnly, "skiffoff_time");
+            Map(x => x.SkiffOffTimeOnly, "skiffoff_time").Length(4);
             Map(x => x.WinchOn, "winchon_dtime");
-            Map(x => x.WinchOnTimeOnly, "winchon_time");
+            Map(x => x.WinchOnTimeOnly, "winchon_time").Length(4);
             Map(x => x.RingsUp, "ringup_dtime");
-            Map(x => x.RingsUpTimeOnly, "ringup_time");
+            Map(x => x.RingsUpTimeOnly, "ringup_time").Length(4);
             Map(x => x.BeginBrailing, "sbrail_dtime");
-            Map(x => x.BeginBrailingTimeOnly, "sbrail_time");
+            Map(x => x.BeginBrailingTimeOnly, "sbrail_time").Length(4);
             Map(x => x.EndBrailing, "ebrail_dtime");
-            Map(x => x.EndBrailingTimeOnly, "ebrail_time");
+            Map(x => x.EndBrailingTimeOnly, "ebrail_time").Length(4);
             Map(x => x.EndOfSet, "stop_dtime");
-            Map(x => x.EndOfSetTimeOnly, "stop_time");
-            Map(x => x.WeightOnboardObserved, "ld_onboard");
-            Map(x => x.WeightOnboardFromLog, "ld_ves_onboard");
-            Map(x => x.RetainedTonnageObserved, "ld_tonnage");
-            Map(x => x.RetainedTonnageFromLog, "ld_ves_tonnage");
-            Map(x => x.VesselTonnageOnlyFromThisSet, "ld_fromthisset_ans");
-            Map(x => x.NewOnboardTotalObserved, "ld_newonboard");
-            Map(x => x.NewOnboardTotalFromLog, "ld_ves_newonboard");
-            Map(x => x.TonsOfTunaObserved, "mttuna_obs");
-            Map(x => x.SumOfBrail1, "ld_brails");
-            Map(x => x.SumOfBrail2, "ld_brails2");
-            Map(x => x.ContainsSkipjack, "totskj_ans");
-            Map(x => x.SkipjackPercentage, "perc_skj");
-            Map(x => x.TonsOfSkipjackObserved, "mtskj_obs");
-            Map(x => x.ContainsYellowfin, "totyft_ans");
-            Map(x => x.YellowfinPercentage, "perc_yft");
-            Map(x => x.TonsOfYellowfinObserved, "mtyft_obs");
-            Map(x => x.ContainsBigeye, "totbet_ans");
-            Map(x => x.BigeyePercentage, "perc_bet");
-            Map(x => x.TonsOfBigeyeObserved, "mtbet_obs");
-            Map(x => x.ContainsLargeTuna, "totyftbet_ans"); // ???
-            Map(x => x.LargeTunaPercentage, "perc_yftbet"); // ???
-            Map(x => x.TonsOfYellowfinAndBigeyeObserved, "mtyftbet_obs"); // ???
-            Map(x => x.TotalTunaAnswer, "tottun_ans");
+            Map(x => x.EndOfSetTimeOnly, "stop_time").Length(4);
+            // Group decimals together
+            Map(x => x.WeightOnboardObserved, "ld_onboard").Precision(8).Scale(3);
+            Map(x => x.WeightOnboardFromLog, "ld_ves_onboard").Precision(8).Scale(3);
+            Map(x => x.RetainedTonnageObserved, "ld_tonnage").Precision(8).Scale(3);
+            Map(x => x.RetainedTonnageFromLog, "ld_ves_tonnage").Precision(8).Scale(3);
+            Map(x => x.NewOnboardTotalObserved, "ld_newonboard").Precision(8).Scale(3);
+            Map(x => x.NewOnboardTotalFromLog, "ld_ves_newonboard").Precision(8).Scale(3);
+            Map(x => x.TonsOfTunaObserved, "mttuna_obs").Precision(8).Scale(3);
+            Map(x => x.SumOfBrail1, "ld_brails").Precision(6).Scale(1);
+            Map(x => x.SumOfBrail2, "ld_brails2").Precision(6).Scale(1);
+            Map(x => x.TonsOfSkipjackObserved, "mtskj_obs").Precision(8).Scale(3);
+            Map(x => x.TonsOfYellowfinObserved, "mtyft_obs").Precision(8).Scale(3);
+            Map(x => x.TonsOfBigeyeObserved, "mtbet_obs").Precision(8).Scale(3);
+            Map(x => x.TonsOfYellowfinAndBigeyeObserved, "mtyftbet_obs").Precision(8).Scale(3); // ???
+            Map(x => x.TonsOfTunaObserved2, "mttun_obs").Precision(8).Scale(3);
+            Map(x => x.TotalCatch, "total_catch").Precision(8).Scale(3);
+
+            // Group Booleans together
+            Map(x => x.VesselTonnageOnlyFromThisSet, "ld_fromthisset_ans").CustomType<YesNoType>();
+            Map(x => x.ContainsSkipjack, "totskj_ans").CustomType<YesNoType>();
+            Map(x => x.ContainsYellowfin, "totyft_ans").CustomType<YesNoType>();
+            Map(x => x.ContainsBigeye, "totbet_ans").CustomType<YesNoType>();
+            Map(x => x.ContainsLargeTuna, "totyftbet_ans").CustomType<YesNoType>(); // ???
+            Map(x => x.TotalTunaAnswer, "tottun_ans").CustomType<YesNoType>();
+
+            Map(x => x.SkipjackPercentage, "perc_skj");           
+            Map(x => x.YellowfinPercentage, "perc_yft");           
+            Map(x => x.BigeyePercentage, "perc_bet");            
+            Map(x => x.LargeTunaPercentage, "perc_yftbet"); // ???           
             Map(x => x.PercentageOfTuna, "perc_tun");
-            Map(x => x.TonsOfTunaObserved2, "mttun_obs");
-            Map(x => x.LargeSpecies, "large_sp");
+            
+            Map(x => x.LargeSpecies, "large_sp").Length(10);
             Map(x => x.LargeSpeciesPercentage, "large_perc");
             Map(x => x.LargeSpeciesCount, "large_number");
-            Map(x => x.TotalCatch, "total_catch");
+            
             Map(x => x.RecoveredTagCount, "b_nbtags");
+
             Map(x => x.Comments, "comments");
             Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");
@@ -88,8 +95,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctScore, "dct_score");
 
             References(x => x.Activity).Column("s_daylog_id");
-            HasMany(x => x.CatchList).KeyColumn("s_set_id").Cascade.All();
-            HasMany(x => x.SamplingHeaders).KeyColumn("s_set_id").Cascade.All();
+            HasMany(x => x.CatchList).KeyColumn("s_set_id").Cascade.None();
+            HasMany(x => x.SamplingHeaders).KeyColumn("s_set_id").Cascade.None();
         }
     }
 }

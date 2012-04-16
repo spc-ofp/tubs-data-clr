@@ -23,19 +23,22 @@ namespace Spc.Ofp.Tubs.DAL
     * You should have received a copy of the GNU Affero General Public License
     * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
     */
+    using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Reflection;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
     using NHibernate;
+    using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// FIXME:  Add localization
     /// http://www.hanselman.com/blog/GlobalizationInternationalizationAndLocalizationInASPNETMVC3JavaScriptAndJQueryPart1.aspx
     /// </summary>
-    public static class TubsDataService
+    public sealed class TubsDataService
     {
         private static ISessionFactory sessionFactory;
 
@@ -60,6 +63,62 @@ namespace Spc.Ofp.Tubs.DAL
         public static void Dispose()
         {
             SessionFactory.Close();
+        }
+
+        public static bool SaveFullTrip(Trip trip)
+        {
+            using (var session = GetSession())
+            using (var xa = session.BeginTransaction())
+            {
+                // Save the trip first
+                session.Save(trip);
+                // Save the listed entities
+                trip.PollutionEvents.ToList().ForEach(x =>
+                {
+                    session.Save(x);
+                    x.Details.ToList().ForEach(y => session.Save(y));
+                });
+                trip.Electronics.ToList().ForEach(x => session.Save(x));
+                trip.Interactions.ToList().ForEach(x =>
+                {
+                    session.Save(x);
+                    x.Details.ToList().ForEach(y => session.Save(y));
+                });
+
+                trip.Sightings.ToList().ForEach(x => session.Save(x));
+                trip.Transfers.ToList().ForEach(x => session.Save(x));
+                if (typeof(PurseSeineTrip) == trip.GetType())
+                {
+                    var pstrip = trip as PurseSeineTrip;
+                    pstrip.Crew.ToList().ForEach(x => session.Save(x));
+                    foreach (var day in pstrip.SeaDays)
+                    {
+                        session.Save(day);
+                        day.Activities.ToList().ForEach(x =>
+                        {
+                            session.Save(x);
+                            if (null != x.FishingSet)
+                            {
+                                session.Save(x.FishingSet);
+                                x.FishingSet.CatchList.ToList().ForEach(y => session.Save(y));
+                                x.FishingSet.SamplingHeaders.ToList().ForEach(y =>
+                                {
+                                    session.Save(y);
+                                    y.Samples.ToList().ForEach(z => session.Save(z));
+                                    y.Brails.ToList().ForEach(z => session.Save(z));
+                                });
+                            }
+
+                        });
+
+                    }
+
+                    pstrip.WellContent.ToList().ForEach(x => session.Save(x));
+                    pstrip.WellReconciliations.ToList().ForEach(x => session.Save(x));
+                }
+                xa.Commit();
+            }
+            return true;
         }
 
         /// <summary>
@@ -98,11 +157,24 @@ namespace Spc.Ofp.Tubs.DAL
                 MsSqlConfiguration.MsSql2008.ConnectionString(
                     c => c
                         .FromConnectionStringWithKey("TUBS"))
-                .ShowSql();
+                // Uncomment later after testing
+                //.QuerySubstitutions("true 1, false 0, True 1, False 0, yes 'Y', no 'N', bw_or ^, bw_and &, bw_not ~")
+#if DEBUG
+                .ShowSql()
+#endif
+                ;
 
             return Fluently.Configure()
                 .Database(cfg)
-                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                .Mappings(m => 
+                {
+                    m.FluentMappings
+                        .AddFromAssemblyOf<TubsDataService>()
+#if DEBUG
+                        .ExportTo(@"C:\temp\mappings")
+#endif
+                        ;                   
+                })
                 .BuildSessionFactory();
         }
     }

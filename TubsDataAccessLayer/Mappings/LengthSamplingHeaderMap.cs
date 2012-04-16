@@ -39,8 +39,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.FormId, "form_id");
             Map(x => x.SamplingProtocol, "sampletype_id").CustomType(typeof(SamplingProtocol));
             Map(x => x.SamplingProtocolComments, "other_desc");
-            Map(x => x.BrailStartTime, "sbrail_time");
-            Map(x => x.BrailEndTime, "ebrail_time");
+            Map(x => x.BrailStartTime, "sbrail_time").Length(4);
+            Map(x => x.BrailEndTime, "ebrail_time").Length(4);
 
             // The following properties were migrated from s_lfbrails
             Map(x => x.BrailNumber, "whichbrail");
@@ -57,7 +57,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.OneQuarterBrailCount, "brail_14_n");
             Map(x => x.OneEighthBrailCount, "brail_18_n");
             Map(x => x.TotalBrailCount, "brail_n");
-            Map(x => x.SumOfAllBrails, "sum_brails");
+            Map(x => x.SumOfAllBrails, "sum_brails").Precision(7).Scale(2);
 
             Map(x => x.Comments, "comments");
             Map(x => x.EnteredBy, "entered_by").Length(20);

@@ -122,7 +122,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// Is the value of 'RetainedTonnageFromLog' only from this
         /// set?
         /// </summary>
-        public virtual string VesselTonnageOnlyFromThisSet { get; set; }
+        public virtual bool? VesselTonnageOnlyFromThisSet { get; set; }
 
         /// <summary>
         /// Gets or sets the number of tons of catch that have just come on board
@@ -159,7 +159,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// <summary>
         /// Does this set contain Skipjack?
         /// </summary>
-        public virtual string ContainsSkipjack { get; set; }
+        public virtual bool? ContainsSkipjack { get; set; }
 
         /// <summary>
         /// Gets or sets the approximate percentage of skipjack in the total target catch
@@ -174,7 +174,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// <summary>
         /// Does this set contain Yellowfin?
         /// </summary>
-        public virtual string ContainsYellowfin { get; set; }
+        public virtual bool? ContainsYellowfin { get; set; }
 
         /// <summary>
         /// Gets or sets the approximate percentage of yellowfin in the total target catch
@@ -189,7 +189,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// <summary>
         /// Does this set contain Bigeye?
         /// </summary>
-        public virtual string ContainsBigeye { get; set; }
+        public virtual bool? ContainsBigeye { get; set; }
 
         /// <summary>
         /// Gets or sets the approximate percentage of yellowfin in the total target catch
@@ -201,13 +201,13 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// </summary>
         public virtual decimal? TonsOfBigeyeObserved { get; set; }
 
-        public virtual string ContainsLargeTuna { get; set; }
+        public virtual bool? ContainsLargeTuna { get; set; }
 
         public virtual int? LargeTunaPercentage { get; set; }
 
         public virtual decimal? TonsOfYellowfinAndBigeyeObserved { get; set; }
 
-        public virtual string TotalTunaAnswer { get; set; }
+        public virtual bool? TotalTunaAnswer { get; set; }
 
         public virtual int? PercentageOfTuna { get; set; }
 

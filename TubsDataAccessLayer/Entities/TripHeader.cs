@@ -40,6 +40,14 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual string TripNumber { get; set; }
 
+        public virtual string DeparturePort { get; set; }
+
+        public virtual string ReturnPort { get; set; }
+
+        public virtual DateTime? DepartureDate { get; set; }
+
+        public virtual DateTime? ReturnDate { get; set; }
+
         public virtual string FfaTripNumber { get; set; }
 
         public virtual string CkTripNumber { get; set; }

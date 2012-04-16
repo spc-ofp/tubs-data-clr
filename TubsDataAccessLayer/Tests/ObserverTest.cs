@@ -58,8 +58,6 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             Assert.NotNull(observer);
             Assert.AreEqual("PBS", observer.StaffCode.Trim());
             Assert.AreEqual("PETER SHARPLES (PBS)", observer.ToString());
-            Assert.NotNull(observer.Trips);
-            Assert.Greater(observer.Trips.Count, 0);
         }
     }
 }

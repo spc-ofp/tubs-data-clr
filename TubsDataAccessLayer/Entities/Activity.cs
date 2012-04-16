@@ -72,6 +72,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [DataType(DataType.MultilineText)]
         public virtual string Comments { get; set; }
 
+        public virtual byte[] RowVersion { get; protected internal set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 

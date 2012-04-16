@@ -53,6 +53,10 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");
 
+            // TODO Devise a test for this
+            //OptimisticLock.Version();
+            //Version(x => x.RowVersion).Column("tstamp").Not.Nullable().CustomSqlType("timestamp").Generated.Always();
+
             References(x => x.Trip).Column("obstrip_id");
         }      
     }
@@ -66,9 +70,17 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         {
             Schema("obsv");
             Table("s_day");
-            Id(x => x.Id, "s_day_id").GeneratedBy.Identity();
+            Id(x => x.Id, "s_day_id")
+                .GeneratedBy.Identity()
+                .Not.Nullable();
+                
             Map(x => x.DiaryPage, "diarypage");
-            HasMany(x => x.Activities).KeyColumn("s_day_id");
+            HasMany(x => x.Activities)
+                .KeyColumn("s_day_id")
+                .Cascade.None()
+                .Not.LazyLoad();
+            // Dick around with this:
+            // http://stackoverflow.com/questions/9904507/explicit-value-for-identity-column-error-on-insert-with-nhibernate-relationship
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for the TripHeader entity.
     /// </summary>
     public class TripHeaderMap : ClassMap<TripHeader>
     {
@@ -37,15 +37,18 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Schema("obsv");
             Table("trip");
             Id(x => x.Id, "obstrip_id").GeneratedBy.Identity();
-            Map(x => x.TripNumber, "tripno");
-            Map(x => x.StaffCode, "staff_code");
             Map(x => x.ProgramCode, "obsprg_code");
+            Map(x => x.StaffCode, "staff_code");
+            Map(x => x.TripNumber, "tripno");
+            Map(x => x.DeparturePort, "dep_port");
+            Map(x => x.ReturnPort, "ret_port");
+            Map(x => x.DepartureDate, "dep_date");
+            Map(x => x.ReturnDate, "ret_date");           
             Map(x => x.CkTripNumber, "tripno_ck");
             Map(x => x.FmTripNumber, "tripno_fm");
             Map(x => x.FfaTripNumber, "tripno_ffa");
             Map(x => x.SbTripNumber, "tripno_sb");
-            Map(x => x.HwTripNumber, "tripno_hw");
-            
+            Map(x => x.HwTripNumber, "tripno_hw");           
         }
     }
 }

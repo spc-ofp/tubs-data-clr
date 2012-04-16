@@ -781,6 +781,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other Location.
+        /// </summary>
+        public static string OtherLocation {
+            get {
+                return ResourceManager.GetString("OtherLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page Number.
         /// </summary>
         public static string PageNumber {

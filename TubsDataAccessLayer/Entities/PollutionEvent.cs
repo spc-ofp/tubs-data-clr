@@ -47,6 +47,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual DateTime? IncidentDate { get; set; }
 
+        public virtual DateTime? IncidentDateOnly { get; set; }
+
+        public virtual string IncidentTimeOnly { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
         [RegularExpression(@"^[0-8]\d{3}\.?\d{3}[NnSs]$",
             ErrorMessageResourceType = typeof(ErrorMessages),
@@ -61,6 +65,9 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "EezId")]
         public virtual string EezId { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "OtherLocation")]
+        public virtual string Location { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "WindDirection")]
         public virtual int? WindDirection { get; set; }
@@ -90,7 +97,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual int? Bearing { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Distance")]
-        public virtual int? Distance { get; set; }
+        public virtual decimal? Distance { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
         [DataType(DataType.MultilineText)]

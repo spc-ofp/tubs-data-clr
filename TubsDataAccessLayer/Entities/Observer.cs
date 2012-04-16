@@ -32,11 +32,6 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public class Observer
     {
-        public Observer()
-        {
-            this.Trips = new List<Trip>();
-        }
-
         [Display(ResourceType = typeof(FieldNames), Name = "StaffCode")]
         public virtual string StaffCode { get; set; }
 
@@ -45,14 +40,6 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "LastName")]
         public virtual string LastName { get; set; }
-
-        public virtual IList<Trip> Trips { get; protected internal set; }
-
-        public virtual void AddTrip(Trip trip)
-        {
-            trip.Observer = this;
-            this.Trips.Add(trip);
-        }
 
         public override string ToString()
         {

@@ -22,6 +22,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
+    using System;
     using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Common;
 
@@ -29,7 +30,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// SpillDetail is for recording GEN6 pollution details for oil spillages and leakages.
     /// </summary>
     public class SpillDetail : PollutionDetail
-    {
+    {        
         [EnumDataType(typeof(SpillSource))]
         [Display(ResourceType = typeof(FieldNames), Name = "SpillSource")]
         public virtual SpillSource? Source { get; set; }

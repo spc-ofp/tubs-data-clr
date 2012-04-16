@@ -19,8 +19,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         {
             Schema("obsv");
             Table("gen6polldetails");
-            Id(x => x.Id, "pollutiondetails_id").GeneratedBy.Identity();
-            Map(x => x.PollutionType, "pollutiontype_id").CustomType(typeof(PollutionType));
+            Id(x => x.Id, "pollutiondetails_id").GeneratedBy.Identity();            
             Map(x => x.Description, "poll_desc");
             Map(x => x.Quantity, "poll_qty");
             Map(x => x.EnteredBy, "entered_by").Length(20);
@@ -30,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");
 
-            References(x => x.Header).Column("pollution_id");
+            References(x => x.Header).Column("pollution_id").Not.Nullable();
             DiscriminateSubClassesOnColumn("pollutiontype_id");
         }
     }

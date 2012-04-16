@@ -81,7 +81,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");
 
-            HasMany(x => x.Details).KeyColumn("ssp_id");
+            HasMany(x => x.Details).KeyColumn("ssp_id").Cascade.All();
             References(x => x.Trip).Column("obstrip_id");
         }
     }

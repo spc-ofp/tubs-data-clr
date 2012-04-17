@@ -41,7 +41,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DetectionMethod, "deton_id").CustomType(typeof(DetectionMethod));
             Map(x => x.SchoolAssociation, "schas_id").CustomType(typeof(SchoolAssociation));
 
-            Map(x => x.Beacon, "beacon");
+            Map(x => x.Beacon, "beacon").Length(8);
 
             // TODO Devise a test for this
             //OptimisticLock.Version();
@@ -76,7 +76,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.WindDirection, "wind_dir");
             Map(x => x.WindSpeed, "wind_kts");
             Map(x => x.SeaCode, "sea_code");          
-            Map(x => x.Payao, "payao");
+            Map(x => x.Payao, "payao").Length(8);
             References(x => x.Day)
                 .Column("s_day_id")
                 .Not.LazyLoad();

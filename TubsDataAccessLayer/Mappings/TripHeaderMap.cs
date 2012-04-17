@@ -43,7 +43,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DeparturePort, "dep_port");
             Map(x => x.ReturnPort, "ret_port");
             Map(x => x.DepartureDate, "dep_date");
-            Map(x => x.ReturnDate, "ret_date");           
+            Map(x => x.ReturnDate, "ret_date");
+            Map(x => x.GearCode, "gear_code");
             Map(x => x.CkTripNumber, "tripno_ck");
             Map(x => x.FmTripNumber, "tripno_fm");
             Map(x => x.FfaTripNumber, "tripno_ffa");

@@ -48,6 +48,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual DateTime? ReturnDate { get; set; }
 
+        public virtual string GearCode { get; set; }
+
         public virtual string FfaTripNumber { get; set; }
 
         public virtual string CkTripNumber { get; set; }

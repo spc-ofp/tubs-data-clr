@@ -549,4 +549,22 @@
   <data name="OtherLocation" xml:space="preserve">
     <value>Other Location</value>
   </data>
+  <data name="WellContent" xml:space="preserve">
+    <value>Well Content</value>
+  </data>
+  <data name="BeaconCount" xml:space="preserve">
+    <value>Beacon Count</value>
+  </data>
+  <data name="BeaconType" xml:space="preserve">
+    <value>Beacon Type</value>
+  </data>
+  <data name="BuoyCount" xml:space="preserve">
+    <value>Number of Life Buoys/Rings</value>
+  </data>
+  <data name="Expiration" xml:space="preserve">
+    <value>Expiration</value>
+  </data>
+  <data name="LastOrDue" xml:space="preserve">
+    <value>Last Inspection or Inspection Due</value>
+  </data>
 </root>

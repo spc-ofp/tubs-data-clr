@@ -35,6 +35,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual Trip Trip { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "WellContent")]
         public virtual WellContentType? FuelOrWater { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "WellNumber")]
@@ -43,6 +44,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "WellLocation")]
         public virtual string WellLocation { get; set; } // Port, Starboard, Center or who knows?
 
+        [Display(ResourceType = typeof(FieldNames), Name = "WellCapacity")]
         public virtual decimal? WellCapacity { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Comments")]

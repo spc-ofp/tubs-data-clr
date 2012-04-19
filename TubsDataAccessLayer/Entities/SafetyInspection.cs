@@ -47,6 +47,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "LifejacketAvailability")]
         public virtual string LifejacketAvailability { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "BuoyCount")]
+        [Range(0, Int32.MaxValue)]
         public virtual int? BuoyCount { get; set; }
 
         // This should always be a 406 beacon
@@ -96,16 +98,32 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
     public class EpirbResult
     {
+        [Display(ResourceType = typeof(FieldNames), Name = "BeaconType")]
         public virtual string BeaconType { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "BeaconCount")]
+        [Range(0, Int32.MaxValue)]
         public virtual int? Count { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "Expiration")]
         public virtual string Expiration { get; set; }
+
+        public virtual bool Include
+        {
+            get
+            {
+                return
+                    !String.IsNullOrWhiteSpace(this.BeaconType) ||
+                    !String.IsNullOrWhiteSpace(this.Expiration) ||
+                    this.Count.HasValue;
+            }
+        }
     }
 
     public class RaftResult
     {
         [Display(ResourceType = typeof(FieldNames), Name = "Capacity")]
+        [Range(0, Int32.MaxValue)]
         public virtual int? Capacity { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "InspectionDate")]
@@ -113,6 +131,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual DateTime? InspectionDate { get; set;  }
         
         // TODO Constrain this to "L" or "D"
+        [Display(ResourceType = typeof(FieldNames), Name = "LastOrDue")]
         public virtual char? LastOrDue { get; set; }
 
         public virtual bool Include

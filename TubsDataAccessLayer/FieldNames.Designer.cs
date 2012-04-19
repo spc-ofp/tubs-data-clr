@@ -97,6 +97,24 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Beacon Count.
+        /// </summary>
+        public static string BeaconCount {
+            get {
+                return ResourceManager.GetString("BeaconCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beacon Type.
+        /// </summary>
+        public static string BeaconType {
+            get {
+                return ResourceManager.GetString("BeaconType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bearing.
         /// </summary>
         public static string Bearing {
@@ -156,6 +174,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string BrailType {
             get {
                 return ResourceManager.GetString("BrailType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of Life Buoys/Rings.
+        /// </summary>
+        public static string BuoyCount {
+            get {
+                return ResourceManager.GetString("BuoyCount", resourceCulture);
             }
         }
         
@@ -345,6 +372,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string EnteredDate {
             get {
                 return ResourceManager.GetString("EnteredDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expiration.
+        /// </summary>
+        public static string Expiration {
+            get {
+                return ResourceManager.GetString("Expiration", resourceCulture);
             }
         }
         
@@ -588,6 +624,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Inspection or Inspection Due.
+        /// </summary>
+        public static string LastOrDue {
+            get {
+                return ResourceManager.GetString("LastOrDue", resourceCulture);
             }
         }
         
@@ -1308,6 +1353,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string WellCapacity {
             get {
                 return ResourceManager.GetString("WellCapacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Well Content.
+        /// </summary>
+        public static string WellContent {
+            get {
+                return ResourceManager.GetString("WellContent", resourceCulture);
             }
         }
         

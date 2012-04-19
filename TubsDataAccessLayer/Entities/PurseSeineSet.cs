@@ -139,16 +139,19 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// <summary>
         /// Gets or sets the number of tons of tuna in this set as recorded by the observer
         /// </summary>
+        [Display(ResourceType = typeof(FieldNames), Name = "TonsOfTunaObserved")]
         public virtual decimal? TonsOfTunaObserved { get; set; }
 
         /// <summary>
         /// Gets or sets the sum of all brails using brail #1
         /// </summary>
+        [Display(ResourceType = typeof(FieldNames), Name = "SumOfBrail1")]
         public virtual decimal? SumOfBrail1 { get; set; }
 
         /// <summary>
         /// Gets or sets the sum of all brails using brail #2
         /// </summary>
+        [Display(ResourceType = typeof(FieldNames), Name = "SumOfBrail2")]
         public virtual decimal? SumOfBrail2 { get; set; }
 
         // One option is query substitutions:
@@ -219,6 +222,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual int? LargeSpeciesCount { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "TotalCatch")]
         public virtual decimal? TotalCatch { get; set; }
 
         public virtual int? RecoveredTagCount { get; set; }

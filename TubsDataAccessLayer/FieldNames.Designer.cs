@@ -322,6 +322,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Diary Page.
+        /// </summary>
+        public static string DiaryPage {
+            get {
+                return ResourceManager.GetString("DiaryPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Distance.
         /// </summary>
         public static string Distance {
@@ -1141,6 +1150,24 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sum of all Brails (#1).
+        /// </summary>
+        public static string SumOfBrail1 {
+            get {
+                return ResourceManager.GetString("SumOfBrail1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sum of all Brails (#2).
+        /// </summary>
+        public static string SumOfBrail2 {
+            get {
+                return ResourceManager.GetString("SumOfBrail2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tag Number.
         /// </summary>
         public static string TagNumber {
@@ -1204,6 +1231,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Observed Total Tuna This Set.
+        /// </summary>
+        public static string TonsOfTunaObserved {
+            get {
+                return ResourceManager.GetString("TonsOfTunaObserved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tons of Yellowfin.
         /// </summary>
         public static string TonsOfYellowfin {
@@ -1218,6 +1254,15 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string TotalBrailCount {
             get {
                 return ResourceManager.GetString("TotalBrailCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Catch.
+        /// </summary>
+        public static string TotalCatch {
+            get {
+                return ResourceManager.GetString("TotalCatch", resourceCulture);
             }
         }
         

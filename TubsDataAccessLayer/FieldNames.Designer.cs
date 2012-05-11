@@ -70,6 +70,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vessel Activity.
+        /// </summary>
+        public static string ActivityType {
+            get {
+                return ResourceManager.GetString("ActivityType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alternate Name.
         /// </summary>
         public static string AlternateName {
@@ -264,6 +273,24 @@ namespace Spc.Ofp.Tubs.DAL {
         public static string CruiseSpeed {
             get {
                 return ResourceManager.GetString("CruiseSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sea Current Direction.
+        /// </summary>
+        public static string CurrentDirection {
+            get {
+                return ResourceManager.GetString("CurrentDirection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sea Current Speed.
+        /// </summary>
+        public static string CurrentSpeed {
+            get {
+                return ResourceManager.GetString("CurrentSpeed", resourceCulture);
             }
         }
         

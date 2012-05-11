@@ -582,4 +582,13 @@
   <data name="TotalCatch" xml:space="preserve">
     <value>Total Catch</value>
   </data>
+  <data name="ActivityType" xml:space="preserve">
+    <value>Vessel Activity</value>
+  </data>
+  <data name="CurrentDirection" xml:space="preserve">
+    <value>Sea Current Direction</value>
+  </data>
+  <data name="CurrentSpeed" xml:space="preserve">
+    <value>Sea Current Speed</value>
+  </data>
 </root>

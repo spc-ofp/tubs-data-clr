@@ -78,7 +78,14 @@ namespace Spc.Ofp.Tubs.DAL
                     session.Save(x);
                     x.Details.ToList().ForEach(y => session.Save(y));
                 });
-                trip.Electronics.ToList().ForEach(x => session.Save(x));
+
+                // 
+                trip.Electronics.ToList().ForEach(x =>
+                {
+                    //System.Console.WriteLine("Saving {0}: {1}", x.Make, x.Model);
+                    session.Save(x); 
+                });
+
                 trip.Interactions.ToList().ForEach(x =>
                 {
                     session.Save(x);

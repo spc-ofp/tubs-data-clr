@@ -45,6 +45,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual int? FormId { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "LocalTime")]
         public virtual DateTime? IncidentDate { get; set; }
 
         public virtual DateTime? IncidentDateOnly { get; set; }
@@ -78,12 +79,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "SeaCode")]
         public virtual SeaCode? SeaCode { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "CurrentSpeed")]
         public virtual decimal? CurrentSpeed { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "CurrentDirection")]
         public virtual int? CurrentDirection { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "VesselType")]
         public virtual SightedVesselType? VesselType { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "ActivityType")]
         public virtual ActivityType? ActivityType { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "VesselName")]

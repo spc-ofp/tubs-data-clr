@@ -34,6 +34,9 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     {
         private TubsRepository<CommunicationServices> repo;
 
+        /// <summary>
+        /// Create repository for use by all test cases.
+        /// </summary>
         [TestFixtureSetUp]
         public void Setup()
         {

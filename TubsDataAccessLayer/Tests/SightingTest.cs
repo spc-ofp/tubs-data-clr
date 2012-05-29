@@ -44,7 +44,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetSightings()
         {
-            var sightings = this.repo.All();
+            var sightings = this.repo.GetPagedList(0, 100).Entities;
             Assert.NotNull(sightings);
             Assert.GreaterOrEqual(sightings.Count<Sighting>(), 29);
             foreach (var sighting in sightings)

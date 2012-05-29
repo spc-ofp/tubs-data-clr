@@ -46,7 +46,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void GetPushpins()
         {
-            var pushpins = repo.All();
+            var pushpins = repo.GetPagedList(0, 500).Entities;
             Assert.NotNull(pushpins);
             foreach (var pushpin in pushpins)
             {

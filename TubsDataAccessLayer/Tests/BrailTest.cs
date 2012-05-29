@@ -34,6 +34,9 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     {
         private TubsRepository<Brail> repo;
 
+        /// <summary>
+        /// Create repository for use by all test cases.
+        /// </summary>
         [TestFixtureSetUp]
         public void Setup()
         {
@@ -53,7 +56,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void GetBrails()
         {
-            var brails = this.repo.All();
+            var brails = this.repo.GetPagedList(0, 1000).Entities;
             Assert.NotNull(brails);
             foreach (var brail in brails)
             {

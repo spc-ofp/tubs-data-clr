@@ -43,7 +43,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetTransfers()
         {
-            var transfers = repo.All();
+            var transfers = repo.GetPagedList(0, 200).Entities;
             Assert.NotNull(transfers);
             foreach (var transfer in transfers)
             {

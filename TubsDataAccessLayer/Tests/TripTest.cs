@@ -44,7 +44,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetTripList()
         {
-            var trips = this.repo.All();
+            var trips = this.repo.GetPagedList(0, 50).Entities;
             Assert.NotNull(trips);
             Assert.Greater(trips.Count<Trip>(), 0);
             foreach (Trip t in trips)

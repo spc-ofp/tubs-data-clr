@@ -43,7 +43,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void TestGetHeaderList()
         {
-            var headers = this.repo.All();
+            var headers = this.repo.GetPagedList(0, 1000).Entities;
             Assert.NotNull(headers);
             Assert.Greater(headers.Count<LengthSamplingHeader>(), 100);
         }

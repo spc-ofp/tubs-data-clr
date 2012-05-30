@@ -10,6 +10,9 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     using System.Linq;
     using System.Text;
     using NUnit.Framework;
+    using Spc.Ofp.Tubs.DAL.Entities;
+    using NHibernate.Criterion;
+    using NHibernate;
 
     /// <summary>
     /// TODO: Update summary.
@@ -38,6 +41,30 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             Assert.AreEqual(1, results.Count);
             Assert.IsInstanceOf<int>(results[0]);
             Assert.AreEqual(20, (int)results[0]);
+        }
+
+        [Test]
+        public void DateCriteria()
+        {
+            // CurrentSession.CreateCriteria(typeof(Object)).Add(Expression.Eq(Projections.SqlFunction("day", NHibernateUtil.DateTime, Projections.Property("DateTimeProperty")), pvDay))
+            
+
+            // Available SQL functions are here:
+            // https://github.com/nhibernate/nhibernate-core/blob/master/src/NHibernate/Dialect/MsSql2000Dialect.cs
+            using (var session = TubsDataService.GetSession())
+            {
+                var repo = new TubsRepository<Trip>(session);
+                var criteria = repo.CreateCriteria();
+                criteria.Add(Restrictions.Eq(Projections.SqlFunction("year", NHibernateUtil.DateTime, Projections.Property("DepartureDate")), 2009));
+                criteria.Add(Restrictions.Eq(Projections.SqlFunction("month", NHibernateUtil.DateTime, Projections.Property("DepartureDate")), 6));
+                criteria.Add(Restrictions.In("CountryCode", new string[] { "MH", "PG" }));
+                //criteria.Add(Restrictions.Where<Trip>(t => !t.IsDuringTrip(DateTime.Now)));
+                //var programs = new InExpression("CountryCode", new string[] { "MH", "PG" });
+                //criteria.Add(programs);
+                var trips = criteria.List<Trip>();
+                Assert.NotNull(trips);
+                Assert.AreEqual(8, trips.Count);
+            }
         }
     }
 }

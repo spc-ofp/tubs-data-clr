@@ -29,6 +29,7 @@ namespace Spc.Ofp.Tubs.DAL
     using System.Linq.Expressions;
     using NHibernate;
     using NHibernate.Linq;
+    using NHibernate.Criterion;
 
     /// <summary>
     /// TubsRepository wraps up NHibernate so that a repo per object type is not required.
@@ -72,6 +73,21 @@ namespace Spc.Ofp.Tubs.DAL
             }
 
             return true;
+        }
+
+        public ICriteria CreateCriteria()
+        {
+            return this.Session.CreateCriteria<T>();
+        }
+
+        public ICriteria CreateCriteria(string alias)
+        {
+            return this.Session.CreateCriteria<T>(alias);
+        }
+
+        public IMultiCriteria CreateMultiCriteria()
+        {
+            return this.Session.CreateMultiCriteria();
         }
 
         /// <summary>

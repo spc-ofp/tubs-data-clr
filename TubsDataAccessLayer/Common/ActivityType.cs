@@ -175,6 +175,12 @@ namespace Spc.Ofp.Tubs.DAL.Common
         /// Transshipping at sea
         /// </summary>
         [Description("Transshipping at sea")]
-        TransshippingAtSea = 118
+        TransshippingAtSea = 118,
+
+        /// <summary>
+        /// Servicing FAD or floating object
+        /// </summary>
+        [Description("Servicing FAD or floating object")]
+        ServicingFad = 124,
     }
 }

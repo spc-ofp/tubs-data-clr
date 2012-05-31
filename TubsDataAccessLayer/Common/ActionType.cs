@@ -55,6 +55,12 @@ namespace Spc.Ofp.Tubs.DAL.Common
         DF,
 
         /// <summary>
+        /// Discarded into the sea
+        /// </summary>
+        [Description("Discarded into the sea")]
+        DS,
+
+        /// <summary>
         /// Fishing
         /// </summary>
         [Description("Fishing")]

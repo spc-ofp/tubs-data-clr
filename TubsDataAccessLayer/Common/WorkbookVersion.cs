@@ -77,5 +77,11 @@ namespace Spc.Ofp.Tubs.DAL.Common
         /// </summary>
         [Description("2007")]
         v2007 = 111,
+
+        /// <summary>
+        /// 2009
+        /// </summary>
+        [Description("2009")]
+        v2009 = 123,
     }
 }

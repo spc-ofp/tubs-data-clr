@@ -74,6 +74,13 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.IsSpillSampled, "spill");
             Map(x => x.SpillTripNumber, "spill_tripno");
 
+            // Version 2009 workbook fields
+            Map(x => x.VesselDepartureDate, "vess_dep_date");
+            Map(x => x.ObserverDepartureLatitude, "dep_lat").Length(9);
+            Map(x => x.ObserverDepartureLongitude, "dep_lon").Length(10);
+            Map(x => x.ObserverReturnLatitude, "ret_lat").Length(9);
+            Map(x => x.ObserverReturnLongitude, "ret_lon").Length(10);
+
             // Fill in VesselNotes as subordinate object
             Component(x => x.VesselNotes, m =>
             {
@@ -84,6 +91,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
                 m.Map(x => x.MasterCountryCode, "vesmaster_country_code");
                 m.Map(x => x.Licenses, "licences");
                 m.Map(x => x.Comments, "form1_comments");
+                // Version 2009 workbook fields
+                m.Map(x => x.HasWasteDisposal, "has_waste_disposal");
+                m.Map(x => x.WasteDisposalDescription, "waste_disposal_desc");
             });
 
             // TODO Devise a test for this
@@ -94,6 +104,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             References(x => x.Observer).Column("staff_code");
             References(x => x.DeparturePort).Column("dep_port");
             References(x => x.ReturnPort).Column("ret_port");
+            // Version 2009 workbook fields
+            References(x => x.VesselDeparturePort).Column("vess_dep_port");
 
             HasOne(x => x.CommunicationServices).PropertyRef(r => r.Trip).Cascade.All();
             HasOne(x => x.TripMonitor).PropertyRef(r => r.Trip).Cascade.All();

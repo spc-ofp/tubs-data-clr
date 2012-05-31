@@ -62,6 +62,17 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [RangeAttribute(1, 2)]
         public virtual int? BrailNumber { get; set; }
 
+        // For spill sampling only
+        [Display(ResourceType = typeof(FieldNames), Name = "SampledBrailNumber")]
+        public virtual int? SampledBrailNumber { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "NumberOfFishMeasured")]
+        public virtual int? NumberOfFishMeasured { get; set; }
+
+        // All sampling protocols
+        [Display(ResourceType = typeof(FieldNames), Name = "CalibratedThisSet")]
+        public virtual bool? CalibratedThisSet { get; set; }
+
         /// <summary>
         /// Gets or sets the page number within the set of pages
         /// recording brailing for the associated set.

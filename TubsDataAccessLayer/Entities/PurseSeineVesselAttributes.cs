@@ -83,6 +83,15 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "HelicopterServiceOtherCount")]
         public virtual int? HelicopterServiceOtherCount { get; set; }
 
+        [Display(ResourceType = typeof(FieldNames), Name = "VesselLength")]
+        public virtual int? VesselLength { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "VesselLengthUnits")]
+        public virtual UnitOfMeasure? VesselLengthUnits { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "VesselTonnage")]
+        public virtual int? VesselTonnage { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
 

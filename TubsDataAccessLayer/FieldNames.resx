@@ -591,4 +591,34 @@
   <data name="CurrentSpeed" xml:space="preserve">
     <value>Sea Current Speed</value>
   </data>
+  <data name="CalibratedThisSet" xml:space="preserve">
+    <value>Calibrated this set?</value>
+  </data>
+  <data name="HasWasteDisposal" xml:space="preserve">
+    <value>Has Waste Disposal Gear</value>
+  </data>
+  <data name="NumberOfFishMeasured" xml:space="preserve">
+    <value>How many fish measured</value>
+  </data>
+  <data name="SampledBrailNumber" xml:space="preserve">
+    <value>Brail Number Sampled</value>
+  </data>
+  <data name="VesselDepartureDate" xml:space="preserve">
+    <value>VesselDepartureDate</value>
+  </data>
+  <data name="VesselDeparturePort" xml:space="preserve">
+    <value>Vessel Departure Port</value>
+  </data>
+  <data name="VesselLength" xml:space="preserve">
+    <value>Vessel Length</value>
+  </data>
+  <data name="VesselLengthUnits" xml:space="preserve">
+    <value>Vessel Length Units</value>
+  </data>
+  <data name="VesselTonnage" xml:space="preserve">
+    <value>Vessel Tonnage</value>
+  </data>
+  <data name="WasteDisposalDescription" xml:space="preserve">
+    <value>Describe Waste Disposal Gear</value>
+  </data>
 </root>

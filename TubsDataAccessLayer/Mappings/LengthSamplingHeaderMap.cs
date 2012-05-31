@@ -67,6 +67,11 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");
 
+            // Version 2009 workbook fields
+            Map(x => x.SampledBrailNumber, "sampled_brail_num");
+            Map(x => x.NumberOfFishMeasured, "measured_n");
+            Map(x => x.CalibratedThisSet, "calibrated_this_set");
+
             References(x => x.Set).Column("s_set_id");
             HasMany(x => x.Samples).KeyColumn("s_lf_id").Cascade.All();
             HasMany(x => x.Brails).KeyColumn("s_lf_id").Cascade.All();

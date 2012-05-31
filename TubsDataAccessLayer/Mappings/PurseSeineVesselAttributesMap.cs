@@ -57,6 +57,11 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");
 
+            // Version 2009 workbook fields
+            Map(x => x.VesselLength, "vessel_length");
+            Map(x => x.VesselLengthUnits, "vessel_length_unit1_id").CustomType<UnitOfMeasure>();
+            Map(x => x.VesselTonnage, "vessel_tonnage");
+
             References(x => x.Trip).Column("obstrip_id");
         }
     }

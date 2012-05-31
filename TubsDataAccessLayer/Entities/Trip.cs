@@ -70,6 +70,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual string ReturnTimeOnly { get; set; }
 
+        [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(FieldNames), Name = "VesselDepartureDate")]
+        public virtual DateTime? VesselDepartureDate { get; set; }
+
         // TODO  Use a Regex for validation
         [Display(ResourceType = typeof(FieldNames), Name = "TripNumber")]
         public virtual string TripNumber { get; set; }
@@ -87,6 +91,29 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Required]
         public virtual Port ReturnPort { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "VesselDeparturePort")]
+        public virtual Port VesselDeparturePort { get; set; }
+
+        [RegularExpression(@"^[0-8]\d{3}\.?\d{3}[NnSs]$",
+            ErrorMessageResourceType = typeof(ErrorMessages),
+            ErrorMessageResourceName = "LatitudeError")]
+        public virtual string ObserverDepartureLatitude { get; set; }
+
+        [RegularExpression(@"^[0-1]\d{4}\.?\d{3}[EeWw]$",
+            ErrorMessageResourceType = typeof(ErrorMessages),
+            ErrorMessageResourceName = "LongitudeError")]
+        public virtual string ObserverDepartureLongitude { get; set; }
+
+        [RegularExpression(@"^[0-8]\d{3}\.?\d{3}[NnSs]$",
+            ErrorMessageResourceType = typeof(ErrorMessages),
+            ErrorMessageResourceName = "LatitudeError")]
+        public virtual string ObserverReturnLatitude { get; set; }
+
+        [RegularExpression(@"^[0-1]\d{4}\.?\d{3}[EeWw]$",
+            ErrorMessageResourceType = typeof(ErrorMessages),
+            ErrorMessageResourceName = "LongitudeError")]
+        public virtual string ObserverReturnLongitude { get; set; }
 
         [EnumDataType(typeof(WorkbookVersion))]
         public virtual WorkbookVersion? Version { get; set; }

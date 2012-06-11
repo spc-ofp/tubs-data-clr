@@ -57,12 +57,5 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
         public virtual string Comments { get; set; }
-
-        [Display(ResourceType = typeof(FieldNames), Name = "HasWasteDisposal")]
-        public virtual bool HasWasteDisposal { get; set; }
-
-        [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(FieldNames), Name = "WasteDisposalDescription")]
-        public virtual string WasteDisposalDescription { get; set; }
     }
 }

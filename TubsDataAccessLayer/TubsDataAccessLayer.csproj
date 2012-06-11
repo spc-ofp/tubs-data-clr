@@ -93,6 +93,8 @@
     <Compile Include="Entities\Crew.cs" />
     <Compile Include="Entities\ElectronicDevice.cs" />
     <Compile Include="Entities\Gear.cs" />
+    <Compile Include="Entities\Gen3Answer.cs" />
+    <Compile Include="Entities\Gen3Detail.cs" />
     <Compile Include="Entities\ImportStatus.cs" />
     <Compile Include="Entities\InteractionDetail.cs" />
     <Compile Include="Entities\LengthSample.cs" />
@@ -154,6 +156,8 @@
     <Compile Include="Mappings\CrewMap.cs" />
     <Compile Include="Mappings\ElectronicDeviceMap.cs" />
     <Compile Include="Mappings\GearMap.cs" />
+    <Compile Include="Mappings\Gen3AnswerMap.cs" />
+    <Compile Include="Mappings\Gen3DetailMap.cs" />
     <Compile Include="Mappings\ImportStatusMap.cs" />
     <Compile Include="Mappings\InteractionDetailMap.cs" />
     <Compile Include="Mappings\LengthSampleMap.cs" />
@@ -217,7 +221,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

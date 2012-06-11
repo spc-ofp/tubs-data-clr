@@ -222,6 +222,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual int? LargeSpeciesCount { get; set; }
 
+        public virtual bool? ContainsLargeYellowfin { get; set; }
+
+        public virtual bool? ContainsLargeBigeye { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "TotalCatch")]
         public virtual decimal? TotalCatch { get; set; }
 

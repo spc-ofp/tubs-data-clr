@@ -29,13 +29,15 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Mapping for common trip data.
     /// </summary>
-    public class TripMap : ClassMap<Entities.Trip>
+    public class TripMap : ClassMap<Trip>
     {
+        public const string TripId = "obstrip_id";
+        
         public TripMap()
         {           
             Schema("obsv");
             Table("trip");
-            Id(x => x.Id, "obstrip_id").GeneratedBy.Identity().Not.Nullable();
+            Id(x => x.Id, TripId).GeneratedBy.Identity().Not.Nullable();
             Map(x => x.TripNumber, "tripno");
             Map(x => x.DepartureDate, "dep_dtime");
             Map(x => x.DepartureDateOnly, "dep_date");
@@ -80,6 +82,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.ObserverDepartureLongitude, "dep_lon").Length(10);
             Map(x => x.ObserverReturnLatitude, "ret_lat").Length(9);
             Map(x => x.ObserverReturnLongitude, "ret_lon").Length(10);
+            Map(x => x.HasWasteDisposal, "has_waste_disposal").CustomType<YesNoType>();
+            Map(x => x.WasteDisposalDescription, "waste_disposal_desc");
 
             // Fill in VesselNotes as subordinate object
             Component(x => x.VesselNotes, m =>
@@ -92,8 +96,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
                 m.Map(x => x.Licenses, "licences");
                 m.Map(x => x.Comments, "form1_comments");
                 // Version 2009 workbook fields
-                m.Map(x => x.HasWasteDisposal, "has_waste_disposal");
-                m.Map(x => x.WasteDisposalDescription, "waste_disposal_desc");
+                
             });
 
             // TODO Devise a test for this
@@ -111,14 +114,16 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             HasOne(x => x.TripMonitor).PropertyRef(r => r.Trip).Cascade.All();
             HasOne(x => x.Inspection).PropertyRef(r => r.Trip).Cascade.All();
 
-            HasMany(x => x.Sightings).KeyColumn("obstrip_id");
-            HasMany(x => x.Transfers).KeyColumn("obstrip_id");
-            HasMany(x => x.PollutionEvents).KeyColumn("obstrip_id");
-            HasMany(x => x.Electronics).KeyColumn("obstrip_id");
-            HasMany(x => x.Interactions).KeyColumn("obstrip_id");
-            HasMany(x => x.MultiLandingInteractions).KeyColumn("obstrip_id");
-            HasMany(x => x.PageCounts).KeyColumn("obstrip_id");
-            HasMany(x => x.Pushpins).KeyColumn("obstrip_id").LazyLoad();
+            HasMany(x => x.Sightings).KeyColumn(TripId);
+            HasMany(x => x.Transfers).KeyColumn(TripId);
+            HasMany(x => x.PollutionEvents).KeyColumn(TripId);
+            HasMany(x => x.Electronics).KeyColumn(TripId);
+            HasMany(x => x.Interactions).KeyColumn(TripId);
+            HasMany(x => x.MultiLandingInteractions).KeyColumn(TripId);
+            HasMany(x => x.PageCounts).KeyColumn(TripId);
+            HasMany(x => x.Pushpins).KeyColumn(TripId).LazyLoad();
+            HasMany(x => x.Gen3Answers).KeyColumn(TripId);
+            HasMany(x => x.Gen3Details).KeyColumn(TripId);
             
             DiscriminateSubClassesOnColumn<string>("gear_code");
         }

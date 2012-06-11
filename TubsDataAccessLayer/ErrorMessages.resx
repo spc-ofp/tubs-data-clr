@@ -123,4 +123,12 @@
   <data name="LongitudeError" xml:space="preserve">
     <value>Longitude must be of form: dddmm.mmmE or dddmm.mmmW</value>
   </data>
+  <data name="ShortLatitudeError" xml:space="preserve">
+    <value>Latitude must be of the form: ddmmS or ddmmN</value>
+    <comment>Degrees and minutes only for observer 'AT SEA' start/end position</comment>
+  </data>
+  <data name="ShortLongitudeError" xml:space="preserve">
+    <value>Longitude must be of the form: dddmmE or dddmmW</value>
+    <comment>Degrees and minutes only for observer 'AT SEA' start/end position</comment>
+  </data>
 </root>

@@ -70,7 +70,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             // Version 2009 workbook fields
             Map(x => x.SampledBrailNumber, "sampled_brail_num");
             Map(x => x.NumberOfFishMeasured, "measured_n");
-            Map(x => x.CalibratedThisSet, "calibrated_this_set");
+            Map(x => x.CalibratedThisSet, "calibrated_this_set").CustomType<YesNoType>();
 
             References(x => x.Set).Column("s_set_id");
             HasMany(x => x.Samples).KeyColumn("s_lf_id").Cascade.All();

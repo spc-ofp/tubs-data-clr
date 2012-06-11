@@ -57,8 +57,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.NewOnboardTotalObserved, "ld_newonboard").Precision(8).Scale(3);
             Map(x => x.NewOnboardTotalFromLog, "ld_ves_newonboard").Precision(8).Scale(3);
             Map(x => x.TonsOfTunaObserved, "mttuna_obs").Precision(8).Scale(3);
-            Map(x => x.SumOfBrail1, "ld_brails").Precision(6).Scale(1);
-            Map(x => x.SumOfBrail2, "ld_brails2").Precision(6).Scale(1);
+            Map(x => x.SumOfBrail1, "ld_brails").Precision(8).Scale(3); // Updated in v2009 from p6 s1 to p8 s3
+            Map(x => x.SumOfBrail2, "ld_brails2").Precision(8).Scale(3); // Updated in v2009 from p6 s1 to p8 s3
             Map(x => x.TonsOfSkipjackObserved, "mtskj_obs").Precision(8).Scale(3);
             Map(x => x.TonsOfYellowfinObserved, "mtyft_obs").Precision(8).Scale(3);
             Map(x => x.TonsOfBigeyeObserved, "mtbet_obs").Precision(8).Scale(3);
@@ -73,6 +73,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.ContainsBigeye, "totbet_ans").CustomType<YesNoType>();
             Map(x => x.ContainsLargeTuna, "totyftbet_ans").CustomType<YesNoType>(); // ???
             Map(x => x.TotalTunaAnswer, "tottun_ans").CustomType<YesNoType>();
+            // New v2009 fields
+            Map(x => x.ContainsLargeYellowfin, "large_yft_ans").CustomType<YesNoType>();
+            Map(x => x.ContainsLargeBigeye, "large_bet_ans").CustomType<YesNoType>();
 
             Map(x => x.SkipjackPercentage, "perc_skj");           
             Map(x => x.YellowfinPercentage, "perc_yft");           

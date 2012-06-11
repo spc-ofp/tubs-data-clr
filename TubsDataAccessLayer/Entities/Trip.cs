@@ -42,6 +42,9 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.MultiLandingInteractions = new List<MultiLandingInteraction>();
             this.PageCounts = new List<PageCount>(12);
             this.Pushpins = new List<Pushpin>(180);
+            // Create with default values as, in general, most data will be 2007 or earlier workbooks
+            this.Gen3Answers = new List<Gen3Answer>();
+            this.Gen3Details = new List<Gen3Detail>();
         }
         
         public virtual int Id { get; set; }
@@ -95,28 +98,35 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "VesselDeparturePort")]
         public virtual Port VesselDeparturePort { get; set; }
 
-        [RegularExpression(@"^[0-8]\d{3}\.?\d{3}[NnSs]$",
+        [RegularExpression(@"^[0-8]\d{3}[NnSs]$",
             ErrorMessageResourceType = typeof(ErrorMessages),
-            ErrorMessageResourceName = "LatitudeError")]
+            ErrorMessageResourceName = "ShortLatitudeError")]
         public virtual string ObserverDepartureLatitude { get; set; }
 
-        [RegularExpression(@"^[0-1]\d{4}\.?\d{3}[EeWw]$",
+        [RegularExpression(@"^[0-1]\d{4}[EeWw]$",
             ErrorMessageResourceType = typeof(ErrorMessages),
-            ErrorMessageResourceName = "LongitudeError")]
+            ErrorMessageResourceName = "ShortLongitudeError")]
         public virtual string ObserverDepartureLongitude { get; set; }
 
-        [RegularExpression(@"^[0-8]\d{3}\.?\d{3}[NnSs]$",
+        [RegularExpression(@"^[0-8]\d{3}[NnSs]$",
             ErrorMessageResourceType = typeof(ErrorMessages),
-            ErrorMessageResourceName = "LatitudeError")]
+            ErrorMessageResourceName = "ShortLatitudeError")]
         public virtual string ObserverReturnLatitude { get; set; }
 
-        [RegularExpression(@"^[0-1]\d{4}\.?\d{3}[EeWw]$",
+        [RegularExpression(@"^[0-1]\d{4}[EeWw]$",
             ErrorMessageResourceType = typeof(ErrorMessages),
-            ErrorMessageResourceName = "LongitudeError")]
+            ErrorMessageResourceName = "ShortLongitudeError")]
         public virtual string ObserverReturnLongitude { get; set; }
 
         [EnumDataType(typeof(WorkbookVersion))]
         public virtual WorkbookVersion? Version { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "HasWasteDisposal")]
+        public virtual bool? HasWasteDisposal { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(FieldNames), Name = "WasteDisposalDescription")]
+        public virtual string WasteDisposalDescription { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
@@ -255,6 +265,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual IList<Pushpin> Pushpins { get; protected internal set; }
 
+        public virtual IList<Gen3Answer> Gen3Answers { get; protected internal set; }
+
+        public virtual IList<Gen3Detail> Gen3Details { get; protected internal set; }
+
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
@@ -325,6 +339,18 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             pushpin.Trip = this;
             this.Pushpins.Add(pushpin);
+        }
+
+        public virtual void AddGen3Answer(Gen3Answer answer)
+        {
+            answer.Trip = this;
+            this.Gen3Answers.Add(answer);
+        }
+
+        public virtual void AddGen3Detail(Gen3Detail detail)
+        {
+            detail.Trip = this;
+            this.Gen3Details.Add(detail);
         }
 
         public virtual string AlternateTripNumber

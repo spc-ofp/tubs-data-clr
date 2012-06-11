@@ -529,6 +529,15 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lost gear source.
+        /// </summary>
+        public static string GearSource {
+            get {
+                return ResourceManager.GetString("GearSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GEN-3 Event Observed?.
         /// </summary>
         public static string Gen3Events {

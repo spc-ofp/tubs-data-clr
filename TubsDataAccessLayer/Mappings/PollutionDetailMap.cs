@@ -58,4 +58,16 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Material, "material_id").CustomType<PollutionMaterial>();
         }
     }
+
+    /// <summary>
+    /// Mapping for GEN-6 gear details.
+    /// </summary>
+    public sealed class GearDetailMap : SubclassMap<LostGearDetail>
+    {
+        public GearDetailMap()
+        {
+            DiscriminatorValue((int)PollutionType.AbandonedOrLostGear);
+            Map(x => x.Source, "material_id").CustomType<LostGear>();
+        }
+    }
 }

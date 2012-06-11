@@ -621,4 +621,7 @@
   <data name="WasteDisposalDescription" xml:space="preserve">
     <value>Describe Waste Disposal Gear</value>
   </data>
+  <data name="GearSource" xml:space="preserve">
+    <value>Lost gear source</value>
+  </data>
 </root>

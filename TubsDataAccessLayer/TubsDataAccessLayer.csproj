@@ -70,6 +70,7 @@
     <Compile Include="Common\InteractionType.cs" />
     <Compile Include="Common\JobType.cs" />
     <Compile Include="Common\LengthCode.cs" />
+    <Compile Include="Common\LostGear.cs" />
     <Compile Include="Common\MetricConversions.cs" />
     <Compile Include="Common\ObserverProgram.cs" />
     <Compile Include="Common\PollutionMaterial.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Entities\LengthSamplingHeader.cs" />
     <Compile Include="Entities\LongLineSet.cs" />
     <Compile Include="Entities\LongLineTrip.cs" />
+    <Compile Include="Entities\LostGearDetail.cs" />
     <Compile Include="Entities\MarineDevice.cs" />
     <Compile Include="Entities\MultiInteractionDetail.cs" />
     <Compile Include="Entities\MultiLandingInteraction.cs" />

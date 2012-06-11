@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="PollutionType.cs" company="Secretariat of the Pacific Community">
+// <copyright file="LostGear.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
@@ -26,9 +26,9 @@ namespace Spc.Ofp.Tubs.DAL.Common
     using System.ComponentModel;
 
     /// <summary>
-    /// These values represent the reference_id values for source 'POTYP'
+    /// These values represent the reference_id values for source 'POLGR'
     /// </summary>
-    public enum PollutionType
+    public enum LostGear
     {
         /// <summary>
         /// Unknown or no value provided
@@ -37,21 +37,21 @@ namespace Spc.Ofp.Tubs.DAL.Common
         None = 0,
 
         /// <summary>
-        /// Waste dumped overboard
+        /// Lost during fishing
         /// </summary>
-        [Description("Waste dumped overboard")]
-        DumpedOverboard = 71,
+        [Description("Lost during fishing")]
+        Lost = 191,
 
         /// <summary>
-        /// Oil spillages and leakages
+        /// Abandoned
         /// </summary>
-        [Description("Oil spillages and leakages")]
-        SpillageOrLeakage = 72,
+        [Description("Abandoned")]
+        Abandoned = 192,
 
         /// <summary>
-        /// Abandoned or Lost Fishing Gear
+        /// Dumped
         /// </summary>
-        [Description("Abandoned or Lost Fishing Gear")]
-        AbandonedOrLostGear = 190,
+        [Description("Dumped")]
+        Dumped = 193,
     }
 }

@@ -1,10 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="PollutionType.cs" company="Secretariat of the Pacific Community">
+// <copyright file="LostGearDetail.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Spc.Ofp.Tubs.DAL.Common
+namespace Spc.Ofp.Tubs.DAL.Entities
 {
     /*
      * This file is part of TUBS.
@@ -23,35 +23,16 @@ namespace Spc.Ofp.Tubs.DAL.Common
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
-    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
-    /// These values represent the reference_id values for source 'POTYP'
+    /// SpillDetail is for recording GEN6 pollution details in the event of lost or abandoned fishing gear.
     /// </summary>
-    public enum PollutionType
+    public class LostGearDetail : PollutionDetail
     {
-        /// <summary>
-        /// Unknown or no value provided
-        /// </summary>
-        [Description("Unknown")]
-        None = 0,
-
-        /// <summary>
-        /// Waste dumped overboard
-        /// </summary>
-        [Description("Waste dumped overboard")]
-        DumpedOverboard = 71,
-
-        /// <summary>
-        /// Oil spillages and leakages
-        /// </summary>
-        [Description("Oil spillages and leakages")]
-        SpillageOrLeakage = 72,
-
-        /// <summary>
-        /// Abandoned or Lost Fishing Gear
-        /// </summary>
-        [Description("Abandoned or Lost Fishing Gear")]
-        AbandonedOrLostGear = 190,
+        [EnumDataType(typeof(LostGear))]
+        [Display(ResourceType = typeof(FieldNames), Name = "GearSource")]
+        public virtual LostGear? Source { get; set; }
     }
 }

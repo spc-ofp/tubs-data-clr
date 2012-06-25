@@ -164,6 +164,7 @@
     <Compile Include="Mappings\InteractionDetailMap.cs" />
     <Compile Include="Mappings\LengthSampleMap.cs" />
     <Compile Include="Mappings\LengthSamplingHeaderMap.cs" />
+    <Compile Include="Mappings\LongLineSetMap.cs" />
     <Compile Include="Mappings\MarineDeviceMap.cs" />
     <Compile Include="Mappings\MultiInteractionDetailMap.cs" />
     <Compile Include="Mappings\MultiLandingInteractionMap.cs" />

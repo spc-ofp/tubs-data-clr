@@ -44,7 +44,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual DateTime SetDate { get; set; }
 
-        public virtual int? SetId { get; set; }
+        public virtual int? SetId { get; set; } // ???
 
         public virtual DateTime? UtcSetDateOnly { get; set; }
 
@@ -52,35 +52,49 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual DateTime? UtcSetDate { get; set; }
 
-        public virtual int? HooksBetweenFloats { get; set; }
+        public virtual int? HooksPerBasket { get; set; } // hk_bt_flt
 
-        public virtual int? BasketsSet { get; set; } // ???
+        public virtual int? TotalBasketCount { get; set; } // bask_set
 
         public virtual int? BasketsObserved { get; set; }
 
-        public virtual int? HooksSet { get; set; }
+        public virtual int? HookCount { get; set; } // hook_set
 
-        public virtual int? EstimatedHooks { get; set; }
+        public virtual int? EstimatedHookCount { get; set; }
 
-        public virtual int? ObservedHooks { get; set; }
+        public virtual int? ObservedHookCount { get; set; }
 
-        public virtual string CalculatedHooks { get; set; }
+        public virtual string CalculatedHookCount { get; set; }
 
-        public virtual int? FloatLength { get; set; }
+        public virtual int? LengthOfFloatline { get; set; } // float_length
 
-        public virtual decimal? LineSpeed { get; set; }
+        public virtual decimal? LineSettingSpeed { get; set; }
 
-        public virtual string LineSpeedUnit { get; set; }
+        public virtual string LineSettingSpeedUnit { get; set; }
 
-        public virtual decimal? LineSpeedMetersPerSecond { get; set; }
+        public virtual decimal? LineSettingSpeedMetersPerSecond { get; set; }
 
-        public virtual int? BranchInterval { get; set; }
+        public virtual int? BranchlineSetInterval { get; set; } // branch_intvl
 
-        public virtual decimal? BranchDistance { get; set; }
+        public virtual decimal? MetersBetweenBranchlines { get; set; } // branch_dist
 
-        public virtual decimal? BranchLength { get; set; }
+        public virtual decimal? LengthOfBranchlines { get; set; } // branch_length
 
-        public virtual decimal? VesselSpeed { get; set; }
+        public virtual decimal? VesselSpeedForSetting { get; set; }
+
+        public virtual int? SharkLineCount { get; set; }
+
+        public virtual int? SharkLineLength { get; set; }
+
+        public virtual bool? TdrDeployed { get; set; }
+
+        public virtual bool? TargetingTuna { get; set; }
+
+        public virtual bool? TargetingSwordfish { get; set; }
+
+        public virtual bool? TargetingShark { get; set; }
+
+        public virtual string Details { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }

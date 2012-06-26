@@ -1,4 +1,4 @@
-﻿/// -----------------------------------------------------------------------
+﻿// -----------------------------------------------------------------------
 // <copyright file="GearMap.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
@@ -41,6 +41,75 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctScore, "dct_score");
 
             References(x => x.Trip).Column("obstrip_id");
+        }
+    }
+
+    public sealed class LongLineGearMap : BaseGearMap<LongLineGear>
+    {
+        public LongLineGearMap()
+        {
+            Schema("obsv");
+            Table("l_gear");
+            Id(x => x.Id, "l_gear_id").GeneratedBy.Identity();
+            Map(x => x.HasMainlineHauler, "mlinehaul_ans").CustomType<YesNoType>();
+            Map(x => x.MainlineHaulerUsage, "mlinehaul_usage_code");
+            Map(x => x.MainlineHaulerComments, "mlinehaul_comments").Length(50);
+
+            Map(x => x.HasBranchlineHauler, "blinehaul_ans").CustomType<YesNoType>();
+            Map(x => x.BranchlineHaulerUsage, "blinehaul_usage_code");
+            Map(x => x.BranchlineHaulerComments, "blinehaul_comments").Length(50);
+
+            Map(x => x.HasLineShooter, "lshoot_ans").CustomType<YesNoType>();
+            Map(x => x.LineShooterUsage, "lshoot_usage_code");
+            Map(x => x.LineShooterComments, "lshoot_comments").Length(50);
+
+            Map(x => x.HasBaitThrower, "baitthr_ans").CustomType<YesNoType>();
+            Map(x => x.BaitThrowerUsage, "baitthr_usage_code");
+            Map(x => x.BaitThrowerComments, "baitthr_comments").Length(50);
+
+            Map(x => x.HasBranchlineAttacher, "branchatt_ans").CustomType<YesNoType>();
+            Map(x => x.BranchlineAttacherUsage, "branchatt_usage_code");
+            Map(x => x.BranchlineAttacherComments, "branchatt_comments").Length(50);
+
+            Map(x => x.HasWeightScales, "weightsca_ans").CustomType<YesNoType>();
+            Map(x => x.WeightScalesUsage, "weightsca_usage_code");
+            Map(x => x.WeightScalesComments, "weightsca_comments").Length(50);
+
+            Map(x => x.MainlineComposition, "mline_comp");
+            Map(x => x.BranchlineComposition, "bline_comp");
+            Map(x => x.MainlineMaterial, "mline_mat");
+            Map(x => x.MainlineLength, "mline_len").Precision(5).Scale(1);
+            Map(x => x.MainlineDiameter, "mline_diam").Precision(4).Scale(1);
+
+            Map(x => x.BranchlineMaterial1, "bline_mat1").Length(40);
+            Map(x => x.BranchlineMaterial1Description, "bline_mat1_desc").Length(50);
+
+            Map(x => x.BranchlineMaterial2, "bline_mat2").Length(40);
+            Map(x => x.BranchlineMaterial2Description, "bline_mat2_desc").Length(50);
+
+            Map(x => x.BranchlineMaterial3, "bline_mat3").Length(40);
+            Map(x => x.BranchlineMaterial3Description, "bline_mat3_desc").Length(50);
+
+            Map(x => x.HasWireTrace, "wiretrace_ans").CustomType<YesNoType>();
+            Map(x => x.HasRefrigeratedSeawater, "seawater_ans").CustomType<YesNoType>();
+            Map(x => x.HasBlastFreezer, "blastfreezer_ans").CustomType<YesNoType>();
+            Map(x => x.HasIce, "ice_ans").CustomType<YesNoType>();
+            Map(x => x.HasChilledSeawater, "chilledseawater_ans").CustomType<YesNoType>();
+            Map(x => x.HasOtherStorage, "otherstorage_ans").CustomType<YesNoType>();
+            Map(x => x.OtherStorageDescription, "otherstorage_desc").Length(50);
+
+            Map(x => x.JapanHookSize, "hksjapan_size").Length(50);
+            Map(x => x.JapanHookPercentage, "hksjapan_perc");
+
+            Map(x => x.CircleHookSize, "hkscircle_size").Length(50);
+            Map(x => x.CircleHookPercentage, "hkscircle_perc");
+
+            Map(x => x.JHookSize, "hksj_size").Length(50);
+            Map(x => x.JHookPercentage, "hksj_perc");
+
+            Map(x => x.OtherHookSize, "hksoth_size").Length(50);
+            Map(x => x.OtherHookPercentage, "hksoth_perc");
+            Map(x => x.OtherHookType, "hksoth_type").Length(50);
         }
     }
 

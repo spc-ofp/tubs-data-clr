@@ -65,6 +65,7 @@
     <Compile Include="Common\DateExtensions.cs" />
     <Compile Include="Common\DetectionMethod.cs" />
     <Compile Include="Common\EnumExtensions.cs" />
+    <Compile Include="Common\FateCode.cs" />
     <Compile Include="Common\FormNames.cs" />
     <Compile Include="Common\InteractionActivity.cs" />
     <Compile Include="Common\InteractionType.cs" />
@@ -100,7 +101,12 @@
     <Compile Include="Entities\InteractionDetail.cs" />
     <Compile Include="Entities\LengthSample.cs" />
     <Compile Include="Entities\LengthSamplingHeader.cs" />
+    <Compile Include="Entities\LongLineCatch.cs" />
+    <Compile Include="Entities\LongLineConversionFactor.cs" />
+    <Compile Include="Entities\LongLineGear.cs" />
     <Compile Include="Entities\LongLineSet.cs" />
+    <Compile Include="Entities\LongLineSetHaulEvent.cs" />
+    <Compile Include="Entities\LongLineSetHaulNote.cs" />
     <Compile Include="Entities\LongLineTrip.cs" />
     <Compile Include="Entities\LostGearDetail.cs" />
     <Compile Include="Entities\MarineDevice.cs" />
@@ -164,6 +170,10 @@
     <Compile Include="Mappings\InteractionDetailMap.cs" />
     <Compile Include="Mappings\LengthSampleMap.cs" />
     <Compile Include="Mappings\LengthSamplingHeaderMap.cs" />
+    <Compile Include="Mappings\LongLineCatchMap.cs" />
+    <Compile Include="Mappings\LongLineConversionFactorMap.cs" />
+    <Compile Include="Mappings\LongLineSetHaulEventMap.cs" />
+    <Compile Include="Mappings\LongLineSetHaulNoteMap.cs" />
     <Compile Include="Mappings\LongLineSetMap.cs" />
     <Compile Include="Mappings\MarineDeviceMap.cs" />
     <Compile Include="Mappings\MultiInteractionDetailMap.cs" />

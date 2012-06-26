@@ -30,6 +30,14 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public class LongLineSet
     {
+        public LongLineSet()
+        {
+            CatchList = new List<LongLineCatch>(); // TODO How many on average?
+            ConversionFactors = new List<LongLineConversionFactor>();
+            EventList = new List<LongLineSetHaulEvent>();
+            NotesList = new List<LongLineSetHaulNote>();
+        }
+        
         public virtual int Id { get; set; }
 
         public virtual Trip Trip { get; set; }
@@ -42,7 +50,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual string SetTimeOnly { get; set; }
 
-        public virtual DateTime SetDate { get; set; }
+        public virtual DateTime? SetDate { get; set; }
 
         public virtual int? SetId { get; set; } // ???
 
@@ -114,5 +122,37 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
+
+        public virtual IList<LongLineCatch> CatchList { get; protected internal set; }
+
+        public virtual IList<LongLineSetHaulEvent> EventList { get; protected internal set; }
+
+        public virtual IList<LongLineConversionFactor> ConversionFactors { get; protected internal set; }
+
+        public virtual IList<LongLineSetHaulNote> NotesList { get; protected internal set; }
+
+        public virtual void AddCatch(LongLineCatch lcatch)
+        {
+            lcatch.FishingSet = this;
+            this.CatchList.Add(lcatch);
+        }
+
+        public virtual void AddConversionFactor(LongLineConversionFactor cfactor)
+        {
+            cfactor.FishingSet = this;
+            this.ConversionFactors.Add(cfactor);
+        }
+
+        public virtual void AddEvent(LongLineSetHaulEvent levent)
+        {
+            levent.FishingSet = this;
+            this.EventList.Add(levent);
+        }
+
+        public virtual void AddNote(LongLineSetHaulNote note)
+        {
+            note.FishingSet = this;
+            this.NotesList.Add(note);
+        }
     }
 }

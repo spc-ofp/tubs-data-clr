@@ -24,6 +24,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
     /// Long line set details as recorded on form LL-3
@@ -36,6 +37,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             ConversionFactors = new List<LongLineConversionFactor>();
             EventList = new List<LongLineSetHaulEvent>();
             NotesList = new List<LongLineSetHaulNote>();
+            Baskets = new List<LongLineBasket>();
         }
         
         public virtual int Id { get; set; }
@@ -52,7 +54,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual DateTime? SetDate { get; set; }
 
-        public virtual int? SetId { get; set; } // ???
+        public virtual int? SetId { get; set; } // Legacy data
 
         public virtual DateTime? UtcSetDateOnly { get; set; }
 
@@ -60,49 +62,111 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual DateTime? UtcSetDate { get; set; }
 
+        public virtual string LocalTime { get; set; }
+
+        public virtual string TargetSpeciesCode { get; set; }
+
+        // FoxPro uses one field for the next 3 booleans
+        public virtual bool? IsTargetingTuna { get; set; }
+
+        public virtual bool? IsTargetingSwordfish { get; set; }
+
+        public virtual bool? IsTargetingSharks { get; set; }
+
         public virtual int? HooksPerBasket { get; set; } // hk_bt_flt
 
         public virtual int? TotalBasketCount { get; set; } // bask_set
 
-        public virtual int? BasketsObserved { get; set; }
-
-        public virtual int? HookCount { get; set; } // hook_set
+        public virtual int? TotalHookCount { get; set; }
 
         public virtual int? EstimatedHookCount { get; set; }
 
-        public virtual int? ObservedHookCount { get; set; }
+        public virtual int? FloatlineLength { get; set; }
 
-        public virtual string CalculatedHookCount { get; set; }
-
-        public virtual int? LengthOfFloatline { get; set; } // float_length
+        public virtual int? FloatlineHookCount { get; set; } // ???
 
         public virtual decimal? LineSettingSpeed { get; set; }
 
-        public virtual string LineSettingSpeedUnit { get; set; }
+        public virtual UnitOfMeasure? LineSettingSpeedUnit { get; set; }
 
-        public virtual decimal? LineSettingSpeedMetersPerSecond { get; set; }
+        public virtual decimal? LineSettingSpeedMetersPerSecond { get; set; } // TUBS but not FoxPro
+
+        public virtual decimal? VesselSpeed { get; set; }
 
         public virtual int? BranchlineSetInterval { get; set; } // branch_intvl
 
-        public virtual decimal? MetersBetweenBranchlines { get; set; } // branch_dist
+        public virtual decimal? DistanceBetweenBranchlines { get; set; } // branch_dist
 
-        public virtual decimal? LengthOfBranchlines { get; set; } // branch_length
-
-        public virtual decimal? VesselSpeedForSetting { get; set; }
+        public virtual decimal? BranchlineLength { get; set; } // branch_length
 
         public virtual int? SharkLineCount { get; set; }
 
         public virtual int? SharkLineLength { get; set; }
 
-        public virtual bool? TdrDeployed { get; set; }
+        public virtual bool? TdrDeployed { get; set; } // TDR is Temperate Depth Recorder
 
-        public virtual bool? TargetingTuna { get; set; }
+        public virtual int? TotalHooksObserved { get; set; }
 
-        public virtual bool? TargetingSwordfish { get; set; }
+        public virtual int? TotalBasketsObserved { get; set; }
 
-        public virtual bool? TargetingShark { get; set; }
+        public virtual int? LightStickCount { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "Gen3Events")]
+        public virtual bool? Gen3Events { get; set; }
+
+        public virtual bool? AllPositionsDirectlyObserved { get; set; }
+
+        public virtual string MeasuringInstrument { get; set; } // TODO Replace with Enum
+
+        public virtual string BaitSpecies1Code { get; set; }
+        public virtual int? BaitSpecies1Weight { get; set; }
+        public virtual string BaitSpecies1Hooks { get; set; }
+
+        public virtual string BaitSpecies2Code { get; set; }
+        public virtual int? BaitSpecies2Weight { get; set; }
+        public virtual string BaitSpecies2Hooks { get; set; }
+
+        public virtual string BaitSpecies3Code { get; set; }
+        public virtual int? BaitSpecies3Weight { get; set; }
+        public virtual string BaitSpecies3Hooks { get; set; }
+
+        public virtual string BaitSpecies4Code { get; set; }
+        public virtual int? BaitSpecies4Weight { get; set; }
+        public virtual string BaitSpecies4Hooks { get; set; }
+
+        public virtual string BaitSpecies5Code { get; set; }
+        public virtual int? BaitSpecies5Weight { get; set; }
+        public virtual string BaitSpecies5Hooks { get; set; }
 
         public virtual string Details { get; set; }
+
+        public virtual string Strategy { get; set; }
+
+        // These appear to be legacy data
+        public virtual string HookCalc { get; set; } // Available values are 'E', 'N', or null
+
+        public virtual int? HookDepthLow { get; set; } // Shallowest hook
+
+        public virtual int? HookDepthHigh { get; set; } // Deepest hook
+
+        //br_* are for 1996 workbook revision
+        public virtual int? BranchlineCount_00to20m { get; set; }
+
+        public virtual int? BranchlineCount_20to34m { get; set; }
+
+        public virtual int? BranchlineCount_35to50m { get; set; }
+
+        public virtual int? BranchlineCount_50to99m { get; set; }
+
+        /// <summary>
+        /// Get or set the value of HasRecordedData.
+        /// Indicates if data was recorded with this observed set.  Primarily for AFMA data.
+        /// </summary>
+        public virtual bool? HasRecordedData { get; set; }
+
+        public virtual string DiaryPage { get; set; } // It's not a mistake that this is a string...
+
+        public virtual int? TdrLength { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
@@ -131,28 +195,51 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual IList<LongLineSetHaulNote> NotesList { get; protected internal set; }
 
+        public virtual IList<LongLineBasket> Baskets { get; protected internal set; }
+
         public virtual void AddCatch(LongLineCatch lcatch)
         {
+            if (null == lcatch)
+                return;
+
             lcatch.FishingSet = this;
             this.CatchList.Add(lcatch);
         }
 
         public virtual void AddConversionFactor(LongLineConversionFactor cfactor)
         {
+            if (null == cfactor)
+                return;
+
             cfactor.FishingSet = this;
             this.ConversionFactors.Add(cfactor);
         }
 
         public virtual void AddEvent(LongLineSetHaulEvent levent)
         {
+            if (null == levent)
+                return;
+            
             levent.FishingSet = this;
             this.EventList.Add(levent);
         }
 
         public virtual void AddNote(LongLineSetHaulNote note)
         {
+            if (null == note)
+                return;
+            
             note.FishingSet = this;
             this.NotesList.Add(note);
+        }
+
+        public virtual void AddBasket(LongLineBasket basket)
+        {
+            if (null == basket)
+                return;
+            
+            basket.FishingSet = this;
+            this.Baskets.Add(basket);
         }
     }
 }

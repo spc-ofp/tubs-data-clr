@@ -35,8 +35,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual Trip Trip { get; set; }
 
+        public virtual DateTime? TransferDateOnly { get; set; }
+
+        public virtual string TransferTimeOnly { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "LocalTime")]
-        public virtual DateTime? TransferTime { get; set; }
+        public virtual DateTime? TransferDate { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
         [RegularExpression(@"^[0-8]\d{3}\.?\d{3}[NnSs]$",
@@ -106,5 +110,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
+
+        public virtual DateTime? GetDate()
+        {
+            return this.TransferDate.HasValue ?
+                this.TransferDate :
+                this.TransferDateOnly.Merge(this.TransferTimeOnly);
+        }
     }
 }

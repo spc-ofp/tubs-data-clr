@@ -20,11 +20,35 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class LongLineTrip : Trip
     {
+        public LongLineTrip()
+            : base()
+        {
+            this.FishingSets = new List<LongLineSet>(24); // TODO Determine the correct number
+        }
+
+        public override Gear GetGear()
+        {
+            return this.Gear;
+        }
+
+        public virtual LongLineGear Gear { get; set; }
+
+        public virtual IList<LongLineSet> FishingSets { get; protected internal set; }
+
+        public virtual void AddFishingSet(LongLineSet fset)
+        {
+            if (null == fset)
+                return;
+
+            fset.Trip = this;
+            this.FishingSets.Add(fset);
+        }
     }
 }

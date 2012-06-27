@@ -41,9 +41,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.LogDate, "log_dtime");
             Map(x => x.Sethaul, "sethaul").Length(4);
             Map(x => x.StartEndId, "stend_id");
-            Map(x => x.Latitude, "lat");
-            Map(x => x.Longitude, "lon");
-            Map(x => x.EezCode, "eez_code");
+            Map(x => x.Latitude, "lat").Length(9);
+            Map(x => x.Longitude, "lon").Length(10);
+            Map(x => x.EezCode, "eez_code").Length(2);
             Map(x => x.WindDirection, "wind_dir");
             Map(x => x.WindSpeed, "wind_kts");
             Map(x => x.SeaCode, "sea_code");

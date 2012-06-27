@@ -233,15 +233,21 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [StringLength(10)]
         public virtual string SpillTripNumber { get; set; }
 
+        public virtual DateTime? ReceivedDate { get; set; }
+
+        public virtual DateTime? AcknowledgedDate { get; set; }
+
+        public virtual bool? HasHardCopy { get; set; }
+
+        public virtual int? RecordedSetCount { get; set; }
+
+        public virtual int? CrewCount { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "WellCapacity")]
         [Range(0, 10000)]
         public virtual decimal? WellCapacity { get; set; }
 
         public virtual byte[] RowVersion { get; protected internal set; }
-
-        // Trip knows how to create it's own metrics
-        // TODO Implement!  This is here as a reminder on how to implement the API
-        public virtual object CatchAndEffort { get; protected set; }
 
         public virtual IList<Sighting> Sightings { get; protected internal set; }
 
@@ -265,9 +271,17 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual IList<Pushpin> Pushpins { get; protected internal set; }
 
+        // Workbook 2009 GEN-3
         public virtual IList<Gen3Answer> Gen3Answers { get; protected internal set; }
 
+        // Workbook 2009 GEN-3
         public virtual IList<Gen3Detail> Gen3Details { get; protected internal set; }
+
+        // Trip knows how to create it's own metrics
+        // TODO Implement!  This is here as a reminder on how to implement the API
+        public virtual object CatchAndEffort { get; protected set; }
+
+        public abstract Gear GetGear();
 
         public override string ToString()
         {
@@ -295,60 +309,90 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual void AddSighting(Sighting sighting)
         {
+            if (null == sighting)
+                return;
+            
             sighting.Trip = this;
             this.Sightings.Add(sighting);
         }
 
         public virtual void AddTransfer(Transfer transfer)
         {
+            if (null == transfer)
+                return;
+            
             transfer.Trip = this;
             this.Transfers.Add(transfer);
         }
 
         public virtual void AddPollutionEvent(PollutionEvent pevent)
         {
+            if (null == pevent)
+                return;
+            
             pevent.Trip = this;
             this.PollutionEvents.Add(pevent);
         }
 
         public virtual void AddElectronicDevice(ElectronicDevice device)
         {
+            if (null == device)
+                return;
+            
             device.Trip = this;
             this.Electronics.Add(device);
         }
 
         public virtual void AddInteraction(SpecialSpeciesInteraction interaction)
         {
+            if (null == interaction)
+                return;
+            
             interaction.Trip = this;
             this.Interactions.Add(interaction);
         }
 
         public virtual void AddMultiLandingInteraction(MultiLandingInteraction interaction)
         {
+            if (null == interaction)
+                return;
+            
             interaction.Trip = this;
             this.MultiLandingInteractions.Add(interaction);
         }
 
         public virtual void AddPageCount(PageCount pageCount)
         {
+            if (null == pageCount)
+                return;
+            
             pageCount.Trip = this;
             this.PageCounts.Add(pageCount);
         }
 
         public virtual void AddPushpin(Pushpin pushpin)
         {
+            if (null == pushpin)
+                return;
+            
             pushpin.Trip = this;
             this.Pushpins.Add(pushpin);
         }
 
         public virtual void AddGen3Answer(Gen3Answer answer)
         {
+            if (null == answer)
+                return;
+            
             answer.Trip = this;
             this.Gen3Answers.Add(answer);
         }
 
         public virtual void AddGen3Detail(Gen3Detail detail)
         {
+            if (null == detail)
+                return;
+            
             detail.Trip = this;
             this.Gen3Details.Add(detail);
         }

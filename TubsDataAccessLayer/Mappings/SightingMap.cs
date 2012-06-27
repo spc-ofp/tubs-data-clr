@@ -21,7 +21,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Table("gen1sightings");
             Id(x => x.Id, "sighting_id").GeneratedBy.Identity();
             Map(x => x.FormId, "form_id");
-            Map(x => x.EventTime, "sighting_dtime");
+            Map(x => x.EventDateOnly, "sighting_date");
+            Map(x => x.EventTimeOnly, "sighting_time").Length(4);
+            Map(x => x.EventDate, "sighting_dtime");
             Map(x => x.Latitude, "lat").Length(9);
             Map(x => x.Longitude, "lon").Length(10);
             Map(x => x.EezCode, "eez_code").Length(2);

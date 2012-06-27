@@ -101,6 +101,7 @@
     <Compile Include="Entities\InteractionDetail.cs" />
     <Compile Include="Entities\LengthSample.cs" />
     <Compile Include="Entities\LengthSamplingHeader.cs" />
+    <Compile Include="Entities\LongLineBasket.cs" />
     <Compile Include="Entities\LongLineCatch.cs" />
     <Compile Include="Entities\LongLineConversionFactor.cs" />
     <Compile Include="Entities\LongLineGear.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Mappings\InteractionDetailMap.cs" />
     <Compile Include="Mappings\LengthSampleMap.cs" />
     <Compile Include="Mappings\LengthSamplingHeaderMap.cs" />
+    <Compile Include="Mappings\LongLineBasketMap.cs" />
     <Compile Include="Mappings\LongLineCatchMap.cs" />
     <Compile Include="Mappings\LongLineConversionFactorMap.cs" />
     <Compile Include="Mappings\LongLineSetHaulEventMap.cs" />

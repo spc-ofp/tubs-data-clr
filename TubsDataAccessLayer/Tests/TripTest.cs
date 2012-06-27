@@ -42,7 +42,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         }
         
         [Test]
-        public void TestGetTripList()
+        public void GetTripList()
         {
             var trips = this.repo.GetPagedList(0, 50).Entities;
             Assert.NotNull(trips);
@@ -61,9 +61,9 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         }
 
         [Test]
-        public void TestGetTripEx()
+        public void GetTripEx([Values(70)] int tripId)
         {
-            var trip = this.repo.FindBy(70) as PurseSeineTrip;
+            var trip = this.repo.FindBy(tripId) as PurseSeineTrip;
             Assert.IsNotNull(trip);
             Assert.True(trip.Version.HasValue);
             Assert.AreEqual(WorkbookVersion.v2007, trip.Version.Value);
@@ -92,9 +92,9 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         }
 
         [Test]
-        public void TestGetTrip()
+        public void GetPurseSeineTrip([Values(68)] int tripId)
         {
-            var trip = this.repo.FindBy(68) as PurseSeineTrip;      
+            var trip = this.repo.FindBy(tripId) as PurseSeineTrip;      
             Assert.NotNull(trip);
             Assert.NotNull(trip.Observer);
             Assert.AreEqual("PBS", trip.Observer.StaffCode.Trim());
@@ -114,7 +114,18 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         }
 
         [Test]
-        public void SanityCheck()
+        public void GetLongLineTrip([Values(12345)] int tripId)
+        {
+            var trip = this.repo.FindBy(tripId) as LongLineTrip;
+            Assert.NotNull(trip);
+            Assert.NotNull(trip.Observer);
+            Assert.NotNull(trip.Vessel);
+            Assert.NotNull(trip.FishingSets);
+            Assert.True(trip.FishingSets.Count > 0);
+        }
+
+        [Test]
+        public void GetTripWithObserver([Values(69)] int tripId)
         {
             var trip = this.repo.FindBy(69) as PurseSeineTrip;
             Assert.NotNull(trip);

@@ -85,6 +85,12 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.HasWasteDisposal, "has_waste_disposal").CustomType<YesNoType>();
             Map(x => x.WasteDisposalDescription, "waste_disposal_desc");
 
+            Map(x => x.ReceivedDate, "recvd_date");
+            Map(x => x.AcknowledgedDate, "ack_date");
+            Map(x => x.RecordedSetCount, "sets_n");
+            Map(x => x.HasHardCopy, "hard_data").CustomType<YesNoType>();
+            Map(x => x.CrewCount, "crew_number");
+
             // Fill in VesselNotes as subordinate object
             Component(x => x.VesselNotes, m =>
             {
@@ -156,6 +162,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         public LongLineTripMap()
         {
             DiscriminatorValue("L");
+            HasMany(x => x.FishingSets).KeyColumn("obstrip_id").Cascade.None();
+
+            HasOne(x => x.Gear).PropertyRef(r => r.Trip).Cascade.All();
         }
     }
 

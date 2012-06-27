@@ -29,5 +29,9 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public class PoleAndLineTrip : Trip
     {
+        public override Gear GetGear()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

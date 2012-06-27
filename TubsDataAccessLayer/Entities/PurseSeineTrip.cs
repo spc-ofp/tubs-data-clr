@@ -38,6 +38,11 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.WellReconciliations = new List<PurseSeineWellReconciliation>(24);
         }
 
+        public override Gear GetGear()
+        {
+            return this.Gear;
+        }
+        
         public virtual PurseSeineGear Gear { get; set; }
 
         public virtual PurseSeineVesselAttributes VesselAttributes { get; set; }
@@ -52,24 +57,36 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual void AddSeaDay(PurseSeineSeaDay seaday)
         {
+            if (null == seaday)
+                return;
+            
             seaday.Trip = this;
             this.SeaDays.Add(seaday);
         }
 
         public virtual void AddCrew(PurseSeineCrew crew)
         {
+            if (null == crew)
+                return;
+            
             crew.Trip = this;
             this.Crew.Add(crew);
         }
 
         public virtual void AddWellContent(PurseSeineWellContent wellcontent)
         {
+            if (null == wellcontent)
+                return;
+            
             wellcontent.Trip = this;
             this.WellContent.Add(wellcontent);
         }
 
         public virtual void AddWellReconciliation(PurseSeineWellReconciliation reconciliation)
         {
+            if (null == reconciliation)
+                return;
+            
             reconciliation.Trip = this;
             this.WellReconciliations.Add(reconciliation);
         }

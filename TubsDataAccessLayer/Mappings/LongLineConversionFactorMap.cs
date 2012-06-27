@@ -40,7 +40,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.TimeOnly, "catch_time").Length(4);
             Map(x => x.Date, "catch_dtime");
             Map(x => x.LabelNumber, "label_no");
-            Map(x => x.SpeciesCode, "sp_code");
+            Map(x => x.SpeciesCode, "sp_code").Length(3);
             Map(x => x.TtLength, "len_tt");
             Map(x => x.UfLength, "len_uf");
             Map(x => x.UsLength, "len_us");

@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="TransferMap.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2011 Secretariat of the Pacific Community
+// <copyright file="LongLineBasketMap.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -23,35 +23,22 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using FluentNHibernate.Mapping;
-    using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
-    /// Fluent NHibernate mapping for the Transfer entity.
+    /// TODO: Update summary.
     /// </summary>
-    public sealed class TransferMap : ClassMap<Transfer>
+    public class LongLineBasketMap : ClassMap<LongLineBasket>
     {
-        public TransferMap()
+        public LongLineBasketMap()
         {
             Schema("obsv");
-            Table("gen1fishtransfer");
-            Id(x => x.Id, "fish_tran_id").GeneratedBy.Identity();
-            Map(x => x.TransferDateOnly, "fish_tran_date");
-            Map(x => x.TransferTimeOnly, "fish_tran_time");
-            Map(x => x.TransferDate, "fish_tran_dtime");
-            Map(x => x.Latitude, "lat").Length(9);
-            Map(x => x.Longitude, "lon").Length(10);
-            Map(x => x.EezCode, "eez_code").Length(2);
-            Map(x => x.VesselType, "vatyp_id").CustomType(typeof(VesselType));
-            Map(x => x.VesselName, "vessel_name").Length(50);
-            Map(x => x.VesselFlag, "reg_country_code").Length(2);
-            Map(x => x.Ircs, "ircs").Length(16);
-            Map(x => x.TonsOfSkipjack, "skj_c");
-            Map(x => x.TonsOfYellowfin, "yft_c");
-            Map(x => x.TonsOfBigeye, "bet_c");
-            Map(x => x.TonsOfMixed, "mix_c");
-            Map(x => x.ActionType, "action_code");
-            Map(x => x.Comments, "comments");
+            Table("l_set");
+            Id(x => x.Id, "l_basketmon_id").GeneratedBy.Identity();
+            Map(x => x.PageNumber, "page_number");
+            Map(x => x.NumberMonitored, "num_monitored");
+
             Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");
             Map(x => x.UpdatedBy, "updated_by").Length(20);
@@ -59,8 +46,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");
 
-            References(x => x.Vessel).Column("vessel_id");
-            References(x => x.Trip).Column("obstrip_id");
+            References(x => x.FishingSet).Column("l_set_id");
         }
     }
 }

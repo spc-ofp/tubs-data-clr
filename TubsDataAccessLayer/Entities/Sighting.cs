@@ -37,8 +37,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual int? FormId { get; set; }
 
+        public virtual DateTime? EventDateOnly { get; set; }
+
+        public virtual string EventTimeOnly { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "LocalTime")]
-        public virtual DateTime? EventTime { get; set; }
+        public virtual DateTime? EventDate { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
         [RegularExpression(@"^[0-8]\d{3}\.?\d{3}[NnSs]$", 
@@ -111,5 +115,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
+
+        public virtual DateTime? GetDate()
+        {
+            return this.EventDate.HasValue ?
+                this.EventDate :
+                this.EventDateOnly.Merge(this.EventTimeOnly);
+        }
     }
 }

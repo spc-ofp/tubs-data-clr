@@ -166,12 +166,18 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual void AddLengthSample(LengthSample sample)
         {
+            if (null == sample)
+                return;
+
             sample.Header = this;
             this.Samples.Add(sample);
         }
 
         public virtual void AddBrail(Brail brail)
         {
+            if (null == brail)
+                return;
+            
             brail.Header = this;
             this.Brails.Add(brail);
         }

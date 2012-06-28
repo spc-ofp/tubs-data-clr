@@ -123,6 +123,17 @@ namespace Spc.Ofp.Tubs.DAL
                     pstrip.WellContent.ToList().ForEach(x => session.Save(x));
                     pstrip.WellReconciliations.ToList().ForEach(x => session.Save(x));
                 }
+                if (typeof(LongLineTrip) == trip.GetType())
+                {
+                    var lltrip = trip as LongLineTrip;
+                    foreach (var fset in lltrip.FishingSets)
+                    {
+                        session.Save(fset);
+                        fset.CatchList.ToList().ForEach(x => session.Save(x));
+                        fset.EventList.ToList().ForEach(x => session.Save(x));
+                        fset.ConversionFactors.ToList().ForEach(x => session.Save(x));
+                    }
+                }
                 xa.Commit();
             }
             return true;

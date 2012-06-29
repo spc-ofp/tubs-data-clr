@@ -139,6 +139,67 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         }
 
         [Test]
+        public void FixStartAndEndForLargeNumberOfHaulEvents()
+        {
+            // Use a known date for the start of the set
+            var startOfSet = DateTime.Now;
+            var endOfHaul = DateTime.Now.AddMinutes(40);
+            var events = new List<LongLineSetHaulEvent>()
+            {
+                new LongLineSetHaulEvent()
+                {
+                    Sethaul = "S",
+                    LogDate = startOfSet
+                },
+                new LongLineSetHaulEvent()
+                {
+                    Sethaul = "S",
+                    LogDate = startOfSet.AddMinutes(5)
+                },
+                new LongLineSetHaulEvent()
+                {
+                    Sethaul = "H",
+                    LogDate = startOfSet.AddMinutes(10)
+                },
+                new LongLineSetHaulEvent()
+                {
+                    Sethaul = "H",
+                    LogDate = startOfSet.AddMinutes(15)
+                },
+                new LongLineSetHaulEvent()
+                {
+                    Sethaul = "H",
+                    LogDate = startOfSet.AddMinutes(20)
+                },
+                new LongLineSetHaulEvent()
+                {
+                    Sethaul = "H",
+                    LogDate = startOfSet.AddMinutes(25)
+                },
+                new LongLineSetHaulEvent()
+                {
+                    Sethaul = "H",
+                    LogDate = startOfSet.AddMinutes(30)
+                },
+                new LongLineSetHaulEvent()
+                {
+                    Sethaul = "H",
+                    LogDate = startOfSet.AddMinutes(35)
+                },
+                new LongLineSetHaulEvent()
+                {
+                    Sethaul = "H",
+                    LogDate = endOfHaul
+                }
+            };
+
+            LongLineSetHaulEvent.SetStartAndEnd(events);
+            Assert.AreEqual(5, events.Where(e => !e.ActivityType.HasValue).Count());
+            Assert.AreEqual(startOfSet, events.Where(e => HaulActivityType.StartOfSet.Equals(e.ActivityType)).First().LogDate.Value);
+            Assert.AreEqual(endOfHaul, events.Where(e => HaulActivityType.EndOfHaul.Equals(e.ActivityType)).First().LogDate.Value);
+        }
+
+        [Test]
         public void FixStartAndEndWithNullDate()
         {
             // Use a known date for the start of the set
@@ -172,6 +233,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             };
 
             LongLineSetHaulEvent.SetStartAndEnd(events);
+            // The second item in the array won't have an ActivityType
             Assert.AreEqual(1, events.Where(e => e != null && !e.ActivityType.HasValue).Count());
             Assert.AreEqual(startOfSet, events.Where(e => HaulActivityType.StartOfSet.Equals(e.ActivityType)).First().LogDate.Value);
         }

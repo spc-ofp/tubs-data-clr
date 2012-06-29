@@ -66,6 +66,7 @@
     <Compile Include="Common\EnumExtensions.cs" />
     <Compile Include="Common\FateCode.cs" />
     <Compile Include="Common\FormNames.cs" />
+    <Compile Include="Common\HaulActivityType.cs" />
     <Compile Include="Common\InteractionActivity.cs" />
     <Compile Include="Common\InteractionType.cs" />
     <Compile Include="Common\JobType.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Tests\EnumExtensionsTest.cs" />
     <Compile Include="Tests\ImportStatusTest.cs" />
     <Compile Include="Tests\LengthSamplingHeaderTest.cs" />
+    <Compile Include="Tests\LongLineSetHaulEventTest.cs" />
     <Compile Include="Tests\MarineDeviceTest.cs" />
     <Compile Include="Tests\MetricConversionTest.cs" />
     <Compile Include="Tests\ObserverTest.cs" />

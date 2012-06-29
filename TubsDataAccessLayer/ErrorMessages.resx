@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BasketRangeError" xml:space="preserve">
+    <value>The total number of baskets must be less than 400</value>
+  </data>
+  <data name="FloatlineRangeError" xml:space="preserve">
+    <value>Float length must be between 5 and 50 meters</value>
+  </data>
+  <data name="HookRangeError" xml:space="preserve">
+    <value>The total number of hooks must be less than 4500</value>
+  </data>
+  <data name="HooksBetweenBasketsRangeError" xml:space="preserve">
+    <value>The number of hooks between baskets must be less than 50</value>
+  </data>
   <data name="LatitudeError" xml:space="preserve">
     <value>Latitude must be of form: ddmm.mmmS or ddmm.mmmN</value>
   </data>

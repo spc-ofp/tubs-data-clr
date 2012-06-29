@@ -61,6 +61,42 @@ namespace Spc.Ofp.Tubs.DAL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The total number of baskets must be less than 400.
+        /// </summary>
+        public static string BasketRangeError {
+            get {
+                return ResourceManager.GetString("BasketRangeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Float length must be between 5 and 50 meters.
+        /// </summary>
+        public static string FloatlineRangeError {
+            get {
+                return ResourceManager.GetString("FloatlineRangeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The total number of hooks must be less than 4500.
+        /// </summary>
+        public static string HookRangeError {
+            get {
+                return ResourceManager.GetString("HookRangeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of hooks between baskets must be less than 50.
+        /// </summary>
+        public static string HooksBetweenBasketsRangeError {
+            get {
+                return ResourceManager.GetString("HooksBetweenBasketsRangeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Latitude must be of form: ddmm.mmmS or ddmm.mmmN.
         /// </summary>
         public static string LatitudeError {

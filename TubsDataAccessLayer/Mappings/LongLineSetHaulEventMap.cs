@@ -40,7 +40,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.LogTimeOnly, "log_time").Length(4);
             Map(x => x.LogDate, "log_dtime");
             Map(x => x.Sethaul, "sethaul").Length(4);
-            Map(x => x.StartEndId, "stend_id");
+            Map(x => x.ActivityType, "stend_id").CustomType<HaulActivityType>();
             Map(x => x.Latitude, "lat").Length(9);
             Map(x => x.Longitude, "lon").Length(10);
             Map(x => x.EezCode, "eez_code").Length(2);

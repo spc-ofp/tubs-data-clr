@@ -73,14 +73,18 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual bool? IsTargetingSharks { get; set; }
 
+        [Range(0, 50, ErrorMessageResourceName="HooksBetweenBasketsRangeError")]
         public virtual int? HooksPerBasket { get; set; } // hk_bt_flt
 
+        [Range(0, 400, ErrorMessageResourceName="BasketRangeError")]
         public virtual int? TotalBasketCount { get; set; } // bask_set
 
+        [Range(0, 4500, ErrorMessageResourceName="HookRangeError")]
         public virtual int? TotalHookCount { get; set; }
 
         public virtual int? EstimatedHookCount { get; set; }
 
+        [Range(5, 50, ErrorMessageResourceName="FloatlineRangeError")]
         public virtual int? FloatlineLength { get; set; }
 
         public virtual int? FloatlineHookCount { get; set; } // ???
@@ -89,14 +93,17 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual UnitOfMeasure? LineSettingSpeedUnit { get; set; }
 
+        [Range(0, 40)]
         public virtual decimal? LineSettingSpeedMetersPerSecond { get; set; } // TUBS but not FoxPro
 
         public virtual decimal? VesselSpeed { get; set; }
 
         public virtual int? BranchlineSetInterval { get; set; } // branch_intvl
 
+        [Range(0, 250)]
         public virtual decimal? DistanceBetweenBranchlines { get; set; } // branch_dist
 
+        [Range(5, 50)]
         public virtual decimal? BranchlineLength { get; set; } // branch_length
 
         public virtual int? SharkLineCount { get; set; }

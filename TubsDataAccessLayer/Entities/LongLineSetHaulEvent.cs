@@ -23,11 +23,14 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// TODO: It would be interesting to split this into a LongLineSetEvent and a LongLineHaulEvent
+    /// (with an abstract base LongLineEvent class)
     /// </summary>
     public class LongLineSetHaulEvent
     {
@@ -41,9 +44,15 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual DateTime? LogDate { get; set; }
 
+        // S for Setting, H for Hauling.  Probably want to rework this...
         public virtual string Sethaul { get; set; }
 
-        public virtual int? StartEndId { get; set; }
+        /// <summary>
+        /// Get or set the value of ActivityType.
+        /// ActivityType can be null, which marks an intermediate haul event
+        /// </summary>
+        [EnumDataType(typeof(HaulActivityType))]
+        public virtual HaulActivityType? ActivityType { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
         [RegularExpression(@"^[0-8]\d{3}\.?\d{3}[NnSs]$",
@@ -94,5 +103,33 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
+
+        
+        public static void SetStartAndEnd(IList<LongLineSetHaulEvent> events)
+        {
+            // Ignore invalid lists
+            if (null == events || events.Count < 2)
+                return;
+
+            // Don't forget to test this with some null LogDate values...
+            var sortedByDate = events.Where(e => e != null && e.LogDate.HasValue).OrderBy(e => e.LogDate);
+
+            // Operate on Setting events
+            var settingEvents = sortedByDate.Where(e => "S".Equals(e.Sethaul, StringComparison.InvariantCultureIgnoreCase));
+            if (settingEvents.Count() >= 2)
+            {
+                settingEvents.First().ActivityType = HaulActivityType.StartOfSet;
+                settingEvents.Last().ActivityType = HaulActivityType.EndOfSet;
+            }
+
+            // Operate on Hauling events
+            var haulingEvents = sortedByDate.Where(e => "H".Equals(e.Sethaul, StringComparison.InvariantCultureIgnoreCase));
+            if (haulingEvents.Count() >= 2)
+            {
+                haulingEvents.First().ActivityType = HaulActivityType.StartOfHaul;
+                haulingEvents.Last().ActivityType = HaulActivityType.EndOfHaul;
+            }
+
+        }
     }
 }

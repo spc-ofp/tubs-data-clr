@@ -34,22 +34,17 @@ namespace Spc.Ofp.Tubs.DAL
         
         public static string NullSafeToLower(this string value)
         {
-            if (String.IsNullOrEmpty(value))
-            {   
-                return value;
-            }
+            return string.IsNullOrEmpty(value) ? value : value.ToLower();
+        }
 
-            return value.ToLower();
+        public static string NullSafeToUpper(this string value)
+        {
+            return string.IsNullOrEmpty(value) ? value : value.ToUpper();
         }
 
         public static string NullSafeTrim(this string instring)
         {
-            if (String.IsNullOrEmpty(instring))
-            {
-                return instring;
-            }
-
-            return instring.Trim();
+            return string.IsNullOrEmpty(instring) ? instring : instring.Trim();
         }
 
         public static string NormalizeSpaces(string instring)
@@ -60,10 +55,8 @@ namespace Spc.Ofp.Tubs.DAL
                 return instring;
             }
 
-            string retval = multiSpaceRegex.IsMatch(instring) ?
+            return multiSpaceRegex.IsMatch(instring) ? 
                 multiSpaceRegex.Replace(instring, " ") : instring;
-
-            return retval;
         }
     }
 }

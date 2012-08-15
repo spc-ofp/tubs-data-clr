@@ -41,18 +41,43 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual int? CountFromLog { get; set; }
 
-        public virtual decimal? CalculatedSpeciesCatch { get; set; } // ???
+        /// <summary>
+        /// Gets or sets the species catch (metric tonnes) calculated by observer database system from species composition sampling.
+        /// </summary>
+        public virtual decimal? CalculatedSpeciesCatch { get; set; }
 
-        public virtual int? AverageWeightMethodId { get; set; }
+        /// <summary>
+        /// Gets or sets indicator that shows which method has been used to estimate average weight.
+        /// 1	- 	Average weight is estimated from length data for this species, if available
+        ///	2	- 	Average weight is estimated from observers estimate of average weight, if available
+        /// 3	- 	Average weight is estimated from observers estimate of length, if available
+        ///	4	- 	An expected (arbitrary) average weight for this (rare) species has been provided
+        /// </summary>
+        public virtual int? AverageWeightMethodId { get; set; } // TODO Change to Enum?
 
+        /// <summary>
+        /// Gets or sets best estimate of species catch (metric tonnes).
+        /// </summary>
         public virtual decimal? EstimatedSpeciesCatch { get; set; }
 
+        /// <summary>
+        /// Gets or sets indicator that shows which method has been used to estimate catch in weight
+        /// </summary>
         public virtual int? CatchWeightMethodId { get; set; }
 
+        /// <summary>
+        /// Gets or sets best estimate of species catch (in number).
+        /// </summary>
         public virtual int? EstimatedSpeciesCount { get; set; }
 
+        /// <summary>
+        /// Gets or sets species average weight (low end of range).
+        /// </summary>
         public virtual decimal? SpeciesWeightLow { get; set; }
 
+        /// <summary>
+        /// Gets or sets species average weight (high end of range).
+        /// </summary>
         public virtual decimal? SpeciesWeightHigh { get; set; }
 
         public virtual decimal? SpeciesWeightEstimate { get; set; }

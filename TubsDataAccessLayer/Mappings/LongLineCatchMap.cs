@@ -52,7 +52,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.EstimatedWeightReliability, "wt_est_rel");
             Map(x => x.SexCode, "sex_code");
             Map(x => x.Spare1, "spare1").Length(50);
-            Map(x => x.GonadStage, "gstage_id");
+            Map(x => x.GonadStage, "gstage_id").CustomType<GonadStage>();
             Map(x => x.Comments, "comments").Length(40);
             Map(x => x.EnteredBy, "entered_by").Length(20);
             Map(x => x.EnteredDate, "entered_dtime");

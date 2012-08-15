@@ -66,5 +66,37 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                 Assert.AreEqual(8, trips.Count);
             }
         }
+
+        [Test]
+        public void CriteriaSearch()
+        {
+            var criteria = new SearchCriteria();
+
+            using (var session = TubsDataService.GetSession())
+            {
+                var results = TubsDataService.Search(session, criteria);
+                Assert.NotNull(results);
+                Assert.AreEqual(0, results.Count());
+
+                criteria.Observer = "DJB"; // Dave Burgess, not a real observer.
+                results = TubsDataService.Search(session, criteria);
+                Assert.NotNull(results);
+                Assert.Greater(results.Count(), 4); // Currently 6, but that changes
+
+                criteria.ProgramCode = "PGOB";
+                results = TubsDataService.Search(session, criteria);
+                Assert.AreEqual(1, results.Count());
+
+                criteria.ProgramCode = String.Empty;
+                criteria.Vessel = "TUNA";
+                results = TubsDataService.Search(session, criteria);
+                Assert.AreEqual(5, results.Count());
+
+                criteria.Vessel = String.Empty;
+                criteria.AnyDate = new DateTime(2011, 9, 10);
+                results = TubsDataService.Search(session, criteria);
+                Assert.Greater(results.Count(), 1);
+            }
+        }
     }
 }

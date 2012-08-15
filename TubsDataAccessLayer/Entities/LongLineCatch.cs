@@ -69,7 +69,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual string Spare1 { get; set; } // WTF???
 
-        public virtual int? GonadStage { get; set; } // TODO Replace with enum
+        public virtual GonadStage? GonadStage { get; set; }
 
         public virtual string Comments { get; set; }
 

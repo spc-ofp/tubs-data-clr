@@ -35,7 +35,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual string FateCode { get; set; }
 
-        public virtual int? AverageLength { get; set; } // Not in long line, but we'll leave it here
+        /// <summary>
+        /// Gets or sets estimate (or otherwise) of average length (cm) of this species catch.
+        /// Not used in longline fishing, but present for purse seine and pole-and-line,
+        /// so it stays here.
+        /// </summary>
+        public virtual int? AverageLength { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
         [DataType(DataType.MultilineText)]

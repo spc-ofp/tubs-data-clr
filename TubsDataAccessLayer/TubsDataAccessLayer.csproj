@@ -48,6 +48,9 @@
     <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.15.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -161,6 +164,8 @@
     <Compile Include="Infrastructure\IAuditable.cs" />
     <Compile Include="Infrastructure\IDctFlaggable.cs" />
     <Compile Include="Infrastructure\PredicateBuilder.cs" />
+    <Compile Include="Infrastructure\PredicateExtensions.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Mappings\ActivityMap.cs" />
     <Compile Include="Mappings\BrailMap.cs" />
     <Compile Include="Mappings\CommunicationServicesMap.cs" />
@@ -205,6 +210,7 @@
     <Compile Include="Mappings\VesselMap.cs" />
     <Compile Include="PagedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="SearchCriteria.cs" />
     <Compile Include="Tests\BaseTest.cs" />
     <Compile Include="Tests\BrailTest.cs" />
@@ -240,7 +246,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ErrorMessages.resx">

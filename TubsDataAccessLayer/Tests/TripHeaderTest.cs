@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="TripHeaderTest.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="TripHeaderTest.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -24,7 +24,6 @@ namespace Spc.Ofp.Tubs.DAL.Tests
      */
     using System;
     using NUnit.Framework;
-    using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
@@ -33,11 +32,10 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class TripHeaderTest
     {
-
         [Test]
         public void GetAllTripHeaders()
         {
-            using (var repo = new TubsRepository<TripHeader>(TubsDataService.GetSession()))
+            using (var repo = TubsDataService.GetRepository<TripHeader>(true))
             {
                 var headers = repo.All();
                 Assert.NotNull(headers);

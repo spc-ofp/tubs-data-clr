@@ -5,8 +5,7 @@
 // -----------------------------------------------------------------------
 [assembly: System.CLSCompliant(true)]
 namespace Spc.Ofp.Tubs.DAL
-{
-    
+{    
    /*
     * This file is part of TUBS.
     *
@@ -23,16 +22,12 @@ namespace Spc.Ofp.Tubs.DAL
     * You should have received a copy of the GNU Affero General Public License
     * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
     */
-    using System;
     using System.Collections;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
     using NHibernate;
     using Spc.Ofp.Tubs.DAL.Entities;
-    using System.Linq.Expressions;
     using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
@@ -60,6 +55,23 @@ namespace Spc.Ofp.Tubs.DAL
         public static ISession GetSession()
         {
             return SessionFactory.OpenSession();
+        }
+
+        public static IRepository<T> GetRepository<T>(bool stateless) where T : class
+        {
+            if (stateless)
+                return new Repository<IStatelessSession, T>(GetStatelessSession());
+            return new Repository<ISession, T>(GetSession());
+        }
+
+        public static IRepository<T> GetRepository<T>(IStatelessSession session) where T : class
+        {
+            return new Repository<IStatelessSession, T>(session);
+        }
+
+        public static IRepository<T> GetRepository<T>(ISession session) where T : class
+        {
+            return new Repository<ISession, T>(session);
         }
 
         public static void Dispose()
@@ -155,13 +167,13 @@ namespace Spc.Ofp.Tubs.DAL
         /// Otherwise, the contained object is an object[] and value extraction is the callers responsibility.</returns>
         public static IList Execute(string sql, params object[] list)
         {
-            using (ISession session = GetSession())
+            using (IStatelessSession session = GetStatelessSession())
             {
                 return Execute(session, sql, list);
             }
         }
 
-        public static IList Execute(ISession session, string sql, params object[] list)
+        public static IList Execute(IStatelessSession session, string sql, params object[] list)
         {
             var query = session.CreateSQLQuery(sql);
             for (int i = 0; i < list.Length; i++)
@@ -171,82 +183,25 @@ namespace Spc.Ofp.Tubs.DAL
             return query.List();
         }
 
+        public static IQueryable<Trip> Search(IStatelessSession session, SearchCriteria criteria)
+        {
+            if (null == criteria || !criteria.IsValid())
+            {
+                return Enumerable.Empty<Trip>().AsQueryable();
+            }
+            var predicate = criteria.AsPredicate();
+            return new Repository<IStatelessSession, Trip>(session).FilterBy(predicate);
+        }
+
+
         public static IQueryable<Trip> Search(ISession session, SearchCriteria criteria)
         {
             if (null == criteria || !criteria.IsValid())
             {
                 return Enumerable.Empty<Trip>().AsQueryable();
             }
-
-            // The problem with really clever code is that, in general, you have to be twice
-            // as smart to debug code as you do to write it.  So if you write code at your maximum
-            // cleverness, you'll be lost when it comes to debugging it.
-            // I could turn this into one big lambda, but then I wouldn't be clever enough to
-            // debug it...
-            var predicate = PredicateBuilder.True<Trip>(); // If I was using .Or(), I'd replace this with .False()
-            if (!String.IsNullOrEmpty(criteria.Observer))
-            {
-                predicate = predicate.And(trip =>
-                    trip.Observer.StaffCode.ToUpper().Contains(criteria.Observer.ToUpper()) ||
-                    trip.Observer.FirstName.Contains(criteria.Observer.ToUpper()) ||
-                    trip.Observer.LastName.Contains(criteria.Observer.ToUpper())
-                );
-            }
-
-            if (!String.IsNullOrEmpty(criteria.ProgramCode))
-            {
-                predicate = predicate.And(trip => trip.ProgramCode.ToString() == criteria.ProgramCode.ToUpper());
-            }
-
-            if (!String.IsNullOrEmpty(criteria.Vessel))
-            {
-                predicate = predicate.And(trip => trip.Vessel.Name.ToUpper().Contains(criteria.Vessel.ToUpper()));
-            }
-
-            if (!String.IsNullOrEmpty(criteria.DeparturePort))
-            {
-                predicate = predicate.And(trip =>
-                    trip.DeparturePort.Name.ToUpper().Contains(criteria.DeparturePort.ToUpper()) ||
-                    trip.DeparturePort.PortCode.ToUpper().Contains(criteria.DeparturePort.ToUpper())
-                );
-            }
-
-            if (!String.IsNullOrEmpty(criteria.ReturnPort))
-            {
-                predicate = predicate.And(trip =>
-                    trip.DeparturePort.Name.ToUpper().Contains(criteria.ReturnPort.ToUpper()) ||
-                    trip.DeparturePort.PortCode.ToUpper().Contains(criteria.ReturnPort.ToUpper())
-                );
-            }
-
-            if (criteria.DepartureDate.HasValue)
-            {
-                predicate = predicate.And(trip => trip.DepartureDate >= criteria.DepartureDate.Value);
-            }
-
-            if (criteria.ReturnDate.HasValue)
-            {
-                predicate = predicate.And(trip => trip.ReturnDate <= criteria.ReturnDate.Value);
-            }
-
-            if (!String.IsNullOrEmpty(criteria.AnyPort))
-            {
-                predicate = predicate.And(trip =>
-                    trip.DeparturePort.Name.ToUpper().Contains(criteria.ReturnPort.ToUpper()) ||
-                    trip.DeparturePort.PortCode.ToUpper().Contains(criteria.ReturnPort.ToUpper()) ||
-                    trip.DeparturePort.Name.ToUpper().Contains(criteria.ReturnPort.ToUpper()) ||
-                    trip.DeparturePort.PortCode.ToUpper().Contains(criteria.ReturnPort.ToUpper())
-                );
-            }
-
-            if (criteria.AnyDate.HasValue)
-            {
-                predicate = predicate.And(trip =>
-                    trip.DepartureDate <= criteria.AnyDate.Value &&
-                    trip.ReturnDate >= criteria.AnyDate.Value
-                );
-            }           
-            return new TubsRepository<Trip>(session).FilterBy(predicate);
+            var predicate = criteria.AsPredicate();
+            return new Repository<ISession, Trip>(session).FilterBy(predicate);
         }
 
         private static ISessionFactory CreateSessionFactory()

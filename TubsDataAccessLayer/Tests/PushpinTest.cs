@@ -22,11 +22,8 @@ namespace Spc.Ofp.Tubs.DAL.Tests
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using System;
-    using System.Collections.Generic;
-    using NHibernate;
-    using NHibernate.Transform;
     using NUnit.Framework;
+    using PagedList;
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
@@ -35,23 +32,18 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class PushpinTest : BaseTest
     {
-        private TubsRepository<Pushpin> repo;
-
-        [TestFixtureSetUp]
-        public void Setup()
-        {
-            this.repo = new TubsRepository<Pushpin>(TubsDataService.GetSession());
-        }
-        
         [Test]
         public void GetPushpins()
         {
-            var pushpins = repo.GetPagedList(0, 500).Entities;
-            Assert.NotNull(pushpins);
-            foreach (var pushpin in pushpins)
+            using (var repo = TubsDataService.GetRepository<Pushpin>(true))
             {
-                Assert.NotNull(pushpin);
-                Assert.False(pushpin.EventKey == default(int));
+                var pushpins = repo.All().ToPagedList(1, 500);
+                Assert.NotNull(pushpins);
+                foreach (var pushpin in pushpins)
+                {
+                    Assert.NotNull(pushpin);
+                    Assert.False(pushpin.EventKey == default(int));
+                }
             }
         }
     }

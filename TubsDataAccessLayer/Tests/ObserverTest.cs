@@ -32,12 +32,12 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class ObserverTest : BaseTest
     {
-        private TubsRepository<Observer> repo;
+        private IRepository<Observer> repo;
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            this.repo = new TubsRepository<Observer>(TubsDataService.GetSession());
+            this.repo = TubsDataService.GetRepository<Observer>(true);
         }
                 
         [Test]
@@ -45,18 +45,18 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         {
             var observers = this.repo.All();
             Assert.NotNull(observers);
-            Assert.Greater(observers.Count<Observer>(), 0);
-            var observer = observers.First<Observer>();
+            Assert.Greater(observers.Count(), 0);
+            var observer = observers.FirstOrDefault();
             Assert.NotNull(observer);
             Assert.False(String.IsNullOrEmpty(observer.StaffCode));
         }
 
         [Test]
-        public void TestGetObserver()
+        public void TestGetObserver([Values("PBS")] string staffCode)
         {
-            var observer = this.repo.FindBy("PBS");
+            var observer = this.repo.FindById(staffCode);
             Assert.NotNull(observer);
-            Assert.AreEqual("PBS", observer.StaffCode.Trim());
+            Assert.AreEqual(staffCode, observer.StaffCode.Trim());
             Assert.AreEqual("PETER SHARPLES (PBS)", observer.ToString());
         }
     }

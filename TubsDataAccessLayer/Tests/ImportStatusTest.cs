@@ -33,34 +33,36 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class ImportStatusTest
     {
+        private IRepository<ImportStatus> repo;
+
+        [TestFixtureSetUp]
+        public void Setup()
+        {
+            this.repo = TubsDataService.GetRepository<ImportStatus>(true);
+        }
+        
         [Test]
         public void GetAllImports()
         {
-            using (var repo = new TubsRepository<ImportStatus>(TubsDataService.GetSession()))
+            var imports = this.repo.All();
+            Assert.NotNull(imports);
+            foreach (ImportStatus import in imports)
             {
-                var imports = repo.All();
-                Assert.NotNull(imports);
-                foreach (ImportStatus import in imports)
-                {
-                    Assert.NotNull(import);
-                    Assert.False(String.IsNullOrEmpty(import.SourceId));
-                    Assert.False(String.IsNullOrEmpty(import.SourceName));
-                }
+                Assert.NotNull(import);
+                Assert.False(String.IsNullOrEmpty(import.SourceId));
+                Assert.False(String.IsNullOrEmpty(import.SourceName));
             }
         }
 
         [Test]
-        public void GetImport()
+        public void GetImport([Values(2222)] int importId)
         {
-            using (var repo = new TubsRepository<ImportStatus>(TubsDataService.GetSession()))
-            {
-                var import = repo.FindBy(2222);
-                Assert.NotNull(import);
-                Assert.AreEqual("FoxPro Observer", import.SourceName);
-                Assert.AreEqual("50", import.SourceId);
-                Assert.AreEqual(81, import.TripId);
-                Assert.AreEqual("TubsTripProcessor", import.EnteredBy);
-            }
+            var import = this.repo.FindById(importId);
+            Assert.NotNull(import);
+            Assert.AreEqual("FoxPro Observer", import.SourceName);
+            Assert.AreEqual("50", import.SourceId);
+            Assert.AreEqual(81, import.TripId);
+            Assert.AreEqual("TubsTripProcessor", import.EnteredBy);
         }
     }
 }

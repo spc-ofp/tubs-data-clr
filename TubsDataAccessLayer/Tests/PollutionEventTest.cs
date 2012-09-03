@@ -32,19 +32,19 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class PollutionEventTest : BaseTest
     {
-        private TubsRepository<PollutionEvent> repo;
+        private IRepository<PollutionEvent> repo;
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            this.repo = new TubsRepository<PollutionEvent>(TubsDataService.GetSession());
+            this.repo = TubsDataService.GetRepository<PollutionEvent>(false);
         }
 
         [Test]
-        public void TestGetPollutionEvent()
+        public void TestGetPollutionEvent([Values(1)] int eventId)
         {
             // Event is a reserved word
-            var pevent = this.repo.FindBy(1);
+            var pevent = this.repo.FindById(eventId);
             Assert.NotNull(pevent);
             Assert.NotNull(pevent.Trip);
             Assert.AreEqual(70, pevent.Trip.Id);

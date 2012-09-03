@@ -25,14 +25,15 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using PagedList;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     [TestFixture]
-    public class BrailTest : BaseTest
+    public class BrailTest
     {
-        private TubsRepository<Brail> repo;
+        private IRepository<Brail> repo;
 
         /// <summary>
         /// Create repository for use by all test cases.
@@ -40,13 +41,13 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [TestFixtureSetUp]
         public void Setup()
         {
-            this.repo = new TubsRepository<Brail>(TubsDataService.GetSession());
+            this.repo = TubsDataService.GetRepository<Brail>(true);
         }
         
         [Test]
         public void GetBrail()
         {
-            var brail = this.repo.FindBy(265);
+            var brail = this.repo.FindById(265);
             Assert.NotNull(brail);
             Assert.AreEqual(234, brail.Header.Id);
             Assert.AreEqual(5, brail.Brail1FullnessCode);
@@ -56,7 +57,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void GetBrails()
         {
-            var brails = this.repo.GetPagedList(0, 1000).Entities;
+            var brails = repo.All().ToPagedList(1, 1000);
             Assert.NotNull(brails);
             foreach (var brail in brails)
             {

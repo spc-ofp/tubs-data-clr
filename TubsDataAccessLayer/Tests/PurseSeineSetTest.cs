@@ -30,37 +30,32 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     /// </summary>
     [TestFixture]
     public class PurseSeineSetTest : BaseTest
-    {
-        private TubsRepository<PurseSeineSet> repo;
-
-        [TestFixtureSetUp]
-        public void Setup()
-        {
-            this.repo = new TubsRepository<PurseSeineSet>(TubsDataService.GetSession());
-        }
-        
+    {   
         [Test]
-        public void TestGetSet()
+        public void TestGetSet([Values(277)] int setId)
         {
-            var set = this.repo.FindBy(277);
-            Assert.NotNull(set);
-            Assert.True(set.StartOfSetFromLog.HasValue);
-            Assert.True(set.SkiffOff.HasValue);
-            Assert.True(set.WinchOn.HasValue);
-            Assert.True(set.RingsUp.HasValue);
-            Assert.True(set.BeginBrailing.HasValue);
-            Assert.True(set.EndBrailing.HasValue);
-            Assert.NotNull(set.CatchList);
-            Assert.Greater(set.CatchList.Count, 10);
-            foreach (var setcatch in set.CatchList)
+            using (var repo = TubsDataService.GetRepository<PurseSeineSet>(false))
             {
-                Assert.AreEqual(set, setcatch.FishingSet);
-                Assert.NotNull(setcatch);
-                Assert.NotNull(setcatch.SpeciesCode);
-                Assert.NotNull(setcatch.FateCode);
-                Assert.NotNull(setcatch.ConditionCode);
-                Assert.True(setcatch.MetricTonsObserved.HasValue);
-                Assert.True(setcatch.MetricTonsFromLog.HasValue);
+                var set = repo.FindById(setId);
+                Assert.NotNull(set);
+                Assert.True(set.StartOfSetFromLog.HasValue);
+                Assert.True(set.SkiffOff.HasValue);
+                Assert.True(set.WinchOn.HasValue);
+                Assert.True(set.RingsUp.HasValue);
+                Assert.True(set.BeginBrailing.HasValue);
+                Assert.True(set.EndBrailing.HasValue);
+                Assert.NotNull(set.CatchList);
+                Assert.Greater(set.CatchList.Count, 10);
+                foreach (var setcatch in set.CatchList)
+                {
+                    Assert.AreEqual(set, setcatch.FishingSet);
+                    Assert.NotNull(setcatch);
+                    Assert.NotNull(setcatch.SpeciesCode);
+                    Assert.NotNull(setcatch.FateCode);
+                    Assert.NotNull(setcatch.ConditionCode);
+                    Assert.True(setcatch.MetricTonsObserved.HasValue);
+                    Assert.True(setcatch.MetricTonsFromLog.HasValue);
+                }
             }
         }
     }

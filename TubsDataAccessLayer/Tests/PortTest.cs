@@ -32,12 +32,12 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class PortTest : BaseTest
     {
-        private TubsRepository<Port> repo;
+        private IRepository<Port> repo;
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            this.repo = new TubsRepository<Port>(TubsDataService.GetSession());
+            this.repo = TubsDataService.GetRepository<Port>(true);
         }
         
         [Test]
@@ -49,11 +49,11 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         }
 
         [Test]
-        public void TestGetPort()
+        public void TestGetPort([Values("JPABU")] string locode)
         {
-            var port = this.repo.FindBy("JPABU");
+            var port = this.repo.FindById(locode);
             Assert.NotNull(port);
-            Assert.AreEqual("JPABU", port.PortCode.Trim());
+            Assert.AreEqual(locode, port.PortCode.Trim());
             Assert.AreEqual("ABURATSU", port.Name.Trim());
         }
     }

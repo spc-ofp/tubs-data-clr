@@ -22,6 +22,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
+    using System.Linq;
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
@@ -32,34 +33,31 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class WellReconciliationTest : BaseTest
     {
-        private TubsRepository<Trip> repo;
+        private IRepository<PurseSeineWellReconciliation> repo;
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            this.repo = new TubsRepository<Trip>(TubsDataService.GetSession());
+            this.repo = TubsDataService.GetRepository<PurseSeineWellReconciliation>(true);
         }
-
+        
         [Test]
-        public void GetSingleReconciliation()
+        public void GetSingleReconciliation([Values(2)] int reconId)
         {
-            var wellRepo = new TubsRepository<PurseSeineWellReconciliation>(TubsDataService.GetSession());
-            var recon = wellRepo.FindBy(2);
+            var recon = this.repo.FindById(reconId);
             Assert.NotNull(recon);
             Assert.AreEqual("0400", recon.ObserverTimeOnly);
             Assert.AreEqual(ActionType.WT, recon.ActionCode);
             Assert.AreEqual(-8.0m, recon.PortWell8);
             Assert.False(recon.PortWell9.HasValue);
-            
         }
 
         [Test]
-        public void GetReconciliations()
+        public void GetReconciliationsByTripId([Values(69)] int tripId)
         {
-            var trip = this.repo.FindBy(69) as PurseSeineTrip;
-            Assert.NotNull(trip);
-            Assert.NotNull(trip.WellReconciliations);
-            Assert.True(trip.WellReconciliations.Count > 0);
+            var recons = this.repo.FilterBy(r => r.Trip.Id == tripId);
+            Assert.NotNull(recons);
+            Assert.True(recons.Count() > 0);
         }
 
     }

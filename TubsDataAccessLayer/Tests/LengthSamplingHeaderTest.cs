@@ -26,32 +26,39 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     using System.Linq;
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using PagedList;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LengthSamplingHeaderTest : BaseTest
+    public class LengthSamplingHeaderTest
     {
-        private TubsRepository<LengthSamplingHeader> repo;
+        private IRepository<LengthSamplingHeader> repo;
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            this.repo = new TubsRepository<LengthSamplingHeader>(TubsDataService.GetSession());
+            this.repo = TubsDataService.GetRepository<LengthSamplingHeader>(false);
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            this.repo.Dispose();
         }
 
         [Test]
         public void TestGetHeaderList()
         {
-            var headers = this.repo.GetPagedList(0, 1000).Entities;
+            var headers = this.repo.All().ToPagedList(1, 1000);
             Assert.NotNull(headers);
-            Assert.Greater(headers.Count<LengthSamplingHeader>(), 100);
+            Assert.Greater(headers.Count(), 100);
         }
 
         [Test]
         public void TestGetHeader()
         {
-            var header = this.repo.FindBy(72);
+            var header = this.repo.FindById(72);
             Assert.NotNull(header);
             Assert.AreEqual(72, header.Id);
             Assert.NotNull(header.Set);

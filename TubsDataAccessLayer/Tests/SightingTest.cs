@@ -26,6 +26,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     using System.Linq;
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using PagedList;
 
     /// <summary>
     /// TODO: Update summary.
@@ -33,31 +34,26 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class SightingTest : BaseTest
     {
-        private TubsRepository<Sighting> repo;
-
-        [TestFixtureSetUp]
-        public void Setup()
-        {
-            this.repo = new TubsRepository<Sighting>(TubsDataService.GetSession());
-        }
-
         [Test]
         public void TestGetSightings()
         {
-            var sightings = this.repo.GetPagedList(0, 100).Entities;
-            Assert.NotNull(sightings);
-            Assert.GreaterOrEqual(sightings.Count<Sighting>(), 29);
-            foreach (var sighting in sightings)
+            using (var repo = TubsDataService.GetRepository<Sighting>(true))
             {
-                Assert.NotNull(sighting);
-                string debugMessage = String.Format("sightingId: {0}", sighting.Id);
-                Assert.NotNull(sighting.Trip);
-                // Either a vessel or a vessel name should be in the record
-                // Except that it's not true for a bunch of records.  These will have to be audited, but for now, skip this assertion
-                //Assert.True(null != sighting.Vessel || !String.IsNullOrEmpty(sighting.VesselName), debugMessage);
-                Assert.True(sighting.GetDate().HasValue, debugMessage);
-                Assert.IsNotNullOrEmpty(sighting.Latitude);
-                Assert.IsNotNullOrEmpty(sighting.Longitude);
+                var sightings = repo.All().ToPagedList(1, 100);
+                Assert.NotNull(sightings);
+                Assert.GreaterOrEqual(sightings.Count<Sighting>(), 29);
+                foreach (var sighting in sightings)
+                {
+                    Assert.NotNull(sighting);
+                    string debugMessage = String.Format("sightingId: {0}", sighting.Id);
+                    Assert.NotNull(sighting.Trip);
+                    // Either a vessel or a vessel name should be in the record
+                    // Except that it's not true for a bunch of records.  These will have to be audited, but for now, skip this assertion
+                    //Assert.True(null != sighting.Vessel || !String.IsNullOrEmpty(sighting.VesselName), debugMessage);
+                    Assert.True(sighting.GetDate().HasValue, debugMessage);
+                    Assert.IsNotNullOrEmpty(sighting.Latitude);
+                    Assert.IsNotNullOrEmpty(sighting.Longitude);
+                }
             }
         }
     }

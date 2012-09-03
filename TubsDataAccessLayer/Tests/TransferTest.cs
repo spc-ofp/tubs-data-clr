@@ -25,6 +25,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     using System.Linq;
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using PagedList;
 
     /// <summary>
     /// TODO: Update summary.
@@ -32,30 +33,24 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class TransferTest : BaseTest
     {
-        private TubsRepository<Transfer> repo;
-
-        [TestFixtureSetUp]
-        public void Setup()
-        {
-            this.repo = new TubsRepository<Transfer>(TubsDataService.GetSession());
-        }
-
         [Test]
         public void TestGetTransfers()
         {
-            var transfers = repo.GetPagedList(0, 200).Entities;
-            Assert.NotNull(transfers);
-            foreach (var transfer in transfers)
+            using (var repo = TubsDataService.GetRepository<Transfer>(true))
             {
-                System.Console.WriteLine("Checking transfer...");
-                Assert.NotNull(transfer);
-                Assert.NotNull(transfer.Trip);
-                // Either a vessel or a vessel name should be in the record
-                // Except that it's not true for a bunch of records.  These will have to be audited, but for now, skip this assertion
-                //Assert.True(null != transfer.Vessel || !String.IsNullOrEmpty(transfer.VesselName));
-                Assert.True(transfer.GetDate().HasValue);
-                Assert.IsNotNullOrEmpty(transfer.Latitude);
-                Assert.IsNotNullOrEmpty(transfer.Longitude);
+                var transfers = repo.All().ToPagedList(1, 200);
+                Assert.NotNull(transfers);
+                foreach (var transfer in transfers)
+                {
+                    Assert.NotNull(transfer);
+                    Assert.NotNull(transfer.Trip);
+                    // Either a vessel or a vessel name should be in the record
+                    // Except that it's not true for a bunch of records.  These will have to be audited, but for now, skip this assertion
+                    //Assert.True(null != transfer.Vessel || !String.IsNullOrEmpty(transfer.VesselName));
+                    Assert.True(transfer.GetDate().HasValue);
+                    Assert.IsNotNullOrEmpty(transfer.Latitude);
+                    Assert.IsNotNullOrEmpty(transfer.Longitude);
+                }
             }
         }
     }

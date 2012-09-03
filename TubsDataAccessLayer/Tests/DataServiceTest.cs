@@ -9,10 +9,11 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     using System.Collections;
     using System.Linq;
     using System.Text;
-    using NUnit.Framework;
-    using Spc.Ofp.Tubs.DAL.Entities;
-    using NHibernate.Criterion;
     using NHibernate;
+    using NHibernate.Criterion;
+    using NUnit.Framework;
+    using PagedList;
+    using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -46,14 +47,10 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void DateCriteria()
         {
-            // CurrentSession.CreateCriteria(typeof(Object)).Add(Expression.Eq(Projections.SqlFunction("day", NHibernateUtil.DateTime, Projections.Property("DateTimeProperty")), pvDay))
-            
-
             // Available SQL functions are here:
             // https://github.com/nhibernate/nhibernate-core/blob/master/src/NHibernate/Dialect/MsSql2000Dialect.cs
-            using (var session = TubsDataService.GetSession())
+            using (var repo = TubsDataService.GetRepository<Trip>(true))
             {
-                var repo = new TubsRepository<Trip>(session);
                 var criteria = repo.CreateCriteria();
                 criteria.Add(Restrictions.Eq(Projections.SqlFunction("year", NHibernateUtil.DateTime, Projections.Property("DepartureDate")), 2009));
                 criteria.Add(Restrictions.Eq(Projections.SqlFunction("month", NHibernateUtil.DateTime, Projections.Property("DepartureDate")), 6));
@@ -63,7 +60,20 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                 //criteria.Add(programs);
                 var trips = criteria.List<Trip>();
                 Assert.NotNull(trips);
-                Assert.AreEqual(8, trips.Count);
+                Assert.AreEqual(8, trips.Count());
+            }
+        }
+
+        [Test]
+        public void PagedList()
+        {
+            using (var repo = TubsDataService.GetRepository<Trip>(true))
+            {
+                var page = repo.All().ToPagedList(1, 10);
+                Assert.AreEqual(10, page.PageSize);
+                Assert.AreEqual(1, page.PageNumber);
+                Assert.True(page.HasNextPage);
+                Assert.False(page.HasPreviousPage);
             }
         }
 
@@ -72,7 +82,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         {
             var criteria = new SearchCriteria();
 
-            using (var session = TubsDataService.GetSession())
+            using (var session = TubsDataService.GetStatelessSession())
             {
                 var results = TubsDataService.Search(session, criteria);
                 Assert.NotNull(results);
@@ -85,7 +95,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
 
                 criteria.ProgramCode = "PGOB";
                 results = TubsDataService.Search(session, criteria);
-                Assert.AreEqual(1, results.Count());
+                Assert.GreaterOrEqual(results.Count(), 1);
 
                 criteria.ProgramCode = String.Empty;
                 criteria.Vessel = "TUNA";

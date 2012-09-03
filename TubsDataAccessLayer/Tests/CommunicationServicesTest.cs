@@ -21,8 +21,6 @@ namespace Spc.Ofp.Tubs.DAL.Tests
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using System;
-    using System.Linq;
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
 
@@ -30,26 +28,18 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     /// TODO: Update summary.
     /// </summary>
     [TestFixture]
-    public class CommunicationServicesTest : BaseTest
+    public class CommunicationServicesTest
     {
-        private TubsRepository<CommunicationServices> repo;
-
-        /// <summary>
-        /// Create repository for use by all test cases.
-        /// </summary>
-        [TestFixtureSetUp]
-        public void Setup()
-        {
-            this.repo = new TubsRepository<CommunicationServices>(TubsDataService.GetSession());
-        }
-
         [Test]
         public void TestGetCommServices()
         {
-            var commservice = this.repo.FindBy(2);
-            Assert.NotNull(commservice);
-            Assert.NotNull(commservice.Trip);
-            Assert.AreEqual(70, commservice.Trip.Id);
+            using (var repo = TubsDataService.GetRepository<CommunicationServices>(true))
+            {
+                var commservice = repo.FindById(2);
+                Assert.NotNull(commservice);
+                Assert.NotNull(commservice.Trip);
+                Assert.AreEqual(70, commservice.Trip.Id);
+            }
         }
     }
 }

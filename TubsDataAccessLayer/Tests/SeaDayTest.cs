@@ -32,37 +32,35 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class SeaDayTest : BaseTest
     {
-        private TubsRepository<SeaDay> repo;
-
-        [TestFixtureSetUp]
-        public void Setup()
-        {
-            this.repo = new TubsRepository<SeaDay>(TubsDataService.GetSession());
-        }
-
         [Test]
-        public void TestGetSeaDay()
+        public void TestGetSeaDay([Values(221)] int dayId)
         {
-            var seaday = this.repo.FindBy(221) as PurseSeineSeaDay;
-            Assert.NotNull(seaday);
-            Assert.NotNull(seaday.Activities);
-            Assert.Greater(seaday.Activities.Count, 5);
-            foreach (var activity in seaday.Activities)
+            using (var repo = TubsDataService.GetRepository<SeaDay>(false))
             {
-                Assert.NotNull(activity.Day);
-                Assert.AreEqual(seaday, activity.Day);
+                var seaday = repo.FindById(dayId) as PurseSeineSeaDay;
+                Assert.NotNull(seaday);
+                Assert.NotNull(seaday.Activities);
+                Assert.Greater(seaday.Activities.Count, 5);
+                foreach (var activity in seaday.Activities)
+                {
+                    Assert.NotNull(activity.Day);
+                    Assert.AreEqual(seaday, activity.Day);
+                }
             }
         }
 
         [Test]
-        public void TestGetSeaDaysForTrip()
+        public void TestGetSeaDaysForTrip([Values(70)] int tripId)
         {
-            var seadays = this.repo.FilterBy(sd => sd.Trip.Id == 70);
-            Assert.NotNull(seadays);
-            Assert.GreaterOrEqual(seadays.Count<SeaDay>(), 19);
-            foreach (var seaday in seadays)
+            using (var repo = TubsDataService.GetRepository<SeaDay>(true))
             {
-                Assert.IsInstanceOf<PurseSeineSeaDay>(seaday);
+                var seadays = repo.FilterBy(sd => sd.Trip.Id == tripId);
+                Assert.NotNull(seadays);
+                Assert.GreaterOrEqual(seadays.Count<SeaDay>(), 19);
+                foreach (var seaday in seadays)
+                {
+                    Assert.IsInstanceOf<PurseSeineSeaDay>(seaday);
+                }
             }
         }
     }

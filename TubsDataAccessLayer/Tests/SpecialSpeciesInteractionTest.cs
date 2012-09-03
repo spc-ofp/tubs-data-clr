@@ -33,24 +33,19 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class SpecialSpeciesInteractionTest : BaseTest
     {
-        private TubsRepository<SpecialSpeciesInteraction> repo;
-
-        [TestFixtureSetUp]
-        public void Setup()
-        {
-            this.repo = new TubsRepository<SpecialSpeciesInteraction>(TubsDataService.GetSession());
-        }
-
         [Test]
-        public void GetInteraction()
+        public void GetInteraction([Values(7)] int interactionId)
         {
-            var interaction = repo.FindBy(7);
-            Assert.NotNull(interaction);
-            Assert.AreEqual("1235", interaction.LandedTimeOnly);
-            Assert.True(interaction.LandedDateOnly.HasValue);
-            Assert.AreEqual(TimeSpan.Zero, interaction.LandedDateOnly.Value.TimeOfDay);
-            Assert.AreEqual(8, interaction.SightingCount);
-            Assert.AreEqual(70.0, interaction.SightingDistance);
+            using (var repo = TubsDataService.GetRepository<SpecialSpeciesInteraction>(true))
+            {
+                var interaction = repo.FindById(interactionId);
+                Assert.NotNull(interaction);
+                Assert.AreEqual("1235", interaction.LandedTimeOnly);
+                Assert.True(interaction.LandedDateOnly.HasValue);
+                Assert.AreEqual(TimeSpan.Zero, interaction.LandedDateOnly.Value.TimeOfDay);
+                Assert.AreEqual(8, interaction.SightingCount);
+                Assert.AreEqual(70.0, interaction.SightingDistance);
+            }
         }
     }
 }

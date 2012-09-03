@@ -21,7 +21,6 @@ namespace Spc.Ofp.Tubs.DAL.Tests
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using System;
     using System.Linq;
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
@@ -32,24 +31,19 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class ElectronicDeviceTest : BaseTest
     {
-        private TubsRepository<ElectronicDevice> repo;
-
-        [TestFixtureSetUp]
-        public void Setup()
-        {
-            this.repo = new TubsRepository<ElectronicDevice>(TubsDataService.GetSession());
-        }
-
         [Test]
         public void TestGetElectronics()
         {
-            var electronics = this.repo.FilterBy(x => x.Trip.Id == 70);
-            Assert.NotNull(electronics);
-            Assert.Greater(electronics.Count<ElectronicDevice>(), 5);
-            foreach (var device in electronics)
+            using (var repo = TubsDataService.GetRepository<ElectronicDevice>(true))
             {
-                Assert.NotNull(device);
-                Assert.NotNull(device.DeviceType);
+                var electronics = repo.FilterBy(x => x.Trip.Id == 70);
+                Assert.NotNull(electronics);
+                Assert.Greater(electronics.Count<ElectronicDevice>(), 5);
+                foreach (var device in electronics)
+                {
+                    Assert.NotNull(device);
+                    Assert.NotNull(device.DeviceType);
+                }
             }
         }
     }

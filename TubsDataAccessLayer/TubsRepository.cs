@@ -226,11 +226,14 @@ namespace Spc.Ofp.Tubs.DAL
                 // If disposing is true, dispose all managed and unmanaged resources
                 if (disposing)
                 {
-                    lock (this.Session)
+                    if (null != this.Session)
                     {
-                        if (this.Session.IsOpen)
+                        lock (this.Session)
                         {
-                            this.Session.Close();
+                            if (this.Session.IsOpen)
+                            {
+                                this.Session.Close();
+                            }
                         }
                     }
                 }

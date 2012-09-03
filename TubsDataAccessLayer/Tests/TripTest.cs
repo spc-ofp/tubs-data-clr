@@ -26,44 +26,53 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using PagedList;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     [TestFixture]
-    public class TripTest : BaseTest
+    public class TripTest
     {
-        private TubsRepository<Trip> repo;
+        private IRepository<Trip> repo;
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            this.repo = new TubsRepository<Trip>(TubsDataService.GetSession());
+            this.repo = TubsDataService.GetRepository<Trip>(false);
         }
         
         [Test]
         public void GetTripList()
         {
-            var trips = this.repo.GetPagedList(0, 50).Entities;
-            Assert.NotNull(trips);
-            Assert.Greater(trips.Count<Trip>(), 0);
-            foreach (Trip t in trips)
+            // The stateless repo is okay for pulling in an entity and any top-level references
+            // It doesn't work for lazy loading any collections, although there's a workaround with
+            // .All().Where(...).FetchMany(...);
+            // NOTE:  FetchMany has to come last!
+            using (var statelessRepo = TubsDataService.GetRepository<Trip>(true))
             {
-                Assert.NotNull(t);
-                Assert.NotNull(t.Observer);
-                Assert.NotNull(t.Vessel);
-                //Assert.AreEqual(VesselTypeCode.PS, t.Vessel.TypeCode);
-                Assert.NotNull(t.DeparturePort);
-                Assert.NotNull(t.ReturnPort);
-                Assert.False(String.IsNullOrEmpty(t.EnteredBy));
-                Assert.True(t.EnteredDate.HasValue);
+                var trips = statelessRepo.All().ToPagedList(1, 50);
+                //var trips = this.repo.GetPagedList(0, 50).Entities;
+                Assert.NotNull(trips);
+                Assert.Greater(trips.Count(), 0);
+                foreach (Trip t in trips)
+                {
+                    Assert.NotNull(t);
+                    Assert.NotNull(t.Observer);
+                    Assert.NotNull(t.Vessel);
+                    //Assert.AreEqual(VesselTypeCode.PS, t.Vessel.TypeCode);
+                    Assert.NotNull(t.DeparturePort);
+                    Assert.NotNull(t.ReturnPort);
+                    Assert.False(String.IsNullOrEmpty(t.EnteredBy));
+                    Assert.True(t.EnteredDate.HasValue);
+                }
             }
         }
 
         [Test]
         public void GetTripEx([Values(70)] int tripId)
         {
-            var trip = this.repo.FindBy(tripId) as PurseSeineTrip;
+            var trip = this.repo.FindById(tripId) as PurseSeineTrip;
             Assert.IsNotNull(trip);
             Assert.True(trip.Version.HasValue);
             Assert.AreEqual(WorkbookVersion.v2007, trip.Version.Value);
@@ -94,7 +103,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void GetPurseSeineTrip([Values(68)] int tripId)
         {
-            var trip = this.repo.FindBy(tripId) as PurseSeineTrip;      
+            var trip = this.repo.FindById(tripId) as PurseSeineTrip;      
             Assert.NotNull(trip);
             Assert.NotNull(trip.Observer);
             Assert.AreEqual("PBS", trip.Observer.StaffCode.Trim());
@@ -113,10 +122,11 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             }
         }
 
+        // 4321, and 4320 are NCOB longline trips
         [Test]
-        public void GetLongLineTrip([Values(12345)] int tripId)
+        public void GetLongLineTrip([Values(4321, 4320)] int tripId)
         {
-            var trip = this.repo.FindBy(tripId) as LongLineTrip;
+            var trip = this.repo.FindById(tripId) as LongLineTrip;
             Assert.NotNull(trip);
             Assert.NotNull(trip.Observer);
             Assert.NotNull(trip.Vessel);
@@ -127,17 +137,23 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void GetTripWithObserver([Values(69)] int tripId)
         {
-            var trip = this.repo.FindBy(69) as PurseSeineTrip;
-            Assert.NotNull(trip);
-            Assert.NotNull(trip.Observer);
+            using (var statelessRepo = TubsDataService.GetRepository<Trip>(true))
+            {
+                var trip = statelessRepo.FindById(tripId) as PurseSeineTrip;
+                Assert.NotNull(trip);
+                Assert.NotNull(trip.Observer);
+            }
         }
 
         [Test]
         public void GetMyTrips()
         {
-            var trips = this.repo.FilterBy(t => t.EnteredBy.ToUpper().Contains("COREY"));
-            Assert.NotNull(trips);
-            Assert.True(trips.Count() > 5);
+            using (var statelessRepo = TubsDataService.GetRepository<Trip>(true))
+            {
+                var trips = statelessRepo.FilterBy(t => t.EnteredBy.ToUpper().Contains("COREY"));
+                Assert.NotNull(trips);
+                Assert.True(trips.Count() > 5);
+            }
         }
     }
 }

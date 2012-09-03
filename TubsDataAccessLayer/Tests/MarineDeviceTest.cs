@@ -21,7 +21,6 @@ namespace Spc.Ofp.Tubs.DAL.Tests
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using System;
     using System.Linq;
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Entities;
@@ -29,26 +28,22 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class MarineDeviceTest : BaseTest
+    public class MarineDeviceTest
     {
-        private TubsRepository<MarineDevice> repo;
-
-        [TestFixtureSetUp]
-        public void Setup()
-        {
-            this.repo = new TubsRepository<MarineDevice>(TubsDataService.GetSession());
-        }
 
         [Test]
         public void TestGetMarineDevices()
         {
-            var devices = this.repo.All();
-            Assert.NotNull(devices);
-            Assert.Greater(devices.Count<MarineDevice>(), 100);
-            foreach (var device in devices)
+            using (var repo = TubsDataService.GetRepository<MarineDevice>(true))
             {
-                Assert.NotNull(device);
-                Assert.NotNull(device.Description);
+                var devices = repo.All();
+                Assert.NotNull(devices);
+                Assert.Greater(devices.Count(), 100);
+                foreach (var device in devices)
+                {
+                    Assert.NotNull(device);
+                    Assert.NotNull(device.Description);
+                }
             }
         }
     }

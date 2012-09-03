@@ -31,12 +31,12 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class VesselTest : BaseTest
     {
-        private TubsRepository<Vessel> repo;
+        private IRepository<Vessel> repo;
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            this.repo = new TubsRepository<Vessel>(TubsDataService.GetSession());
+            this.repo = TubsDataService.GetRepository<Vessel>(true);
         }
         
         [Test]
@@ -44,14 +44,15 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         {
             var vessels = this.repo.All();
             Assert.NotNull(vessels);
-            Assert.Greater(vessels.Count<Vessel>(), 0);
+            Assert.Greater(vessels.Count(), 0);
         }
 
         [Test]
-        public void TestGetVessel()
+        public void TestGetVessel([Values(23382)] int vesselId)
         {
-            var vessel = this.repo.FindBy(23382);
+            var vessel = this.repo.FindById(vesselId);
             Assert.NotNull(vessel);
+            Assert.AreEqual(vesselId, vessel.Id);
             Assert.AreEqual("FONG SEONG 196", vessel.Name.Trim());
         }
     }

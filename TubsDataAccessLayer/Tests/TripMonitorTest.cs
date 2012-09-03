@@ -22,23 +22,23 @@ namespace Spc.Ofp.Tubs.DAL.Tests
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
+    using System;
     using System.Linq;
     using NUnit.Framework;
     using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
-    using System;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class TripMonitorTest : BaseTest
     {
-        private TubsRepository<TripMonitor> repo;
+        private IRepository<TripMonitor> repo;
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            this.repo = new TubsRepository<TripMonitor>(TubsDataService.GetSession());
+            this.repo = TubsDataService.GetRepository<TripMonitor>(false);
         }
 
         public void TestGetTripMonitorList()
@@ -55,9 +55,9 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         }
 
         [Test]
-        public void TestGetTripMonitor()
+        public void TestGetTripMonitor([Values(62)] int gen3Id)
         {
-            var gen3 = this.repo.FindBy(62);
+            var gen3 = this.repo.FindById(gen3Id);
             Assert.NotNull(gen3);
             Assert.NotNull(gen3.Trip);
             Assert.AreEqual(70, gen3.Trip.Id);
@@ -70,7 +70,6 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                 Assert.AreEqual(gen3.Id, detail.Header.Id);
                 Assert.IsNotNullOrEmpty(detail.Comments);
                 Assert.IsTrue(detail.DetailDate.HasValue);
-
             }
         }
 

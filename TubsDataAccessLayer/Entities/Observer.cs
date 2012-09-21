@@ -25,6 +25,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Text;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
     /// Observer entity.  Sourced from the [ref].[field_staff] view and therefore

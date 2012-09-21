@@ -241,7 +241,6 @@
     <Compile Include="Tests\WellReconciliationTest.cs" />
     <Compile Include="TubsDataService.cs" />
     <Compile Include="TubsRepository.cs" />
-    <Compile Include="Utilities.cs" />
     <Compile Include="YesNoType.cs" />
   </ItemGroup>
   <ItemGroup>

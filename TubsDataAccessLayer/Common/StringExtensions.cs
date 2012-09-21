@@ -23,6 +23,7 @@ namespace Spc.Ofp.Tubs.DAL.Common
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Extension methods for working with System.String
@@ -31,14 +32,33 @@ namespace Spc.Ofp.Tubs.DAL.Common
     {
         private const int NumberOfDecimalPlaces = 3;
         private const int HemisphereLength = 1;
-        
-        public static string NullSafeTrim(this string value)
+        private static Regex multiSpaceRegex = new Regex(@"\s+");
+
+        public static string NullSafeToLower(this string value)
         {
-            if (null == value)
+            return string.IsNullOrEmpty(value) ? value : value.ToLower();
+        }
+
+        public static string NullSafeToUpper(this string value)
+        {
+            return string.IsNullOrEmpty(value) ? value : value.ToUpper();
+        }
+
+        public static string NullSafeTrim(this string instring)
+        {
+            return string.IsNullOrEmpty(instring) ? instring : instring.Trim();
+        }
+
+        public static string NormalizeSpaces(string instring)
+        {
+            // Don't bother with null or empty strings
+            if (String.IsNullOrEmpty(instring))
             {
-                return null;
+                return instring;
             }
-            return value.Trim();
+
+            return multiSpaceRegex.IsMatch(instring) ?
+                multiSpaceRegex.Replace(instring, " ") : instring;
         }
 
         private static string AddDecimalSeparator(string value, int fromLeft)

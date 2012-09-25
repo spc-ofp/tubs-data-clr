@@ -34,7 +34,11 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         protected BaseActivityMap()
         {
             Map(x => x.LocalTime, "act_dtime");
+            Map(x => x.LocalTimeTimeOnly, "act_time");
+            Map(x => x.LocalTimeDateOnly, "act_date");
             Map(x => x.UtcTime, "utc_act_dtime");
+            Map(x => x.UtcDateOnly, "utc_act_date");
+            Map(x => x.UtcTimeOnly, "utc_act_time");
             Map(x => x.Latitude, "lat").Length(9);
             Map(x => x.Longitude, "lon").Length(10);
             Map(x => x.EezCode, "eez_code").Length(2);

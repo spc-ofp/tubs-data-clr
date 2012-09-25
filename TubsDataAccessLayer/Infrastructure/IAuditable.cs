@@ -20,5 +20,7 @@ namespace Spc.Ofp.Tubs.DAL.Infrastructure
         string UpdatedBy { get; set; }
 
         DateTime? UpdatedDate { get; set; }
+
+        void SetAuditTrail(string userName, DateTime timestamp);
     }
 }

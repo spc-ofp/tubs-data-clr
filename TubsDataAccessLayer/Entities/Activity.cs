@@ -24,21 +24,32 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// Activity represents a line item on the daily log form
     /// (e.g. PS-2 for purse seine trips, not sure what it is for
     /// pole and line trips...)
     /// </summary>
-    public abstract class Activity
+    public abstract class Activity : IAuditable
     {
         public virtual int Id { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "LocalTime")]
         public virtual DateTime? LocalTime { get; set; }
 
+        public virtual DateTime? LocalTimeDateOnly { get; set; }
+
+        // Yes, this is a crappy variable name, but it should be
+        // understood as Local Time, time only
+        public virtual string LocalTimeTimeOnly { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "UtcTime")]
         public virtual DateTime? UtcTime { get; set; } // Derived from UTC offset of local time
+
+        public virtual DateTime? UtcDateOnly { get; set; }
+
+        public virtual string UtcTimeOnly { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "Latitude")]
         [RegularExpression(@"^[0-8]\d{3}\.?\d{3}[NnSs]$",
@@ -92,5 +103,19 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
+        }
     }
 }

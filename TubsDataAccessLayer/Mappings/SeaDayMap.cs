@@ -77,6 +77,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DiaryPage, "diarypage");
             HasMany(x => x.Activities)
                 .KeyColumn("s_day_id")
+                .Inverse() // Activities are responsible for saving themselves
                 .Cascade.None()
                 .Not.LazyLoad();
             // Dick around with this:

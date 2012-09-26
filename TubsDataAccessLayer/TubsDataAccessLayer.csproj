@@ -216,6 +216,7 @@
     <Compile Include="Tests\BrailTest.cs" />
     <Compile Include="Tests\CommunicationServicesTest.cs" />
     <Compile Include="Tests\DataServiceTest.cs" />
+    <Compile Include="Tests\DateExtensionTest.cs" />
     <Compile Include="Tests\ElectronicDeviceTest.cs" />
     <Compile Include="Tests\EnumExtensionsTest.cs" />
     <Compile Include="Tests\ImportStatusTest.cs" />

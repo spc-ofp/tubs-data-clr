@@ -31,7 +31,8 @@ namespace Spc.Ofp.Tubs.DAL.Common
     {
         public static DateTime? Merge(this DateTime? dateOnly, string timeOnly)
         {
-            if (!dateOnly.HasValue || null == timeOnly || String.Empty.Equals(timeOnly.Trim()) || timeOnly.Length != 4)
+            timeOnly = timeOnly.NullSafeTrim();
+            if (!dateOnly.HasValue || null == timeOnly || timeOnly.Length != 4)
             {
                 return dateOnly;
             }
@@ -43,7 +44,7 @@ namespace Spc.Ofp.Tubs.DAL.Common
             int minutes = 0;
             if (Int32.TryParse(hourString, out hours) && Int32.TryParse(minuteString, out minutes))
             {
-                mergedDate.Add(new TimeSpan(hours, minutes, 0));
+                mergedDate = mergedDate.Add(new TimeSpan(hours, minutes, 0));
             }
             return mergedDate;
         }

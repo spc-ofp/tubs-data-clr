@@ -98,8 +98,14 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctScore, "dct_score");
 
             References(x => x.Activity).Column("s_daylog_id");
-            HasMany(x => x.CatchList).KeyColumn("s_set_id").Cascade.None();
-            HasMany(x => x.SamplingHeaders).KeyColumn("s_set_id").Cascade.None();
+            HasMany(x => x.CatchList)
+                .KeyColumn("s_set_id")
+                .Inverse() // CatchList items are responsible for saving themselves
+                .Cascade.None();
+            HasMany(x => x.SamplingHeaders)
+                .KeyColumn("s_set_id")
+                .Inverse() // SamplingHeader items are responsible for saving themselves
+                .Cascade.None();
         }
     }
 }

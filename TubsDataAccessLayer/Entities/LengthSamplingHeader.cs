@@ -23,13 +23,14 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      */
     using System;
     using System.Collections.Generic;
-    using Spc.Ofp.Tubs.DAL.Common;
     using System.ComponentModel.DataAnnotations;
+    using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LengthSamplingHeader
+    public class LengthSamplingHeader : IAuditable
     {
         public LengthSamplingHeader()
         {
@@ -180,6 +181,20 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             
             brail.Header = this;
             this.Brails.Add(brail);
+        }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
         }
     }
 }

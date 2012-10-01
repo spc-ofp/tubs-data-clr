@@ -24,11 +24,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// Purse seine set details as recorded on form PS-3
     /// </summary>
-    public class PurseSeineSet
+    public class PurseSeineSet : IAuditable
     {
         public PurseSeineSet()
         {
@@ -268,6 +269,20 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             header.Set = this;
             this.SamplingHeaders.Add(header);
+        }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
         }
     }
 }

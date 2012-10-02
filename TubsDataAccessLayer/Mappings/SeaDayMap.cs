@@ -78,8 +78,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             HasMany(x => x.Activities)
                 .KeyColumn("s_day_id")
                 .Inverse() // Activities are responsible for saving themselves
-                .Cascade.None()
-                .Not.LazyLoad();
+                .Cascade.None();
+                //.Not.LazyLoad();
             // Dick around with this:
             // http://stackoverflow.com/questions/9904507/explicit-value-for-identity-column-error-on-insert-with-nhibernate-relationship
         }

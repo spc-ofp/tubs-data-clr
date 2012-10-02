@@ -115,6 +115,15 @@ namespace Spc.Ofp.Tubs.DAL
             }
         }
 
+        // TODO: Test me!
+        public void Reload(T entity)
+        {
+            if (!_isStateless)
+            {
+                GetSession().Refresh(entity);
+            }
+        }
+
         public ICriteria CreateCriteria()
         {
             return

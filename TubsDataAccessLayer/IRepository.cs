@@ -49,9 +49,13 @@ namespace Spc.Ofp.Tubs.DAL
 
         void Add(IEnumerable<T> items);
 
-        void Update(T entity);
+        void Update(T entity, bool autoMerge = false);
 
-        void Update(IEnumerable<T> items);
+        void Update(IEnumerable<T> items, bool autoMerge = false);
+
+        void Reload(T entity);
+
+        void Evict(T entity);
 
         ICriteria CreateCriteria();
 

@@ -57,7 +57,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.UpdatedDate, "updated_dtime");
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");
-            Map(x => x.Comments, "comments"); 
+            Map(x => x.Comments, "comments");
         }
     }
 
@@ -85,7 +85,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
                 .Column("s_day_id")
                 .Not.LazyLoad();
 
-            HasOne(x => x.FishingSet).PropertyRef(r => r.Activity).Cascade.All();
+            HasOne(x => x.FishingSet).PropertyRef(r => r.Activity).Cascade.None();
+            HasOne(x => x.Fad).PropertyRef(r => r.Activity).Cascade.None();
         }
     }
 }

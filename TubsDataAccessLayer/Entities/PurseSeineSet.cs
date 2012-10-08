@@ -205,6 +205,14 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// </summary>
         public virtual decimal? TonsOfBigeyeObserved { get; set; }
 
+        public virtual int? LargeYellowfinPercentage { get; set; }
+
+        public virtual int? LargeBigeyePercentage { get; set; }
+
+        public virtual int? LargeYellowfinCount { get; set; }
+
+        public virtual int? LargeBigeyeCount { get; set; }
+
         public virtual bool? ContainsLargeTuna { get; set; }
 
         public virtual int? LargeTunaPercentage { get; set; }

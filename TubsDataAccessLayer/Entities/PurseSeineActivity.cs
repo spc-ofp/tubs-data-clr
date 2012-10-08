@@ -48,6 +48,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "SeaCode")]
         public virtual SeaCode? SeaCode { get; set; }
 
+        // This is only present when the ActivityType is related to a FAD
+        // (10D, 10R, 15D, 15R, or 9)
+        public virtual Gen5Object Fad { get; set; }
+
         // This should only happen when the activity code is ActivityType.Fishing
         public virtual PurseSeineSet FishingSet { get; set; }
     }

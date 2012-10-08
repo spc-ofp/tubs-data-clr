@@ -71,16 +71,20 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.ContainsSkipjack, "totskj_ans").CustomType<YesNoType>();
             Map(x => x.ContainsYellowfin, "totyft_ans").CustomType<YesNoType>();
             Map(x => x.ContainsBigeye, "totbet_ans").CustomType<YesNoType>();
-            Map(x => x.ContainsLargeTuna, "totyftbet_ans").CustomType<YesNoType>(); // ???
+            Map(x => x.ContainsLargeTuna, "totyftbet_ans").CustomType<YesNoType>(); // Early workbooks mixed large species
             Map(x => x.TotalTunaAnswer, "tottun_ans").CustomType<YesNoType>();
             // New v2009 fields
             Map(x => x.ContainsLargeYellowfin, "large_yft_ans").CustomType<YesNoType>();
+            Map(x => x.LargeYellowfinPercentage, "perc_large_yft");
             Map(x => x.ContainsLargeBigeye, "large_bet_ans").CustomType<YesNoType>();
+            Map(x => x.LargeBigeyePercentage, "perc_large_bet");
+            Map(x => x.LargeBigeyeCount, "nb_large_bet");
+            Map(x => x.LargeYellowfinCount, "nb_large_yft");
 
             Map(x => x.SkipjackPercentage, "perc_skj");           
             Map(x => x.YellowfinPercentage, "perc_yft");           
             Map(x => x.BigeyePercentage, "perc_bet");            
-            Map(x => x.LargeTunaPercentage, "perc_yftbet"); // ???           
+            Map(x => x.LargeTunaPercentage, "perc_yftbet"); // Early workbooks mixed large species         
             Map(x => x.PercentageOfTuna, "perc_tun");
             
             Map(x => x.LargeSpecies, "large_sp").Length(10);

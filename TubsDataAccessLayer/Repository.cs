@@ -30,13 +30,14 @@ namespace Spc.Ofp.Tubs.DAL
         // different operations that each session type implements.
         delegate T ReturningOperation(object id);
         delegate void Operation(T entity);
+        delegate void MergingOperation(T entity, bool merge);
         delegate IQueryable<T> QueryOperation();
 
         // Pointers to the actual functions used to perform the
         // NHibernate operations.
         private readonly Operation CreateOperation;
         private readonly ReturningOperation ReadOperation;
-        private readonly Operation UpdateOperation;
+        private readonly MergingOperation UpdateOperation;
         private readonly Operation DeleteOperation;
         private readonly QueryOperation ListOperation;
 
@@ -53,7 +54,7 @@ namespace Spc.Ofp.Tubs.DAL
             {
                 CreateOperation = (x) => GetStatelessSession().Insert(x);
                 ReadOperation = (x) => GetStatelessSession().Get<T>(x);
-                UpdateOperation = (x) => GetStatelessSession().Update(x);
+                UpdateOperation = (x, m) => GetStatelessSession().Update(x);
                 DeleteOperation = (x) => GetStatelessSession().Delete(x);
                 ListOperation = () => GetStatelessSession().Query<T>();
             }
@@ -61,7 +62,17 @@ namespace Spc.Ofp.Tubs.DAL
             {
                 CreateOperation = (x) => GetSession().SaveOrUpdate(x);
                 ReadOperation = (x) => GetSession().Get<T>(x);
-                UpdateOperation = (x) => GetSession().SaveOrUpdate(x);
+                UpdateOperation = (x, m) =>
+                {
+                    if (m)
+                    {
+                        GetSession().Merge(x);
+                    }
+                    else
+                    {
+                        GetSession().SaveOrUpdate(x);
+                    }
+                };
                 DeleteOperation = (x) => GetSession().Delete(x);
                 ListOperation = () => GetSession().Query<T>();
             }
@@ -102,16 +113,16 @@ namespace Spc.Ofp.Tubs.DAL
             }
         }
 
-        public void Update(T entity)
+        public void Update(T entity, bool autoMerge = false)
         {
-            UpdateOperation(entity);
+            UpdateOperation(entity, autoMerge);
         }
 
-        public void Update(IEnumerable<T> items)
+        public void Update(IEnumerable<T> items, bool autoMerge = false)
         {
             foreach (T item in items)
             {
-                UpdateOperation(item);
+                UpdateOperation(item, autoMerge);
             }
         }
 
@@ -121,6 +132,15 @@ namespace Spc.Ofp.Tubs.DAL
             if (!_isStateless)
             {
                 GetSession().Refresh(entity);
+            }
+        }
+
+        // At this rate I'd be better off just using ISession...
+        public void Evict(T entity)
+        {
+            if (!_isStateless)
+            {
+                GetSession().Evict(entity);
             }
         }
 

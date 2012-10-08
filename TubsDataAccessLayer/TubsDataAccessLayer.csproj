@@ -67,6 +67,10 @@
     <Compile Include="Common\DateExtensions.cs" />
     <Compile Include="Common\DetectionMethod.cs" />
     <Compile Include="Common\EnumExtensions.cs" />
+    <Compile Include="Common\FadDetectionMethod.cs" />
+    <Compile Include="Common\FadMaterials.cs" />
+    <Compile Include="Common\FadOrigin.cs" />
+    <Compile Include="Common\FadType.cs" />
     <Compile Include="Common\FateCode.cs" />
     <Compile Include="Common\FormNames.cs" />
     <Compile Include="Common\GonadStage.cs" />
@@ -101,6 +105,8 @@
     <Compile Include="Entities\Gear.cs" />
     <Compile Include="Entities\Gen3Answer.cs" />
     <Compile Include="Entities\Gen3Detail.cs" />
+    <Compile Include="Entities\Gen5Material.cs" />
+    <Compile Include="Entities\Gen5Object.cs" />
     <Compile Include="Entities\ImportStatus.cs" />
     <Compile Include="Entities\InteractionDetail.cs" />
     <Compile Include="Entities\LengthSample.cs" />
@@ -174,6 +180,8 @@
     <Compile Include="Mappings\GearMap.cs" />
     <Compile Include="Mappings\Gen3AnswerMap.cs" />
     <Compile Include="Mappings\Gen3DetailMap.cs" />
+    <Compile Include="Mappings\Gen5MaterialMap.cs" />
+    <Compile Include="Mappings\Gen5ObjectMap.cs" />
     <Compile Include="Mappings\ImportStatusMap.cs" />
     <Compile Include="Mappings\InteractionDetailMap.cs" />
     <Compile Include="Mappings\LengthSampleMap.cs" />
@@ -219,6 +227,7 @@
     <Compile Include="Tests\DateExtensionTest.cs" />
     <Compile Include="Tests\ElectronicDeviceTest.cs" />
     <Compile Include="Tests\EnumExtensionsTest.cs" />
+    <Compile Include="Tests\Gen5Test.cs" />
     <Compile Include="Tests\ImportStatusTest.cs" />
     <Compile Include="Tests\LengthSamplingHeaderTest.cs" />
     <Compile Include="Tests\LongLineSetHaulEventTest.cs" />

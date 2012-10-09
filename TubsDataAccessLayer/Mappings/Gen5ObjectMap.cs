@@ -36,7 +36,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Schema("obsv");
             Table("gen5fad");
             Id(x => x.Id, "fad_id").GeneratedBy.Identity();
-            Map(x => x.ObjectNumber, "object_number").Length(20);
+            Map(x => x.ObjectNumber, "object_number");
             Map(x => x.Origin, "origin_code").CustomType<FadOrigin>();
             Map(x => x.DeploymentDate, "deployment_date");
             Map(x => x.Latitude, "lat").Length(9);

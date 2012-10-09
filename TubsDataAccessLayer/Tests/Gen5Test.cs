@@ -43,7 +43,8 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                 Assert.NotNull(fad);
                 Assert.NotNull(fad.Activity);
                 Assert.AreEqual(3718, fad.Activity.Id);
-                StringAssert.AreEqualIgnoringCase("xyzzy", fad.ObjectNumber);
+                Assert.True(fad.ObjectNumber.HasValue);
+                Assert.AreEqual(1, fad.ObjectNumber.Value);
                 Assert.True(fad.Origin.HasValue);
                 Assert.AreEqual(FadOrigin.DeployedPreviousTrip, fad.Origin.Value);
                 Assert.True(fad.IsSsiTrapped.HasValue);

@@ -25,6 +25,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Infrastructure;
 
@@ -42,7 +43,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual PurseSeineActivity Activity { get; set; }
 
-        public virtual string ObjectNumber { get; set; }
+        /// <summary>
+        /// ObjectNumber is a sequence number assigned by the observer per trip.
+        /// It's intended to allow the tracking of behavior relating to floating
+        /// objects that don't carry markings (e.g. a bunch of logs or a dead animal).
+        /// </summary>
+        public virtual int? ObjectNumber { get; set; }
 
         public virtual FadOrigin? Origin { get; set; }
 
@@ -71,6 +77,28 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual string Comments { get; set; }
 
         public virtual IList<Gen5Material> Materials { get; protected internal set; }
+
+        public virtual IList<FadMaterials> MainMaterials
+        {
+            get
+            {
+                return Materials
+                    .Where(x => x != null && !x.IsAttachment)
+                    .Select(x => x.Material)
+                    .ToList();
+            }
+        }
+
+        public virtual IList<FadMaterials> Attachments
+        {
+            get
+            {
+                return Materials
+                    .Where(x => x != null && x.IsAttachment)
+                    .Select(x => x.Material)
+                    .ToList();
+            }
+        }
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }

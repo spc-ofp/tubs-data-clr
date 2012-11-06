@@ -25,11 +25,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class Transfer
+    public class Transfer : IAuditable
     {
         public virtual int Id { get; set; }
 
@@ -116,6 +117,20 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             return this.TransferDate.HasValue ?
                 this.TransferDate :
                 this.TransferDateOnly.Merge(this.TransferTimeOnly);
+        }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
         }
     }
 }

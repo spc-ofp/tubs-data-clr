@@ -25,11 +25,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// Entity that collects vessel information specific to Purse Seiners.
     /// </summary>
-    public class PurseSeineVesselAttributes
+    public class PurseSeineVesselAttributes : IAuditable
     {
         public virtual int Id { get; set; }
 
@@ -110,5 +111,19 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
+        }
     }
 }

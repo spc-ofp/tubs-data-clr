@@ -58,7 +58,11 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");
 
-            HasMany(x => x.Materials).KeyColumn("fad_id");
+            HasMany(x => x.Materials)
+                .KeyColumn("fad_id")
+                .Inverse() // Tried this the other way and no dice...
+                .Cascade
+                .None();
             References(x => x.Activity).Column("s_daylog_id");
         }
     }

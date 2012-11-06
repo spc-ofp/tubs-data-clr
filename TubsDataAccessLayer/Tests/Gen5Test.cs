@@ -51,5 +51,37 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                 Assert.False(fad.IsSsiTrapped.Value);
             }
         }
+
+        [Test]
+        public void SaveFad()
+        {
+            
+            var session = TubsDataService.GetSession();
+            var arepo = TubsDataService.GetRepository<Activity>(session);
+            var frepo = TubsDataService.GetRepository<Gen5Object>(session);
+
+            var fad = new Gen5Object();
+            fad.ObjectNumber = 1;
+            fad.Activity = arepo.FindById(1976) as PurseSeineActivity;
+            Assert.NotNull(fad.Activity);
+            fad.Comments = "Test FAD";
+            fad.Origin = FadOrigin.DeployedThisTrip;
+            fad.Materials.Add(
+                new Gen5Material
+                { 
+                    IsAttachment = false,
+                    Fad = fad,
+                    Material = FadMaterials.CoconutFronds
+                });
+
+            using (var xa = session.BeginTransaction())
+            {
+                frepo.Add(fad);
+                xa.Commit();
+                frepo.Reload(fad);
+                Assert.NotNull(fad);
+                Assert.AreNotEqual(0, fad.Id);
+            }
+        }
     }
 }

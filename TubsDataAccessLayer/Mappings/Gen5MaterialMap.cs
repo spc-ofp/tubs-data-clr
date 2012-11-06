@@ -39,7 +39,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Material, "material_code").CustomType<FadMaterials>();
             Map(x => x.IsAttachment, "is_attachment").CustomType<YesNoType>();
 
-            References(x => x.Fad).Column("fad_id");
+            References(x => x.Fad).Column("fad_id").ForeignKey("FK_gen5fad_material");
         }
     }
 }

@@ -25,11 +25,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// Sighting represents a vessel sighting recorded on form GEN-1.
     /// </summary>
-    public class Sighting
+    public class Sighting : IAuditable
     {
         public virtual int Id { get; set; }
 
@@ -121,6 +122,20 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             return this.EventDate.HasValue ?
                 this.EventDate :
                 this.EventDateOnly.Merge(this.EventTimeOnly);
+        }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
         }
     }
 }

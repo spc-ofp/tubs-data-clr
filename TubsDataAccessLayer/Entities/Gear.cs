@@ -3,6 +3,7 @@
 // Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
+
 namespace Spc.Ofp.Tubs.DAL.Entities
 {
     /*
@@ -28,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public abstract class Gear : IAuditable
+    public abstract class Gear : IAuditable, IEntity
     {
         public virtual int Id { get; set; }
 
@@ -52,6 +53,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
 
         public virtual void SetAuditTrail(string userName, DateTime timestamp)
         {

@@ -26,12 +26,13 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// Entity representing interactions with species of special interest.
     /// Data are collected on GEN-2 forms.
     /// </summary>
-    public class SpecialSpeciesInteraction
+    public class SpecialSpeciesInteraction : IAuditable, IEntity
     {
         public SpecialSpeciesInteraction()
         {
@@ -181,6 +182,30 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             detail.Header = this;
             this.Details.Add(detail);
+        }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
         }
     }
 }

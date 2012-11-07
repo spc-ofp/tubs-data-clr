@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// Purse seine set details as recorded on form PS-3
     /// </summary>
-    public class PurseSeineSet : IAuditable
+    public class PurseSeineSet : IAuditable, IEntity
     {
         public PurseSeineSet()
         {
@@ -277,6 +277,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             header.Set = this;
             this.SamplingHeaders.Add(header);
+        }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
         }
 
         public virtual void SetAuditTrail(string userName, DateTime timestamp)

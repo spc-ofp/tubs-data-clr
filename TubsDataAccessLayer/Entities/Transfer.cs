@@ -30,7 +30,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class Transfer : IAuditable
+    public class Transfer : IAuditable, IEntity
     {
         public virtual int Id { get; set; }
 
@@ -117,6 +117,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             return this.TransferDate.HasValue ?
                 this.TransferDate :
                 this.TransferDateOnly.Merge(this.TransferTimeOnly);
+        }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
         }
 
         public virtual void SetAuditTrail(string userName, DateTime timestamp)

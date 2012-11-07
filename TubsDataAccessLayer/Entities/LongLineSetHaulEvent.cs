@@ -24,15 +24,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      */
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// TODO: It would be interesting to split this into a LongLineSetEvent and a LongLineHaulEvent
     /// (with an abstract base LongLineEvent class)
     /// </summary>
-    public class LongLineSetHaulEvent
+    public class LongLineSetHaulEvent : IAuditable, IEntity
     {
         public virtual int Id { get; set; }
 
@@ -130,6 +131,30 @@ namespace Spc.Ofp.Tubs.DAL.Entities
                 haulingEvents.Last().ActivityType = HaulActivityType.EndOfHaul;
             }
 
+        }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
         }
     }
 }

@@ -169,6 +169,7 @@
     </Compile>
     <Compile Include="Infrastructure\IAuditable.cs" />
     <Compile Include="Infrastructure\IDctFlaggable.cs" />
+    <Compile Include="Infrastructure\IEntity.cs" />
     <Compile Include="Infrastructure\PredicateBuilder.cs" />
     <Compile Include="Infrastructure\PredicateExtensions.cs" />
     <Compile Include="IRepository.cs" />

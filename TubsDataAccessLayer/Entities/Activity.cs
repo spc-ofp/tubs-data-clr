@@ -31,7 +31,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// (e.g. PS-2 for purse seine trips, not sure what it is for
     /// pole and line trips...)
     /// </summary>
-    public abstract class Activity : IAuditable
+    public abstract class Activity : IAuditable, IEntity
     {
         public virtual int Id { get; set; }
 
@@ -103,6 +103,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
 
         public virtual void SetAuditTrail(string userName, DateTime timestamp)
         {

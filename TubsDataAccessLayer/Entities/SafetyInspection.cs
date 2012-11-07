@@ -32,7 +32,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// Vessel safety information.  Includes lifejacket questions,
     /// EPIRB inspection, and liferaft inspection.
     /// </summary>
-    public class SafetyInspection : IAuditable
+    public class SafetyInspection : IAuditable, IEntity
     {
         public virtual int Id { get; set; }
 
@@ -95,6 +95,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
 
         public virtual void SetAuditTrail(string userName, DateTime timestamp)
         {

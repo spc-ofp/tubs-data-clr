@@ -25,11 +25,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// Long line set details as recorded on form LL-3
     /// </summary>
-    public class LongLineSet
+    public class LongLineSet : IAuditable, IEntity
     {
         public LongLineSet()
         {
@@ -247,6 +248,30 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             
             basket.FishingSet = this;
             this.Baskets.Add(basket);
+        }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
         }
     }
 }

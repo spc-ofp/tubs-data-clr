@@ -32,7 +32,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// Record of a FAD, payao, or other floating object.
     /// </summary>
-    public class Gen5Object : IAuditable
+    public class Gen5Object : IAuditable, IEntity
     {
         public Gen5Object()
         {
@@ -118,6 +118,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
 
         public virtual void SetAuditTrail(string userName, DateTime timestamp)
         {

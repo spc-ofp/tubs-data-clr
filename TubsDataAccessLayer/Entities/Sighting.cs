@@ -30,7 +30,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// Sighting represents a vessel sighting recorded on form GEN-1.
     /// </summary>
-    public class Sighting : IAuditable
+    public class Sighting : IAuditable, IEntity
     {
         public virtual int Id { get; set; }
 
@@ -122,6 +122,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             return this.EventDate.HasValue ?
                 this.EventDate :
                 this.EventDateOnly.Merge(this.EventTimeOnly);
+        }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
         }
 
         public virtual void SetAuditTrail(string userName, DateTime timestamp)

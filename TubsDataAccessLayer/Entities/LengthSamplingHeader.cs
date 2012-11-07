@@ -30,7 +30,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LengthSamplingHeader : IAuditable
+    public class LengthSamplingHeader : IAuditable, IEntity
     {
         public LengthSamplingHeader()
         {
@@ -181,6 +181,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             
             brail.Header = this;
             this.Brails.Add(brail);
+        }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
         }
 
         public virtual void SetAuditTrail(string userName, DateTime timestamp)

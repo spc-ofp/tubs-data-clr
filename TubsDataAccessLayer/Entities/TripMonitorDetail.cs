@@ -23,13 +23,14 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      */
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// TripMonitorDetail represents the answers for any GEN-3 questions
     /// marked with a "YES".  GEN-3 has 3 spots for answers, but presumably
     /// there's a means for observers to provide more than 3 answers.
     /// </summary>
-    public class TripMonitorDetail
+    public class TripMonitorDetail : IAuditable, IEntity
     {
         public virtual int Id { get; set; }
 
@@ -59,5 +60,29 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
+        }
     }
 }

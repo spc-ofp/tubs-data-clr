@@ -25,12 +25,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// Header record for GEN-2 Multilandings
     /// </summary>
-    public class MultiLandingInteraction
+    public class MultiLandingInteraction : IAuditable, IEntity
     {
         public MultiLandingInteraction()
         {
@@ -80,6 +80,30 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             detail.Header = this;
             this.Details.Add(detail);
+        }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
         }
     }
 }

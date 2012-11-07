@@ -24,15 +24,14 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      */
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Spc.Ofp.Tubs.DAL.Common;
     using System.ComponentModel.DataAnnotations;
+    using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// PollutionEvent represents the top and bottom of Form GEN-6.
     /// </summary>
-    public class PollutionEvent
+    public class PollutionEvent : IAuditable, IEntity
     {
         public PollutionEvent()
         {
@@ -143,6 +142,30 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             detail.Header = this;
             this.Details.Add(detail);
+        }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
         }
     }
 }

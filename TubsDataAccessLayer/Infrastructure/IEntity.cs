@@ -1,10 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="Gen5Material.cs" company="Secretariat of the Pacific Community">
+// <copyright file="IEntity.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Spc.Ofp.Tubs.DAL.Entities
+namespace Spc.Ofp.Tubs.DAL.Infrastructure
 {
     /*
      * This file is part of TUBS.
@@ -23,31 +23,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
-    using Spc.Ofp.Tubs.DAL.Common;
+    using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
-    /// FAD material entity.  Used to collect both the
-    /// main materials and attachments.
+    /// IEntity works with IRepository to simplify the Add/Update mess.
     /// </summary>
-    public class Gen5Material : IEntity
+    public interface IEntity
     {
-        public virtual int Id { get; set; }
+        bool IsNew();
 
-        public virtual Gen5Object Fad { get; set; }
-
-        public virtual FadMaterials Material { get; set; }
-
-        public virtual bool IsAttachment { get; set; }
-
-        public virtual bool IsNew()
-        {
-            return default(int) == this.Id;
-        }
-
-        public virtual object GetPkid()
-        {
-            return this.Id;
-        }
+        object GetPkid();
     }
 }

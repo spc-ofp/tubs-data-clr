@@ -24,11 +24,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// TripMonitor represents the data entered on form GEN-3.
     /// </summary>
-    public class TripMonitor
+    public class TripMonitor : IAuditable, IEntity
     {
         public TripMonitor()
         {
@@ -104,6 +105,30 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             detail.Header = this;
             this.Details.Add(detail);
+        }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
         }
     }
 }

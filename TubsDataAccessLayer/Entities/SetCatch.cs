@@ -28,7 +28,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public abstract class SetCatch : IAuditable
+    public abstract class SetCatch : IAuditable, IEntity
     {
         public virtual int Id { get; set; }
 
@@ -65,6 +65,16 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
         public virtual int? DctScore { get; set; }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
 
         public virtual void SetAuditTrail(string userName, DateTime timestamp)
         {

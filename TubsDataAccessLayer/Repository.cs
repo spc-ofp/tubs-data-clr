@@ -13,6 +13,7 @@ namespace Spc.Ofp.Tubs.DAL
     using System.Linq.Expressions;
     using NHibernate;
     using NHibernate.Linq;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// Repository implementation that hides the differences between
@@ -141,6 +142,29 @@ namespace Spc.Ofp.Tubs.DAL
             if (!_isStateless)
             {
                 GetSession().Evict(entity);
+            }
+        }
+
+        //
+        public void Save(T entity)
+        {
+            if (null != entity && entity is IEntity)
+            {
+                var e = entity as IEntity;
+                if (e.IsNew())
+                {
+                    Add(entity);
+                }
+                else
+                {
+                    if (entity is IAuditable)
+                    {
+                        var previous = FindById(e.GetPkid());
+                        ((IAuditable)entity).EnteredBy = ((IAuditable)previous).EnteredBy;
+                        ((IAuditable)entity).EnteredDate = ((IAuditable)previous).EnteredDate;
+                    }
+                    Update(entity, true);
+                }
             }
         }
 

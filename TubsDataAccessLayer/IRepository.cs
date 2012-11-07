@@ -57,6 +57,8 @@ namespace Spc.Ofp.Tubs.DAL
 
         void Evict(T entity);
 
+        void Save(T entity);
+
         ICriteria CreateCriteria();
 
         ICriteria CreateCriteria(string alias);

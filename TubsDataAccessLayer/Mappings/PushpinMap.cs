@@ -35,10 +35,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         {
             ReadOnly(); // It's sourced from a view
             Schema("obsv");
-            /*
-             * Purse seine only right now, but only because there's no pole and line or longline data.
-             */
-            Table("vw_positions_s");
+            // Purse seine and longline only.  Pole and line is still pending.
+            Table("vw_positions");
             CompositeId().KeyProperty(x => x.FormName, "form_name").KeyProperty(x => x.EventKey, "event_key");
             Map(x => x.Latitude, "lat").Precision(8).Scale(4);
             Map(x => x.Longitude, "lon").Precision(8).Scale(4);

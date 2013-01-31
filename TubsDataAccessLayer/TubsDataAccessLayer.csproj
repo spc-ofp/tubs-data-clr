@@ -121,6 +121,7 @@
     <Compile Include="Entities\LongLineTrip.cs" />
     <Compile Include="Entities\LostGearDetail.cs" />
     <Compile Include="Entities\MarineDevice.cs" />
+    <Compile Include="Entities\MockTripMonitor.cs" />
     <Compile Include="Entities\MultiInteractionDetail.cs" />
     <Compile Include="Entities\MultiLandingInteraction.cs" />
     <Compile Include="Entities\Observer.cs" />

@@ -256,7 +256,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual IList<PollutionEvent> PollutionEvents { get; protected internal set; }
 
-        public virtual TripMonitor TripMonitor { get; set; } // Only one GEN-3 per trip.  TODO Do we need to add backref to 'set' method?
+        // Pre-2009 GEN-3
+        public virtual TripMonitor TripMonitor { get; set; } // Only one GEN-3 per trip.
 
         public virtual CommunicationServices CommunicationServices { get; set; }
 

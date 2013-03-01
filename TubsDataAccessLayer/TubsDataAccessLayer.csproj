@@ -236,6 +236,7 @@
     <Compile Include="Tests\MarineDeviceTest.cs" />
     <Compile Include="Tests\MetricConversionTest.cs" />
     <Compile Include="Tests\ObserverTest.cs" />
+    <Compile Include="Tests\PageCountTest.cs" />
     <Compile Include="Tests\PagedResultsTest.cs" />
     <Compile Include="Tests\PollutionEventTest.cs" />
     <Compile Include="Tests\PortTest.cs" />

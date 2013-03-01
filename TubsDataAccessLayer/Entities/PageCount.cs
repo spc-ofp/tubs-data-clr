@@ -25,11 +25,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class PageCount
+    public class PageCount : IAuditable, IEntity
     {
         public virtual int Id { get; set; }
 
@@ -50,5 +51,40 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
+
+        // NOTE:  UpdatedBy/UpdatedDate isn't currently mapped
+        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedBy")]
+        public virtual string UpdatedBy { get; set; }
+
+        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedDate")]
+        public virtual DateTime? UpdatedDate { get; set; }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            this.EnteredBy = userName;
+            this.EnteredDate = timestamp;
+            /*
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
+            */
+        }
     }
 }

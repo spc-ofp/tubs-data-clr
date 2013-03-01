@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="BrailTest.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2011 Secretariat of the Pacific Community
+// <copyright file="PageCountTest.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2013 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -22,6 +22,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
+    using System;
     using NUnit.Framework;
     using PagedList;
     using Spc.Ofp.Tubs.DAL.Entities;
@@ -30,37 +31,31 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     /// TODO: Update summary.
     /// </summary>
     [TestFixture]
-    public class BrailTest
+    public class PageCountTest : BaseTest
     {
-        private IRepository<Brail> repo;
-
-        /// <summary>
-        /// Create repository for use by all test cases.
-        /// </summary>
-        [TestFixtureSetUp]
-        public void Setup()
-        {
-            this.repo = TubsDataService.GetRepository<Brail>(true);
-        }
-        
         [Test]
-        public void GetBrail([Values(265)] int brailId)
+        public void AddPageCount([Values(70)] int tripId)
         {
-            var brail = this.repo.FindById(brailId);
-            Assert.NotNull(brail);
-            Assert.AreEqual(234, brail.Header.Id);
-            Assert.AreEqual(5, brail.Brail1FullnessCode);
-            Assert.AreEqual(3, brail.SamplesFromBrail1);
-        }
+            var session = TubsDataService.GetSession();
+            var trepo = TubsDataService.GetRepository<Trip>(session);
+            var repo = TubsDataService.GetRepository<PageCount>(session);
 
-        [Test]
-        public void GetBrails()
-        {
-            var brails = repo.All().ToPagedList(1, 1000);
-            Assert.NotNull(brails);
-            foreach (var brail in brails)
+            var trip = trepo.FindById(tripId);
+
+            var pc = new PageCount();
+            pc.FormCount = 1;
+            pc.FormName = Common.FormNames.GEN3;
+            pc.EnteredBy = @"NOUMEA\coreyc";
+            pc.EnteredDate = DateTime.Now;
+            pc.Trip = trip;
+
+            using (var xa = session.BeginTransaction())
             {
-                Assert.NotNull(brail);
+                repo.Save(pc);
+                xa.Commit();
+                repo.Reload(pc);
+                Assert.NotNull(pc);
+                Assert.AreNotEqual(0, pc.Id);
             }
         }
     }

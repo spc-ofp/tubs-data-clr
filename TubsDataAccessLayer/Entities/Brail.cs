@@ -25,11 +25,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Common;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class Brail
+    public class Brail : IAuditable, IEntity
     {
         /// <summary>
         /// Gets or sets unique entity identifier
@@ -238,5 +239,29 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual int? DctScore { get; set; }
 
         public virtual LengthSamplingHeader Header { get; set; }
+
+        public virtual bool IsNew()
+        {
+            return default(int) == this.Id;
+        }
+
+        public virtual object GetPkid()
+        {
+            return this.Id;
+        }
+
+        public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        {
+            if (default(int) == this.Id)
+            {
+                this.EnteredBy = userName;
+                this.EnteredDate = timestamp;
+            }
+            else
+            {
+                this.UpdatedBy = userName;
+                this.UpdatedDate = timestamp;
+            }
+        }
     }
 }

@@ -148,6 +148,9 @@ namespace Spc.Ofp.Tubs.DAL
         //
         public void Save(T entity)
         {
+            // This caused a problem with PageCount -- if the
+            // entity doesn't implement IEntity, then .Save(...) does nothing
+            // which is not what we want.
             if (null != entity && entity is IEntity)
             {
                 var e = entity as IEntity;

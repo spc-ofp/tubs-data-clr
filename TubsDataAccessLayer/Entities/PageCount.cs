@@ -44,7 +44,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Range(0, Int32.MaxValue)]
         public virtual int FormCount { get; set; }
 
-        public virtual byte[] RowVersion { get; protected set; }
+        //public virtual byte[] RowVersion { get; protected set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }

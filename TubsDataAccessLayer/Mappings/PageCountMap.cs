@@ -42,7 +42,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.EnteredDate, "entered_dtime");
 
             OptimisticLock.Version();
-            Version(x => x.RowVersion).Column("tstamp").Not.Nullable().CustomSqlType("timestamp").Generated.Always();
+            //Version(x => x.RowVersion).Column("tstamp").Not.Nullable().CustomSqlType("timestamp").Generated.Always();
 
             References(x => x.Trip).Column("obstrip_id");
         }

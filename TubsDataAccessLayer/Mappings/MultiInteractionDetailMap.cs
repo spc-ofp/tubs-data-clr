@@ -44,9 +44,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.LandedConditionDescription, "landed_cond_desc");
             Map(x => x.DiscardedConditionCode, "discard_cond_code");
             Map(x => x.DiscardedConditionDescription, "discard_cond_desc");
-            Map(x => x.EnteredBy, "entered_by").Length(20);
+            Map(x => x.EnteredBy, "entered_by").Length(50);
             Map(x => x.EnteredDate, "entered_dtime");
-            Map(x => x.UpdatedBy, "updated_by").Length(20);
+            Map(x => x.UpdatedBy, "updated_by").Length(50);
             Map(x => x.UpdatedDate, "updated_dtime");
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");

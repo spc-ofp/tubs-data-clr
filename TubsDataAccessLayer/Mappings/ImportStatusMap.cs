@@ -41,7 +41,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.TripId, "obstrip_id");
             Map(x => x.StatusCode, "status");
             Map(x => x.Comments, "comments");
-            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnteredBy, "entered_by").Length(50);
             Map(x => x.EnteredDate, "entered_dtime");
 
             // Although this mapping could reference the trip, that's not necessary

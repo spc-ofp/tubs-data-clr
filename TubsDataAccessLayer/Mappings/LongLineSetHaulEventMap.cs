@@ -50,9 +50,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.CloudCover, "cloud");
 
             Map(x => x.Comments, "comments");
-            Map(x => x.EnteredBy, "entered_by").Length(20);
+            Map(x => x.EnteredBy, "entered_by").Length(50);
             Map(x => x.EnteredDate, "entered_dtime");
-            Map(x => x.UpdatedBy, "updated_by").Length(20);
+            Map(x => x.UpdatedBy, "updated_by").Length(50);
             Map(x => x.UpdatedDate, "updated_dtime");
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");           

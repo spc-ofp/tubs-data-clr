@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="SpecialSpeciesInteractionMap.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2012 Secretariat of the Pacific Community
+// <copyright file="InteractionMap.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2011 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -27,17 +27,17 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// Fluent NHibernate mapping for the SpecialSpeciesInteraction entity.
+    /// TODO: Update summary.
     /// </summary>
-    public sealed class SpecialSpeciesInteractionMap : ClassMap<SpecialSpeciesInteraction>
+    public class InteractionMap : ClassMap<InteractionBase>
     {
-        public SpecialSpeciesInteractionMap()
+        public const string TripId = "obstrip_id";
+
+        public InteractionMap()
         {
             Schema("obsv");
             Table("gen2special");
             Id(x => x.Id, "ssp_id");
-            Map(x => x.SgType, "sgtype").Length(1);
-            Map(x => x.SgTime, "sgtime").Length(1);
             Map(x => x.LandedDateOnly, "landed_date");
             Map(x => x.LandedTimeOnly, "landed_time");
             Map(x => x.LandedDate, "landed_dtime");
@@ -45,7 +45,29 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Longitude, "lon");
             Map(x => x.EezId, "eez_code").Length(2);
             Map(x => x.SpeciesCode, "sp_code").Length(3);
-            Map(x => x.SpeciesDescription, "sp_desc");
+            Map(x => x.SpeciesDescription, "sp_desc");           
+            
+            Map(x => x.EnteredBy, "entered_by").Length(50);
+            Map(x => x.EnteredDate, "entered_dtime");
+            Map(x => x.UpdatedBy, "updated_by").Length(50);
+            Map(x => x.UpdatedDate, "updated_dtime");
+            Map(x => x.DctNotes, "dct_notes");
+            Map(x => x.DctScore, "dct_score");
+
+            References(x => x.Trip).Column(TripId);
+
+            DiscriminateSubClassesOnColumn<string>("sgtype");
+        }
+    }
+
+    /// <summary>
+    /// Mapping for landing specific data.
+    /// </summary>
+    public sealed class LandedInteractionMap : SubclassMap<LandedInteraction>
+    {
+        public LandedInteractionMap()
+        {
+            DiscriminatorValue("L");
             Map(x => x.LandedConditionCode, "landed_cond_code");
             Map(x => x.LandedConditionDescription, "landed_cond_desc");
             Map(x => x.LandedHandling, "landed_handling");
@@ -60,10 +82,28 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.PlacedTagNumber, "tag_place_no").Length(7);
             Map(x => x.PlacedTagType, "tag_place_type").Length(5);
             Map(x => x.PlacedTagOrganization, "tag_place_org").Length(10);
+
+        }
+    }
+
+    public sealed class GearInteractionMap : SubclassMap<GearInteraction>
+    {
+        public GearInteractionMap()
+        {
+            DiscriminatorValue("I");
             Map(x => x.InteractionId, "intact_id").CustomType<InteractionActivity>();
             Map(x => x.InteractionOther, "intact_other");
             Map(x => x.InteractionDescription, "int_describe");
 
+            HasMany(x => x.Details).KeyColumn("ssp_id").Cascade.All();
+        }
+    }
+
+    public sealed class SightingInteractionMap : SubclassMap<SightingInteraction>
+    {
+        public SightingInteractionMap()
+        {
+            DiscriminatorValue("S");
             Map(x => x.InteractionActivity, "sgact_id").CustomType<InteractionActivity>();
             Map(x => x.InteractionIfOther, "sgact_other");
             Map(x => x.SightingCount, "sight_n");
@@ -74,15 +114,6 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.SightingDistanceUnit, "sight_dist_unit").CustomType<UnitOfMeasure>();
             Map(x => x.SightingDistanceInNm, "sight_dist_nm").Precision(10).Scale(4);
             Map(x => x.SightingBehavior, "sight_behav");
-            Map(x => x.EnteredBy, "entered_by").Length(50);
-            Map(x => x.EnteredDate, "entered_dtime");
-            Map(x => x.UpdatedBy, "updated_by").Length(50);
-            Map(x => x.UpdatedDate, "updated_dtime");
-            Map(x => x.DctNotes, "dct_notes");
-            Map(x => x.DctScore, "dct_score");
-
-            HasMany(x => x.Details).KeyColumn("ssp_id").Cascade.All();
-            References(x => x.Trip).Column("obstrip_id");
         }
     }
 }

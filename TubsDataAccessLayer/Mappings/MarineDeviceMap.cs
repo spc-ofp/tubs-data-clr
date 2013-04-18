@@ -41,7 +41,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.LongLineOrder, "order_l");
             Map(x => x.PurseSeineOrder, "order_s");
             Map(x => x.PoleAndLineOrder, "order_p");
-            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnteredBy, "entered_by").Length(50);
             Map(x => x.EnteredDate, "entered_dtime");
         }
     }

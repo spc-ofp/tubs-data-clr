@@ -204,6 +204,32 @@ namespace Spc.Ofp.Tubs.DAL
             return new Repository<ISession, Trip>(session).FilterBy(predicate);
         }
 
+        // TODO Work out how to do this in a more portable fashion...
+        private static ISessionFactory CreateSessionFactoryEx()
+        {
+            IPersistenceConfigurer cfg =
+                PostgreSQLConfiguration.Standard.ConnectionString(
+                    c => c.FromConnectionStringWithKey("TUBS"))
+#if DEBUG
+                .ShowSql()
+#endif
+                ;
+
+            return Fluently.Configure()
+                .Database(cfg)
+                .Mappings(m =>
+                {
+                    m.FluentMappings
+                        .AddFromAssemblyOf<TubsDataService>()
+#if DEBUG
+                        .ExportTo(@"C:\temp\mappings")
+#endif
+;
+                })
+                .BuildSessionFactory();
+        }
+
+
         private static ISessionFactory CreateSessionFactory()
         {
             IPersistenceConfigurer cfg =

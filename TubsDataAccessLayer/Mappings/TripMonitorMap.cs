@@ -56,9 +56,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.Question18, "q18_ans").CustomType<YesNoType>();
             Map(x => x.Question19, "q19_ans").CustomType<YesNoType>();
             Map(x => x.Question20, "q20_ans").CustomType<YesNoType>();
-            Map(x => x.EnteredBy, "entered_by").Length(20);
+            Map(x => x.EnteredBy, "entered_by").Length(50);
             Map(x => x.EnteredDate, "entered_dtime");
-            Map(x => x.UpdatedBy, "updated_by").Length(20);
+            Map(x => x.UpdatedBy, "updated_by").Length(50);
             Map(x => x.UpdatedDate, "updated_dtime");
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");

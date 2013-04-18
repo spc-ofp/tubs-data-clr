@@ -103,12 +103,16 @@
     <Compile Include="Entities\Crew.cs" />
     <Compile Include="Entities\ElectronicDevice.cs" />
     <Compile Include="Entities\Gear.cs" />
+    <Compile Include="Entities\GearInteraction.cs" />
+    <Compile Include="Entities\GearInteractionDetail.cs" />
     <Compile Include="Entities\Gen3Answer.cs" />
     <Compile Include="Entities\Gen3Detail.cs" />
     <Compile Include="Entities\Gen5Material.cs" />
     <Compile Include="Entities\Gen5Object.cs" />
     <Compile Include="Entities\ImportStatus.cs" />
+    <Compile Include="Entities\InteractionBase.cs" />
     <Compile Include="Entities\InteractionDetail.cs" />
+    <Compile Include="Entities\LandedInteraction.cs" />
     <Compile Include="Entities\LengthSample.cs" />
     <Compile Include="Entities\LengthSamplingHeader.cs" />
     <Compile Include="Entities\LongLineBasket.cs" />
@@ -145,6 +149,7 @@
     <Compile Include="Entities\SeaDay.cs" />
     <Compile Include="Entities\SetCatch.cs" />
     <Compile Include="Entities\Sighting.cs" />
+    <Compile Include="Entities\SightingInteraction.cs" />
     <Compile Include="Entities\SpecialSpeciesInteraction.cs" />
     <Compile Include="Entities\SpillDetail.cs" />
     <Compile Include="Entities\Transfer.cs" />
@@ -177,6 +182,7 @@
     <Compile Include="Mappings\ActivityMap.cs" />
     <Compile Include="Mappings\BrailMap.cs" />
     <Compile Include="Mappings\CommunicationServicesMap.cs" />
+    <Compile Include="Mappings\GearInteractionDetailMap.cs" />
     <Compile Include="Mappings\CrewMap.cs" />
     <Compile Include="Mappings\ElectronicDeviceMap.cs" />
     <Compile Include="Mappings\GearMap.cs" />
@@ -186,6 +192,7 @@
     <Compile Include="Mappings\Gen5ObjectMap.cs" />
     <Compile Include="Mappings\ImportStatusMap.cs" />
     <Compile Include="Mappings\InteractionDetailMap.cs" />
+    <Compile Include="Mappings\InteractionMap.cs" />
     <Compile Include="Mappings\LengthSampleMap.cs" />
     <Compile Include="Mappings\LengthSamplingHeaderMap.cs" />
     <Compile Include="Mappings\LongLineBasketMap.cs" />
@@ -231,6 +238,7 @@
     <Compile Include="Tests\EnumExtensionsTest.cs" />
     <Compile Include="Tests\Gen5Test.cs" />
     <Compile Include="Tests\ImportStatusTest.cs" />
+    <Compile Include="Tests\InteractionTest.cs" />
     <Compile Include="Tests\LengthSamplingHeaderTest.cs" />
     <Compile Include="Tests\LongLineSetHaulEventTest.cs" />
     <Compile Include="Tests\MarineDeviceTest.cs" />

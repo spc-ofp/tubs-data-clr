@@ -95,9 +95,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.SamplesFromBrail29, "brail29_samples");
             Map(x => x.Brail30FullnessCode, "brail30_fullness");
             Map(x => x.SamplesFromBrail30, "brail30_samples");
-            Map(x => x.EnteredBy, "entered_by").Length(20);
+            Map(x => x.EnteredBy, "entered_by").Length(50);
             Map(x => x.EnteredDate, "entered_dtime");
-            Map(x => x.UpdatedBy, "updated_by").Length(20);
+            Map(x => x.UpdatedBy, "updated_by").Length(50);
             Map(x => x.UpdatedDate, "updated_dtime");
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");

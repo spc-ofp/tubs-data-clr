@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="PageCountMap.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2012 Secretariat of the Pacific Community
+// <copyright file="GearInteractionDetailMap.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2013 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -27,24 +27,27 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// Fluent NHibernate mapper for trip page counts.
+    /// Fluent NHibernate mapping for the GearInteractionDetail entity.
     /// </summary>
-    public class PageCountMap : ClassMap<PageCount>
+    public sealed class GearInteractionDetailMap :ClassMap<GearInteractionDetail>
     {
-        public PageCountMap()
+        public GearInteractionDetailMap()
         {
             Schema("obsv");
-            Table("page_counts");
-            Id(x => x.Id, "id").GeneratedBy.Identity();
-            Map(x => x.FormName, "form_name");
-            Map(x => x.FormCount, "form_count");
+            Table("gen2specialinteraction");
+            Id(x => x.Id, "sspinteraction_id").GeneratedBy.Identity();
+            Map(x => x.StartOrEnd, "start_end").Not.Nullable().Length(5);
+            Map(x => x.Number, "number");
+            Map(x => x.ConditionCode, "cond_code");
+            Map(x => x.Description, "description").Length(50);
             Map(x => x.EnteredBy, "entered_by").Length(50);
             Map(x => x.EnteredDate, "entered_dtime");
+            Map(x => x.UpdatedBy, "updated_by").Length(50);
+            Map(x => x.UpdatedDate, "updated_dtime");
+            Map(x => x.DctNotes, "dct_notes");
+            Map(x => x.DctScore, "dct_score");
 
-            OptimisticLock.Version();
-            //Version(x => x.RowVersion).Column("tstamp").Not.Nullable().CustomSqlType("timestamp").Generated.Always();
-
-            References(x => x.Trip).Column("obstrip_id");
+            References(x => x.Header).Column("ssp_id");
         }
     }
 }

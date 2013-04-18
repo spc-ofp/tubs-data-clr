@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="InteractionBase.cs" company="Secretariat of the Pacific Community">
+// <copyright file="Interaction.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2013 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// Base class for all GEN-2 interactions
     /// </summary>
-    public abstract class InteractionBase : IAuditable, IEntity
+    public abstract class Interaction : IAuditable, IEntity
     {
         public virtual int Id { get; set; }
 

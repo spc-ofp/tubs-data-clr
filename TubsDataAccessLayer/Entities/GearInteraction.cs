@@ -30,7 +30,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// GEN-2 interaction for species interacting with vessel or vessel gear.
     /// </summary>
-    public class GearInteraction : InteractionBase
+    public class GearInteraction : Interaction
     {
         // Interacted with vessel/gear
         public virtual InteractionActivity? InteractionId { get; set; }

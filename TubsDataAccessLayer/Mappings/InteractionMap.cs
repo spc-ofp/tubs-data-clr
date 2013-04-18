@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class InteractionMap : ClassMap<InteractionBase>
+    public class InteractionMap : ClassMap<Interaction>
     {
         public const string TripId = "obstrip_id";
 

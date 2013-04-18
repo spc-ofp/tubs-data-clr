@@ -110,7 +110,7 @@
     <Compile Include="Entities\Gen5Material.cs" />
     <Compile Include="Entities\Gen5Object.cs" />
     <Compile Include="Entities\ImportStatus.cs" />
-    <Compile Include="Entities\InteractionBase.cs" />
+    <Compile Include="Entities\Interaction.cs" />
     <Compile Include="Entities\InteractionDetail.cs" />
     <Compile Include="Entities\LandedInteraction.cs" />
     <Compile Include="Entities\LengthSample.cs" />

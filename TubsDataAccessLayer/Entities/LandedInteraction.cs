@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// GEN-2 interaction for species landed on deck
     /// </summary>
-    public class LandedInteraction : InteractionBase
+    public class LandedInteraction : Interaction
     {
         // Landed
         [Display(ResourceType = typeof(FieldNames), Name = "ConditionCode")]

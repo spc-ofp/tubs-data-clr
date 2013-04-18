@@ -36,7 +36,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void GetSighting([Values(7)] int interactionId)
         {
-            using (var repo = TubsDataService.GetRepository<InteractionBase>(true))
+            using (var repo = TubsDataService.GetRepository<Interaction>(true))
             {
                 var interaction = repo.FindById(interactionId);
                 Assert.NotNull(interaction);               
@@ -53,7 +53,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void GetLanding([Values(10)] int interactionId)
         {
-            using (var repo = TubsDataService.GetRepository<InteractionBase>(true))
+            using (var repo = TubsDataService.GetRepository<Interaction>(true))
             {
                 var interaction = repo.FindById(interactionId);
                 Assert.NotNull(interaction);

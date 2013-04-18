@@ -30,7 +30,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// GEN-2 interaction for species that are sighted only.
     /// </summary>
-    public class SightingInteraction : InteractionBase
+    public class SightingInteraction : Interaction
     {
         public virtual InteractionActivity? InteractionActivity { get; set; }
 

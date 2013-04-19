@@ -39,7 +39,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.Transfers = new List<Transfer>(16);
             this.PollutionEvents = new List<PollutionEvent>();
             this.Electronics = new List<ElectronicDevice>(8);
-            this.Interactions = new List<SpecialSpeciesInteraction>();
+            //this.Interactions = new List<SpecialSpeciesInteraction>();
+            this.Interactions = new List<Interaction>();
             this.MultiLandingInteractions = new List<MultiLandingInteraction>();
             this.PageCounts = new List<PageCount>(12);
             this.Pushpins = new List<Pushpin>(180);
@@ -263,7 +264,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual IList<ElectronicDevice> Electronics { get; protected internal set; }
 
-        public virtual IList<SpecialSpeciesInteraction> Interactions { get; protected internal set; }
+        //public virtual IList<SpecialSpeciesInteraction> Interactions { get; protected internal set; }
+        public virtual IList<Interaction> Interactions { get; protected internal set; }
 
         public virtual IList<MultiLandingInteraction> MultiLandingInteractions { get; protected internal set; }
 
@@ -345,11 +347,21 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.Electronics.Add(device);
         }
 
+        /*
         public virtual void AddInteraction(SpecialSpeciesInteraction interaction)
         {
             if (null == interaction)
                 return;
             
+            interaction.Trip = this;
+            this.Interactions.Add(interaction);
+        }
+        */
+        public virtual void AddInteraction(Interaction interaction)
+        {
+            if (null == interaction)
+                return;
+
             interaction.Trip = this;
             this.Interactions.Add(interaction);
         }

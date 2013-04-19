@@ -103,7 +103,11 @@ namespace Spc.Ofp.Tubs.DAL
                 trip.Interactions.ToList().ForEach(x =>
                 {
                     session.Save(x);
-                    x.Details.ToList().ForEach(y => session.Save(y));
+                    if (x is GearInteraction)
+                    {
+                        ((GearInteraction)x).Details.ToList().ForEach(y => session.Save(y));
+                    }
+                    //x.Details.ToList().ForEach(y => session.Save(y));
                 });
 
                 trip.Sightings.ToList().ForEach(x => session.Save(x));

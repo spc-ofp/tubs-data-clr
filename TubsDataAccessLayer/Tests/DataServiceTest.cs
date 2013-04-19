@@ -100,7 +100,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                 criteria.ProgramCode = String.Empty;
                 criteria.Vessel = "TUNA";
                 results = TubsDataService.Search(session, criteria);
-                Assert.AreEqual(5, results.Count());
+                Assert.Greater(results.Count(), 5);
 
                 criteria.Vessel = String.Empty;
                 criteria.AnyDate = new DateTime(2011, 9, 10);

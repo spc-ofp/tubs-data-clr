@@ -32,6 +32,11 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public class GearInteraction : Interaction
     {
+        public GearInteraction()
+        {
+            this.Details = new List<GearInteractionDetail>(6);
+        }
+        
         // Interacted with vessel/gear
         public virtual InteractionActivity? InteractionId { get; set; }
 

@@ -34,6 +34,26 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     public class InteractionTest : BaseTest
     {
         [Test]
+        public void GetInteractionsForTrip([Values(103)] int tripId)
+        {
+            // Load the trip and see what's on there
+            using (var repo = TubsDataService.GetRepository<Trip>(false))
+            {
+                var trip = repo.FindById(tripId);
+                Assert.NotNull(trip);
+                Assert.NotNull(trip.Interactions);
+                Assert.GreaterOrEqual(trip.Interactions.Count, 4);
+            }
+            
+            using (var repo = TubsDataService.GetRepository<Interaction>(false))
+            {
+                var interactions = repo.FilterBy(i => i.Trip.Id == tripId).ToList();
+                Assert.NotNull(interactions);
+                Assert.GreaterOrEqual(interactions.Count, 4);
+            }
+        }
+        
+        [Test]
         public void GetSighting([Values(7)] int interactionId)
         {
             using (var repo = TubsDataService.GetRepository<Interaction>(true))

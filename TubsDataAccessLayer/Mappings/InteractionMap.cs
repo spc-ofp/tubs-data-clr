@@ -27,7 +27,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Fluent NHibernate mapping for Interaction entity.
     /// </summary>
     public class InteractionMap : ClassMap<Interaction>
     {
@@ -95,7 +95,11 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.InteractionOther, "intact_other");
             Map(x => x.InteractionDescription, "int_describe");
 
-            HasMany(x => x.Details).KeyColumn("ssp_id").Cascade.All();
+            HasMany(x => x.Details)
+                .KeyColumn("ssp_id")
+                .Inverse()
+                .Cascade
+                .None();
         }
     }
 

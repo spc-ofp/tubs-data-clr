@@ -53,11 +53,11 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 		
         public virtual WorkbookVersion? Version { get; set; }
 
-        public virtual int VesselId { get; set; }
-
-        public virtual string VesselName { get; set; }
-
-        public virtual string VesselFlag { get; set; }
+        // Tried to get the vessel name/flag via NHibernate .Join(...)
+        // Unfortunately, join only works when the PK from this entity is
+        // the FK in the joined table.  The documented workaround is
+        // to reference the subordinate entity.
+        public virtual Vessel Vessel { get; set; }
 
         public virtual string FfaTripNumber { get; set; }
 

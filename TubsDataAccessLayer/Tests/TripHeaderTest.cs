@@ -33,6 +33,21 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     public class TripHeaderTest
     {
         [Test]
+        public void GetTripHeader([Values(70)] int tripId)
+        {
+            using (var repo = TubsDataService.GetRepository<TripHeader>(false))
+            {
+                var header = repo.FindById(tripId);
+                Assert.NotNull(header);
+                Assert.False(String.IsNullOrEmpty(header.StaffCode));
+                Assert.False(String.IsNullOrEmpty(header.ProgramCode));
+                Assert.False(String.IsNullOrEmpty(header.SpcTripNumber));
+                Assert.NotNull(header.Vessel);
+                Assert.False(String.IsNullOrEmpty(header.Vessel.Name));
+            }
+        }
+        
+        [Test]
         public void GetAllTripHeaders()
         {
             using (var repo = TubsDataService.GetRepository<TripHeader>(true))
@@ -45,8 +60,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                     Assert.False(String.IsNullOrEmpty(header.StaffCode));
                     Assert.False(String.IsNullOrEmpty(header.ProgramCode));
                     Assert.False(String.IsNullOrEmpty(header.SpcTripNumber));
-                    Assert.False(String.IsNullOrEmpty(header.VesselName));
-                    Assert.False(String.IsNullOrEmpty(header.VesselFlag));
+                    Assert.NotNull(header.Vessel);
                 }
             }
         }

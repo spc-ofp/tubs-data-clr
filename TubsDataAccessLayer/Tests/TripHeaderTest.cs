@@ -45,6 +45,8 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                     Assert.False(String.IsNullOrEmpty(header.StaffCode));
                     Assert.False(String.IsNullOrEmpty(header.ProgramCode));
                     Assert.False(String.IsNullOrEmpty(header.SpcTripNumber));
+                    Assert.False(String.IsNullOrEmpty(header.VesselName));
+                    Assert.False(String.IsNullOrEmpty(header.VesselFlag));
                 }
             }
         }

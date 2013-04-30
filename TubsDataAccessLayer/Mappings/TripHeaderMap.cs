@@ -42,6 +42,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.TripNumber, "tripno");
             Map(x => x.DeparturePort, "dep_port");
             Map(x => x.ReturnPort, "ret_port");
+            Map(x => x.VesselId, "vessel_id");
+            Map(x => x.Version, "versn_id").CustomType(typeof(WorkbookVersion));
             Map(x => x.DepartureDate, "dep_date");
             Map(x => x.ReturnDate, "ret_date");
             Map(x => x.GearCode, "gear_code");
@@ -49,7 +51,17 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.FmTripNumber, "tripno_fm");
             Map(x => x.FfaTripNumber, "tripno_ffa");
             Map(x => x.SbTripNumber, "tripno_sb");
-            Map(x => x.HwTripNumber, "tripno_hw");           
+            Map(x => x.HwTripNumber, "tripno_hw");
+            // Use .Join to bring in a few properties from vessel without
+            // having to bring in the entire vessel object
+            Join("ref.vessels", m =>
+            {
+                m.Map(h => h.VesselName, "vessel_name").Length(50);
+                m.Map(h => h.VesselFlag, "reg_country_code").Length(2);
+                m.KeyColumn("vessel_id");
+            });
+            Map(x => x.EnteredBy, "entered_by").Length(50);
+            Map(x => x.EnteredDate, "entered_dtime");
         }
     }
 }

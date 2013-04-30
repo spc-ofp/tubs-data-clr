@@ -23,6 +23,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
     /// TripHeader is a lightweight object for working with
@@ -50,7 +51,13 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual string GearCode { get; set; }
 		
-		// TODO Workbook version
+        public virtual WorkbookVersion? Version { get; set; }
+
+        public virtual int VesselId { get; set; }
+
+        public virtual string VesselName { get; set; }
+
+        public virtual string VesselFlag { get; set; }
 
         public virtual string FfaTripNumber { get; set; }
 
@@ -62,6 +69,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual string HwTripNumber { get; set; }
 
+        public virtual string EnteredBy { get; set; }
+
+        public virtual DateTime? EnteredDate { get; set; }
+
         public virtual string SpcTripNumber
         {
             get
@@ -69,5 +80,14 @@ namespace Spc.Ofp.Tubs.DAL.Entities
                 return String.Format("{0} / {1}", this.StaffCode.Trim(), this.TripNumber.Trim());
             }
         }
+
+        public virtual string WorkbookVersion
+        {
+            get
+            {
+                return this.Version.HasValue ? this.Version.ToString() : String.Empty;
+            }
+        }
+
     }
 }

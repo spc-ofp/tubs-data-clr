@@ -54,7 +54,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.EnteredBy, "entered_by").Length(50);
             Map(x => x.EnteredDate, "entered_dtime");
 
-            References(x => x.Vessel).Column("vessel_id");
+            References(x => x.Vessel).Column("vessel_id").Not.LazyLoad();
         }
     }
 }

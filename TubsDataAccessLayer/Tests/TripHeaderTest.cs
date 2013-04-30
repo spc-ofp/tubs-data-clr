@@ -35,7 +35,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
         [Test]
         public void GetTripHeader([Values(70)] int tripId)
         {
-            using (var repo = TubsDataService.GetRepository<TripHeader>(false))
+            using (var repo = TubsDataService.GetRepository<TripHeader>(true))
             {
                 var header = repo.FindById(tripId);
                 Assert.NotNull(header);

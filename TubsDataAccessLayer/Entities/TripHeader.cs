@@ -23,6 +23,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
+    using System.Text;
     using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
@@ -89,6 +90,19 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             {
                 return this.Version.HasValue ? this.Version.ToString() : String.Empty;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append(
+                "S".Equals(this.GearCode, StringComparison.InvariantCultureIgnoreCase) ? "Purse Seine " :
+                "L".Equals(this.GearCode, StringComparison.InvariantCultureIgnoreCase) ? "Long Line " :
+                "P".Equals(this.GearCode, StringComparison.InvariantCultureIgnoreCase) ? "Pole and Line " :
+                "Unknown "
+            );
+            builder.Append("trip ").Append(SpcTripNumber);
+            return builder.ToString();
         }
 
     }

@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LongLineSetHaulNoteMap : ClassMap<LongLineSetHaulNote>
+    public sealed class LongLineSetHaulNoteMap : ClassMap<LongLineSetHaulNote>
     {
         public LongLineSetHaulNoteMap()
         {

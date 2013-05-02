@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Fluent NHibernate mapping for the MultiInteractionDetail entity.
     /// </summary>
-    public class MultiInteractionDetailMap : ClassMap<MultiInteractionDetail>
+    public sealed class MultiInteractionDetailMap : ClassMap<MultiInteractionDetail>
     {
         public MultiInteractionDetailMap()
         {

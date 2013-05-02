@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Fluent NHibernate mapping for the LongLineConversionFactor entity.
     /// </summary>
-    public class LongLineConversionFactorMap : ClassMap<LongLineConversionFactor>
+    public sealed class LongLineConversionFactorMap : ClassMap<LongLineConversionFactor>
     {
         public LongLineConversionFactorMap()
         {

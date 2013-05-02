@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Fluent NHibernate mapper for trip page counts.
     /// </summary>
-    public class PageCountMap : ClassMap<PageCount>
+    public sealed class PageCountMap : ClassMap<PageCount>
     {
         public PageCountMap()
         {

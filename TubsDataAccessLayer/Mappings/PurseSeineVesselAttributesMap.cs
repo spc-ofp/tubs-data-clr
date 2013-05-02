@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Fluent NHibernate mapping for the PurseSeineVesselAttributes entity.
     /// </summary>
-    public class PurseSeineVesselAttributesMap : ClassMap<PurseSeineVesselAttributes>
+    public sealed class PurseSeineVesselAttributesMap : ClassMap<PurseSeineVesselAttributes>
     {
         public PurseSeineVesselAttributesMap()
         {

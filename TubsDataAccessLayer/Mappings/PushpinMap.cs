@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Fluent NHibernate mapper for trip positions.
     /// </summary>
-    public class PushpinMap : ClassMap<Pushpin>
+    public sealed class PushpinMap : ClassMap<Pushpin>
     {
         public PushpinMap()
         {

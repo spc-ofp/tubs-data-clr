@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Fluent NHibernate mapping for the MultiLandingInteraction entity.
     /// </summary>
-    public class MultiLandingInteractionMap : ClassMap<MultiLandingInteraction>
+    public sealed class MultiLandingInteractionMap : ClassMap<MultiLandingInteraction>
     {
         public MultiLandingInteractionMap()
         {

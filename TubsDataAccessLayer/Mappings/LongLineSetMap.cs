@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Fluent NHibernate mapping for the LongLineSet entity.
     /// </summary>
-    public class LongLineSetMap : ClassMap<LongLineSet>
+    public sealed class LongLineSetMap : ClassMap<LongLineSet>
     {
         public LongLineSetMap()
         {

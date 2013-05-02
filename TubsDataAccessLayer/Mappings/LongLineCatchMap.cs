@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Fluent NHibernate mapping for the LongLineCatch entity.
     /// </summary>
-    public class LongLineCatchMap : ClassMap<LongLineCatch>
+    public sealed class LongLineCatchMap : ClassMap<LongLineCatch>
     {
         public LongLineCatchMap()
         {

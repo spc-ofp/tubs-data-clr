@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LongLineBasketMap : ClassMap<LongLineBasket>
+    public sealed class LongLineBasketMap : ClassMap<LongLineBasket>
     {
         public LongLineBasketMap()
         {

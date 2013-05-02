@@ -73,6 +73,8 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual DateTime? EnteredDate { get; set; }
 
+        public virtual DateTime? ClosedDate { get; set; }
+
         public virtual string SpcTripNumber
         {
             get

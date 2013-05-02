@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Fluent NHibernate mapping for the TripHeader entity.
     /// </summary>
-    public class TripHeaderMap : ClassMap<TripHeader>
+    public sealed class TripHeaderMap : ClassMap<TripHeader>
     {
         public TripHeaderMap()
         {
@@ -53,6 +53,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.HwTripNumber, "tripno_hw");
             Map(x => x.EnteredBy, "entered_by").Length(50);
             Map(x => x.EnteredDate, "entered_dtime");
+            Map(x => x.ClosedDate, "closed_date");
 
             References(x => x.Vessel).Column("vessel_id").Not.LazyLoad();
         }

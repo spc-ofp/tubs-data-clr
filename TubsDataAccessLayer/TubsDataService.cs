@@ -197,6 +197,18 @@ namespace Spc.Ofp.Tubs.DAL
             return new Repository<IStatelessSession, Trip>(session).FilterBy(predicate);
         }
 
+        // TripHeader version returns a lighter entity.  The trade-off is that the search criteria aren't
+        // as flexible:  Only codes are searched for observer and port.
+        public static IQueryable<TripHeader> SearchHeaders(IStatelessSession session, SearchCriteria criteria)
+        {
+            if (null == criteria || !criteria.IsValid())
+            {
+                return Enumerable.Empty<TripHeader>().AsQueryable();
+            }
+            var predicate = criteria.AsHeaderPredicate();
+            return new Repository<IStatelessSession, TripHeader>(session).FilterBy(predicate);
+        }
+
 
         public static IQueryable<Trip> Search(ISession session, SearchCriteria criteria)
         {
@@ -207,6 +219,18 @@ namespace Spc.Ofp.Tubs.DAL
             var predicate = criteria.AsPredicate();
             return new Repository<ISession, Trip>(session).FilterBy(predicate);
         }
+
+        public static IQueryable<TripHeader> SearchHeaders(ISession session, SearchCriteria criteria)
+        {
+            if (null == criteria || !criteria.IsValid())
+            {
+                return Enumerable.Empty<TripHeader>().AsQueryable();
+            }
+            var predicate = criteria.AsHeaderPredicate();
+            return new Repository<ISession, TripHeader>(session).FilterBy(predicate);
+        }
+
+        // TODO Work out how to eagerly load all the entities for a trip via QueryOver/Fetch/ThenFetch
 
         // TODO Work out how to do this in a more portable fashion...
         private static ISessionFactory CreateSessionFactoryEx()

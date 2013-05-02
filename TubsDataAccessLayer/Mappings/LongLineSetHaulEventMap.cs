@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LongLineSetHaulEventMap : ClassMap<LongLineSetHaulEvent>
+    public sealed class LongLineSetHaulEventMap : ClassMap<LongLineSetHaulEvent>
     {
         public LongLineSetHaulEventMap()
         {

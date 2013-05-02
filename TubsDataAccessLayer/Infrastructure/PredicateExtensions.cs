@@ -31,6 +31,73 @@ namespace Spc.Ofp.Tubs.DAL.Infrastructure
     /// </summary>
     public static class PredicateExtensions
     {
+        public static Expression<Func<TripHeader, bool>> AsHeaderPredicate(this SearchCriteria criteria)
+        {
+            // This could go either way, but for now we'll say no criteria means no trips.
+            if (null == criteria)
+            {
+                return PredicateBuilder.False<TripHeader>();
+            }
+
+            // The problem with really clever code is that, in general, you have to be twice
+            // as smart to debug code as you do to write it.  So if you write code at your maximum
+            // cleverness, you'll be lost when it comes to debugging it.
+            // I could turn this into one big lambda, but then I wouldn't be clever enough to
+            // debug it...
+            var predicate = PredicateBuilder.True<TripHeader>(); // If I was using .Or(), I'd replace this with .False()
+            if (!String.IsNullOrEmpty(criteria.Observer))
+            {
+                predicate = predicate.And(trip => trip.StaffCode.ToUpper().Contains(criteria.Observer.ToUpper()));
+            }
+
+            if (!String.IsNullOrEmpty(criteria.ProgramCode))
+            {
+                predicate = predicate.And(trip => trip.ProgramCode.ToString() == criteria.ProgramCode.ToUpper());
+            }
+
+            if (!String.IsNullOrEmpty(criteria.Vessel))
+            {
+                predicate = predicate.And(trip => trip.Vessel.Name.ToUpper().Contains(criteria.Vessel.ToUpper()));
+            }
+
+            if (!String.IsNullOrEmpty(criteria.DeparturePort))
+            {
+                predicate = predicate.And(trip => trip.DeparturePort.ToUpper().Contains(criteria.DeparturePort.ToUpper()));
+            }
+
+            if (!String.IsNullOrEmpty(criteria.ReturnPort))
+            {
+                predicate = predicate.And(trip => trip.ReturnPort.ToUpper().Contains(criteria.ReturnPort.ToUpper()));
+            }
+
+            if (criteria.DepartureDate.HasValue)
+            {
+                predicate = predicate.And(trip => trip.DepartureDate >= criteria.DepartureDate.Value);
+            }
+
+            if (criteria.ReturnDate.HasValue)
+            {
+                predicate = predicate.And(trip => trip.ReturnDate <= criteria.ReturnDate.Value);
+            }
+
+            if (!String.IsNullOrEmpty(criteria.AnyPort))
+            {
+                predicate = predicate.And(trip =>
+                    trip.DeparturePort.ToUpper().Contains(criteria.ReturnPort.ToUpper()) ||
+                    trip.ReturnPort.ToUpper().Contains(criteria.ReturnPort.ToUpper())
+                );
+            }
+
+            if (criteria.AnyDate.HasValue)
+            {
+                predicate = predicate.And(trip =>
+                    trip.DepartureDate <= criteria.AnyDate.Value &&
+                    trip.ReturnDate >= criteria.AnyDate.Value
+                );
+            }
+            return predicate;
+        }
+        
         public static Expression<Func<Trip, bool>> AsPredicate(this SearchCriteria criteria)
         {
             // This could go either way, but for now we'll say no criteria means no trips.
@@ -75,8 +142,8 @@ namespace Spc.Ofp.Tubs.DAL.Infrastructure
             if (!String.IsNullOrEmpty(criteria.ReturnPort))
             {
                 predicate = predicate.And(trip =>
-                    trip.DeparturePort.Name.ToUpper().Contains(criteria.ReturnPort.ToUpper()) ||
-                    trip.DeparturePort.PortCode.ToUpper().Contains(criteria.ReturnPort.ToUpper())
+                    trip.ReturnPort.Name.ToUpper().Contains(criteria.ReturnPort.ToUpper()) ||
+                    trip.ReturnPort.PortCode.ToUpper().Contains(criteria.ReturnPort.ToUpper())
                 );
             }
 
@@ -93,10 +160,10 @@ namespace Spc.Ofp.Tubs.DAL.Infrastructure
             if (!String.IsNullOrEmpty(criteria.AnyPort))
             {
                 predicate = predicate.And(trip =>
-                    trip.DeparturePort.Name.ToUpper().Contains(criteria.ReturnPort.ToUpper()) ||
-                    trip.DeparturePort.PortCode.ToUpper().Contains(criteria.ReturnPort.ToUpper()) ||
-                    trip.DeparturePort.Name.ToUpper().Contains(criteria.ReturnPort.ToUpper()) ||
-                    trip.DeparturePort.PortCode.ToUpper().Contains(criteria.ReturnPort.ToUpper())
+                    trip.DeparturePort.Name.ToUpper().Contains(criteria.DeparturePort.ToUpper()) ||
+                    trip.DeparturePort.PortCode.ToUpper().Contains(criteria.DeparturePort.ToUpper()) ||
+                    trip.ReturnPort.Name.ToUpper().Contains(criteria.ReturnPort.ToUpper()) ||
+                    trip.ReturnPort.PortCode.ToUpper().Contains(criteria.ReturnPort.ToUpper())
                 );
             }
 

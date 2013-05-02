@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class Gen3AnswerMap : ClassMap<Gen3Answer>
+    public sealed class Gen3AnswerMap : ClassMap<Gen3Answer>
     {
         public Gen3AnswerMap()
         {

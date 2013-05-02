@@ -29,7 +29,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// <summary>
     /// Fluent NHibernate mapping for the Gen3Detail entity.
     /// </summary>
-    public class Gen3DetailMap : ClassMap<Gen3Detail>
+    public sealed class Gen3DetailMap : ClassMap<Gen3Detail>
     {
         public Gen3DetailMap()
         {

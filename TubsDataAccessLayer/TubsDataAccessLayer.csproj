@@ -241,6 +241,7 @@
     <Compile Include="Tests\InteractionTest.cs" />
     <Compile Include="Tests\LengthSamplingHeaderTest.cs" />
     <Compile Include="Tests\LongLineSetHaulEventTest.cs" />
+    <Compile Include="Tests\LongLineSetTest.cs" />
     <Compile Include="Tests\MarineDeviceTest.cs" />
     <Compile Include="Tests\MetricConversionTest.cs" />
     <Compile Include="Tests\ObserverTest.cs" />

@@ -205,6 +205,50 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual IList<LongLineBasket> Baskets { get; protected internal set; }
 
+        /// <summary>
+        /// BaitSpecies is a property for displaying the species codes
+        /// of the bait used in this set.
+        /// </summary>
+        public virtual IEnumerable<string> BaitSpecies
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(this.BaitSpecies1Code))
+                    yield return this.BaitSpecies1Code;
+
+                if (!String.IsNullOrEmpty(this.BaitSpecies2Code))
+                    yield return this.BaitSpecies2Code;
+
+                if (!String.IsNullOrEmpty(this.BaitSpecies3Code))
+                    yield return this.BaitSpecies3Code;
+
+                if (!String.IsNullOrEmpty(this.BaitSpecies4Code))
+                    yield return this.BaitSpecies4Code;
+
+                if (!String.IsNullOrEmpty(this.BaitSpecies5Code))
+                    yield return this.BaitSpecies5Code;
+            }
+        }
+
+        /// <summary>
+        /// TargetSpecies is a property for displaying the species category
+        /// codes of the targeted species (TUN, SWO, and SHK)
+        /// </summary>
+        public virtual IEnumerable<string> TargetSpecies
+        {
+            get
+            {
+                if (this.IsTargetingTuna.HasValue && this.IsTargetingTuna.Value)
+                    yield return "TUN";
+
+                if (this.IsTargetingSwordfish.HasValue && this.IsTargetingSwordfish.Value)
+                    yield return "SWO";
+
+                if (this.IsTargetingSharks.HasValue && this.IsTargetingSharks.Value)
+                    yield return "SHK";
+            }
+        }
+
         public virtual void AddCatch(LongLineCatch lcatch)
         {
             if (null == lcatch)

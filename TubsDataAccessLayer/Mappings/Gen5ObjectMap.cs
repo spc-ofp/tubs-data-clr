@@ -31,6 +31,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// </summary>
     public sealed class Gen5ObjectMap : ClassMap<Gen5Object>
     {
+        /// <summary>
+        /// ClassMap constructor.
+        /// </summary>
         public Gen5ObjectMap()
         {
             Schema("obsv");
@@ -44,9 +47,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.IsSsiTrapped, "ssi_trapped").CustomType<YesNoType>();
             Map(x => x.AsFound, "as_found_code").CustomType<FadType>();
             Map(x => x.AsLeft, "as_left_code").CustomType<FadType>();
-            Map(x => x.Depth, "max_depth_m");
-            Map(x => x.Length, "length_m");
-            Map(x => x.Width, "width_m");
+            Map(x => x.Depth, "max_depth_m").Precision(4).Scale(1);
+            Map(x => x.Length, "length_m").Precision(4).Scale(1);
+            Map(x => x.Width, "width_m").Precision(4).Scale(1);
             Map(x => x.BuoyNumber, "buoy_number").Length(20);
             Map(x => x.Markings, "markings").Length(50);
             Map(x => x.Comments, "comments");

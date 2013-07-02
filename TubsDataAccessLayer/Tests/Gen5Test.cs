@@ -73,6 +73,9 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                     Fad = fad,
                     Material = FadMaterials.CoconutFronds
                 });
+            fad.Depth = 1.0M;
+            fad.Length = 12M;
+            fad.Width = 1.3M;
 
             using (var xa = session.BeginTransaction())
             {
@@ -81,6 +84,9 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                 frepo.Reload(fad);
                 Assert.NotNull(fad);
                 Assert.AreNotEqual(0, fad.Id);
+                Assert.AreEqual(1.0M, fad.Depth);
+                Assert.AreEqual(12M, fad.Length);
+                Assert.AreEqual(1.3M, fad.Width);
             }
         }
     }

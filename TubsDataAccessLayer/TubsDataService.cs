@@ -27,13 +27,14 @@ namespace Spc.Ofp.Tubs.DAL
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
     using NHibernate;
+    using NHibernate.Cfg;
     using Spc.Ofp.Tubs.DAL.Entities;
     using Spc.Ofp.Tubs.DAL.Infrastructure;
+    using Newtonsoft.Json;
 
     /// <summary>
-    /// TODO: Update summary.
-    /// FIXME:  Add localization
-    /// http://www.hanselman.com/blog/GlobalizationInternationalizationAndLocalizationInASPNETMVC3JavaScriptAndJQueryPart1.aspx
+    /// TubsDataService is the primary entry point for data operations
+    /// in TUBS.
     /// </summary>
     public sealed class TubsDataService
     {
@@ -57,6 +58,14 @@ namespace Spc.Ofp.Tubs.DAL
             return SessionFactory.OpenSession();
         }
 
+        public static ISession GetSession(string entityName)
+        {
+            var session = SessionFactory.OpenSession();
+            return session.FilterByAcl(entityName);
+            //session.EnableFilter(EntityNameFilter.FilterName).SetParameter(EntityNameFilter.ParamName, entityName);
+            //return session;
+        }
+
         public static IRepository<T> GetRepository<T>(bool stateless) where T : class
         {
             if (stateless)
@@ -71,12 +80,31 @@ namespace Spc.Ofp.Tubs.DAL
 
         public static IRepository<T> GetRepository<T>(ISession session) where T : class
         {
+            // If the session already has a EntityNameFilter, return a SecureRepository
             return new Repository<ISession, T>(session);
+        }
+
+        public static IRepository<T> GetSecureRepository<T>(bool stateless, string entityName) where T : class, ISecurable
+        {
+            if (stateless)
+                return new SecureRepository<IStatelessSession, T>(GetStatelessSession(), entityName);
+            return new SecureRepository<ISession, T>(GetSession(entityName), entityName);
         }
 
         public static void Dispose()
         {
             SessionFactory.Close();
+        }
+
+        public static JsonSerializerSettings GetExportSettings()
+        {
+            return new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                ContractResolver = new NHibernateContractResolver(),
+                NullValueHandling = NullValueHandling.Ignore,
+                DefaultValueHandling = DefaultValueHandling.Ignore
+            };
         }
 
         public static bool SaveFullTrip(Trip trip)
@@ -281,6 +309,14 @@ namespace Spc.Ofp.Tubs.DAL
                         .ExportTo(@"C:\temp\mappings")
 #endif
                         ;                   
+                })
+                .ExposeConfiguration(c =>
+                {
+                    //c.AppendListeners(NHibernate.Event.ListenerType.PostLoad, new[] { new AccessControlEventListener() });
+                    //c.AppendListeners(NHibernate.Event.ListenerType.Load, new[] { new AccessControlEventListener() });
+                    //c.AppendListeners(NHibernate.Event.ListenerType.PreLoad, new [] { new AccessControlEventListener() });
+                    c.AppendListeners(NHibernate.Event.ListenerType.LoadCollection, new[] { new AccessControlEventListener() });
+                    c.LinqToHqlGeneratorsRegistry<TubsLinqToHqlGeneratorsRegistry>();
                 })
                 .BuildSessionFactory();
         }

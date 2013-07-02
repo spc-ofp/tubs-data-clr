@@ -30,7 +30,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// Header record for GEN-2 Multilandings
     /// </summary>
-    public class MultiLandingInteraction : IAuditable, IEntity
+    public class MultiLandingInteraction : IEntity
     {
         public MultiLandingInteraction()
         {
@@ -61,18 +61,18 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredDate")]
         public virtual DateTime? EnteredDate { get; set; }
 
-        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedBy")]
-        public virtual string UpdatedBy { get; set; }
+        //[Display(ResourceType = typeof(FieldNames), Name = "UpdatedBy")]
+        //public virtual string UpdatedBy { get; set; }
 
-        [Display(ResourceType = typeof(FieldNames), Name = "UpdatedDate")]
-        public virtual DateTime? UpdatedDate { get; set; }
+        //[Display(ResourceType = typeof(FieldNames), Name = "UpdatedDate")]
+        //public virtual DateTime? UpdatedDate { get; set; }
 
-        [Display(ResourceType = typeof(FieldNames), Name = "DctNotes")]
-        [DataType(DataType.MultilineText)]
-        public virtual string DctNotes { get; set; }
+        //[Display(ResourceType = typeof(FieldNames), Name = "DctNotes")]
+        //[DataType(DataType.MultilineText)]
+        //public virtual string DctNotes { get; set; }
 
-        [Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
-        public virtual int? DctScore { get; set; }
+        //[Display(ResourceType = typeof(FieldNames), Name = "DctScore")]
+        //public virtual int? DctScore { get; set; }
 
         public virtual IList<MultiInteractionDetail> Details { get; protected internal set; }
 
@@ -92,18 +92,18 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             return this.Id;
         }
 
-        public virtual void SetAuditTrail(string userName, DateTime timestamp)
-        {
-            if (default(int) == this.Id)
-            {
-                this.EnteredBy = userName;
-                this.EnteredDate = timestamp;
-            }
-            else
-            {
-                this.UpdatedBy = userName;
-                this.UpdatedDate = timestamp;
-            }
-        }
+        //public virtual void SetAuditTrail(string userName, DateTime timestamp)
+        //{
+        //    if (default(int) == this.Id)
+        //    {
+        //        this.EnteredBy = userName;
+        //        this.EnteredDate = timestamp;
+        //    }
+        //    else
+        //    {
+        //        this.UpdatedBy = userName;
+        //        this.UpdatedDate = timestamp;
+        //    }
+        //}
     }
 }

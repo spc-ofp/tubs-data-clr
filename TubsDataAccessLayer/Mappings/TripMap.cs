@@ -130,7 +130,13 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             HasMany(x => x.Pushpins).KeyColumn(TripId).LazyLoad();
             HasMany(x => x.Gen3Answers).KeyColumn(TripId);
             HasMany(x => x.Gen3Details).KeyColumn(TripId);
-            
+
+            // Access Control List
+            HasMany(x => x.AccessControl)
+                .KeyColumn(TripId)
+                .Inverse() // Maybe, maybe not
+                .Cascade.None();
+
             DiscriminateSubClassesOnColumn<string>("gear_code");
         }
     }

@@ -30,7 +30,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// Sighting represents a vessel sighting recorded on form GEN-1.
     /// </summary>
-    public class Sighting : IAuditable, IEntity
+    public class Sighting : IAuditable, IEntity /*, ISecurable*/
     {
         public virtual int Id { get; set; }
 

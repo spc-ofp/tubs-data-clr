@@ -31,6 +31,7 @@ namespace Spc.Ofp.Tubs.DAL.Infrastructure
     /// </summary>
     public static class PredicateExtensions
     {
+
         public static Expression<Func<TripHeader, bool>> AsHeaderPredicate(this SearchCriteria criteria)
         {
             // This could go either way, but for now we'll say no criteria means no trips.

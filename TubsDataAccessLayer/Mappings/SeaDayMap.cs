@@ -24,6 +24,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using System;
     using FluentNHibernate.Mapping;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// Mapper for purse seine and pole and line sea days.

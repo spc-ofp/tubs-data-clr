@@ -31,6 +31,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// </summary>
     public sealed class LongLineSetMap : ClassMap<LongLineSet>
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public LongLineSetMap()
         {
             Schema("obsv");
@@ -76,22 +79,32 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.BaitSpecies1Code, "bait1_sp_code").Length(3);
             Map(x => x.BaitSpecies1Weight, "bait1_w");
             Map(x => x.BaitSpecies1Hooks, "bait1_h").Length(25);
+            Map(x => x.BaitSpecies1Dyed, "bait1_dyed_yn");
 
             Map(x => x.BaitSpecies2Code, "bait2_sp_code").Length(3);
             Map(x => x.BaitSpecies2Weight, "bait2_w");
             Map(x => x.BaitSpecies2Hooks, "bait2_h").Length(25);
+            Map(x => x.BaitSpecies2Dyed, "bait2_dyed_yn");
 
             Map(x => x.BaitSpecies3Code, "bait3_sp_code").Length(3);
             Map(x => x.BaitSpecies3Weight, "bait3_w");
             Map(x => x.BaitSpecies3Hooks, "bait3_h").Length(25);
+            Map(x => x.BaitSpecies3Dyed, "bait3_dyed_yn");
 
             Map(x => x.BaitSpecies4Code, "bait4_sp_code").Length(3);
             Map(x => x.BaitSpecies4Weight, "bait4_w");
             Map(x => x.BaitSpecies4Hooks, "bait4_h").Length(25);
+            Map(x => x.BaitSpecies4Dyed, "bait4_dyed_yn");
 
             Map(x => x.BaitSpecies5Code, "bait5_sp_code").Length(3);
             Map(x => x.BaitSpecies5Weight, "bait5_w");
             Map(x => x.BaitSpecies5Hooks, "bait5_h").Length(25);
+            Map(x => x.BaitSpecies5Dyed, "bait5_dyed_yn");
+
+            Map(x => x.HasToriPoles, "tori_poles_yn");
+            Map(x => x.HasBirdCurtain, "bird_curtain_yn");
+            Map(x => x.HasWeightedLines, "weighted_lines_yn");
+            Map(x => x.HasUnderwaterChute, "underwater_chute_yn");
 
             Map(x => x.Details, "setdetails");
             Map(x => x.Strategy, "strategy");
@@ -113,10 +126,20 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");
 
-            HasMany(x => x.CatchList).KeyColumn("l_set_id").Cascade.None();
-            HasMany(x => x.EventList).KeyColumn("l_set_id").Cascade.None();
+            // Moving to Inverse for these entities will probably change
+            // the requirements for the Longline import
+            HasMany(x => x.EventList)
+                .KeyColumn("l_set_id")
+                .Inverse()
+                .Cascade.None();
+            HasMany(x => x.NotesList)
+                .KeyColumn("l_set_id")
+                .Inverse()
+                .Cascade.None();
+
+            HasMany(x => x.CatchList).KeyColumn("l_set_id").Cascade.None();           
             HasMany(x => x.ConversionFactors).KeyColumn("l_set_id").Cascade.None();
-            HasMany(x => x.NotesList).KeyColumn("l_set_id").Cascade.None();
+            
 
             References(x => x.Trip).Column("obstrip_id");
         }

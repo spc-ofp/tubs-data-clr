@@ -82,9 +82,11 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.MainlineDiameter, "mline_diam").Precision(4).Scale(1);
 
             Map(x => x.BranchlineMaterial1, "bline_mat1").Length(40);
+            Map(x => x.BranchlineMaterial1Diameter, "bline_mat1_diam").Precision(4).Scale(1);
             Map(x => x.BranchlineMaterial1Description, "bline_mat1_desc").Length(50);
 
             Map(x => x.BranchlineMaterial2, "bline_mat2").Length(40);
+            Map(x => x.BranchlineMaterial2Diameter, "bline_mat2_diam").Precision(4).Scale(1);
             Map(x => x.BranchlineMaterial2Description, "bline_mat2_desc").Length(50);
 
             Map(x => x.BranchlineMaterial3, "bline_mat3").Length(40);
@@ -100,16 +102,20 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
 
             Map(x => x.JapanHookSize, "hksjapan_size").Length(50);
             Map(x => x.JapanHookPercentage, "hksjapan_perc");
+            Map(x => x.JapanHookOffsetRingSwivel, "hksjapan_ors").Length(5);
 
             Map(x => x.CircleHookSize, "hkscircle_size").Length(50);
             Map(x => x.CircleHookPercentage, "hkscircle_perc");
+            Map(x => x.CircleHookOffsetRingSwivel, "hkscircle_ors").Length(5);
 
             Map(x => x.JHookSize, "hksj_size").Length(50);
             Map(x => x.JHookPercentage, "hksj_perc");
+            Map(x => x.JHookOffsetRingSwivel, "hksj_ors").Length(5);
 
             Map(x => x.OtherHookSize, "hksoth_size").Length(50);
             Map(x => x.OtherHookPercentage, "hksoth_perc");
             Map(x => x.OtherHookType, "hksoth_type").Length(50);
+            Map(x => x.OtherHookOffsetRingSwivel, "hksoth_ors").Length(5);
         }
     }
 

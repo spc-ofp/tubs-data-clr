@@ -24,6 +24,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using FluentNHibernate.Mapping;
     using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// Fluent NHibernate mapper for classes deriving from Activity.
@@ -87,6 +88,12 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
 
             HasOne(x => x.FishingSet).PropertyRef(r => r.Activity).Cascade.None();
             HasOne(x => x.Fad).PropertyRef(r => r.Activity).Cascade.None();
+
+            HasMany(x => x.AccessControl)
+                .KeyColumn("s_daylog_id")
+                .Inverse() // Maybe, maybe not
+                .Cascade
+                .None();
         }
     }
 }

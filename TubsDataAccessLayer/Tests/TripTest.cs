@@ -27,6 +27,10 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
     using PagedList;
+    using Newtonsoft.Json;
+    using System.IO;
+    using System.Globalization;
+    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
@@ -34,6 +38,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class TripTest
     {
+        
         private IRepository<Trip> repo;
 
         [TestFixtureSetUp]
@@ -98,6 +103,37 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             System.Console.WriteLine("Set Count: " + qry.Sum());
             Assert.IsNotNull(trip.Pushpins);
             Assert.True(trip.Pushpins.Count > 100);
+        }
+
+        [Test]
+        [Ignore("Too slow, Joe")]
+        public void ExportTrip([Values(70)] int tripId)
+        {
+            var trip = this.repo.FindById(tripId) as PurseSeineTrip;
+            var settings = TubsDataService.GetExportSettings();
+            // 330KB without formatting, 695KB with
+            var output = JsonConvert.SerializeObject(trip, Formatting.Indented, settings);
+
+            // With all null values, 1248KB for this trip
+            // Excluding derived values, ACL data, and null values, the size of this trip export
+            // drops to 695KB.  Further, export time drops from ~ 20 seconds to ~ 1 second.
+            using (StreamWriter outfile = new StreamWriter(@"C:\temp\trip.json"))
+            {
+                outfile.Write(output);
+            }
+
+            // Serialize directly to stream
+            // http://stackoverflow.com/questions/9845741/json-net-fails-to-serialize-to-a-stream-but-works-just-fine-serializing-to-a-st
+            // Pro-tip:  Don't forget to flush!
+            //JsonSerializer ser = JsonSerializer.Create(settings);
+            //StringWriter writer = new StringWriter(new StringBuilder(700 * 1024), (IFormatProvider)CultureInfo.InvariantCulture);
+            //using (JsonTextWriter jsonWriter = new JsonTextWriter((TextWriter)writer))
+            //{
+            //    ser.Serialize((JsonWriter)jsonWriter, trip);
+            //    writer.Flush();
+            //}
+
+            Assert.True(true);
         }
 
         [Test]

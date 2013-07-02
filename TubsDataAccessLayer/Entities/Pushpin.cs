@@ -24,7 +24,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             "    tstamp as [Timestamp], " +
             "    event_description as [Description], " +
             "    event_key as [EventKey] " +
-            "FROM obsv.vw_positions_s WHERE obstrip_id = ? " +
+            "FROM obsv.vw_positions WHERE obstrip_id = ? " +
             "ORDER BY tstamp ASC";
 
         public virtual string FormName { get; set; }

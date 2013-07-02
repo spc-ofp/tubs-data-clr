@@ -64,11 +64,11 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual FadType? AsLeft { get; set; }
 
-        public virtual int? Depth { get; set; }
+        public virtual decimal? Depth { get; set; }
 
-        public virtual int? Length { get; set; }
+        public virtual decimal? Length { get; set; }
 
-        public virtual int? Width { get; set; }
+        public virtual decimal? Width { get; set; }
 
         public virtual string BuoyNumber { get; set; }
 

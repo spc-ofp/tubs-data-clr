@@ -1,9 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MockTripMonitor.cs" company="Secretariat of the Pacific Community">
-// Copyright (C) 2012 Secretariat of the Pacific Community
+﻿/// -----------------------------------------------------------------------
+// <copyright file="ISecurable.cs" company="Secretariat of the Pacific Community">
+// Copyright (C) 2013 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
-namespace Spc.Ofp.Tubs.DAL.Entities
+
+namespace Spc.Ofp.Tubs.DAL.Infrastructure
 {
     /*
      * This file is part of TUBS.
@@ -21,20 +22,21 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
+    
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Text;
-    using Spc.Ofp.Tubs.DAL.Common;
-    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
-    /// MockTripMonitor is used to enable more convenient mapping via
-    /// AutoMapper.
+    /// ISecurable is a marker interface to denote entities that have
+    /// a view ACL.
     /// </summary>
-    public class MockTripMonitor
+    public interface ISecurable
     {
-        public IList<Gen3Answer> Answers { get; set; }
-        public IList<Gen3Detail> Details { get; set; }
+        bool IsAllowed(string entityName);
+
+        IEnumerable<IAccessControl> AccessControlList
+        {
+            get;
+        }
     }
 }

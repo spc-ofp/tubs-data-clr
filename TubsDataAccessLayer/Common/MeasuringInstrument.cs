@@ -1,9 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="MockTripMonitor.cs" company="Secretariat of the Pacific Community">
+// <copyright file="WorkbookVersion.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2012 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
-namespace Spc.Ofp.Tubs.DAL.Entities
+
+namespace Spc.Ofp.Tubs.DAL.Common
 {
     /*
      * This file is part of TUBS.
@@ -22,19 +23,47 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Text;
-    using Spc.Ofp.Tubs.DAL.Common;
-    using Spc.Ofp.Tubs.DAL.Infrastructure;
+    using System.ComponentModel;
 
     /// <summary>
-    /// MockTripMonitor is used to enable more convenient mapping via
-    /// AutoMapper.
+    /// Instruments used to measure fish length.
     /// </summary>
-    public class MockTripMonitor
+    public enum MeasuringInstrument
     {
-        public IList<Gen3Answer> Answers { get; set; }
-        public IList<Gen3Detail> Details { get; set; }
+        /// <summary>
+        /// Unknown
+        /// </summary>
+        [Description("Unknown")]
+        Unknown,
+
+        /// <summary>
+        /// Aluminum Caliper
+        /// </summary>
+        [Description("Aluminum Caliper")]
+        C,
+
+        /// <summary>
+        /// Wooden Caliper
+        /// </summary>
+        [Description("Wooden Caliper")]
+        W,
+
+        /// <summary>
+        /// Board
+        /// </summary>
+        [Description("Board")]
+        B,
+
+        /// <summary>
+        /// Deck Tape
+        /// </summary>
+        [Description("Deck Tape")]
+        T,
+
+        /// <summary>
+        /// Ruler
+        /// </summary>
+        [Description("Ruler")]
+        R,
     }
 }

@@ -31,7 +31,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// (e.g. PS-2 for purse seine trips, not sure what it is for
     /// pole and line trips...)
     /// </summary>
-    public abstract class Activity : IAuditable, IEntity
+    public abstract class Activity : IAuditable, IEntity /*, ISecurable*/
     {
         public virtual int Id { get; set; }
 

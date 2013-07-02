@@ -81,9 +81,13 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual string BranchlineMaterial1 { get; set; }
 
+        public virtual decimal? BranchlineMaterial1Diameter { get; set; }
+
         public virtual string BranchlineMaterial1Description { get; set; }
 
         public virtual string BranchlineMaterial2 { get; set; }
+
+        public virtual decimal? BranchlineMaterial2Diameter { get; set; }
 
         public virtual string BranchlineMaterial2Description { get; set; }
 
@@ -109,18 +113,26 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual int? JapanHookPercentage { get; set; }
 
+        public virtual string JapanHookOffsetRingSwivel { get; set; }
+
         public virtual string CircleHookSize { get; set; }
 
         public virtual int? CircleHookPercentage { get; set; }
 
+        public virtual string CircleHookOffsetRingSwivel { get; set; }
+
         public virtual string JHookSize { get; set; }
 
         public virtual int? JHookPercentage { get; set; }
+
+        public virtual string JHookOffsetRingSwivel { get; set; }
 
         public virtual string OtherHookType { get; set; }
 
         public virtual string OtherHookSize { get; set; }
 
         public virtual int? OtherHookPercentage { get; set; }
+
+        public virtual string OtherHookOffsetRingSwivel { get; set; }
     }
 }

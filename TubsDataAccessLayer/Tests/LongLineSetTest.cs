@@ -25,6 +25,7 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     using System;
     using System.Linq;
     using NUnit.Framework;
+    using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
 
     /// <summary>
@@ -45,6 +46,18 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                 Assert.AreEqual(2, baits.Count());
                 var baitString = String.Join(",", baits);
                 StringAssert.AreEqualIgnoringCase("CLP,HER", baitString);
+            }
+        }
+
+        [Test]
+        public void GetSetWithMeasuringInstrument([Values(25, 26)] int setId)
+        {
+            using (var repo = TubsDataService.GetRepository<LongLineSet>(true))
+            {
+                var set = repo.FindById(setId);
+                Assert.NotNull(set);
+                Assert.True(set.MeasuringInstrument.HasValue);
+                Assert.AreEqual(MeasuringInstrument.C, set.MeasuringInstrument);
             }
         }
     }

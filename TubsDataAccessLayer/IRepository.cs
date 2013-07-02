@@ -40,6 +40,11 @@ namespace Spc.Ofp.Tubs.DAL
         /// <returns>Entity with specified identifier or null if no such entity exists.</returns>
         T FindById(object id);
 
+        // Because the sole restriction is currently 'class', the
+        // implementation can't execute a reasonably efficient query.
+        // Hence, no need to implement this method
+        //bool Exists(object id);
+
         /// <summary>
         /// Add entity
         /// </summary>
@@ -59,13 +64,9 @@ namespace Spc.Ofp.Tubs.DAL
 
         void Save(T entity);
 
-        ICriteria CreateCriteria();
-
-        ICriteria CreateCriteria(string alias);
-
-        IMultiCriteria CreateMultiCriteria();
-
         void DeleteById(object id);
+
+        void DeleteAllById(IEnumerable<object> keys);
 
         void Delete(T entity);
 
@@ -74,5 +75,11 @@ namespace Spc.Ofp.Tubs.DAL
         T FindBy(Expression<Func<T, bool>> expression);
 
         IQueryable<T> FilterBy(Expression<Func<T, bool>> expression);
+
+        ICriteria CreateCriteria();
+
+        ICriteria CreateCriteria(string alias);
+
+        IMultiCriteria CreateMultiCriteria();
     }
 }

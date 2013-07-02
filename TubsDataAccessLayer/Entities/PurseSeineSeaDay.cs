@@ -21,6 +21,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
+    using System.Linq;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -38,6 +39,9 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Display(ResourceType = typeof(FieldNames), Name = "DiaryPage")]
         public virtual string DiaryPage { get; set; }
 
+        // Using LINQ, it's possible that this list could be filtered by entities allowed to
+        // see said activities.  However, what is really wanted is to have these entities filtered
+        // at the database level.  Bleah!
         public virtual IList<PurseSeineActivity> Activities { get; protected internal set; }
 
         public virtual void AddActivity(PurseSeineActivity activity)

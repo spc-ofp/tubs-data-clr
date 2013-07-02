@@ -30,7 +30,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class Transfer : IAuditable, IEntity
+    public class Transfer : IAuditable, IEntity /*, ISecurable*/
     {
         public virtual int Id { get; set; }
 

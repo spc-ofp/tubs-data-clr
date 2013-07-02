@@ -6,6 +6,23 @@
 
 namespace Spc.Ofp.Tubs.DAL
 {
+    /*
+    * This file is part of TUBS.
+    *
+    * TUBS is free software: you can redistribute it and/or modify
+    * it under the terms of the GNU Affero General Public License as published by
+    * the Free Software Foundation, either version 3 of the License, or
+    * (at your option) any later version.
+    *  
+    * TUBS is distributed in the hope that it will be useful,
+    * but WITHOUT ANY WARRANTY; without even the implied warranty of
+    * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    * GNU Affero General Public License for more details.
+    *  
+    * You should have received a copy of the GNU Affero General Public License
+    * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
+    */
+
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -20,11 +37,11 @@ namespace Spc.Ofp.Tubs.DAL
     /// stateless and stateful sessions.
     /// </summary>
     public class Repository<S, T> : IRepository<T>, IDisposable
-        where T : class
+        where T : class /*, IEntity // TODO: Check that all entities implement IEntity */
         where S : class
     {
-        private readonly S _session;
-        private readonly bool _isStateless;
+        protected readonly S _session;
+        protected readonly bool _isStateless;
         private bool _disposed; // For IDisposable
 
         // Use delegates so that we've got the same internal interface to the
@@ -36,6 +53,9 @@ namespace Spc.Ofp.Tubs.DAL
 
         // Pointers to the actual functions used to perform the
         // NHibernate operations.
+        // TODO:  If the repo should return null instead of throwing an exception
+        // on unauthorized access, repo will need to implement these ops instead of
+        // passing them on to Session/StatelessSession
         private readonly Operation CreateOperation;
         private readonly ReturningOperation ReadOperation;
         private readonly MergingOperation UpdateOperation;
@@ -79,18 +99,18 @@ namespace Spc.Ofp.Tubs.DAL
             }
         }
 
-        private IStatelessSession GetStatelessSession()
+        protected IStatelessSession GetStatelessSession()
         {
             return this._session as IStatelessSession;
         }
 
-        private ISession GetSession()
+        protected ISession GetSession()
         {
             return this._session as ISession;
         }
 
-        public T FindById(object id)
-        {            
+        public virtual T FindById(object id)
+        {
             try
             {
                 return ReadOperation(id);
@@ -101,6 +121,18 @@ namespace Spc.Ofp.Tubs.DAL
             }
         }
 
+        /*
+        // If Repository had a constraint on T such that it had to implement IEntity
+        // _AND_ IEntity had an Id interface property, we could do this
+        public virtual bool Exists(object id)
+        {
+            return this._isStateless ?
+                GetStatelessSession().QueryOver<T>().Where(x => x.Id == id).RowCount() > 0 :
+                GetSession().QueryOver<T>().Where(x => x.Id == id).RowCount() > 0;
+                
+        }
+        */
+
         public void Add(T entity)
         {
             CreateOperation(entity);
@@ -108,10 +140,8 @@ namespace Spc.Ofp.Tubs.DAL
 
         public void Add(IEnumerable<T> items)
         {
-            foreach (T item in items)
-            {
-                CreateOperation(item);
-            }
+            items = items ?? Enumerable.Empty<T>();
+            items.ForEach(item => CreateOperation(item));
         }
 
         public void Update(T entity, bool autoMerge = false)
@@ -121,10 +151,8 @@ namespace Spc.Ofp.Tubs.DAL
 
         public void Update(IEnumerable<T> items, bool autoMerge = false)
         {
-            foreach (T item in items)
-            {
-                UpdateOperation(item, autoMerge);
-            }
+            items = items ?? Enumerable.Empty<T>();
+            items.ForEach(item => UpdateOperation(item, autoMerge));
         }
 
         // TODO: Test me!
@@ -145,7 +173,10 @@ namespace Spc.Ofp.Tubs.DAL
             }
         }
 
-        //
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
         public void Save(T entity)
         {
             // This caused a problem with PageCount -- if the
@@ -160,6 +191,9 @@ namespace Spc.Ofp.Tubs.DAL
                 }
                 else
                 {
+                    // This is a hack for ensuring that EnteredBy/EnteredDate aren't wiped out when
+                    // updating an entity from the subset of data that comes back from the web front end
+                    // TODO:  Check to ensure that previous hacks are removed from calling code
                     if (entity is IAuditable)
                     {
                         var previous = FindById(e.GetPkid());
@@ -171,7 +205,11 @@ namespace Spc.Ofp.Tubs.DAL
             }
         }
 
-        public ICriteria CreateCriteria()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual ICriteria CreateCriteria()
         {
             return
                 this._isStateless ?
@@ -179,7 +217,12 @@ namespace Spc.Ofp.Tubs.DAL
                     (GetSession()).CreateCriteria<T>();
         }
 
-        public ICriteria CreateCriteria(string alias)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="alias"></param>
+        /// <returns></returns>
+        public virtual ICriteria CreateCriteria(string alias)
         {
             return
                 this._isStateless ?
@@ -187,7 +230,7 @@ namespace Spc.Ofp.Tubs.DAL
                     (GetSession()).CreateCriteria<T>(alias);
         }
 
-        public IMultiCriteria CreateMultiCriteria()
+        public virtual IMultiCriteria CreateMultiCriteria()
         {
             if (this._isStateless)
             {
@@ -202,17 +245,21 @@ namespace Spc.Ofp.Tubs.DAL
             this.Delete(item);
         }
 
+        public void DeleteAllById(IEnumerable<object> keys)
+        {
+            keys = keys ?? Enumerable.Empty<object>();
+            keys.ForEach(key => DeleteById(key));
+        }
+
         public void Delete(T entity)
         {
             if (null == entity)
-            {
                 return;
-            }
             
             DeleteOperation(entity);
         }
 
-        public IQueryable<T> All()
+        public virtual IQueryable<T> All()
         {
             return ListOperation();
         }

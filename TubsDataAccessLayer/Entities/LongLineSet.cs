@@ -30,7 +30,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// <summary>
     /// Long line set details as recorded on form LL-3
     /// </summary>
-    public class LongLineSet : IAuditable, IEntity
+    public class LongLineSet : IAuditable, IEntity /*, ISecurable*/
     {
         public LongLineSet()
         {
@@ -124,27 +124,38 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual bool? AllPositionsDirectlyObserved { get; set; }
 
-        public virtual string MeasuringInstrument { get; set; } // TODO Replace with Enum
+        public virtual MeasuringInstrument? MeasuringInstrument { get; set; }
 
         public virtual string BaitSpecies1Code { get; set; }
         public virtual int? BaitSpecies1Weight { get; set; }
         public virtual string BaitSpecies1Hooks { get; set; }
+        public virtual bool? BaitSpecies1Dyed { get; set; }
 
         public virtual string BaitSpecies2Code { get; set; }
         public virtual int? BaitSpecies2Weight { get; set; }
         public virtual string BaitSpecies2Hooks { get; set; }
+        public virtual bool? BaitSpecies2Dyed { get; set; }
 
         public virtual string BaitSpecies3Code { get; set; }
         public virtual int? BaitSpecies3Weight { get; set; }
         public virtual string BaitSpecies3Hooks { get; set; }
+        public virtual bool? BaitSpecies3Dyed { get; set; }
 
         public virtual string BaitSpecies4Code { get; set; }
         public virtual int? BaitSpecies4Weight { get; set; }
         public virtual string BaitSpecies4Hooks { get; set; }
+        public virtual bool? BaitSpecies4Dyed { get; set; }
 
         public virtual string BaitSpecies5Code { get; set; }
         public virtual int? BaitSpecies5Weight { get; set; }
         public virtual string BaitSpecies5Hooks { get; set; }
+        public virtual bool? BaitSpecies5Dyed { get; set; }
+
+        // Mitigation data
+        public virtual bool? HasToriPoles { get; set; }
+        public virtual bool? HasBirdCurtain { get; set; }
+        public virtual bool? HasWeightedLines { get; set; }
+        public virtual bool? HasUnderwaterChute { get; set; }
 
         public virtual string Details { get; set; }
 

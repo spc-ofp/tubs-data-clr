@@ -24,15 +24,24 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Linq.Expressions;
     using System.Text;
     using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Infrastructure;
+    using Spc.Ofp.Tubs.DAL.Security;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Generic trip representation.
     /// </summary>
-    public abstract class Trip : IAuditable, IEntity
+    public abstract class Trip : IAuditable, IEntity, ISecurable
     {
+        public static readonly Expression<Func<Trip, string, bool>> IsAllowedExpression =
+            (x, name) => x.AccessControl.Where(ace => name.Equals(ace.EntityName, StringComparison.InvariantCultureIgnoreCase)).Any();
+
+        private static readonly Func<Trip, string, bool> IsAllowedFunc = IsAllowedExpression.Compile();
+        
         protected Trip()
         {
             this.Sightings = new List<Sighting>(32);
@@ -47,6 +56,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             // Create with default values as, in general, most data will be 2007 or earlier workbooks
             this.Gen3Answers = new List<Gen3Answer>();
             this.Gen3Details = new List<Gen3Detail>();
+            this.AccessControl = new List<TripAce>(6);
         }
         
         public virtual int Id { get; set; }
@@ -273,7 +283,30 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual IList<PageCount> PageCounts { get; protected internal set; }
 
+        // Pushpins is a collection of derived values
+        [JsonIgnore]
         public virtual IList<Pushpin> Pushpins { get; protected internal set; }
+
+        // Don't export security
+        [JsonIgnore]
+        public virtual IList<TripAce> AccessControl { get; protected internal set; }
+
+        // Don't export security
+        [JsonIgnore]
+        public virtual IEnumerable<IAccessControl> AccessControlList
+        {
+            get
+            {
+                return null == this.AccessControl ?
+                    Enumerable.Empty<IAccessControl>() :
+                    this.AccessControl.Cast<IAccessControl>();
+            }
+        }
+
+        public virtual bool IsAllowed(string entityName)
+        {
+            return IsAllowedFunc(this, entityName);
+        }
 
         // Workbook 2009 GEN-3
         public virtual IList<Gen3Answer> Gen3Answers { get; protected internal set; }
@@ -479,6 +512,11 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             {
                 this.ReturnDate = this.ReturnDateOnly.Merge(this.ReturnTimeOnly);
             }
+        }
+
+        public virtual bool HasAcl()
+        {
+            return true;
         }
 
         public virtual bool IsNew()

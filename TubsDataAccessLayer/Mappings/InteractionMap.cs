@@ -92,7 +92,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         {
             DiscriminatorValue("I");
             Map(x => x.InteractionId, "intact_id").CustomType<InteractionActivity>();
+            // Vessel activity description if "Other"
             Map(x => x.InteractionOther, "intact_other");
+            // Full description of interaction
             Map(x => x.InteractionDescription, "int_describe");
 
             HasMany(x => x.Details)

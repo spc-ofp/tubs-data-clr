@@ -25,11 +25,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using System;
     using System.ComponentModel.DataAnnotations;
     using Spc.Ofp.Tubs.DAL.Infrastructure;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Base class for all GEN-2 interactions
     /// </summary>
-    public abstract class Interaction : IAuditable, IEntity
+    public abstract class Interaction : IAuditable, IEntity /*, ISecurable */
     {
         public virtual int Id { get; set; }
 
@@ -94,6 +95,15 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         {
             return this.Id;
         }
+
+        /*
+        public virtual IEnumerable<IAccessControl> GetAccessList();
+        {
+            return null == this.AccessControl ?
+                Enumerable.Empty<IAccessControl>() :
+                this.AccessControl.Cast<IAccessControl>();
+        }
+        */
 
         public virtual void SetAuditTrail(string userName, DateTime timestamp)
         {

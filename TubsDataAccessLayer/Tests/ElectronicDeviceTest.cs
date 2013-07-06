@@ -32,18 +32,49 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     public class ElectronicDeviceTest : BaseTest
     {
         [Test]
-        public void TestGetElectronics()
+        public void GetElectronicsForTrip([Values(389)] int tripId)
         {
             using (var repo = TubsDataService.GetRepository<ElectronicDevice>(true))
             {
-                var electronics = repo.FilterBy(x => x.Trip.Id == 70);
+                var electronics = repo.FilterBy(x => x.Trip.Id == tripId);
                 Assert.NotNull(electronics);
-                Assert.Greater(electronics.Count<ElectronicDevice>(), 5);
+                Assert.AreEqual(21, electronics.Count());
+                Assert.AreEqual(10, electronics.Where(e => e.DeviceType == Common.ElectronicDeviceType.Other).Count());
                 foreach (var device in electronics)
                 {
                     Assert.NotNull(device);
-                    Assert.NotNull(device.DeviceType);
+                    if (device.DeviceType != Common.ElectronicDeviceType.Other)
+                    {
+                        // Device with a "standard" category has no description
+                        Assert.Null(device.Description);
+                    }
                 }
+
+            }
+        }
+
+        /// <summary>
+        /// Test electronics sorting functionality.
+        /// </summary>
+        /// <remarks>
+        /// This trip was modified to create this test case.  There are two
+        /// bird radar devices.  Originally, they were both marked as 'OIF'.
+        /// The item with the higher device_id value was modified to 'ALL'.
+        /// </remarks>
+        /// <param name="tripId">trip primary key</param>
+        [Test]
+        public void SortElectronics([Values(398)] int tripId)
+        {
+            using (var repo = TubsDataService.GetRepository<Trip>(false))
+            {
+                var trip = repo.FindById(tripId);
+                Assert.NotNull(trip);
+                Assert.NotNull(trip.Electronics);
+                Assert.Less(0, trip.Electronics.Count);
+                trip.SortElectronics();
+                var birdRadar = trip.Electronics.Where(e => e.DeviceType == Common.ElectronicDeviceType.BirdRadar).FirstOrDefault();
+                Assert.NotNull(birdRadar);
+                StringAssert.AreEqualIgnoringCase("FR-1460DS", birdRadar.Model);
             }
         }
     }

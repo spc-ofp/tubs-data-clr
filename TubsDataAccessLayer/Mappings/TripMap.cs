@@ -31,8 +31,14 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// </summary>
     public class TripMap : ClassMap<Trip>
     {
+        /// <summary>
+        /// Trip identifier column name.
+        /// </summary>
         public const string TripId = "obstrip_id";
         
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public TripMap()
         {           
             Schema("obsv");
@@ -105,10 +111,6 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
                 
             });
 
-            // TODO Devise a test for this
-            OptimisticLock.Version();
-            Version(x => x.RowVersion).Column("tstamp").Not.Nullable().CustomSqlType("timestamp").Generated.Always();
-
             References(x => x.Vessel).Column("vessel_id");
             References(x => x.Observer).Column("staff_code");
             References(x => x.DeparturePort).Column("dep_port");
@@ -146,6 +148,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// </summary>
     public sealed class PurseSeineTripMap : SubclassMap<PurseSeineTrip>
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public PurseSeineTripMap()
         {
             DiscriminatorValue("S");
@@ -165,6 +170,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     /// </summary>
     public sealed class LongLineTripMap : SubclassMap<LongLineTrip>
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public LongLineTripMap()
         {
             DiscriminatorValue("L");
@@ -174,8 +182,14 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
         }
     }
 
+    /// <summary>
+    /// Mapping for pole and line specific data.
+    /// </summary>
     public sealed class PoleAndLineTripMap : SubclassMap<PoleAndLineTrip>
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public PoleAndLineTripMap()
         {
             DiscriminatorValue("P");

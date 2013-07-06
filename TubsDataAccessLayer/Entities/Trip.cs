@@ -380,16 +380,6 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             this.Electronics.Add(device);
         }
 
-        /*
-        public virtual void AddInteraction(SpecialSpeciesInteraction interaction)
-        {
-            if (null == interaction)
-                return;
-            
-            interaction.Trip = this;
-            this.Interactions.Add(interaction);
-        }
-        */
         public virtual void AddInteraction(Interaction interaction)
         {
             if (null == interaction)
@@ -480,12 +470,50 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             return candidate.Ticks >= minValue && candidate.Ticks <= maxValue;
         }
 
+        /// <summary>
+        /// Read only property for determining if the trip is Read-Only.
+        /// (How meta!)
+        /// </summary>
         public virtual bool IsReadOnly
         {
             get
             {
                 return this.ClosedDate.HasValue;
             }
+        }
+
+        /// <summary>
+        /// Sort electronics by usage, with most frequently used coming first, and least frequently used
+        /// coming last.  This might be a little bit of a hack, in that it relies on the Usage enumeration
+        /// to be ordered from best to worst in the definition.  If the Usage enum is modified with codes
+        /// not in order, this won't work as expected.
+        /// 
+        /// NHibernate uses a special class which implements IList<> but can't be cast to
+        /// List<>.
+        /// Because of the protection level of the Electronics member, we can't re-order the list
+        /// outside this DLL.
+        /// NOTE:  This will force a fetch of all the electronics devices!
+        /// </summary>
+        public virtual void SortElectronics()
+        {
+            // Avoid messing with this if possible
+            if (null != this.Electronics && this.Electronics.Count > 1 && this.Electronics.Where(e => null != e && e.Usage.HasValue).Any())
+            {
+                var electronics = this.Electronics.ToList();
+                electronics.Sort(delegate(ElectronicDevice d1, ElectronicDevice d2)
+                {
+                    return Comparer<int?>.Default.Compare((int?)d1.Usage, (int?)d2.Usage);
+                });
+                // NOTE: The initial implementation replaced the existing list with
+                // a generic list.  This _BROKE_ NHibernate, as it wanted to remove all the
+                // electronics from the trip on _display_.
+                // This is a reasonable fix, given that SortElectronics() will only be called
+                // in very limited circumstances.
+                this.Electronics.Clear();
+                electronics.ForEach(e => this.Electronics.Add(e));
+            }
+            
+
         }
 
         // Unit test before deploying to TubsWeb

@@ -73,6 +73,7 @@
     <Compile Include="Common\ConditionCode.cs" />
     <Compile Include="Common\DateExtensions.cs" />
     <Compile Include="Common\DetectionMethod.cs" />
+    <Compile Include="Common\ElectronicDeviceType.cs" />
     <Compile Include="Common\EnumExtensions.cs" />
     <Compile Include="Common\FadDetectionMethod.cs" />
     <Compile Include="Common\FadMaterials.cs" />

@@ -23,19 +23,25 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
     using FluentNHibernate.Mapping;
-    using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
     /// Fluent NHibernate mapping for the ElectronicDevice entity.
     /// </summary>
     public sealed class ElectronicDeviceMap : ClassMap<ElectronicDevice>
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ElectronicDeviceMap()
         {
             Schema("obsv");
             Table("vess_electronics_detail");
             Id(x => x.Id, "elect_detail_id");
+            Map(x => x.DeviceType, "device_id").CustomType<ElectronicDeviceType>();
+            Map(x => x.Description, "device_desc").Length(255);
+            Map(x => x.SystemDescription, "system_desc").Length(255);
             Map(x => x.IsInstalled, "isinstalled").CustomType(typeof(YesNoType));
             Map(x => x.Usage, "usage_code");
             Map(x => x.Make, "make_desc").Length(30);
@@ -50,7 +56,6 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.DctNotes, "dct_notes");
             Map(x => x.DctScore, "dct_score");
 
-            References(x => x.DeviceType).Column("device_id");
             References(x => x.Trip).Column("obstrip_id");
         }
     }

@@ -158,6 +158,40 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             }
         }
 
+        [Test]
+        public void GetTotalTripCatch([Values(70)] int tripId)
+        {
+            using (var repo = TubsDataService.GetRepository<Trip>(false))
+            {
+                var trip = repo.FindById(tripId) as PurseSeineTrip;
+                Assert.NotNull(trip);
+                var tripCatch = trip.TotalTripCatch;
+                Assert.NotNull(tripCatch);
+                Assert.True(tripCatch.ContainsKey("SKJ"));
+                Assert.True(tripCatch.ContainsKey("YFT"));
+                Assert.False(tripCatch.ContainsKey("BET"));
+            }
+        }
+
+        [Test]
+        public void GetVesselDaysForTrip([Values(70)] int tripId)
+        {
+            using (var repo = TubsDataService.GetRepository<Trip>(false))
+            {
+                var trip = repo.FindById(tripId) as PurseSeineTrip;
+                Assert.NotNull(trip);
+                Assert.AreEqual(17, trip.VesselDays);
+            }
+        }
+
+        [Test]
+        public void GetMetricsForNewTrip()
+        {
+            var trip = new PurseSeineTrip();
+            Assert.AreEqual(0, trip.Cpue);
+            Assert.AreEqual(0, trip.VesselDays);
+        }
+
         // 4321, and 4320 are NCOB longline trips
         [Test]
         public void GetLongLineTrip([Values(4321, 4320)] int tripId)

@@ -442,6 +442,23 @@ namespace Spc.Ofp.Tubs.DAL.Entities
             }
         }
 
+        /// <summary>
+        /// Get the length of the trip in days.
+        /// </summary>
+        public virtual int LengthInDays
+        {
+            get
+            {
+                if (!this.DepartureDate.HasValue || !this.ReturnDate.HasValue)
+                    return 0;
+
+                var dep = this.DepartureDate.Value;
+                var ret = this.ReturnDate.Value;
+                var diff = dep.Subtract(ret);
+                return (int)Math.Abs(diff.TotalDays);
+            }
+        }
+
         public virtual string SpcTripNumber
         {
             get

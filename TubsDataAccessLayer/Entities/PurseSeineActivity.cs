@@ -76,6 +76,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [JsonIgnore]
         public virtual IList<ActivityAce> AccessControl { get; protected internal set; }
 
+        [JsonIgnore]
         public virtual IEnumerable<IAccessControl> AccessControlList
         {
             get

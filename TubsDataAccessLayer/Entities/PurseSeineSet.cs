@@ -31,12 +31,18 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     /// </summary>
     public class PurseSeineSet : IAuditable, IEntity
     {
+        /// <summary>
+        /// PurseSeineSet constructor.
+        /// </summary>
         public PurseSeineSet()
         {
             this.CatchList = new List<PurseSeineSetCatch>();
             this.SamplingHeaders = new List<LengthSamplingHeader>();
         }
 
+        /// <summary>
+        /// Entity primary key.
+        /// </summary>
         public virtual int Id { get; set; }
 
         /// <summary>
@@ -61,6 +67,9 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// </summary>
         public virtual DateTime? SkiffOff { get; set; }
 
+        /// <summary>
+        /// Gets or sets the time the skiff leaves the boat (as time of day only)
+        /// </summary>
         public virtual string SkiffOffTimeOnly { get; set; }
 
         /// <summary>
@@ -68,6 +77,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// </summary>
         public virtual DateTime? WinchOn { get; set; }
 
+        /// <summary>
+        /// Gets or sets time at which pursing begins as recorded by the observer
+        /// (as time of day only)
+        /// </summary>
         public virtual string WinchOnTimeOnly { get; set; }
 
         /// <summary>
@@ -75,6 +88,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// </summary>
         public virtual DateTime? RingsUp { get; set; }
 
+        /// <summary>
+        /// Gets or sets time at which pursing ends as recorded by the observer
+        /// (as time of day only)
+        /// </summary>
         public virtual string RingsUpTimeOnly { get; set; }
 
         /// <summary>
@@ -82,6 +99,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// </summary>
         public virtual DateTime? BeginBrailing { get; set; }
 
+        /// <summary>
+        /// Gets or sets time that brailing begins as recorded by the observer
+        /// (as time of day only)
+        /// </summary>
         public virtual string BeginBrailingTimeOnly { get; set; }
 
         /// <summary>
@@ -89,6 +110,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// </summary>
         public virtual DateTime? EndBrailing { get; set; }
 
+        /// <summary>
+        /// Gets or sets time that brailing ends as recorded by the observer
+        /// (as time of day only)
+        /// </summary>
         public virtual string EndBrailingTimeOnly { get; set; }
 
         /// <summary>
@@ -97,6 +122,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// </summary>
         public virtual DateTime? EndOfSet { get; set; }
 
+        /// <summary>
+        /// Gets or sets time at which the set is complete (skiff on board)
+        /// as recorded by the observer (as time of day only)
+        /// </summary>
         public virtual string EndOfSetTimeOnly { get; set; }
 
         /// <summary>
@@ -154,11 +183,6 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "SumOfBrail2")]
         public virtual decimal? SumOfBrail2 { get; set; }
-
-        // One option is query substitutions:
-        // http://stackoverflow.com/questions/7404991/fluentnhibernate-how-to-map-database-char-to-c-sharp-bool
-        // Another option is a custom user type:
-        // http://darrell.mozingo.net/2009/02/10/generic-nhibernate-user-type-base-class/
 
         /// <summary>
         /// Does this set contain Skipjack?

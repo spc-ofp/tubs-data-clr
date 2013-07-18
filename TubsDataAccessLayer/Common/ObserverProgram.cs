@@ -157,6 +157,12 @@ namespace Spc.Ofp.Tubs.DAL.Common
         TTOB,
 
         /// <summary>
+        /// Tuvalu Observer Programme
+        /// </summary>
+        [Description("Tuvalu Observer Programme")]
+        TVOB,
+
+        /// <summary>
         /// Unknown
         /// </summary>
         [Description("Unknown")]

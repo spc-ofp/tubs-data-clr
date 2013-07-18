@@ -21,9 +21,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      */
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Long line trip entity.
     /// </summary>
     public class LongLineTrip : Trip
     {
@@ -41,6 +42,30 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         public virtual LongLineGear Gear { get; set; }
 
         public virtual IList<LongLineSet> FishingSets { get; protected internal set; }
+
+        // TODO:  Add total catch
+        // TODO:  Add CPUE (depends on total catch)
+
+        /// <summary>
+        /// Standard unit of effort in long line fishing is 100 hooks.
+        /// </summary>
+        /// <remarks>
+        /// Preference is hook_set, then hook_observed, then hook_est
+        /// TODO:  Confirm correct order.
+        /// </remarks>
+        public virtual decimal UnitEffort
+        {
+            get
+            {
+                return (
+                    from fset in this.FishingSets
+                    select fset.TotalHookCount.HasValue ? (decimal)fset.TotalHookCount.Value :
+                           fset.TotalHooksObserved.HasValue ? (decimal)fset.TotalHooksObserved.Value :
+                           fset.EstimatedHookCount.HasValue ? (decimal)fset.EstimatedHookCount.Value :
+                           0M
+                ).Sum() / 100M;
+            }
+        }
 
         public virtual void AddFishingSet(LongLineSet fset)
         {

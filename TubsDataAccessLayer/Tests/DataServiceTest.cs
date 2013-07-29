@@ -21,6 +21,24 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     [TestFixture]
     public class DataServiceTest : BaseTest
     {
+        public const string TUBS_METRICS_QUERY =
+           @"SELECT
+                (SELECT COUNT(1) FROM obsv.trip) AS trip_count,
+                (SELECT COUNT(1) FROM obsv.s_set) AS ps_set_count,
+                (SELECT COUNT(1) FROM obsv.l_set) AS ll_set_count,
+                (SELECT COUNT(DISTINCT(obsprg_code)) from obsv.trip) AS program_count";
+        
+        
+        [Test]
+        public void TestMetricsQuery()
+        {
+            var results = TubsDataService.Execute(TUBS_METRICS_QUERY);
+            Assert.NotNull(results);
+            Assert.AreEqual(1, results.Count); // One row
+            var xresults = results[0] as object[];
+            Assert.AreEqual(4, xresults.Length);
+        }
+        
         [Test]
         public void TestExecuteQuery()
         {

@@ -53,5 +53,11 @@ namespace Spc.Ofp.Tubs.DAL.Common
         /// </summary>
         [Description("Small fish sample only")]
         SmallFish = 90,
+
+        /// <summary>
+        /// Spill Sampling
+        /// </summary>
+        [Description("Spill Sampling")]
+        Spill = 120
     }
 }

@@ -24,8 +24,10 @@ namespace Spc.Ofp.Tubs.DAL.Entities
      */
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Infrastructure;
+    using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.
@@ -38,186 +40,162 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Key]
         public virtual int Id { get; set; }
 
-        //// Long term, this needs to be fixed by moving it out to another table
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail1FullnessCode { get; set; }
+        /*
+         * The problem here is that because of the legacy (MS Access) client,
+         * what should normally be rows in a child table are columns in the
+         * parent table.  Mapping into a component and then publishing out
+         * via another interface is a work-around, not a best practice.
+         */
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail1 { get; set; }
+        /// <summary>
+        /// Record for brail #1
+        /// </summary>
+        public virtual BrailRecord Record1 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail2FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #2
+        /// </summary>
+        public virtual BrailRecord Record2 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail2 { get; set; }
+        /// <summary>
+        /// Record for brail #3
+        /// </summary>
+        public virtual BrailRecord Record3 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail3FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #4
+        /// </summary>
+        public virtual BrailRecord Record4 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail3 { get; set; }
+        /// <summary>
+        /// Record for brail #5
+        /// </summary>
+        public virtual BrailRecord Record5 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail4FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #6
+        /// </summary>
+        public virtual BrailRecord Record6 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail4 { get; set; }
+        /// <summary>
+        /// Record for brail #7
+        /// </summary>
+        public virtual BrailRecord Record7 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail5FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #8
+        /// </summary>
+        public virtual BrailRecord Record8 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail5 { get; set; }
+        /// <summary>
+        /// Record for brail #9
+        /// </summary>
+        public virtual BrailRecord Record9 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail6FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #10
+        /// </summary>
+        public virtual BrailRecord Record10 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail6 { get; set; }
+        /// <summary>
+        /// Record for brail #11
+        /// </summary>
+        public virtual BrailRecord Record11 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail7FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #12
+        /// </summary>
+        public virtual BrailRecord Record12 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail7 { get; set; }
+        /// <summary>
+        /// Record for brail #13
+        /// </summary>
+        public virtual BrailRecord Record13 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail8FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #14
+        /// </summary>
+        public virtual BrailRecord Record14 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail8 { get; set; }
+        /// <summary>
+        /// Record for brail #15
+        /// </summary>
+        public virtual BrailRecord Record15 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail9FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #16
+        /// </summary>
+        public virtual BrailRecord Record16 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail9 { get; set; }
+        /// <summary>
+        /// Record for brail #17
+        /// </summary>
+        public virtual BrailRecord Record17 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail10FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #18
+        /// </summary>
+        public virtual BrailRecord Record18 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail10 { get; set; }
+        /// <summary>
+        /// Record for brail #19
+        /// </summary>
+        public virtual BrailRecord Record19 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail11FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #20
+        /// </summary>
+        public virtual BrailRecord Record20 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail11 { get; set; }
+        /// <summary>
+        /// Record for brail #21
+        /// </summary>
+        public virtual BrailRecord Record21 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail12FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #22
+        /// </summary>
+        public virtual BrailRecord Record22 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail12 { get; set; }
+        /// <summary>
+        /// Record for brail #23
+        /// </summary>
+        public virtual BrailRecord Record23 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail13FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #24
+        /// </summary>
+        public virtual BrailRecord Record24 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail13 { get; set; }
+        /// <summary>
+        /// Record for brail #25
+        /// </summary>
+        public virtual BrailRecord Record25 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail14FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #26
+        /// </summary>
+        public virtual BrailRecord Record26 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail14 { get; set; }
+        /// <summary>
+        /// Record for brail #27
+        /// </summary>
+        public virtual BrailRecord Record27 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail15FullnessCode { get; set; }
+        /// <summary>
+        /// Record for brail #28
+        /// </summary>
+        public virtual BrailRecord Record28 { get; set; }
 
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail15 { get; set; }
+        /// <summary>
+        /// Record for brail #29
+        /// </summary>
+        public virtual BrailRecord Record29 { get; set; }
 
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail16FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail16 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail17FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail17 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail18FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail18 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail19FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail19 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail20FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail20 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail21FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail21 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail22FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail22 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail23FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail23 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail24FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail24 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail25FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail25 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail26FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail26 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail27FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail27 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail28FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail28 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail29FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail29 { get; set; }
-
-        [RangeAttribute(1, 8)]
-        public virtual int? Brail30FullnessCode { get; set; }
-
-        [RangeAttribute(0, Int32.MaxValue)]
-        public virtual int? SamplesFromBrail30 { get; set; }
+        /// <summary>
+        /// Record for brail #30
+        /// </summary>
+        public virtual BrailRecord Record30 { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "EnteredBy")]
         public virtual string EnteredBy { get; set; }
@@ -263,5 +241,78 @@ namespace Spc.Ofp.Tubs.DAL.Entities
                 this.UpdatedDate = timestamp;
             }
         }
+
+        /// <summary>
+        /// Read-only property making iterating over brail records easier.
+        /// Writing back into the entity will still be a pain in the neck.
+        /// </summary>
+        /// <remarks>
+        /// If any caller wants an array, they can do it themselves
+        /// via IEnumerable.ToArray()
+        /// </remarks>
+        public virtual IEnumerable<BrailRecord> BrailRecords
+        {
+            get
+            {
+                yield return this.Record1;
+                yield return this.Record2;
+                yield return this.Record3;
+                yield return this.Record4;
+                yield return this.Record5;
+                yield return this.Record6;
+                yield return this.Record7;
+                yield return this.Record8;
+                yield return this.Record9;
+                yield return this.Record10;
+                yield return this.Record11;
+                yield return this.Record12;
+                yield return this.Record13;
+                yield return this.Record14;
+                yield return this.Record15;
+                yield return this.Record16;
+                yield return this.Record17;
+                yield return this.Record18;
+                yield return this.Record19;
+                yield return this.Record20;
+                yield return this.Record21;
+                yield return this.Record22;
+                yield return this.Record23;
+                yield return this.Record24;
+                yield return this.Record25;
+                yield return this.Record26;
+                yield return this.Record27;
+                yield return this.Record28;
+                yield return this.Record29;
+                yield return this.Record30;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A brail record consists of an integer triple for recording
+    /// amount of catch and number of samples measured.
+    /// </summary>
+    public sealed class BrailRecord
+    {
+        /// <summary>
+        /// When was this brail brought on board?
+        /// </summary>
+        /// <remarks>
+        /// A single PS-4 page only has slots for 30 brails.
+        /// </remarks>
+        [RangeAttribute(1, 30)]
+        public int Sequence { get; set; }
+
+        /// <summary>
+        /// The number of samples retrieved from this brail.
+        /// </summary>
+        [RangeAttribute(0, Int32.MaxValue)]
+        public int? Samples { get; set; }
+
+        /// <summary>
+        /// Code for brail fullness:  1 = 1/8th, 1 = Full
+        /// </summary>
+        [RangeAttribute(1, 8)]
+        public int? Fullness { get; set; }
     }
 }

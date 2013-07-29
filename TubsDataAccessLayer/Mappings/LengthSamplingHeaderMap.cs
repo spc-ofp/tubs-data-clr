@@ -39,8 +39,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.FormId, "form_id");
             Map(x => x.SamplingProtocol, "sampletype_id").CustomType(typeof(SamplingProtocol));
             Map(x => x.SamplingProtocolComments, "other_desc");
-            Map(x => x.BrailStartTime, "sbrail_time").Length(4);
-            Map(x => x.BrailEndTime, "ebrail_time").Length(4);
+            Map(x => x.OtherSamplingCode, "other_code"); // v2009 added this field
 
             // The following properties were migrated from s_lfbrails
             Map(x => x.BrailNumber, "whichbrail");
@@ -74,7 +73,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
 
             References(x => x.Set).Column("s_set_id");
             HasMany(x => x.Samples).KeyColumn("s_lf_id").Cascade.All();
-            HasMany(x => x.Brails).KeyColumn("s_lf_id").Cascade.All();
+
+            HasOne(x => x.Brails).PropertyRef(r => r.Header).Cascade.All();
+            //HasMany(x => x.Brails).KeyColumn("s_lf_id").Cascade.All();
         }
     }
 }

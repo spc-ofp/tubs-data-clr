@@ -28,16 +28,21 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// PS-4 header entity.
     /// </summary>
     public class LengthSamplingHeader : IAuditable, IEntity
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public LengthSamplingHeader()
         {
             this.Samples = new List<LengthSample>();
-            this.Brails = new List<Brail>();
         }
 
+        /// <summary>
+        /// Entity primary key
+        /// </summary>
         public virtual int Id { get; set; }
 
         public virtual int? FormId { get; set; }
@@ -45,15 +50,18 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [EnumDataType(typeof(SamplingProtocol))]
         public virtual SamplingProtocol? SamplingProtocol { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// The v2009 form adds a field for 'Other' sampling protocols
+        /// complete with a code 
+        /// </remarks>
+        public virtual string OtherSamplingCode { get; set; }
+
         [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
         [DataType(DataType.MultilineText)]
         public virtual string SamplingProtocolComments { get; set; }
-
-        [Display(ResourceType = typeof(FieldNames), Name = "BrailStartTime")]
-        public virtual string BrailStartTime { get; set; }
-
-        [Display(ResourceType = typeof(FieldNames), Name = "BrailEndTime")]
-        public virtual string BrailEndTime { get; set; }
 
         /// <summary>
         /// Gets or sets the brail used.  Typical purse seine vessels have
@@ -63,14 +71,21 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [RangeAttribute(1, 2)]
         public virtual int? BrailNumber { get; set; }
 
-        // For spill sampling only
+        /// <summary>
+        /// Gets or sets which brail (sequence) was sampled.  Spill sampling only.
+        /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "SampledBrailNumber")]
         public virtual int? SampledBrailNumber { get; set; }
 
+        /// <summary>
+        /// Gets or sets the count of fish measured.  Spill sampling only.
+        /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "NumberOfFishMeasured")]
         public virtual int? NumberOfFishMeasured { get; set; }
 
-        // All sampling protocols
+        /// <summary>
+        /// Gets or sets whether the measuring instrument was calibrated for this set.
+        /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "CalibratedThisSet")]
         public virtual bool? CalibratedThisSet { get; set; }
 
@@ -90,52 +105,102 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         [Range(0, Int32.MaxValue)]
         public virtual int? PageCount { get; set; }
 
+        /// <summary>
+        /// The Brail object contains the 30 brail samples, while a single
+        /// PS-4 form can only record the results from 30 brails.
+        /// Originally, this was a collection that contained either zero or one
+        /// Brail object.
+        /// </summary>
+        public virtual Brail Brails { get; set; }
+
+        /// <summary>
+        /// Gets or sets the target number of fish sampled per brail.
+        /// Grab sampling only, this is usually 5.
+        /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "FishPerBrail")]
         [Range(0, Int32.MaxValue)]
         public virtual int? FishPerBrail { get; set; }
 
+        // TODO: Convert this to an enumeration
         [Display(ResourceType = typeof(FieldNames), Name = "MeasuringInstrument")]
         public virtual string MeasuringInstrument { get; set; }
 
+        /// <summary>
+        /// Gets or sets the number of full brails brought onboard during this set.
+        /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "FullBrailCount")]
         [RangeAttribute(0, Int32.MaxValue)]
         public virtual int? FullBrailCount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the number of 7/8 full brails brought onboard during this set. 
+        /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "SevenEighthsBrailCount")]
         [RangeAttribute(0, Int32.MaxValue)]
         public virtual int? SevenEighthsBrailCount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the number of 3/4 full brails brought onboard during this set. 
+        /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "ThreeQuartersBrailCount")]
         [RangeAttribute(0, Int32.MaxValue)]
         public virtual int? ThreeQuartersBrailCount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the number of 2/3 full brails brought onboard during this set. 
+        /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "TwoThirdsBrailCount")]
         [RangeAttribute(0, Int32.MaxValue)]
         public virtual int? TwoThirdsBrailCount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the number of 1/2 full brails brought onboard during this set. 
+        /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "OneHalfBrailCount")]
         [RangeAttribute(0, Int32.MaxValue)]
         public virtual int? OneHalfBrailCount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the number of 1/3 full brails brought onboard during this set. 
+        /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "OneThirdBrailCount")]
         [RangeAttribute(0, Int32.MaxValue)]
         public virtual int? OneThirdBrailCount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the number of 1/4 full brails brought onboard during this set. 
+        /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "OneQuarterBrailCount")]
         [RangeAttribute(0, Int32.MaxValue)]
         public virtual int? OneQuarterBrailCount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the number of 1/8 full brails brought onboard during this set. 
+        /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "OneEighthBrailCount")]
         [RangeAttribute(0, Int32.MaxValue)]
         public virtual int? OneEighthBrailCount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the total number of brails brought onboard during this set. 
+        /// </summary>
         [Display(ResourceType = typeof(FieldNames), Name = "TotalBrailCount")]
         [RangeAttribute(0, Int32.MaxValue)]
         public virtual int? TotalBrailCount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the sum of normalized brail contents. 
+        /// </summary>
+        /// <remarks>
+        /// One full brail plus one half-full brail plus 2 quarter-full brails
+        /// would be 2.
+        /// </remarks>
         [Display(ResourceType = typeof(FieldNames), Name = "SumOfAllBrails")]
         public virtual decimal? SumOfAllBrails { get; set; }
 
+        /// <summary>
+        /// Gets or sets comments associated with this entity. 
+        /// </summary>
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(FieldNames), Name = "Comments")]
         public virtual string Comments { get; set; }
@@ -163,8 +228,6 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual IList<LengthSample> Samples { get; protected internal set; }
 
-        public virtual IList<Brail> Brails { get; protected internal set; }
-
         public virtual void AddLengthSample(LengthSample sample)
         {
             if (null == sample)
@@ -172,15 +235,6 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
             sample.Header = this;
             this.Samples.Add(sample);
-        }
-
-        public virtual void AddBrail(Brail brail)
-        {
-            if (null == brail)
-                return;
-            
-            brail.Header = this;
-            this.Brails.Add(brail);
         }
 
         public virtual bool IsNew()

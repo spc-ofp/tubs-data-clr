@@ -35,6 +35,247 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Schema("obsv");
             Table("s_lfbrails");
             Id(x => x.Id, "s_lfbrail_id").GeneratedBy.Identity();
+            Component(x => x.Record1, m =>
+            {
+                // Fluent NHibernate doesn't have a constant mapping
+                // so this serves as an adequate work-around
+                m.Map(x => x.Sequence).Formula("1");
+                m.Map(x => x.Samples, "brail1_samples");
+                m.Map(x => x.Fullness, "brail1_fullness");
+            });
+
+            Component(x => x.Record2, m =>
+            {
+                m.Map(x => x.Sequence).Formula("2");
+                m.Map(x => x.Samples, "brail2_samples");
+                m.Map(x => x.Fullness, "brail2_fullness");
+            });
+
+            Component(x => x.Record3, m =>
+            {
+                m.Map(x => x.Sequence).Formula("3");
+                m.Map(x => x.Samples, "brail3_samples");
+                m.Map(x => x.Fullness, "brail3_fullness");
+            });
+
+
+            Component(x => x.Record4, m =>
+            {
+                m.Map(x => x.Sequence).Formula("4");
+                m.Map(x => x.Samples, "brail4_samples");
+                m.Map(x => x.Fullness, "brail4_fullness");
+            });
+
+
+            Component(x => x.Record5, m =>
+            {
+                m.Map(x => x.Sequence).Formula("5");
+                m.Map(x => x.Samples, "brail5_samples");
+                m.Map(x => x.Fullness, "brail5_fullness");
+            });
+
+
+            Component(x => x.Record6, m =>
+            {
+                m.Map(x => x.Sequence).Formula("6");
+                m.Map(x => x.Samples, "brail6_samples");
+                m.Map(x => x.Fullness, "brail6_fullness");
+            });
+
+
+            Component(x => x.Record7, m =>
+            {
+                m.Map(x => x.Sequence).Formula("7");
+                m.Map(x => x.Samples, "brail7_samples");
+                m.Map(x => x.Fullness, "brail7_fullness");
+            });
+
+
+            Component(x => x.Record8, m =>
+            {
+                m.Map(x => x.Sequence).Formula("8");
+                m.Map(x => x.Samples, "brail8_samples");
+                m.Map(x => x.Fullness, "brail8_fullness");
+            });
+
+
+            Component(x => x.Record9, m =>
+            {
+                m.Map(x => x.Sequence).Formula("9");
+                m.Map(x => x.Samples, "brail9_samples");
+                m.Map(x => x.Fullness, "brail9_fullness");
+            });
+
+
+            Component(x => x.Record10, m =>
+            {
+                m.Map(x => x.Sequence).Formula("10");
+                m.Map(x => x.Samples, "brail10_samples");
+                m.Map(x => x.Fullness, "brail10_fullness");
+            });
+
+
+            Component(x => x.Record11, m =>
+            {
+                m.Map(x => x.Sequence).Formula("11");
+                m.Map(x => x.Samples, "brail11_samples");
+                m.Map(x => x.Fullness, "brail11_fullness");
+            });
+
+
+            Component(x => x.Record12, m =>
+            {
+                m.Map(x => x.Sequence).Formula("12");
+                m.Map(x => x.Samples, "brail12_samples");
+                m.Map(x => x.Fullness, "brail12_fullness");
+            });
+
+
+            Component(x => x.Record13, m =>
+            {
+                m.Map(x => x.Sequence).Formula("13");
+                m.Map(x => x.Samples, "brail13_samples");
+                m.Map(x => x.Fullness, "brail13_fullness");
+            });
+
+
+            Component(x => x.Record14, m =>
+            {
+                m.Map(x => x.Sequence).Formula("14");
+                m.Map(x => x.Samples, "brail14_samples");
+                m.Map(x => x.Fullness, "brail14_fullness");
+            });
+
+
+            Component(x => x.Record15, m =>
+            {
+                m.Map(x => x.Sequence).Formula("15");
+                m.Map(x => x.Samples, "brail15_samples");
+                m.Map(x => x.Fullness, "brail15_fullness");
+            });
+
+
+            Component(x => x.Record16, m =>
+            {
+                m.Map(x => x.Sequence).Formula("16");
+                m.Map(x => x.Samples, "brail16_samples");
+                m.Map(x => x.Fullness, "brail16_fullness");
+            });
+
+
+            Component(x => x.Record17, m =>
+            {
+                m.Map(x => x.Sequence).Formula("17");
+                m.Map(x => x.Samples, "brail17_samples");
+                m.Map(x => x.Fullness, "brail17_fullness");
+            });
+
+
+            Component(x => x.Record18, m =>
+            {
+                m.Map(x => x.Sequence).Formula("18");
+                m.Map(x => x.Samples, "brail18_samples");
+                m.Map(x => x.Fullness, "brail18_fullness");
+            });
+
+
+            Component(x => x.Record19, m =>
+            {
+                m.Map(x => x.Sequence).Formula("19");
+                m.Map(x => x.Samples, "brail19_samples");
+                m.Map(x => x.Fullness, "brail19_fullness");
+            });
+
+
+            Component(x => x.Record20, m =>
+            {
+                m.Map(x => x.Sequence).Formula("20");
+                m.Map(x => x.Samples, "brail20_samples");
+                m.Map(x => x.Fullness, "brail20_fullness");
+            });
+
+
+            Component(x => x.Record21, m =>
+            {
+                m.Map(x => x.Sequence).Formula("21");
+                m.Map(x => x.Samples, "brail21_samples");
+                m.Map(x => x.Fullness, "brail21_fullness");
+            });
+
+
+            Component(x => x.Record22, m =>
+            {
+                m.Map(x => x.Sequence).Formula("22");
+                m.Map(x => x.Samples, "brail22_samples");
+                m.Map(x => x.Fullness, "brail22_fullness");
+            });
+
+
+            Component(x => x.Record23, m =>
+            {
+                m.Map(x => x.Sequence).Formula("23");
+                m.Map(x => x.Samples, "brail23_samples");
+                m.Map(x => x.Fullness, "brail23_fullness");
+            });
+
+
+            Component(x => x.Record24, m =>
+            {
+                m.Map(x => x.Sequence).Formula("24");
+                m.Map(x => x.Samples, "brail24_samples");
+                m.Map(x => x.Fullness, "brail24_fullness");
+            });
+
+
+            Component(x => x.Record25, m =>
+            {
+                m.Map(x => x.Sequence).Formula("25");
+                m.Map(x => x.Samples, "brail25_samples");
+                m.Map(x => x.Fullness, "brail25_fullness");
+            });
+
+
+            Component(x => x.Record26, m =>
+            {
+                m.Map(x => x.Sequence).Formula("26");
+                m.Map(x => x.Samples, "brail26_samples");
+                m.Map(x => x.Fullness, "brail26_fullness");
+            });
+
+
+            Component(x => x.Record27, m =>
+            {
+                m.Map(x => x.Sequence).Formula("27");
+                m.Map(x => x.Samples, "brail27_samples");
+                m.Map(x => x.Fullness, "brail27_fullness");
+            });
+
+
+            Component(x => x.Record28, m =>
+            {
+                m.Map(x => x.Sequence).Formula("28");
+                m.Map(x => x.Samples, "brail28_samples");
+                m.Map(x => x.Fullness, "brail28_fullness");
+            });
+
+
+            Component(x => x.Record29, m =>
+            {
+                m.Map(x => x.Sequence).Formula("29");
+                m.Map(x => x.Samples, "brail29_samples");
+                m.Map(x => x.Fullness, "brail29_fullness");
+            });
+
+
+            Component(x => x.Record30, m =>
+            {
+                m.Map(x => x.Sequence).Formula("30");
+                m.Map(x => x.Samples, "brail30_samples");
+                m.Map(x => x.Fullness, "brail30_fullness");
+            });
+
+
+            /*
             Map(x => x.Brail1FullnessCode, "brail1_fullness");
             Map(x => x.SamplesFromBrail1, "brail1_samples");
             Map(x => x.Brail2FullnessCode, "brail2_fullness");
@@ -95,6 +336,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.SamplesFromBrail29, "brail29_samples");
             Map(x => x.Brail30FullnessCode, "brail30_fullness");
             Map(x => x.SamplesFromBrail30, "brail30_samples");
+             * 
+            */
             Map(x => x.EnteredBy, "entered_by").Length(50);
             Map(x => x.EnteredDate, "entered_dtime");
             Map(x => x.UpdatedBy, "updated_by").Length(50);

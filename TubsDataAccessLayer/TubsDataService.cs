@@ -157,8 +157,9 @@ namespace Spc.Ofp.Tubs.DAL
                                 x.FishingSet.SamplingHeaders.ToList().ForEach(y =>
                                 {
                                     session.Save(y);
-                                    y.Samples.ToList().ForEach(z => session.Save(z));
-                                    y.Brails.ToList().ForEach(z => session.Save(z));
+                                    session.Save(y.Brails);
+                                    y.Samples.ToList().ForEach(z => session.Save(z));                                    
+                                    //y.Brails.ToList().ForEach(z => session.Save(z));
                                 });
                             }
 

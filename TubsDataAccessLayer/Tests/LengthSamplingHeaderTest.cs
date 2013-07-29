@@ -63,11 +63,10 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             Assert.AreEqual(72, header.Id);
             Assert.NotNull(header.Set);
             Assert.AreEqual(83, header.Set.Id);
-            Assert.AreEqual("0715", header.BrailStartTime.Trim());
-            Assert.AreEqual("0730", header.BrailEndTime.Trim());
             Assert.AreEqual(9, header.TotalBrailCount);
             Assert.NotNull(header.Samples);
             Assert.Greater(header.Samples.Count, 90);
+            Assert.NotNull(header.Brails);
             //// Although I picked this example because I know about how many samples it has, it's still good
             //// to confirm that the relationship really is correct.
             foreach (var sample in header.Samples)

@@ -38,7 +38,7 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual string ProgramCode { get; set; }
 
-        public virtual string StaffCode { get; set; }
+        public virtual Observer Observer { get; set; }
 
         public virtual string TripNumber { get; set; }
 
@@ -76,11 +76,14 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         public virtual DateTime? ClosedDate { get; set; }
 
+        /// <summary>
+        /// SPC specific trip number
+        /// </summary>
         public virtual string SpcTripNumber
         {
             get
             {
-                return String.Format("{0} / {1}", this.StaffCode.Trim(), this.TripNumber.Trim());
+                return String.Format("{0} / {1}", this.Observer.StaffCode.Trim(), this.TripNumber.Trim());
             }
         }
 

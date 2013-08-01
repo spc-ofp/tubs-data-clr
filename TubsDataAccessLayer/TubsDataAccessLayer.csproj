@@ -171,6 +171,7 @@
     <Compile Include="Infrastructure\EntityMethodGenerator.cs" />
     <Compile Include="Infrastructure\IsAllowed.cs" />
     <Compile Include="Infrastructure\NHibernateContractResolver.cs" />
+    <Compile Include="Infrastructure\ProgramCodeFilter.cs" />
     <Compile Include="Infrastructure\SecurableExtensions.cs" />
     <Compile Include="Infrastructure\TubsLinqToHqlGeneratorsRegistry.cs" />
     <Compile Include="Mappings\ActivityAceMap.cs" />

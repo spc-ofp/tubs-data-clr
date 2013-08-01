@@ -27,10 +27,13 @@ namespace Spc.Ofp.Tubs.DAL.Entities
     using Spc.Ofp.Tubs.DAL.Common;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Vessel entity.
     /// </summary>
     public class Vessel
     {
+        /// <summary>
+        /// Entity primary key
+        /// </summary>
         public virtual int Id { get; protected set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "VesselTypeCode")]
@@ -38,6 +41,12 @@ namespace Spc.Ofp.Tubs.DAL.Entities
 
         [Display(ResourceType = typeof(FieldNames), Name = "Name")]
         public virtual string Name { get; set; }
+
+        /// <summary>
+        /// FFA vessel identifier (aka VID)
+        /// </summary>
+        [Display(ResourceType = typeof(FieldNames), Name = "FfaVid")]
+        public virtual int? FfaVid { get; set; }
 
         [Display(ResourceType = typeof(FieldNames), Name = "WcpfcNumber")]
         public virtual string WcpfcNumber { get; set; }

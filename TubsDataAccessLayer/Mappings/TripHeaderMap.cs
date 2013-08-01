@@ -25,6 +25,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using FluentNHibernate.Mapping;
     using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// Fluent NHibernate mapping for the TripHeader entity.
@@ -38,7 +39,6 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Table("trip");
             Id(x => x.Id, "obstrip_id").GeneratedBy.Identity();
             Map(x => x.ProgramCode, "obsprg_code");
-            Map(x => x.StaffCode, "staff_code");
             Map(x => x.TripNumber, "tripno");
             Map(x => x.DeparturePort, "dep_port");
             Map(x => x.ReturnPort, "ret_port");
@@ -56,6 +56,9 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.ClosedDate, "closed_date");
 
             References(x => x.Vessel).Column("vessel_id").Not.LazyLoad();
+            References(x => x.Observer).Column("staff_code").Not.LazyLoad();
+
+            ApplyFilter<ProgramCodeFilter>();
         }
     }
 }

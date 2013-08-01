@@ -36,17 +36,18 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Table("vessels");
             Id(x => x.Id, "vessel_id").GeneratedBy.Identity();
             Map(x => x.TypeCode, "vty_code");
-            Map(x => x.Name, "vessel_name");
-            Map(x => x.WcpfcNumber, "wcpfc_number");
-            Map(x => x.Ircs, "ircs");
-            Map(x => x.RegisteredCountryCode, "reg_country_code");
-            Map(x => x.RegistrationNumber, "reg_number");
+            Map(x => x.Name, "vessel_name").Length(50);
+            Map(x => x.FfaVid, "ffa_id");
+            Map(x => x.WcpfcNumber, "wcpfc_number").Length(50);
+            Map(x => x.Ircs, "ircs").Length(16);
+            Map(x => x.RegisteredCountryCode, "reg_country_code").Length(2);
+            Map(x => x.RegistrationNumber, "reg_number").Length(20);
             Map(x => x.GrossTonnage, "grt");
             Map(x => x.Length, "length");
             Map(x => x.YearBuilt, "year_built");
             Map(x => x.EnginePower, "engine_power");
-            Map(x => x.EnginePowerUnits, "power_units");
-            Map(x => x.EnteredBy, "entered_by");
+            Map(x => x.EnginePowerUnits, "power_units").Length(2);
+            Map(x => x.EnteredBy, "entered_by").Length(50);
             Map(x => x.EnteredDate, "entered_dtime");
         }
     }

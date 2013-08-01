@@ -624,4 +624,7 @@
   <data name="GearSource" xml:space="preserve">
     <value>Lost gear source</value>
   </data>
+  <data name="FfaVid" xml:space="preserve">
+    <value>FFA Vessel Id (VID)</value>
+  </data>
 </root>

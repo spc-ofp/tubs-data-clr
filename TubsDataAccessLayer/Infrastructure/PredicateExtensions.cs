@@ -48,7 +48,8 @@ namespace Spc.Ofp.Tubs.DAL.Infrastructure
             var predicate = PredicateBuilder.True<TripHeader>(); // If I was using .Or(), I'd replace this with .False()
             if (!String.IsNullOrEmpty(criteria.Observer))
             {
-                predicate = predicate.And(trip => trip.StaffCode.ToUpper().Contains(criteria.Observer.ToUpper()));
+                // TODO:  Search not just staff code, but also given/family name
+                predicate = predicate.And(trip => trip.Observer.StaffCode.ToUpper().Contains(criteria.Observer.ToUpper()));
             }
 
             if (!String.IsNullOrEmpty(criteria.ProgramCode))

@@ -82,6 +82,7 @@ namespace Spc.Ofp.Tubs.DAL
             else
             {
                 CreateOperation = (x) => GetSession().SaveOrUpdate(x);
+                // If a session filter is enabled, we could swap out this call
                 ReadOperation = (x) => GetSession().Get<T>(x);
                 UpdateOperation = (x, m) =>
                 {
@@ -109,6 +110,11 @@ namespace Spc.Ofp.Tubs.DAL
             return this._session as ISession;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public virtual T FindById(object id)
         {
             try

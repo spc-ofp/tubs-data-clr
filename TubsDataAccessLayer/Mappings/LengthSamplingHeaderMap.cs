@@ -72,7 +72,10 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
             Map(x => x.CalibratedThisSet, "calibrated_this_set").CustomType<YesNoType>();
 
             References(x => x.Set).Column("s_set_id");
-            HasMany(x => x.Samples).KeyColumn("s_lf_id").Cascade.All();
+            HasMany(x => x.Samples)
+                .KeyColumn("s_lf_id")
+                .Inverse()
+                .Cascade.None();
 
             HasOne(x => x.Brails).PropertyRef(r => r.Header).Cascade.All();
             //HasMany(x => x.Brails).KeyColumn("s_lf_id").Cascade.All();

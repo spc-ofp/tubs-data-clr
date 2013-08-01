@@ -39,11 +39,12 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             {
                 var header = repo.FindById(tripId);
                 Assert.NotNull(header);
-                Assert.False(String.IsNullOrEmpty(header.StaffCode));
                 Assert.False(String.IsNullOrEmpty(header.ProgramCode));
                 Assert.False(String.IsNullOrEmpty(header.SpcTripNumber));
                 Assert.NotNull(header.Vessel);
+                Assert.NotNull(header.Observer);
                 Assert.False(String.IsNullOrEmpty(header.Vessel.Name));
+                Assert.False(String.IsNullOrEmpty(header.Observer.StaffCode));
             }
         }
         
@@ -57,10 +58,11 @@ namespace Spc.Ofp.Tubs.DAL.Tests
                 foreach (var header in headers)
                 {
                     Assert.NotNull(header);
-                    Assert.False(String.IsNullOrEmpty(header.StaffCode));
                     Assert.False(String.IsNullOrEmpty(header.ProgramCode));
                     Assert.False(String.IsNullOrEmpty(header.SpcTripNumber));
                     Assert.NotNull(header.Vessel);
+                    Assert.NotNull(header.Observer);
+                    Assert.False(String.IsNullOrEmpty(header.Observer.StaffCode));
                 }
             }
         }

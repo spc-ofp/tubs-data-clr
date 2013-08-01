@@ -22,6 +22,8 @@ namespace Spc.Ofp.Tubs.DAL.Tests
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
+    using System;
+    using System.Linq;
     using NUnit.Framework;
     using PagedList;
     using Spc.Ofp.Tubs.DAL.Entities;
@@ -52,8 +54,32 @@ namespace Spc.Ofp.Tubs.DAL.Tests
             Assert.AreEqual(1, brail.Record1.Sequence);
             Assert.AreEqual(5, brail.Record1.Fullness);
             Assert.AreEqual(3, brail.Record1.Samples);
-            //Assert.AreEqual(5, brail.Brail1FullnessCode);
-            //Assert.AreEqual(3, brail.SamplesFromBrail1);
+        }
+
+        [Test]
+        public void TestBrailIndexedProperties([Values(265)] int brailId)
+        {
+            var brail = this.repo.FindById(brailId);
+            Assert.NotNull(brail);
+            var record = new BrailRecord()
+            {
+                Sequence = 20,
+                Samples = 99,
+                Fullness = 1
+            };
+            brail[19] = record;
+            Assert.AreEqual(20, brail.Record20.Sequence);
+            Assert.AreEqual(99, brail.Record20.Samples);
+            Assert.AreEqual(1, brail.Record20.Fullness);
+        }
+
+        [Test]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void IndexedPropertyException()
+        {
+            var brail = new Brail();
+            var record = new BrailRecord();
+            brail[30] = record;
         }
 
         [Test]

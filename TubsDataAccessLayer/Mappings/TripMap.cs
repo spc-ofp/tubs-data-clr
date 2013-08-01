@@ -25,6 +25,7 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
     using FluentNHibernate.Mapping;
     using Spc.Ofp.Tubs.DAL.Common;
     using Spc.Ofp.Tubs.DAL.Entities;
+    using Spc.Ofp.Tubs.DAL.Infrastructure;
 
     /// <summary>
     /// Mapping for common trip data.
@@ -140,6 +141,8 @@ namespace Spc.Ofp.Tubs.DAL.Mappings
                 .Cascade.None();
 
             DiscriminateSubClassesOnColumn<string>("gear_code");
+
+            ApplyFilter<ProgramCodeFilter>();
         }
     }
 

@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="EntityNameFilter.cs" company="Secretariat of the Pacific Community">
+// <copyright file="ProgramCodeFilter.cs" company="Secretariat of the Pacific Community">
 // Copyright (C) 2013 Secretariat of the Pacific Community
 // </copyright>
 // -----------------------------------------------------------------------
@@ -22,35 +22,32 @@ namespace Spc.Ofp.Tubs.DAL.Infrastructure
      * You should have received a copy of the GNU Affero General Public License
      * along with TUBS.  If not, see <http://www.gnu.org/licenses/>.
      */
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using FluentNHibernate.Mapping;
 
     /// <summary>
-    /// So close and yet so far:
-    /// http://stackoverflow.com/questions/5131004/
-    /// http://stackoverflow.com/questions/960625/
-    /// Session filters don't work with a joined entity (e.g. separate ACL table)
-    /// Still, StackOverflow answer is useful for simple filtering directly on entities.
-    /// NHForge filter article
-    /// http://nhforge.org/wikis/reference2-0en/chapter-15-filtering-data.aspx
-    /// For current version of NHibernate (3.3), filter can only be applied to standard session, not
-    /// stateless session.
-    /// 
-    /// Here's another article on filters.  Maybe there's some more 'magic' that can happen in a Filter that I'm not
-    /// savvy to yet.
-    /// http://nhforge.org/wikis/howtonh/contextual-data-using-nhibernate-filters.aspx
+    /// Simple session filter based on program code.
     /// </summary>
-    public sealed class EntityNameFilter : FilterDefinition
+    /// <remarks>
+    /// This session filter doesn't meet all requirements for
+    /// user security.  It won't help if a user requests an entity
+    /// within a trip directly by primary key.
+    /// </remarks>
+    public class ProgramCodeFilter : FilterDefinition
     {
-        public const string FilterName = "EntityNameFilter";
-        public const string ParamName = "EntityName";
-        
-        public EntityNameFilter()
+        /// <summary>
+        /// Using a constant value for the filter name makes configuration easier.
+        /// </summary>
+        public const string FilterName = "ProgramCodeFilter";
+
+        /// <summary>
+        /// Using a constant value for the filter parameter makes configuration easier.
+        /// </summary>
+        public const string ParamName = "ProgramCode";
+
+        public ProgramCodeFilter()
         {
             WithName(FilterName)
-                .WithCondition("entity_name = :EntityName")
+                .WithCondition("obsprg_code = :ProgramCode")
                 .AddParameter(ParamName, NHibernate.NHibernateUtil.String);
         }
     }

@@ -243,6 +243,86 @@ namespace Spc.Ofp.Tubs.DAL.Entities
         }
 
         /// <summary>
+        /// Indexed property for accessing brail records like an array.
+        /// Be aware that the array is zero based while the records in the
+        /// array are one based.
+        /// </summary>
+        /// <param name="index">Zero based index into the collection of BrailRecord entities</param>
+        /// <returns>BrailRecord at the requested index</returns>
+        public virtual BrailRecord this[int index]
+        {
+            get
+            {
+                return this.BrailRecords.Skip(index - 1).Take(1).FirstOrDefault();
+            }           
+            set
+            {
+                if (index < 0 || index > 29)
+                    throw new IndexOutOfRangeException();
+                if (0 == index)
+                    this.Record1 = value;
+                if (1 == index)
+                    this.Record2 = value;
+                if (2 == index)
+                    this.Record3 = value;
+                if (3 == index)
+                    this.Record4 = value;
+                if (4 == index)
+                    this.Record5 = value;
+                if (5 == index)
+                    this.Record6 = value;
+                if (6 == index)
+                    this.Record7 = value;
+                if (7 == index)
+                    this.Record8 = value;
+                if (8 == index)
+                    this.Record9 = value;
+                if (9 == index)
+                    this.Record10 = value;
+                if (10 == index)
+                    this.Record11 = value;
+                if (11 == index)
+                    this.Record12 = value;
+                if (12 == index)
+                    this.Record13 = value;
+                if (13 == index)
+                    this.Record14 = value;
+                if (14 == index)
+                    this.Record15 = value;
+                if (15 == index)
+                    this.Record16 = value;
+                if (16 == index)
+                    this.Record17 = value;
+                if (17 == index)
+                    this.Record18 = value;
+                if (18 == index)
+                    this.Record19 = value;
+                if (19 == index)
+                    this.Record20 = value;
+                if (20 == index)
+                    this.Record21 = value;
+                if (21 == index)
+                    this.Record22 = value;
+                if (22 == index)
+                    this.Record23 = value;
+                if (23 == index)
+                    this.Record24 = value;
+                if (24 == index)
+                    this.Record25 = value;
+                if (25 == index)
+                    this.Record26 = value;
+                if (26 == index)
+                    this.Record27 = value;
+                if (27 == index)
+                    this.Record28 = value;
+                if (28 == index)
+                    this.Record29 = value;
+                if (29 == index)
+                    this.Record30 = value;
+            }
+        }
+
+        /// <summary>
         /// Read-only property making iterating over brail records easier.
         /// Writing back into the entity will still be a pain in the neck.
         /// </summary>

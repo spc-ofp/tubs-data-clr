@@ -38,6 +38,112 @@ namespace Spc.Ofp.Tubs.DAL.Tests
     public class SecurityTest
     {
         [Test]
+        [Ignore("This doesn't work at all")]
+        public void FilterDayViaTripAndProgramCode([Values(25527)] int dayId)
+        {
+            string programCode = "FMOB";
+            using (var session = TubsDataService.GetSession())
+            {
+                session.EnableFilter(ProgramCodeFilter.FilterName).SetParameter(ProgramCodeFilter.ParamName, programCode);
+                var repo = TubsDataService.GetRepository<SeaDay>(session);
+                var day = repo.FindById(dayId);
+                //Assert.Null(day);
+                Assert.NotNull(day);
+                Assert.Null(day.Trip);
+            }
+        }
+
+        [Test]
+        public void SimpleTripFilterWithFindBy()
+        {
+            int normaTrip = 3959;
+            int nfaTrip = 1311;
+
+            string programCode = "FMOB";
+            using (var session = TubsDataService.GetSession())
+            {
+                session.EnableFilter(ProgramCodeFilter.FilterName).SetParameter(ProgramCodeFilter.ParamName, programCode);
+
+                var repo = TubsDataService.GetRepository<Trip>(session);
+                // At least 500 NORMA trips
+                Assert.Less(500, repo.All().Count());
+                var trip = repo.FindBy(t => t.Id == normaTrip);
+                Assert.NotNull(trip);
+
+                // With this session filter in place, we shouldn't be able to load any NFA (PGOB) trips
+                // NOTE:  This doesn't work if we use the .FindById(...) method on Repository
+                trip = repo.FindBy(t => t.Id == nfaTrip);
+                Assert.Null(trip);
+            }
+        }
+
+        [Test]
+        public void ProgramCodeFilterWithNull()
+        {
+            int normaTrip = 3959;
+            string programCode = null;
+            using (var session = TubsDataService.GetSession())
+            {
+                session.EnableFilter(ProgramCodeFilter.FilterName).SetParameter(ProgramCodeFilter.ParamName, programCode);
+
+                var repo = TubsDataService.GetRepository<Trip>(session);
+                Assert.AreEqual(0, repo.All().Count());
+                var trip = repo.All().Where(t => t.Id == normaTrip).FirstOrDefault();
+                Assert.Null(trip);
+            }
+        }
+        
+        
+        [Test]
+        public void SimpleTripFilter()
+        {
+            int normaTrip = 3959;
+            int nfaTrip = 1311;
+
+            string programCode = "FMOB";
+            using (var session = TubsDataService.GetSession())
+            {
+                session.EnableFilter(ProgramCodeFilter.FilterName).SetParameter(ProgramCodeFilter.ParamName, programCode);
+
+                var repo = TubsDataService.GetRepository<Trip>(session);
+                // At least 500 NORMA trips
+                Assert.Less(500, repo.All().Count());
+                var trip = repo.All().Where(t => t.Id == normaTrip).FirstOrDefault();
+                Assert.NotNull(trip);
+
+                // With this session filter in place, we shouldn't be able to load any NFA (PGOB) trips
+                // NOTE:  This doesn't work if we use the .FindById(...) method on Repository
+                trip = repo.All().Where(t => t.Id == nfaTrip).FirstOrDefault();
+                Assert.Null(trip);
+            }
+        }
+
+        [Test]
+        public void SimpleTripHeaderFilter()
+        {
+            int normaTrip = 3959;
+            int nfaTrip = 1311;
+
+            string programCode = "FMOB";
+            using (var session = TubsDataService.GetSession())
+            {
+                session.EnableFilter(ProgramCodeFilter.FilterName).SetParameter(ProgramCodeFilter.ParamName, programCode);
+
+                var repo = TubsDataService.GetRepository<TripHeader>(session);
+                // At least 500 NORMA trips
+                Assert.Less(500, repo.All().Count());
+
+                var trip = repo.All().Where(t => t.Id == normaTrip).FirstOrDefault();
+                Assert.NotNull(trip);
+
+                // With this session filter in place, we shouldn't be able to load any NFA (PGOB) trips
+                trip = repo.All().Where(t => t.Id == nfaTrip).FirstOrDefault();
+                Assert.Null(trip);
+            }
+        }
+        
+        
+        [Test]
         public void TestAclExtension()
         {
             var activity = new PurseSeineActivity();
